@@ -12,3 +12,5 @@ Route::apiResource('practice', 'PracticeController');
 
 Route::apiResource('labs', 'LabController');
 
+Route::apiResource('laborders', 'LabOrderController');
+

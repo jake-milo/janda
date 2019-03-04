@@ -45,7 +45,7 @@ class LabController extends Controller
      */
     public function show(Lab $lab)
     {
-        $lab = load('LabOrders');
+        $lab->load('labOrders');
 
         return LabResource::make($lab);
     }
@@ -64,7 +64,7 @@ class LabController extends Controller
         $lab->name = $name;
         $lab->save();
 
-        $lab->load('LabOrders');
+        $lab->load('labOrders');
 
         return LabResource::make($lab);
     }

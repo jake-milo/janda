@@ -56,7 +56,7 @@ class LabOrderController extends Controller
      */
     public function show(LabOrder $labOrder)
     {
-        $labOrder = load('patient', 'practice', 'lab');
+        $labOrder->load('patient', 'practice', 'lab');
 
         return LabOrderResource::make($labOrder);
     }
@@ -87,7 +87,7 @@ class LabOrderController extends Controller
         $labOrder->date_required = $date_required;
         $labOrder->save();
 
-        $labOrder = load('patient', 'practice', 'lab');
+        $labOrder->load('patient', 'practice', 'lab');
 
         return LabOrderResource::make($labOrder);
     }
