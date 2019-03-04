@@ -20,6 +20,12 @@ class Patient extends JsonResource
         return $this->withTimestamps([
             'id' => $this->id,
             'name' => $this->name,
+            'lab_orders' => LabOrder::collection(
+                $this->whenLoaded('labOrders')
+            ),
+            'contact_lenses' => ContactLens::collection(
+                $this->whenLoaded('contactLenses')
+            ),
         ]);
     }
 }
