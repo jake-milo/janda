@@ -6,6 +6,7 @@ use App\Models\Patient;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Patient as PatientResource;
 use App\Http\Requests\CreatePatientRequest;
+use App\Http\Requests\UpdatePatientRequest;
 
 class PatientController extends Controller
 {

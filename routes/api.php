@@ -7,3 +7,8 @@
  */
 
 Route::apiResource('patients', 'PatientController');
+
+Route::apiResource('practice', 'PracticeController');
+
+Route::apiResource('labs', 'LabController');
+
