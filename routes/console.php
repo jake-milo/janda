@@ -1,18 +1,9 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
-
-/*
-|--------------------------------------------------------------------------
-| Console Routes
-|--------------------------------------------------------------------------
-|
-| This file is where you may define all of your Closure based console
-| commands. Each Closure is bound to a command instance allowing a
-| simple approach to interacting with each command's IO methods.
-|
-*/
-
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->describe('Display an inspiring quote');
+Artisan::command('make:api-controller {model}', function ($model) {
+    $this->call('make:controller', [
+        'name' => "Api/{$model}Controller",
+        '--model' => "Models/$model",
+        '--api' => true,
+    ]);
+})->describe('Creates an API Controller for the specified model.');
