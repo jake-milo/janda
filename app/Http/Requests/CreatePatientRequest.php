@@ -27,4 +27,9 @@ class CreatePatientRequest extends FormRequest
             'name' => 'string|required',
         ];
     }
+
+    public function getPatientData()
+    {
+        return $this->only('name');
+    }
 }

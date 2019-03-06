@@ -28,11 +28,9 @@ class PracticeController extends Controller
      */
     public function store(CreatePracticeRequest $request)
     {
-        $name = $request->input('name');
+        $practiceData = $request->getPracticeData();
 
-        $practice = Practice::create([
-            'name' => $name,
-        ]);
+        $practice = Practice::create($practiceData);
 
         return PracticeResource::make($practice);
     }
@@ -45,7 +43,7 @@ class PracticeController extends Controller
      */
     public function show(Practice $practice)
     {
-        $practice->load('labOrders', 'contactLenses')
+        $practice->load('labOrders', 'contactLenses');
 
         return PracticeResource::make($practice);
     }

@@ -27,25 +27,21 @@ class LabOrderController extends Controller
      * @param  \App\Http\Requests\CreateLabOrderRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateLabOrderRequest $request,)
+    public function store(CreateLabOrderRequest $request)
     {
-        $patient_id = $request->input('patient_id');
-        $lab_id = $request->input('lab_id');
-        $practice_id = $request->input('practice_id');
-        $lens = $request->input('lens');
-        $reference = $request->input('reference');
-        $date_sent = $request->input('date_sent');
-        $date_required = $request->input('date_required');
+        $patient = $request->getPatient();
+        $practice = $request->getPractice();
+        $lab = $request->getLab();
 
-        $labOrder = LabOrder::create([
-            'patient_id' => $patient_id,
-            'lab_id' => $lab_id,
-            'practice' => $practice_id,
-            'lens' => $lens,
-            'reference' => $reference,
-            'date_sent' => $date_sent,
-            'date_required' => $date_required,
-        ]);
+        $labOrderData = $request->getLabOrderData();
+
+        $labOrder = new LabOrder($labOrderData);
+        $labOrder->patient()->associate($patient);
+        $labOrder->practice()->associate($practice);
+        $labOrder->lab()->associate($lab);
+        $labOrder->save();
+
+        return LabOrderResource::make($labOrder);
     }
 
     /**
@@ -70,21 +66,12 @@ class LabOrderController extends Controller
      */
     public function update(UpdateLabOrderRequest $request, LabOrder $labOrder)
     {
-        $patient_id = $request->input('patient_id');
-        $lab_id = $request->input('lab_id');
-        $practice_id = $request->input('practice_id');
-        $lens = $request->input('lens');
-        $reference = $request->input('reference');
-        $date_sent = $request->input('date_sent');
-        $date_required = $request->input('date_required');
+        $updates = $request->getUpdates();
 
-        $labOrder->patient_id = $patient_id;
-        $labOrder->lab_id = $lab_id;
-        $labOrder->practice_id = $practice_id;
-        $labOrder->lens = $lens;
-        $labOrder->reference = $reference;
-        $labOrder->date_sent = $date_sent;
-        $labOrder->date_required = $date_required;
+        $labOrder->fill($updates);
+        $labOrder->patient()->associate($patient);
+        $labOrder->practice()->associate($practice);
+        $labOrder->lab()->associate($lab);
         $labOrder->save();
 
         $labOrder->load('patient', 'practice', 'lab');

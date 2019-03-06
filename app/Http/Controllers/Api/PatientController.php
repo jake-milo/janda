@@ -28,11 +28,9 @@ class PatientController extends Controller
      */
     public function store(CreatePatientRequest $request)
     {
-        $name = $request->input('name');
+        $patientData = $request->getPatientData();
 
-        $patient = Patient::create([
-            'name' => $name,
-        ]);
+        $patient= Patient::create($patientData);
 
         return PatientResource::make($patient);
     }
@@ -59,13 +57,12 @@ class PatientController extends Controller
      */
     public function update(UpdatePatientRequest $request, Patient $patient)
     {
-        $name = $request->input('name');
+        $patientData = $request->getUpdates();
 
-        $patient->name = $name;
+        $patient->fill($patienData);
         $patient->save();
 
         $patient->load('labOrders', 'contactLenses');
-
         return PatientResource::make($patient);
     }
 

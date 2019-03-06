@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateLabOrder extends FormRequest
+class UpdateLabOrderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,5 +26,10 @@ class UpdateLabOrder extends FormRequest
         return [
             //
         ];
+    }]
+
+    public function getUpdates()
+    {
+
     }
 }

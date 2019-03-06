@@ -8,9 +8,9 @@
 
 Route::apiResource('patients', 'PatientController');
 
-Route::apiResource('practice', 'PracticeController');
+Route::apiResource('practices', 'PracticeController');
 
 Route::apiResource('labs', 'LabController');
 
-Route::apiResource('laborders', 'LabOrderController');
+Route::apiResource('lab-orders', 'LabOrderController');
 

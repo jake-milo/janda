@@ -27,4 +27,9 @@ class CreateLabRequest extends FormRequest
             'name' => 'string|required',
         ];
     }
+
+    public function getLabData()
+    {
+        return $this->only('name');
+    }
 }

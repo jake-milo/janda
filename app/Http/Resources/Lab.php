@@ -23,5 +23,6 @@ class Lab extends JsonResource
             'lab_orders' => LabOrder::collection(
                 $this->whenLoaded('labOrders')
             ),
+        ]);
     }
 }

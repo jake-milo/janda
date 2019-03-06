@@ -27,4 +27,9 @@ class CreatePracticeRequest extends FormRequest
             'name' => 'string|required';
         ];
     }
+
+    public function getPracticeData()
+    {
+        return $this->only('name');
+    }
 }

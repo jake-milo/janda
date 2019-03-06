@@ -28,11 +28,9 @@ class LabController extends Controller
      */
     public function store(CreateLabRequest $request)
     {
-        $name = $request->input('name');
+        $labData = $request->getLabData();
 
-        $lab = Lab::create([
-            'name' => $name,
-        ]);
+        $lab = Lab::create($labData);
 
         return LabResource::make($lab);
     }
@@ -59,7 +57,7 @@ class LabController extends Controller
      */
     public function update(UpdateLabRequest $request, Lab $lab)
     {
-        $name = $request->('input');
+        $name = $request->getUpdate('input');
 
         $lab->name = $name;
         $lab->save();
