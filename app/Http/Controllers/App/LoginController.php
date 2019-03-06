@@ -26,9 +26,10 @@ class LoginController extends Controller
         // Get the email and password as an assoc
         // array from the request.
         $credentials = $request->only('email', 'password');
+        $remember = (bool)$request->input('remember_me', false);
 
         // Attempt to login with the credentials
-        if (Auth::guard()->attempt($credentials)) {
+        if (Auth::guard()->attempt($credentials, $remember)) {
             // Login was successful, redirect to the app
             return redirect('/');
         }
