@@ -6,8 +6,8 @@ trait HasResourceRelations
 {
     protected function getResourceRelationsToLoad()
     {
-        return defined('static::RESOURCE_RELATIONS')
-            ? static::RESOURCE_RELATIONS
+        return isset($this->resourceRelations)
+            ? $this->resourceRelations
             : [];
     }
 

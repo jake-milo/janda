@@ -9,7 +9,7 @@ class LabOrder extends Model
 {
     use HasResourceRelations;
 
-    const RESOURCE_RELATIONS = ['patient', 'practice', 'lab'];
+    protected $resourceRelations = ['patient', 'practice', 'lab'];
 
     protected $guarded = ['id'];
 
