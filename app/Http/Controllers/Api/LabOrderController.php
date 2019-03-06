@@ -52,7 +52,7 @@ class LabOrderController extends Controller
      */
     public function show(LabOrder $labOrder)
     {
-        $labOrder->load('patient', 'practice', 'lab');
+        $labOrder->loadResourceRelations();
 
         return LabOrderResource::make($labOrder);
     }
@@ -74,7 +74,7 @@ class LabOrderController extends Controller
         $labOrder->lab()->associate($lab);
         $labOrder->save();
 
-        $labOrder->load('patient', 'practice', 'lab');
+        $labOrder->loadResourceRelations();
 
         return LabOrderResource::make($labOrder);
     }

@@ -3,9 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\HasResourceRelations;
 
 class LabOrder extends Model
 {
+    use HasResourceRelations;
+
+    protected $resourceRelations = ['patient', 'practice', 'lab'];
+
     protected $guarded = ['id'];
 
     public function patient()
