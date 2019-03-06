@@ -11,8 +11,14 @@
             @csrf
 
             <input type="email" name="email" placeholder="Email" required value="{{ old('email') }}" />
+            <br />
             <input type="password" name="password" placeholder="Password" required />
-            <input type="checkbox" name="remember_me" value="1" />
+            <br />
+            <label for="remember_me">
+                <input type="checkbox" name="remember_me" value="1" />
+                Remember Me
+            </label>
+            <br />
             <input type="submit" value="Log In" />
 
             @if ($errors->any())
