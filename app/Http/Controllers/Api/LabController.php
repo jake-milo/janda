@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Lab;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Lab as LabResource;
 use App\Http\Requests\CreateLabRequest;
 use App\Http\Requests\UpdateLabRequest;
+use App\Http\Resources\Lab as LabResource;
+use App\Models\Lab;
 
 class LabController extends Controller
 {
@@ -31,6 +31,8 @@ class LabController extends Controller
         $labData = $request->getLabData();
 
         $lab = Lab::create($labData);
+
+        $lab->load('labOrders');
 
         return LabResource::make($lab);
     }
