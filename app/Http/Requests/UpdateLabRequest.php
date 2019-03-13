@@ -27,4 +27,9 @@ class UpdateLabRequest extends FormRequest
             'name' => 'string|required',
         ];
     }
+
+    public function getUpdates()
+    {
+        return $this->only('name');
+    }
 }

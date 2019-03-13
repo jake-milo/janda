@@ -27,4 +27,10 @@ class UpdatePracticeRequest extends FormRequest
             'name' => 'string|required',
         ];
     }
+
+    public function getUpdates()
+    {
+        return $this->only('name');
+    }
 }
+

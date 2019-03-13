@@ -24,7 +24,6 @@ class PracticeTest extends TestCase
         $this->assertDatabaseHas('practices', $practice->attributesToArray());
         $response->assertStatus(201);
 
-
         $response->assertJsonStructure([
             'data' => [
                 'id',

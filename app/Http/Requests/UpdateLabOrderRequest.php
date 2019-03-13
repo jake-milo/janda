@@ -13,7 +13,7 @@ class UpdateLabOrderRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,12 +24,32 @@ class UpdateLabOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'string|required',
         ];
+    }
+    public function getPatient()
+    {
+        $patientId = $this->input('patient_id');
+
+        return Patient::find($patientId);
+    }
+
+    public function getPractice()
+    {
+        $practiceId = $this->input('practice_id');
+
+        return Practice::find($practiceId);
+    }
+
+    public function getLab()
+    {
+        $labId = $this->input('lab_id');
+
+        return Lab::find($labId);
     }
 
     public function getUpdates()
     {
-
+        return $this->only('lens', 'reference', 'date_sent', 'date_required');
     }
 }

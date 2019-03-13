@@ -57,7 +57,21 @@ class LabTest extends TestCase
 
         $response = $this->delete("/api/labs/{$lab->id}");
 
-        $this->assertSoftDeleted($lab);
+        $response->assertStatus(200);
 
+        $this->assertSoftDeleted($lab);
+    }
+
+    public function testUserCanUpdateLab()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        $lab = factory(Lab::class)->create();
+        $updates = factory(Lab::class)->make();
+
+        $this->patch("/api/labs/{$lab->id}", $updates->attributesToArray());
+
+        $this->assertDatabaseHas('labs', $updates->attributesToArray());
     }
 }

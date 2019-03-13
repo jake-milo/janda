@@ -59,9 +59,9 @@ class PracticeController extends Controller
      */
     public function update(UpdatePracticeRequest $request, Practice $practice)
     {
-        $name = $request->input('name');
+        $updates = $request->getUpdates();
 
-        $practice->name = $name;
+        $practice->fill($updates);
         $practice->save();
 
         $practice->loadResourceRelations();

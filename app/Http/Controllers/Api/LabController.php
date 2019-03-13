@@ -59,9 +59,9 @@ class LabController extends Controller
      */
     public function update(UpdateLabRequest $request, Lab $lab)
     {
-        $name = $request->getUpdate('input');
+        $updates = $request->getUpdates();
 
-        $lab->name = $name;
+        $lab->fill($updates);
         $lab->save();
 
         $lab->loadResourceRelations();
