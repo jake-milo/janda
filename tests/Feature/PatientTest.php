@@ -2,36 +2,31 @@
 
 namespace Tests\Feature;
 
-use App\Models\Lab;
+use App\Models\Patient;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class LabTest extends TestCase
+class PatientTest extends TestCase
 {
     use WithFaker, RefreshDatabase;
 
-    /**
-     * Tests that a user can create a lab.
-     *
-     * @return void
-     */
-    public function testUserCanCreateLab()
+    public function testUserCanCreatePatient()
     {
-        // Create user and act as them
+        // Create a new user and act as them
         $user = factory(User::class)->create();
         $this->actingAs($user);
 
         // Get a new lab model - not persisted to database
-        $lab = factory(Lab::class)->make();
+        $patient = factory(Patient::class)->make();
 
         // Post the lab attributes to the create lab endpoint
-        $response = $this->post('/api/labs', $lab->attributesToArray());
+        $response = $this->post('/api/patients', $patient->attributesToArray());
 
         // Check the lab added to the database correctly and the API
         // responded with a HTTP 201.
-        $this->assertDatabaseHas('labs', $lab->attributesToArray());
+        $this->assertDatabaseHas('patients', $patient->attributesToArray());
         $response->assertStatus(201);
 
         // Check that the response structure matches what we want.
@@ -40,24 +35,12 @@ class LabTest extends TestCase
                 'id',
                 'name',
                 'lab_orders' => [],
+                'contact_lenses' => [],
                 'time' => [
                     'created',
                     'updated',
                 ],
             ],
         ]);
-    }
-
-    public function testUserCanDeleteLab()
-    {
-        $user = factory(User::class)->create();
-        $this->actingAs($user);
-
-        $lab = factory(Lab::class)->create();
-
-        $response = $this->delete("/api/labs/{$lab->id}");
-
-        $this->assertSoftDeleted($lab);
-
     }
 }

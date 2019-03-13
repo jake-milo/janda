@@ -32,6 +32,8 @@ class PatientController extends Controller
 
         $patient= Patient::create($patientData);
 
+        $patient->loadResourceRelations();
+
         return PatientResource::make($patient);
     }
 
@@ -43,7 +45,7 @@ class PatientController extends Controller
      */
     public function show(Patient $patient)
     {
-        $patient->load('labOrders', 'contactLenses');
+        $patient->loadResourceRelations();
 
         return PatientResource::make($patient);
     }
@@ -59,10 +61,10 @@ class PatientController extends Controller
     {
         $patientData = $request->getUpdates();
 
-        $patient->fill($patienData);
+        $patient->fill($patientData);
         $patient->save();
 
-        $patient->load('labOrders', 'contactLenses');
+        $patient->loadResourceRelations();
         return PatientResource::make($patient);
     }
 

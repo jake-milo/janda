@@ -11,7 +11,7 @@ class LabOrder extends Model
 
     protected $resourceRelations = ['patient', 'practice', 'lab'];
 
-    protected $guarded = ['id'];
+    protected $guarded = ['id', 'patient_id', 'practice_id', 'lab_id'];
 
     public function patient()
     {

@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Traits\HasResourceRelations;
 
 class Patient extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, HasResourceRelations;
+
+    protected $resourceRelations = ['labOrders', 'contactLenses'];
 
     protected $fillable = ['name'];
 

@@ -26,7 +26,7 @@ class UpdateLabOrderRequest extends FormRequest
         return [
             //
         ];
-    }]
+    }
 
     public function getUpdates()
     {

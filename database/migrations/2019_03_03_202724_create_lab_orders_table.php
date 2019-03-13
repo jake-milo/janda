@@ -27,6 +27,8 @@ class CreateLabOrdersTable extends Migration
             $table->foreign('patient_id')->references('id')->on('patients');
             $table->foreign('lab_id')->references('id')->on('labs');
             $table->foreign('practice_id')->references('id')->on('practices');
+
+            $table->softDeletes();
         });
     }
 

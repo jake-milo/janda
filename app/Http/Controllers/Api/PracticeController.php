@@ -32,6 +32,8 @@ class PracticeController extends Controller
 
         $practice = Practice::create($practiceData);
 
+        $practice->loadResourceRelations();
+
         return PracticeResource::make($practice);
     }
 
@@ -43,7 +45,7 @@ class PracticeController extends Controller
      */
     public function show(Practice $practice)
     {
-        $practice->load('labOrders', 'contactLenses');
+        $practice->loadResourceRelations();
 
         return PracticeResource::make($practice);
     }
@@ -62,7 +64,7 @@ class PracticeController extends Controller
         $practice->name = $name;
         $practice->save();
 
-        $practice->load('labOrders', 'contactLenses');
+        $practice->loadResourceRelations();
 
         return PracticeResource::make($practice);
     }

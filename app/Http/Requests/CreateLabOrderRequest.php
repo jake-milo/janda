@@ -24,13 +24,13 @@ class CreateLabOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'patient_id' => 'integer|required',
-            'practice_id' => 'integer|required',
-            'lab_id' => 'integer|required',
+            'patient_id' => 'integer|required|exists:patients,id',
+            'practice_id' => 'integer|required|exists:practices,id',
+            'lab_id' => 'integer|required|exists:labs,id',
             'lens' => 'string|required',
             'reference' => 'string|required',
-            'date_sent' => 'date|required'
-            'date_required' => 'date|required'
+            'date_sent' => 'date|required',
+            'date_required' => 'date|required',
         ];
     }
 
@@ -45,7 +45,7 @@ class CreateLabOrderRequest extends FormRequest
     {
         $practiceId = $this->input('practice_id');
 
-        return Practice::find($patientId)
+        return Practice::find($practiceId);
     }
 
     public function getLab()
