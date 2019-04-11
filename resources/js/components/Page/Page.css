@@ -1,0 +1,6 @@
+.page {
+    background: var(--white);
+    padding: 1rem;
+    border-radius: .5rem;
+    box-shadow: 0 4px 60px -15px rgba(0, 0, 0, 0.25);
+}

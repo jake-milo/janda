@@ -1,0 +1,32 @@
+.menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--header-width);
+    background: var(--white);
+    padding: 1rem;
+    box-shadow: 0 0 60px -15px rgba(0, 0, 0, 0.25);
+}
+
+.menu .logo {
+    margin: 2rem 0;
+    width: 100%;
+}
+
+.menu nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu nav a {
+    display: block;
+    width: 100%;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--primary);
+}
+
+.menu nav a:not(:last-of-type) {
+    margin-bottom: 0.5rem;
+}
