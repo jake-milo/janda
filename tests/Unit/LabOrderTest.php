@@ -26,8 +26,6 @@ class LabOrderTest extends TestCase
     {
         $this->createLabOrders();
 
-        $today = Date::now();
-
         $overdueCount = LabOrder::overdue()->count();
 
         $this->assertEquals(3, $overdueCount);

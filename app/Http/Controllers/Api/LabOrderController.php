@@ -16,9 +16,9 @@ class LabOrderController extends Controller
      */
     public function index()
     {
-        $labOrder = LabOrder::paginate(30);
+        $labOrders = LabOrder::paginate(30);
 
-        return LabOrderResource::collection($labOrder);
+        return LabOrderResource::collection($labOrders);
     }
 
     /**
@@ -66,6 +66,9 @@ class LabOrderController extends Controller
      */
     public function update(UpdateLabOrderRequest $request, LabOrder $labOrder)
     {
+        $patient = $request->getPatient();
+        $practice = $request->getPractice();
+        $lab = $request->getLab();
         $updates = $request->getUpdates();
 
         $labOrder->fill($updates);

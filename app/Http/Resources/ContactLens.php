@@ -3,9 +3,11 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Traits\HasTimestamps;
 
 class ContactLens extends JsonResource
 {
+    use HasTimestamps;
     /**
      * Transform the resource into an array.
      *
@@ -14,6 +16,23 @@ class ContactLens extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return $this->withTimestamps([
+            'id' => $this->id,
+            'lens' => $this->lens,
+            'brand' => $this->brand,
+            'duration' => $this->duration,
+            'quantity' => $this->quantity,
+            'price' => $this->price,
+            'shipping_cost' => $this->shipping_cost,
+            'solutions' => $this->solutions,
+
+            'patient' => Patient::make(
+                $this->whenLoaded('patient')
+            ),
+
+            'practice' => Practice::make(
+                $this->whenLoaded('practice')
+            ),
+        ]);
     }
 }

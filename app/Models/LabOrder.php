@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\HasResourceRelations;
 use Illuminate\Support\Facades\Date;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LabOrder extends Model
 {
-    use HasResourceRelations;
+    use SoftDeletes, HasResourceRelations;
 
     protected $resourceRelations = ['patient', 'practice', 'lab'];
 
