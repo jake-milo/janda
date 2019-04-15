@@ -45,7 +45,7 @@ class CreateContactLensRequest extends FormRequest
 
     public function getPractice()
     {
-        $practiceid = $this->input('practice_id');
+        $practiceId = $this->input('practice_id');
 
         return Practice::find($practiceId);
     }
