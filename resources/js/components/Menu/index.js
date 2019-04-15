@@ -6,7 +6,9 @@ import './Menu.css';
 export const Menu = () => {
     return (
         <div className="menu">
-            <img src="https://placehold.it/200x75?text=Logo" className="logo" />
+            <div className="logo-container">
+                <img src="/img/logo.png" className="logo" />
+            </div>
 
             <nav>
                 <Link to="/">Dashboard</Link>

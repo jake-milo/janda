@@ -4,6 +4,7 @@
     --white: #ffffff;
     --primary: #2779bd;
     --black: #22292f;
+    --logo-max-width: 11rem;
 }
 
 *, *:before, *:after {

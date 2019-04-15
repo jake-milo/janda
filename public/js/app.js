@@ -407,7 +407,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ":root {\r\n    --header-width: 16rem;\r\n    --off-white: #f1f5f8;\r\n    --white: #ffffff;\r\n    --primary: #2779bd;\r\n    --black: #22292f;\r\n}\r\n\r\n*, *:before, *:after {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n}\r\n\r\nhtml, body, #app {\r\n    height: 100%;\r\n    font-size: 16px;\r\n    background: var(--off-white);\r\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\r\n    color: var(--black);\r\n}\r\n\r\n.container {\r\n    width: 100%;\r\n    padding-left: var(--header-width);\r\n}\r\n\r\n.container .inner-container {\r\n    padding: 2rem;\r\n}\r\n", ""]);
+exports.push([module.i, ":root {\n    --header-width: 16rem;\n    --off-white: #f1f5f8;\n    --white: #ffffff;\n    --primary: #2779bd;\n    --black: #22292f;\n    --logo-max-width: 11rem;\n}\n\n*, *:before, *:after {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n}\n\nhtml, body, #app {\n    height: 100%;\n    font-size: 16px;\n    background: var(--off-white);\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\n    color: var(--black);\n}\n\n.container {\n    width: 100%;\n    padding-left: var(--header-width);\n}\n\n.container .inner-container {\n    padding: 2rem;\n}\n", ""]);
 
 // exports
 
@@ -426,7 +426,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".menu {\r\n    position: fixed;\r\n    left: 0;\r\n    top: 0;\r\n    bottom: 0;\r\n    width: var(--header-width);\r\n    background: var(--white);\r\n    padding: 1rem;\r\n    box-shadow: 0 0 60px -15px rgba(0, 0, 0, 0.25);\r\n}\r\n\r\n.menu .logo {\r\n    margin: 2rem 0;\r\n    width: 100%;\r\n}\r\n\r\n.menu nav {\r\n    display: flex;\r\n    flex-direction: column;\r\n}\r\n\r\n.menu nav a {\r\n    display: block;\r\n    width: 100%;\r\n    font-weight: 500;\r\n    text-decoration: none;\r\n    color: var(--primary);\r\n}\r\n\r\n.menu nav a:not(:last-of-type) {\r\n    margin-bottom: 0.5rem;\r\n}\r\n", ""]);
+exports.push([module.i, ".menu {\n    position: fixed;\n    left: 0;\n    top: 0;\n    bottom: 0;\n    width: var(--header-width);\n    background: var(--white);\n    padding: 1rem;\n    box-shadow: 0 0 60px -15px rgba(0, 0, 0, 0.25);\n}\n\n.menu .logo-container {\n    text-align: center;\n}\n\n.menu .logo-container .logo {\n    margin: 2rem 0;\n    width: 100%;\n    max-width: var(--logo-max-width);\n}\n\n.menu nav {\n    display: flex;\n    flex-direction: column;\n}\n\n.menu nav a {\n    display: block;\n    width: 100%;\n    font-weight: 500;\n    text-decoration: none;\n    color: var(--primary);\n}\n\n.menu nav a:not(:last-of-type) {\n    margin-bottom: 0.5rem;\n}\n", ""]);
 
 // exports
 
@@ -445,7 +445,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".page {\r\n    background: var(--white);\r\n    padding: 1rem;\r\n    border-radius: .5rem;\r\n    box-shadow: 0 4px 60px -15px rgba(0, 0, 0, 0.25);\r\n}\r\n", ""]);
+exports.push([module.i, ".page {\n    background: var(--white);\n    padding: 1rem;\n    border-radius: .5rem;\n    box-shadow: 0 4px 60px -15px rgba(0, 0, 0, 0.25);\n}\n", ""]);
 
 // exports
 
@@ -464,7 +464,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".page-title {\r\n    font-size: 2rem;\r\n    font-weight: 800;\r\n    margin-bottom: 1rem;\r\n}\r\n", ""]);
+exports.push([module.i, ".page-title {\n    font-size: 2rem;\n    font-weight: 800;\n    margin-bottom: 1rem;\n}\n", ""]);
 
 // exports
 
@@ -29723,10 +29723,12 @@ __webpack_require__.r(__webpack_exports__);
 var Menu = function Menu() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "menu"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "logo-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "https://placehold.it/200x75?text=Logo",
+    src: "/img/logo.png",
     className: "logo"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/"
   }, "Dashboard"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/patients"
@@ -29900,7 +29902,7 @@ var Dashboard = function Dashboard() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\CODE\laragon\www\janda\resources\js\index.js */"./resources/js/index.js");
+module.exports = __webpack_require__(/*! /home/jake/code/janda/resources/js/index.js */"./resources/js/index.js");
 
 
 /***/ })
