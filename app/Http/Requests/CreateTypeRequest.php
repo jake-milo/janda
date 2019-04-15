@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateLabRequest extends FormRequest
+class CreateTypeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,19 @@ class UpdateLabRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'string',
+            'brand_id' => 'integer|required|exists:brands,id',
+            'name' => 'string|required',
         ];
     }
 
-    public function getUpdates()
+    public function getBrand(){
+        $brandId = $this->input('brand_id');
+
+        return Brand::find($brandId);
+    }
+
+    public function getTypeData()
     {
-        return $this->only('name');
+
     }
 }

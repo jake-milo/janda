@@ -14,7 +14,7 @@ class Brand extends Model
 
     protected $fillable = ['name'];
 
-    public function Types()
+    public function types()
     {
         return $this->hasMany(Type::class);
     }

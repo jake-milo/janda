@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Traits\HasResourceRelations;
 
-class Varient extends Model
+class Variant extends Model
 {
     use SoftDeletes, HasResourceRelations;
 
@@ -14,7 +14,7 @@ class Varient extends Model
 
     protected $fillable = ['name'];
 
-    public function Types()
+    public function types()
     {
         return $this->belongsTo(Type::class);
     }
