@@ -14,6 +14,8 @@ class Type extends Model
 
     protected $fillable = ['name'];
 
+    protected $with = ['variants'];
+
     public function brands()
     {
         return $this->belongsTo(Brand::class);

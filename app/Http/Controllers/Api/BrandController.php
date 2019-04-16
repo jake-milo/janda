@@ -30,7 +30,13 @@ class BrandController extends Controller
      */
     public function store(CreateBrandRequest $request)
     {
-        //
+        $brandData = $request->getBrandData();
+
+        $brand = Brand::create($brandData);
+
+        $brand->loadResourceRelations();
+
+        return BrandResource::make($brand);
     }
 
     /**
@@ -55,7 +61,14 @@ class BrandController extends Controller
      */
     public function update(UpdateBrandRequest $request, Brand $brand)
     {
-        //
+        $updates = $request->getUpdates();
+
+        $brand->fill($updates);
+        $brand->save();
+
+        $brand->loadResourceRelations();
+
+        return BrandResource::make($brand);
     }
 
     /**
@@ -66,6 +79,10 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        $brand->delete();
+
+        return response()->json([
+            'Deleted Brand',
+        ]);
     }
 }
