@@ -1,8 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { get } from '../../helpers';
+import { patientMapper } from './patientMapper';
+
+const mapOrNull = response => response ? patientMapper(response.data) : null;
 
 export const usePatients = () => {
     const [response, setResponse] = useState(null);
+    const patients = useMemo(() => mapOrNull(response), [
+        (response || {}).data,
+    ]);
 
     useEffect(() => {
         get('/api/patients')
@@ -11,7 +17,5 @@ export const usePatients = () => {
             })
     }, []);
 
-    return {
-        patients: response ? response.data : null,
-    };
+    return { patients };
 };
