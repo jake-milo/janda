@@ -24,7 +24,13 @@ class UpdateLabOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'string|required',
+            'patient_id' => 'integer|exists:patients,id',
+            'practice_id' => 'integer|exists:practices,id',
+            'lab_id' => 'integer|exists:labs,id',
+            'lens' => 'string',
+            'reference' => 'string',
+            'date_sent' => 'date',
+            'date_required' => 'date',
         ];
     }
     public function getPatient()

@@ -24,7 +24,15 @@ class UpdateContactLensRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'patient_id' => 'integer|exists:patients,id',
+            'practice_id' =>'integer|exists:practices,id',
+            'lens' => 'string',
+            'brand' => 'string',
+            'duration' => 'string',
+            'quantity' => 'string',
+            'price' =>  'string',
+            'shipping_cost' =>  'string',
+            'solutions' => 'string',
         ];
     }
 

@@ -10,18 +10,20 @@ class Type extends Model
 {
     use SoftDeletes, HasResourceRelations;
 
-    protected $resourceRelations = ['brands', 'varients'];
+    protected $resourceRelations = ['brands', 'variants'];
 
     protected $fillable = ['name'];
 
-    public function Brands()
+    protected $with = ['variants'];
+
+    public function brands()
     {
         return $this->belongsTo(Brand::class);
     }
 
-    public function Varients()
+    public function variants()
     {
-        return $this->hasMany(Varient::class);
+        return $this->hasMany(Variant::class);
     }
 
 }

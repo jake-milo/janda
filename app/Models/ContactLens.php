@@ -10,6 +10,8 @@ class ContactLens extends Model
 {
     use SoftDeletes, HasResourceRelations;
 
+    protected $table = 'contact_lenses';
+
     protected $resourceRelations = ['patient', 'practice'];
 
     protected $guarded = ['id', 'patient_id', 'practice_id'];

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\ContactLens;
 
 class ContactLensesTableSeeder extends Seeder
 {
@@ -11,6 +12,6 @@ class ContactLensesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(ContactLens::class, 150)->create();
     }
 }
