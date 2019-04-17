@@ -20,23 +20,24 @@ export const Table = ({ headers, children }) => {
     }, [headers]);
 
     return (
-        <table className="table">
-            <thead>
-                <tr>
-                    {names.map((name, i) => (
-                        <th key={name} className={`--${sizes[i]}`}>
-                            {name}
-                        </th>
-                    ))}
-                </tr>
-            </thead>
-            <tbody>
-                {children}
-            </tbody>
-        </table>
+        <div className="table">
+            <Row>
+                {names.map((name, i) => (
+                    <Cell key={name} size={sizes[i]} header>
+                        {name}
+                    </Cell>
+                ))}
+            </Row>
+
+            {children}
+        </div>
     );
 };
 
-export const Row = ({ children }) => <tr>{children}</tr>;
+export const Row = ({ children }) => <div className="row">{children}</div>;
 
-export const Cell = ({ children }) => <td>{children}</td>;
+export const Cell = ({ children, size = 'normal', header = false }) => (
+    <div className={`cell --${size} ${header ? '--header' : ''}`}>
+        {children}
+    </div>
+);
