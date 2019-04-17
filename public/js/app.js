@@ -407,7 +407,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ":root {\n    --header-width: 16rem;\n    --off-white: #f1f5f8;\n    --white: #ffffff;\n    --primary: #2779bd;\n    --black: #22292f;\n    --logo-max-width: 11rem;\n}\n\n*, *:before, *:after {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n}\n\nhtml, body, #app {\n    height: 100%;\n    font-size: 16px;\n    background: var(--off-white);\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\n    color: var(--black);\n}\n\n.container {\n    width: 100%;\n    padding-left: var(--header-width);\n}\n\n.container .inner-container {\n    padding: 2rem;\n}\n", ""]);
+exports.push([module.i, ":root {\n    --header-width: 16rem;\n    --off-white: #f1f5f8;\n    --white: #ffffff;\n    --primary: #2779bd;\n    --black: #22292f;\n    --dark-grey: #3d4852;\n    --logo-max-width: 11rem;\n}\n\n*, *:before, *:after {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n}\n\nhtml, body, #app {\n    height: 100%;\n    font-size: 16px;\n    background: var(--off-white);\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\n    color: var(--black);\n}\n\n.container {\n    width: 100%;\n    padding-left: var(--header-width);\n}\n\n.container .inner-container {\n    padding: 2rem;\n}\n", ""]);
 
 // exports
 
@@ -465,6 +465,44 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 // module
 exports.push([module.i, ".page-title {\n    font-size: 2rem;\n    font-weight: 800;\n    margin-bottom: 1rem;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/Spinner/Spinner.css":
+/*!*************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--5-1!./node_modules/postcss-loader/src??ref--5-2!./resources/js/components/Spinner/Spinner.css ***!
+  \*************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".spinner-container {\n    text-align: center;\n    width: 100%;\n}\n\n.spinner-container .spinner {\n    margin: 3rem auto;\n    width: 2.5rem;\n    height: 2.5rem;\n    border: 2px solid var(--primary);\n    border-right: 2px solid transparent;\n    border-radius: 50%;\n    animation: spin 1s infinite;\n}\n\n@keyframes spin {\n    from {\n        transform: rotate(0deg);\n    }\n\n    to {\n        transform: rotate(360deg);\n    }\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/Table/Table.css":
+/*!*********************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--5-1!./node_modules/postcss-loader/src??ref--5-2!./resources/js/components/Table/Table.css ***!
+  \*********************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".table {\n    /* */\n}\n\n.table thead tr th {\n    text-align: left;\n    font-size: .875rem;\n    color: var(--dark-grey);\n}\n\n.table tbody tr td {\n    padding: .25rem 0;\n}\n", ""]);
 
 // exports
 
@@ -29654,9 +29692,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _components_Menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Menu */ "./resources/js/components/Menu/index.js");
 /* harmony import */ var _pages_Dashboard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/Dashboard */ "./resources/js/pages/Dashboard/index.js");
+/* harmony import */ var _pages_Patients__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Patients */ "./resources/js/pages/Patients/index.js");
 
 
 
+
+ // Maybe switch to this at some point?
+// const Dashboard = lazy(() => import('./pages/Dashboard'));
+// const Patients = lazy(() => import('./pages/Patients'));
 
 var App = function App() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Menu__WEBPACK_IMPORTED_MODULE_2__["Menu"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -29667,6 +29710,10 @@ var App = function App() {
     exact: true,
     path: "/",
     component: _pages_Dashboard__WEBPACK_IMPORTED_MODULE_3__["Dashboard"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
+    path: "/patients",
+    component: _pages_Patients__WEBPACK_IMPORTED_MODULE_4__["Patients"]
   })))));
 };
 
@@ -29847,6 +29894,185 @@ var PageTitle = function PageTitle(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Spinner/Spinner.css":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/Spinner/Spinner.css ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--5-1!../../../../node_modules/postcss-loader/src??ref--5-2!./Spinner.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/Spinner/Spinner.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./resources/js/components/Spinner/index.js":
+/*!**************************************************!*\
+  !*** ./resources/js/components/Spinner/index.js ***!
+  \**************************************************/
+/*! exports provided: Spinner */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Spinner", function() { return Spinner; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Spinner_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Spinner.css */ "./resources/js/components/Spinner/Spinner.css");
+/* harmony import */ var _Spinner_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_Spinner_css__WEBPACK_IMPORTED_MODULE_1__);
+
+
+var Spinner = function Spinner() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "spinner-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "spinner"
+  }));
+};
+
+/***/ }),
+
+/***/ "./resources/js/components/Table/Table.css":
+/*!*************************************************!*\
+  !*** ./resources/js/components/Table/Table.css ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--5-1!../../../../node_modules/postcss-loader/src??ref--5-2!./Table.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/Table/Table.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./resources/js/components/Table/index.js":
+/*!************************************************!*\
+  !*** ./resources/js/components/Table/index.js ***!
+  \************************************************/
+/*! exports provided: Table, Row, Cell */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Table", function() { return Table; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Row", function() { return Row; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Cell", function() { return Cell; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Table_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Table.css */ "./resources/js/components/Table/Table.css");
+/* harmony import */ var _Table_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_Table_css__WEBPACK_IMPORTED_MODULE_1__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+var Table = function Table(_ref) {
+  var headers = _ref.headers,
+      children = _ref.children;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      names = _useState2[0],
+      setNames = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      sizes = _useState4[0],
+      setSizes = _useState4[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    var mapped = Object.entries(headers).reduce(function (acc, _ref2) {
+      var _ref3 = _slicedToArray(_ref2, 2),
+          name = _ref3[0],
+          size = _ref3[1];
+
+      acc[0].push(name);
+      acc[1].push(size);
+      return acc;
+    }, [[], []]);
+    setNames(mapped[0]);
+    setSizes(mapped[1]);
+  }, [headers]);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+    className: "table"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, names.map(function (name, i) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+      key: name,
+      className: "--".concat(sizes[i])
+    }, name);
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, children));
+};
+var Row = function Row(_ref4) {
+  var children = _ref4.children;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, children);
+};
+var Cell = function Cell(_ref5) {
+  var children = _ref5.children;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, children);
+};
+
+/***/ }),
+
+/***/ "./resources/js/helpers.js":
+/*!*********************************!*\
+  !*** ./resources/js/helpers.js ***!
+  \*********************************/
+/*! exports provided: get */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "get", function() { return get; });
+var get = function get(url) {
+  return fetch(url, {
+    credentials: 'same-origin'
+  }).then(function (res) {
+    return res.json();
+  });
+};
+
+/***/ }),
+
 /***/ "./resources/js/index.js":
 /*!*******************************!*\
   !*** ./resources/js/index.js ***!
@@ -29891,6 +30117,87 @@ __webpack_require__.r(__webpack_exports__);
 
 var Dashboard = function Dashboard() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PageTitle__WEBPACK_IMPORTED_MODULE_1__["PageTitle"], null, "Dashboard"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Page__WEBPACK_IMPORTED_MODULE_2__["Page"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "putpagehere")));
+};
+
+/***/ }),
+
+/***/ "./resources/js/pages/Patients/index.js":
+/*!**********************************************!*\
+  !*** ./resources/js/pages/Patients/index.js ***!
+  \**********************************************/
+/*! exports provided: Patients */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Patients", function() { return Patients; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_PageTitle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/PageTitle */ "./resources/js/components/PageTitle/index.js");
+/* harmony import */ var _components_Page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Page */ "./resources/js/components/Page/index.js");
+/* harmony import */ var _usePatients__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./usePatients */ "./resources/js/pages/Patients/usePatients.js");
+/* harmony import */ var _components_Spinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Spinner */ "./resources/js/components/Spinner/index.js");
+/* harmony import */ var _components_Table__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Table */ "./resources/js/components/Table/index.js");
+
+
+
+
+
+
+var Patients = function Patients() {
+  var _usePatients = Object(_usePatients__WEBPACK_IMPORTED_MODULE_3__["usePatients"])(),
+      patients = _usePatients.patients;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PageTitle__WEBPACK_IMPORTED_MODULE_1__["PageTitle"], null, "Patients"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Page__WEBPACK_IMPORTED_MODULE_2__["Page"], null, patients ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_5__["Table"], {
+    headers: {
+      'Name': 'normal'
+    }
+  }, patients.map(function (patient) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_5__["Row"], {
+      key: patient.id
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_5__["Cell"], null, patient.name));
+  })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Spinner__WEBPACK_IMPORTED_MODULE_4__["Spinner"], null)));
+};
+
+/***/ }),
+
+/***/ "./resources/js/pages/Patients/usePatients.js":
+/*!****************************************************!*\
+  !*** ./resources/js/pages/Patients/usePatients.js ***!
+  \****************************************************/
+/*! exports provided: usePatients */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "usePatients", function() { return usePatients; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers */ "./resources/js/helpers.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+var usePatients = function usePatients() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState2 = _slicedToArray(_useState, 2),
+      response = _useState2[0],
+      setResponse = _useState2[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["get"])('/api/patients').then(function (data) {
+      setResponse(data);
+    });
+  }, []);
+  return {
+    patients: response ? response.data : null
+  };
 };
 
 /***/ }),
