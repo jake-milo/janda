@@ -12,7 +12,7 @@ class Variant extends Model
 
     protected $resourceRelations = ['types'];
 
-    protected $fillable = ['name'];
+    protected $fillable = ['color', 'price', 'year'];
 
     public function types()
     {

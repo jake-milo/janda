@@ -10,13 +10,13 @@ class Type extends Model
 {
     use SoftDeletes, HasResourceRelations;
 
-    protected $resourceRelations = ['brands', 'variants'];
+    protected $resourceRelations = ['brand', 'variants'];
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name',];
 
     protected $with = ['variants'];
 
-    public function brands()
+    public function brand()
     {
         return $this->belongsTo(Brand::class);
     }

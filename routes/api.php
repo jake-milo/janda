@@ -1,4 +1,6 @@
 <?php
+use App\Http\Controllers\Api\ContactLensController;
+use App\Http\Controllers\Api\TypeController;
 
 /*
  * All routes for the API. Any route in this file
@@ -13,4 +15,10 @@ Route::apiResource('practices', 'PracticeController');
 Route::apiResource('labs', 'LabController');
 
 Route::apiResource('lab-orders', 'LabOrderController');
+
+Route::apiResource('contact-lenses', 'ContactLensController');
+
+Route::apiResource('brands', 'BrandController');
+
+Route::apiResource('brands.types', 'TypeController');
 

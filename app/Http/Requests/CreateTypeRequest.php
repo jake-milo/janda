@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Variant;
 
 class CreateTypeRequest extends FormRequest
 {
@@ -24,19 +25,21 @@ class CreateTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'brand_id' => 'integer|required|exists:brands,id',
             'name' => 'string|required',
+            'variants' => 'array|required',
+            'variants.*.color' => 'string|required',
+            'variants.*.price' => 'integer|required',
+            'variants.*.year' => 'string|required',
         ];
     }
 
-    public function getBrand(){
-        $brandId = $this->input('brand_id');
-
-        return Brand::find($brandId);
+    public function getVariants()
+    {
+        return $this->input('variants');
     }
 
     public function getTypeData()
     {
-
+        return $this->only('name');
     }
 }
