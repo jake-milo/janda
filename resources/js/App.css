@@ -4,6 +4,8 @@
     --white: #ffffff;
     --primary: #2779bd;
     --black: #22292f;
+    --dark-grey: #3d4852;
+    --logo-max-width: 11rem;
 }
 
 *, *:before, *:after {

@@ -9,9 +9,14 @@
     box-shadow: 0 0 60px -15px rgba(0, 0, 0, 0.25);
 }
 
-.menu .logo {
+.menu .logo-container {
+    text-align: center;
+}
+
+.menu .logo-container .logo {
     margin: 2rem 0;
     width: 100%;
+    max-width: var(--logo-max-width);
 }
 
 .menu nav {
