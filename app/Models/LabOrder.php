@@ -15,6 +15,8 @@ class LabOrder extends Model
 
     protected $guarded = ['id', 'patient_id', 'practice_id', 'lab_id'];
 
+    protected $with = ['practice'];
+
     public function patient()
     {
         return $this->belongsTo(Patient::class);
