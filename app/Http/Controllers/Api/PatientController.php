@@ -15,7 +15,8 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = Patient::paginate(30);
+
+        $patients = Patient::orderBy('name','asc')->paginate(30);
 
         return PatientResource::collection($patients);
     }

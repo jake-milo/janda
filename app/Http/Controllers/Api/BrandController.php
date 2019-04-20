@@ -25,7 +25,7 @@ class BrandController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\CreateBrandrequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateBrandRequest $request)
@@ -55,7 +55,7 @@ class BrandController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UpdateBrandRequest  $request
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */

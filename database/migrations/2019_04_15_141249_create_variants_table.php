@@ -18,7 +18,7 @@ class CreateVariantsTable extends Migration
             $table->timestamps();
             $table->bigInteger('type_id')->unsigned();
             $table->string('color');
-            $table->string('price');
+            $table->bigInteger('price');
             $table->string('year');
 
             $table->foreign('type_id')->references('id')->on('types');

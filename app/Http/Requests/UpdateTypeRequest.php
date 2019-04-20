@@ -27,6 +27,12 @@ class UpdateTypeRequest extends FormRequest
            'name' => 'string',
         ];
     }
+
+    public function getVariants()
+    {
+        return $this->input('variants');
+    }
+
     public function getUpdates()
     {
         return $this->only('name');
