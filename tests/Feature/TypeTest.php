@@ -49,7 +49,38 @@ class TypeTest extends TestCase
                 'brand',
             ],
         ]);
-
-
     }
+
+    public function testUserCanUpdateType()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        factory(Brand::class)->create()
+            ->types()
+            ->save(factory(Type::class)->make())
+            ->variants()
+            ->saveMany(factory(Variant::class, 2)->make());
+
+        $updates = [
+            'name' => 'yeet',
+            'variants' => [
+                [
+                    'id' => 1,
+                    'color' => 'colorupdate',
+                    'price' => 9000,
+                    'year' => '3035',
+                ],
+            ],
+        ];
+
+
+        $response = $this->patch('/api/brands/1/types/1', $updates);
+
+        $response->assertJson([
+            'data' => $updates,
+        ]);
+    }
+
+
 }

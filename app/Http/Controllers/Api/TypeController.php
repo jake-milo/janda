@@ -8,6 +8,7 @@ use App\Http\Resources\Type as TypeResource;
 use App\Http\Requests\CreateTypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
 use App\Models\Brand;
+use App\Models\Variant;
 
 class TypeController extends Controller
 {
@@ -20,7 +21,7 @@ class TypeController extends Controller
     {
         $types = $brand->types()->paginate(30);
 
-        return Type::collection($types);
+        return TypeResource::collection($types);
     }
 
     /**
@@ -67,7 +68,18 @@ class TypeController extends Controller
         $type->fill($updates);
         $type->save();
 
-        $variants = $request->getVariants();
+        $type->variants = $type->variants->reject(function ($variant) use ($request) {
+            if ($updates = $request->getVariantUpdate($variant->id)) {
+                $variant->fill($updates);
+                $variant->save();
+                return false;
+            } else {
+                $variant->delete();
+                return true;
+            }
+        });
+
+        return TypeResource::make($type);
 
     }
 
