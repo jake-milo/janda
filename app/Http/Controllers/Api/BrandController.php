@@ -19,7 +19,7 @@ class BrandController extends Controller
     {
         $brands = Brand::paginate(30);
 
-        return Brand::collection($brands);
+        return BrandResource::collection($brands);
     }
 
     /**
