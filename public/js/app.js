@@ -445,7 +445,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".page {\n    background: var(--white);\n    padding: 1rem;\n    border-radius: .5rem;\n    box-shadow: 0 4px 60px -15px rgba(0, 0, 0, 0.25);\n}\n", ""]);
+exports.push([module.i, ".page {\n    background: var(--white);\n    padding: 1rem;\n    border-radius: .5rem;\n    box-shadow: 0 4px 60px -15px rgba(0, 0, 0, 0.25);\n}\n\n.page h2 {\n    font-size: 1.2rem;\n    opacity: 0.9;\n}\n\n.page h2:not(:first-of-type) {\n    margin-top: 2rem;\n}\n", ""]);
 
 // exports
 
@@ -47331,6 +47331,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Menu */ "./resources/js/components/Menu/index.js");
 /* harmony import */ var _pages_Dashboard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/Dashboard */ "./resources/js/pages/Dashboard/index.js");
 /* harmony import */ var _pages_Patients__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Patients */ "./resources/js/pages/Patients/index.js");
+/* harmony import */ var _pages_Patient__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/Patient */ "./resources/js/pages/Patient/index.js");
+
 
 
 
@@ -47352,6 +47354,10 @@ var App = function App() {
     exact: true,
     path: "/patients",
     component: _pages_Patients__WEBPACK_IMPORTED_MODULE_4__["Patients"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
+    path: "/patients/:id",
+    component: _pages_Patient__WEBPACK_IMPORTED_MODULE_5__["Patient"]
   })))));
 };
 
@@ -47764,6 +47770,196 @@ __webpack_require__.r(__webpack_exports__);
 
 var Dashboard = function Dashboard() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PageTitle__WEBPACK_IMPORTED_MODULE_1__["PageTitle"], null, "Dashboard"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Page__WEBPACK_IMPORTED_MODULE_2__["Page"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "putpagehere")));
+};
+
+/***/ }),
+
+/***/ "./resources/js/pages/Patient/index.js":
+/*!*********************************************!*\
+  !*** ./resources/js/pages/Patient/index.js ***!
+  \*********************************************/
+/*! exports provided: Patient */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Patient", function() { return Patient; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _components_PageTitle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/PageTitle */ "./resources/js/components/PageTitle/index.js");
+/* harmony import */ var _components_Page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Page */ "./resources/js/components/Page/index.js");
+/* harmony import */ var _components_Spinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Spinner */ "./resources/js/components/Spinner/index.js");
+/* harmony import */ var _usePatient__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./usePatient */ "./resources/js/pages/Patient/usePatient.js");
+/* harmony import */ var _components_Table__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/Table */ "./resources/js/components/Table/index.js");
+
+
+
+
+
+
+
+var Patient = function Patient(_ref) {
+  var match = _ref.match;
+
+  var _usePatient = Object(_usePatient__WEBPACK_IMPORTED_MODULE_5__["usePatient"])(match.params.id),
+      patient = _usePatient.patient;
+
+  ;
+  console.log(patient);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PageTitle__WEBPACK_IMPORTED_MODULE_2__["PageTitle"], null, patient ? patient.name : 'Loading...'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Page__WEBPACK_IMPORTED_MODULE_3__["Page"], null, patient ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Lab Orders"), patient.labOrders.length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Table"], {
+    headers: {
+      'Practice': 'normal',
+      'Lens': 'normal',
+      'Lab': 'normal',
+      'Order #': 'normal'
+    }
+  }, patient.labOrders.map(function (labOrder) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Row"], {
+      key: labOrder.id
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/practices/".concat(labOrder.practice.id)
+    }, labOrder.practice.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, labOrder.lens), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/labs/".concat(labOrder.lab.id)
+    }, labOrder.lab.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, labOrder.reference));
+  })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No lab orders found."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Lenses"), patient.contactLenses.length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Table"], {
+    headers: {
+      'Practice': 'normal',
+      'Brand': 'normal',
+      'Lens': 'normal',
+      'Duration': 'normal',
+      'Quantity': 'normal',
+      'Price': 'thin',
+      'Cost Excl. Postage': 'thin',
+      'Notes': 'normal',
+      'Solutions': 'normal'
+    }
+  }, patient.contactLenses.map(function (contactLens) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Row"], {
+      key: contactLens.id
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/practices/".concat(contactLens.practice.id)
+    }, contactLens.practice.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.brand), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.lens), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.duration), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.price + contactLens.shipping_cost), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, " - "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.solutions));
+  })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No lenses found.")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Spinner__WEBPACK_IMPORTED_MODULE_4__["Spinner"], null)));
+};
+
+/***/ }),
+
+/***/ "./resources/js/pages/Patient/patientMapper.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/pages/Patient/patientMapper.js ***!
+  \*****************************************************/
+/*! exports provided: patientMapper */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "patientMapper", function() { return patientMapper; });
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+
+var timeMapper = function timeMapper(_ref) {
+  var created = _ref.created,
+      updated = _ref.updated;
+  return {
+    created: moment__WEBPACK_IMPORTED_MODULE_0___default()(created),
+    updated: moment__WEBPACK_IMPORTED_MODULE_0___default()(updated)
+  };
+};
+
+var labOrdersMapper = function labOrdersMapper(labOrders) {
+  return labOrders.map(function (_ref2) {
+    var time = _ref2.time,
+        labOrder = _objectWithoutProperties(_ref2, ["time"]);
+
+    return _objectSpread({}, labOrder, {
+      time: timeMapper(time)
+    });
+  });
+};
+
+var contactLensMapper = function contactLensMapper(contactLenses) {
+  return contactLenses.map(function (_ref3) {
+    var time = _ref3.time,
+        contactLens = _objectWithoutProperties(_ref3, ["time"]);
+
+    return _objectSpread({}, contactLens, {
+      time: timeMapper(time)
+    });
+  });
+};
+
+var patientMapper = function patientMapper(_ref4) {
+  var time = _ref4.time,
+      contact_lenses = _ref4.contact_lenses,
+      lab_orders = _ref4.lab_orders,
+      patient = _objectWithoutProperties(_ref4, ["time", "contact_lenses", "lab_orders"]);
+
+  return _objectSpread({}, patient, {
+    labOrders: labOrdersMapper(lab_orders),
+    contactLenses: contactLensMapper(contact_lenses),
+    time: timeMapper(time)
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/pages/Patient/usePatient.js":
+/*!**************************************************!*\
+  !*** ./resources/js/pages/Patient/usePatient.js ***!
+  \**************************************************/
+/*! exports provided: usePatient */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "usePatient", function() { return usePatient; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers */ "./resources/js/helpers.js");
+/* harmony import */ var _patientMapper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./patientMapper */ "./resources/js/pages/Patient/patientMapper.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var transformOrNull = function transformOrNull(res) {
+  return res ? Object(_patientMapper__WEBPACK_IMPORTED_MODULE_2__["patientMapper"])(res.data) : null;
+};
+
+var usePatient = function usePatient(id) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState2 = _slicedToArray(_useState, 2),
+      response = _useState2[0],
+      setResponse = _useState2[1];
+
+  var patient = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(function () {
+    return transformOrNull(response);
+  }, [(response || {}).data]);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["get"])("/api/patients/".concat(id)).then(function (data) {
+      setResponse(data);
+    });
+  }, [id]);
+  return {
+    patient: patient
+  };
 };
 
 /***/ }),
