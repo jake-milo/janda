@@ -10,9 +10,19 @@ class Practice extends Model
 {
     use SoftDeletes, HasResourceRelations;
 
-    protected $resourceRelations = ['labOrders', 'contactLenses'];
-
     protected $fillable = ['name'];
+
+    public function getResourceRelations(): array
+    {
+        return [
+            'labOrders' => function ($q) {
+                return $q->latest()->limit(10);
+            },
+            'contactLenses' => function ($q) {
+                return $q->latest()->limit(10);
+            },
+        ];
+    }
 
     public function labOrders()
     {
