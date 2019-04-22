@@ -16,10 +16,10 @@ class Practice extends Model
     {
         return [
             'labOrders' => function ($q) {
-                return $q->latest()->limit(10);
+                return $q->latest()->limit(10)->with('patient');
             },
             'contactLenses' => function ($q) {
-                return $q->latest()->limit(10);
+                return $q->latest()->limit(10)->with('patient');
             },
         ];
     }
