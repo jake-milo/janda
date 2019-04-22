@@ -117,7 +117,7 @@ class TypeTest extends TestCase
 
         $type->delete();
 
-        $response = $this->post('/api/brands/1/types/1/restore');
+        $this->post('/api/brands/1/types/1/restore');
 
         $this->assertFalse($type->fresh()->trashed());
 

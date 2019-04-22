@@ -43,4 +43,18 @@ class PatientTest extends TestCase
             ],
         ]);
     }
+
+    public function testUsercanUpdatePatient()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        $patient = factory(Patient::class)->create();
+        $updates = factory(Patient::class)->create();
+
+        $this->patch("/api/patients/{$patient->id}", $updates->attributesToArray());
+
+        $this->assertDatabaseHas('patients', $updates->attributesToArray());
+    }
+
 }
