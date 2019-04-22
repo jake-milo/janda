@@ -22,3 +22,5 @@ Route::apiResource('brands', 'BrandController');
 
 Route::apiResource('brands.types', 'TypeController');
 
+Route::post('/brands/{brand}/types/{type}/restore', 'TypeController@restore');
+
