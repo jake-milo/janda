@@ -94,7 +94,7 @@ class TypeController extends Controller
         $type->delete();
 
         return response()->json([
-            'Deleted Type.',
+            'Deleted type.',
         ]);
     }
 
@@ -104,7 +104,7 @@ class TypeController extends Controller
         $type->restore();
 
         return response()->json([
-            'Restored Type.',
+            'Restored type.',
         ]);
     }
 }

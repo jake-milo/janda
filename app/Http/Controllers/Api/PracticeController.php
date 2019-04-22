@@ -83,4 +83,14 @@ class PracticeController extends Controller
             'Deleted practice.',
         ]);
     }
+
+    public function restore(int $practice)
+    {
+        $practice = Practice::onlyTrashed()->find($practice);
+        $practice->restore();
+
+        return response()->json([
+            'Restored practice'
+        ]);
+    }
 }

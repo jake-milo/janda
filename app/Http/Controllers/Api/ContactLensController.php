@@ -90,7 +90,7 @@ class ContactLensController extends Controller
         $contactLens->delete();
 
         return response()->json([
-            'Deleted Contact Lense.'
+            'Deleted contact lens.'
         ]);
     }
 }

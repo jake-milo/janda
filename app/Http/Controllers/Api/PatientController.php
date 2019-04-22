@@ -83,4 +83,14 @@ class PatientController extends Controller
             'Deleted patient.',
         ]);
     }
+
+    public function restore(int $patient)
+    {
+        $patient = Patient::onlyTrashed()->find($patient);
+        $patient->restore();
+
+        return response()->json([
+            'Restored patient'
+        ]);
+    }
 }
