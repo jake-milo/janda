@@ -57,7 +57,7 @@ class PatientTest extends TestCase
         $this->assertDatabaseHas('patients', $updates->attributesToArray());
     }
 
-    public function testUsercanDeletePatient()
+    public function testUserCanDeletePatient()
     {
         $user = factory(User::class)->create();
         $this->actingAs($user);
@@ -69,6 +69,19 @@ class PatientTest extends TestCase
         $response->assertStatus(200);
 
         $this->assertSoftDeleted($patient);
+    }
+
+    public function testUserCanRestorePatient()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        $patient = factory(Patient::class)->create();
+        $patient->delete();
+
+        $this->post("/api/patients/{$patient->id}/restore");
+
+        $this->assertFalse($patient->fresh()->trashed());
     }
 
 }
