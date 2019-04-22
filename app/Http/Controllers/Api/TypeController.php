@@ -97,4 +97,14 @@ class TypeController extends Controller
             'Deleted Type.',
         ]);
     }
+
+    public function restore(Brand $brand, int $type)
+    {
+        $type = Type::onlyTrashed()->find($type);
+        $type->restore();
+
+        return response()->json([
+            'Restored Type.',
+        ]);
+    }
 }
