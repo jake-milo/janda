@@ -85,4 +85,14 @@ class BrandController extends Controller
             'Deleted brand',
         ]);
     }
+
+    public function restore(int $brand)
+    {
+        $brand = Brand::onlyTrashed()->find($brand);
+        $brand->restore();
+
+        return response()->json([
+            'Restored brand',
+        ]);
+    }
 }
