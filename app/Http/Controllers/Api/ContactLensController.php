@@ -93,4 +93,14 @@ class ContactLensController extends Controller
             'Deleted contact lens.'
         ]);
     }
+
+    public function restore(int $contactLens)
+    {
+        $contactLens = ContactLens::onlyTrashed()->find($contactLens);
+        $contactLens->restore();
+
+        return response()->json([
+            'Restored contact lens.'
+        ]);
+    }
 }
