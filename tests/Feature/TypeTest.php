@@ -35,11 +35,8 @@ class TypeTest extends TestCase
             'variants' => $variants->toArray(),
         ]);
 
-
         $response->assertStatus(201);
         $this->assertDatabaseHas('types', $type->attributesToArray());
-
-
 
         $response->assertJsonStructure([
             'data' => [
@@ -74,7 +71,6 @@ class TypeTest extends TestCase
             ],
         ];
 
-
         $response = $this->patch('/api/brands/1/types/1', $updates);
 
         $response->assertJson([
@@ -83,4 +79,50 @@ class TypeTest extends TestCase
     }
 
 
+    public function testUserCanDeleteType()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        $type = factory(Brand::class)->create()
+             ->types()
+             ->save(factory(Type::class)->make());
+
+        $variants = $type->variants()
+             ->saveMany(factory(Variant::class, 2)->make());
+
+        $response = $this->delete('/api/brands/1/types/1');
+
+        $response->assertStatus(200);
+
+        $this->assertSoftDeleted($type);
+
+        $variants->each(function ($variant) {
+            $this->assertSoftDeleted($variant);
+        });
+
+    }
+
+    public function testUserCanRestoreType()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        $type = factory(Brand::class)->create()
+             ->types()
+             ->save(factory(Type::class)->make());
+
+        $variants = $type->variants()
+             ->saveMany(factory(Variant::class, 2)->make());
+
+        $type->delete();
+
+        $response = $this->post('/api/brands/1/types/1/restore');
+
+        $this->assertFalse($type->fresh()->trashed());
+
+        $variants->each(function ($variant) {
+            $this->assertFalse($variant->fresh()->trashed());
+        });
+    }
 }
