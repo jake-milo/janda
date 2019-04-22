@@ -1,38 +1,34 @@
-import React, { useMemo } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-export const Pagination = ({ page, totalPages, separator = '...' }) => {
-    const items = useMemo(() => {
-        const arr = [];
+import { usePagination } from './usePagination';
 
-        if (totalPages <= 8) {
-            for (let i = 1; i <= totalPages; i++) {
-                arr.push(i);
-            }
-        } else {
-            // Always show 1 and 2
-            arr.push(1, 2);
+import './Pagination.css';
 
-            if (!arr.includes(page)) {
-                // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA i dunno how pagination works
-                if (page > 4) {
-                    arr.push(separator, page - 1, page, page + 1);
-                }
+export const Pagination = ({ page, totalPages, toUrl, separator = '⋯' }) => {
+    const items = usePagination(page, totalPages, separator, toUrl);
 
-                // Add final pages
-                if (page != totalPages && page != totalPages - 1) {
-                    arr.push(separator, totalPages - 1, totalPages);
-                }
-            }
-        }
+    const handleLinkClick = () => {
+        window.scrollTo(0, 0);
+    };
 
-        return arr;
-    }, [page, totalPages, separator]);
-
-    console.log(items);
-
-    return (
+    return totalPages !== 1 ? (
         <div className="pagination">
-
+            <ul>
+                {items.map(({ item, link, isSeparator, isCurrent }) => (
+                    <li key={item}>
+                        {isSeparator ? separator : (
+                            <Link
+                                className={isCurrent ? '--current' : ''}
+                                onClick={handleLinkClick}
+                                to={link}
+                            >
+                                {item}
+                            </Link>
+                        )}
+                    </li>
+                ))}
+            </ul>
         </div>
-    );
+    ) : null;
 };

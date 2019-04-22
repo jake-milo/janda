@@ -7,9 +7,7 @@ import { usePatient } from './usePatient';
 import { Table, Row, Cell } from '../../components/Table';
 
 export const Patient = ({ match }) => {
-    const { patient } = usePatient(match.params.id);;
-
-    console.log(patient);
+    const { patient } = usePatient(match.params.id);
 
     return (
         <>

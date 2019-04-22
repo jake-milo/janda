@@ -2,17 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { PageTitle } from '../../components/PageTitle';
 import { Page } from '../../components/Page';
-import { usePatients } from './usePatients';
 import { Spinner } from '../../components/Spinner';
-import { Table, Row, Cell } from '../../components/Table';
 import { Pagination } from '../../components/Pagination';
+import { usePractices } from './usePractices';
+import { Table, Row, Cell } from '../../components/Table';
 
-export const Patients = () => {
-    const { patients, loading, page, pageCount } = usePatients();
+export const Practices = () => {
+    const { practices, loading, page, pageCount } = usePractices();
 
     return (
         <>
-            <PageTitle>Patients</PageTitle>
+            <PageTitle>Practices</PageTitle>
 
             <Page>
                 {!loading ? (
@@ -21,15 +21,15 @@ export const Patients = () => {
                         'Created At': 'normal',
                         'Updated At': 'normal',
                     }}>
-                        {patients.map(patient => (
-                            <Row key={patient.id}>
+                        {practices.map(practice => (
+                            <Row key={practice.id}>
                                 <Cell>
-                                    <Link to={`/patients/${patient.id}`}>
-                                        {patient.name}
+                                    <Link to={`/practices/${practice.id}`}>
+                                        {practice.name}
                                     </Link>
                                 </Cell>
-                                <Cell>{patient.time.created.format('Do MMMM YYYY @ HH:mm')}</Cell>
-                                <Cell>{patient.time.updated.format('Do MMMM YYYY @ HH:mm')}</Cell>
+                                <Cell>{practice.time.created.format('Do MMMM YYYY @ HH:mm')}</Cell>
+                                <Cell>{practice.time.updated.format('Do MMMM YYYY @ HH:mm')}</Cell>
                             </Row>
                         ))}
                     </Table>
@@ -40,7 +40,7 @@ export const Patients = () => {
                 <Pagination
                     page={page}
                     totalPages={pageCount}
-                    toUrl={page => `/patients?page=${page}`}
+                    toUrl={page => `/practices?page=${page}`}
                 />
             </Page>
         </>
