@@ -48,6 +48,19 @@ class LabTest extends TestCase
         ]);
     }
 
+    public function testUserCanUpdateLab()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        $lab = factory(Lab::class)->create();
+        $updates = factory(Lab::class)->make();
+
+        $this->patch("/api/labs/{$lab->id}", $updates->attributesToArray());
+
+        $this->assertDatabaseHas('labs', $updates->attributesToArray());
+    }
+
     public function testUserCanDeleteLab()
     {
         $user = factory(User::class)->create();
@@ -62,16 +75,19 @@ class LabTest extends TestCase
         $this->assertSoftDeleted($lab);
     }
 
-    public function testUserCanUpdateLab()
+    public function testUserCanRestoreLab()
     {
+        // Create user and act as them
         $user = factory(User::class)->create();
         $this->actingAs($user);
 
+        // Get a new lab model - not persisted to database
         $lab = factory(Lab::class)->create();
-        $updates = factory(Lab::class)->make();
 
-        $this->patch("/api/labs/{$lab->id}", $updates->attributesToArray());
+        $lab->delete();
 
-        $this->assertDatabaseHas('labs', $updates->attributesToArray());
+        $this->post("/api/labs/{$lab->id}/restore");
+
+        $this->assertFalse($lab->fresh()->trashed());
     }
 }
