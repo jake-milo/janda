@@ -445,7 +445,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".page {\n    background: var(--white);\n    padding: 1rem;\n    border-radius: .5rem;\n    box-shadow: 0 4px 60px -15px rgba(0, 0, 0, 0.25);\n}\n\n.page h2 {\n    font-size: 1.2rem;\n    opacity: 0.9;\n}\n\n.page h2:not(:first-of-type) {\n    margin-top: 2rem;\n}\n", ""]);
+exports.push([module.i, ".page {\n    background: var(--white);\n    padding: 1rem;\n    border-radius: .5rem;\n    box-shadow: 0 4px 60px -15px rgba(0, 0, 0, 0.25);\n}\n\n.page h2 {\n    font-size: 1.2rem;\n    opacity: 0.9;\n}\n\n.page h2:not(:first-of-type) {\n    margin-top: 2rem;\n}\n\n.page p.\\--centered {\n    text-align: center;\n}\n\n.page a {\n    color: var(--primary);\n    text-decoration: none;\n}\n\n.page a:hover {\n    text-decoration: underline;\n}\n", ""]);
 
 // exports
 
@@ -521,7 +521,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".table {\n    width: 100%;\n    margin: 0 -.25rem;\n}\n\n.table .row {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n}\n\n.table .row:nth-child(even) {\n    background: rgba(226, 226, 226, 0.15);\n}\n\n.table .row .cell {\n    padding: .5rem .25rem;\n}\n\n.table .row .cell.\\--thin { flex: 2; }\n.table .row .cell.\\--normal { flex: 4; }\n.table .row .cell.\\--wide { flex: 8; }\n\n.table .row .cell.\\--header {\n    text-align: left;\n    font-weight: bold;\n    font-size: .875rem;\n    color: var(--dark-grey);\n}\n\n.table .row .cell a {\n    color: var(--primary);\n    text-decoration: none;\n}\n", ""]);
+exports.push([module.i, ".table {\n    width: 100%;\n    margin: 0 -.25rem;\n    margin-bottom: .75rem;\n}\n\n.table .row {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n}\n\n.table .row:nth-child(even) {\n    background: rgba(226, 226, 226, 0.15);\n}\n\n.table .row .cell {\n    padding: .5rem .25rem;\n}\n\n.table .row .cell.\\--thin { flex: 2; }\n.table .row .cell.\\--normal { flex: 4; }\n.table .row .cell.\\--wide { flex: 8; }\n\n.table .row .cell.\\--header {\n    text-align: left;\n    font-weight: bold;\n    font-size: .875rem;\n    color: var(--dark-grey);\n}\n\n.table .row .cell a {\n    color: var(--primary);\n    text-decoration: none;\n}\n", ""]);
 
 // exports
 
@@ -48813,10 +48813,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Practice", function() { return Practice; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _usePractice__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./usePractice */ "./resources/js/pages/Practice/usePractice.js");
-/* harmony import */ var _components_PageTitle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/PageTitle */ "./resources/js/components/PageTitle/index.js");
-/* harmony import */ var _components_Page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Page */ "./resources/js/components/Page/index.js");
-/* harmony import */ var _components_Spinner__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Spinner */ "./resources/js/components/Spinner/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _usePractice__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./usePractice */ "./resources/js/pages/Practice/usePractice.js");
+/* harmony import */ var _components_PageTitle__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/PageTitle */ "./resources/js/components/PageTitle/index.js");
+/* harmony import */ var _components_Page__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Page */ "./resources/js/components/Page/index.js");
+/* harmony import */ var _components_Spinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Spinner */ "./resources/js/components/Spinner/index.js");
+/* harmony import */ var _components_Table__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/Table */ "./resources/js/components/Table/index.js");
+
+
 
 
 
@@ -48825,10 +48829,55 @@ __webpack_require__.r(__webpack_exports__);
 var Practice = function Practice(_ref) {
   var match = _ref.match;
 
-  var _usePractice = Object(_usePractice__WEBPACK_IMPORTED_MODULE_1__["usePractice"])(match.params.id),
+  var _usePractice = Object(_usePractice__WEBPACK_IMPORTED_MODULE_2__["usePractice"])(match.params.id),
       practice = _usePractice.practice;
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PageTitle__WEBPACK_IMPORTED_MODULE_2__["PageTitle"], null, practice ? practice.name : 'Loading...'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Page__WEBPACK_IMPORTED_MODULE_3__["Page"], null, practice ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("pre", null, JSON.stringify(practice, null, 2)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Spinner__WEBPACK_IMPORTED_MODULE_4__["Spinner"], null)));
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PageTitle__WEBPACK_IMPORTED_MODULE_3__["PageTitle"], null, practice ? practice.name : 'Loading...'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Page__WEBPACK_IMPORTED_MODULE_4__["Page"], null, practice ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Lab Orders"), practice.labOrders.length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Table"], {
+    headers: {
+      'Patient': 'normal',
+      'Lens': 'normal',
+      'Lab': 'normal',
+      'Order #': 'normal'
+    }
+  }, practice.labOrders.map(function (labOrder) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Row"], {
+      key: labOrder.id
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/patients/".concat(labOrder.patient.id)
+    }, labOrder.patient.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, labOrder.lens), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/labs/".concat(labOrder.lab.id)
+    }, labOrder.lab.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, labOrder.reference));
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "--centered"
+  }, "Only showing the latest 10 results.", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/lab-orders?practice=".concat(practice.id)
+  }, "See More"))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No lab orders found."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Lenses"), practice.contactLenses.length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Table"], {
+    headers: {
+      'Patient': 'normal',
+      'Brand': 'normal',
+      'Lens': 'normal',
+      'Duration': 'normal',
+      'Quantity': 'normal',
+      'Price': 'thin',
+      'Cost Excl. Postage': 'thin',
+      'Notes': 'normal',
+      'Solutions': 'normal'
+    }
+  }, practice.contactLenses.map(function (contactLens) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Row"], {
+      key: contactLens.id
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/patients/".concat(contactLens.patient.id)
+    }, contactLens.patient.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.brand), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.lens), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.duration), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.quantity), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], {
+      size: "thin"
+    }, contactLens.cost), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], {
+      size: "thin"
+    }, contactLens.costExclPostage), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, " - "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.solutions));
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "--centered"
+  }, "Only showing the latest 10 results.", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/contact-lenses?practice=".concat(practice.id)
+  }, "See More"))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No lenses found.")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Spinner__WEBPACK_IMPORTED_MODULE_5__["Spinner"], null)));
 };
 
 /***/ }),

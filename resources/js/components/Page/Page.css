@@ -13,3 +13,16 @@
 .page h2:not(:first-of-type) {
     margin-top: 2rem;
 }
+
+.page p.--centered {
+    text-align: center;
+}
+
+.page a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.page a:hover {
+    text-decoration: underline;
+}
