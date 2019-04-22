@@ -15,7 +15,7 @@ class PracticeController extends Controller
      */
     public function index()
     {
-        $practices = Practice::paginate(30);
+        $practices = Practice::orderBy('name','asc')->paginate(30);
 
         return PracticeResource::collection($practices);
     }
@@ -81,6 +81,16 @@ class PracticeController extends Controller
 
         return response()->json([
             'Deleted practice.',
+        ]);
+    }
+
+    public function restore(int $practice)
+    {
+        $practice = Practice::onlyTrashed()->find($practice);
+        $practice->restore();
+
+        return response()->json([
+            'Restored practice'
         ]);
     }
 }

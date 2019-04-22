@@ -16,6 +16,23 @@ class Type extends Model
 
     protected $with = ['variants'];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function($type) {
+            $type->variants->each(function ($variant) {
+                $variant->delete();
+            });
+        });
+
+        static::restoring(function($type) {
+            $type->variants()->withTrashed()->get()->each(function ($variant) {
+                $variant->restore();
+            });
+        });
+    }
+
     public function brand()
     {
         return $this->belongsTo(Brand::class);

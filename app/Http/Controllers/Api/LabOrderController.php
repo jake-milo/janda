@@ -96,4 +96,14 @@ class LabOrderController extends Controller
             'Deleted lab order.'
         ]);
     }
+
+    public function restore(int $labOrder)
+    {
+        $labOrder = LabOrder::onlyTrashed()->find($labOrder);
+        $labOrder->restore();
+
+        return response()->json([
+            'Restored lab order'
+        ]);
+    }
 }

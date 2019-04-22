@@ -15,7 +15,6 @@ class PatientController extends Controller
      */
     public function index()
     {
-
         $patients = Patient::orderBy('name','asc')->paginate(30);
 
         return PatientResource::collection($patients);
@@ -81,6 +80,16 @@ class PatientController extends Controller
 
         return response()->json([
             'Deleted patient.',
+        ]);
+    }
+
+    public function restore(int $patient)
+    {
+        $patient = Patient::onlyTrashed()->find($patient);
+        $patient->restore();
+
+        return response()->json([
+            'Restored patient'
         ]);
     }
 }

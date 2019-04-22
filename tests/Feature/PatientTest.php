@@ -43,4 +43,32 @@ class PatientTest extends TestCase
             ],
         ]);
     }
+
+    public function testUsercanUpdatePatient()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        $patient = factory(Patient::class)->create();
+        $updates = factory(Patient::class)->create();
+
+        $this->patch("/api/patients/{$patient->id}", $updates->attributesToArray());
+
+        $this->assertDatabaseHas('patients', $updates->attributesToArray());
+    }
+
+    public function testUsercanDeletePatient()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        $patient = factory(Patient::class)->create();
+
+        $response = $this->delete("/api/patients/{$patient->id}");
+
+        $response->assertStatus(200);
+
+        $this->assertSoftDeleted($patient);
+    }
+
 }

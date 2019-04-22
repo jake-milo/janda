@@ -83,4 +83,14 @@ class LabController extends Controller
             'Deleted lab.',
         ]);
     }
+
+    public function restore(int $lab)
+    {
+        $lab = Lab::onlyTrashed()->find($lab);
+        $lab->restore();
+
+        return response()->json([
+            'Restored lab'
+        ]);
+    }
 }
