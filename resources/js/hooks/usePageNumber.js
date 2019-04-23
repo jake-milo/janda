@@ -6,8 +6,8 @@ export const usePageNumber = () => {
     const { search } = useLocation();
 
     return useMemo(() => {
-        const parsed = qs.parse(search || '');
+        const parsed = qs.parse(search);
 
-        return parsed.page || 1;
+        return parseInt(parsed.page, 10) || 1;
     }, [search]);
 };
