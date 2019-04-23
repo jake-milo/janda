@@ -7,7 +7,7 @@ export const usePagination = (page, totalPages, separator, toUrl, delta = 2) => 
     const rangeWithSeparators = [];
 
     for (let i = 1; i <= totalPages; i++) {
-        if (i == 1 || i == totalPages || i >= left && i < right) {
+        if (i === 1 || i === totalPages || (i >= left && i < right)) {
             range.push(i);
         }
     }
@@ -32,4 +32,4 @@ export const usePagination = (page, totalPages, separator, toUrl, delta = 2) => 
         isSeparator: item === separator,
         isCurrent: item === page,
     }));
-}, [page, totalPages, separator, toUrl]);
+}, [page, totalPages, separator, delta, toUrl]);
