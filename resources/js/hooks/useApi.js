@@ -1,9 +1,11 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useCallback, useState, useMemo, useEffect } from 'react';
 import { get } from '../helpers';
 import { usePageNumber } from '../hooks/usePageNumber';
 
-export const useApi = (key, fetch, transformer, dependencies = []) => {
+export const useApi = (key, fetcher, transformer, dependencies = []) => {
     const page = usePageNumber();
+
+    const fetch = useCallback(fetcher, []);
 
     const [loading, setLoading] = useState(true);
     const [response, setResponse] = useState(null);

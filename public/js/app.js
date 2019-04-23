@@ -47877,7 +47877,8 @@ var Menu = function Menu() {
     className: "logo-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: "/img/logo.png",
-    className: "logo"
+    className: "logo",
+    alt: "Jeffery & Associates"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/"
   }, "Dashboard"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -48052,10 +48053,12 @@ __webpack_require__.r(__webpack_exports__);
 var Pagination = function Pagination(_ref) {
   var page = _ref.page,
       totalPages = _ref.totalPages,
-      toUrl = _ref.toUrl,
+      urlFormat = _ref.urlFormat,
       _ref$separator = _ref.separator,
       separator = _ref$separator === void 0 ? '⋯' : _ref$separator;
-  var items = Object(_usePagination__WEBPACK_IMPORTED_MODULE_2__["usePagination"])(page, totalPages, separator, toUrl);
+  var items = Object(_usePagination__WEBPACK_IMPORTED_MODULE_2__["usePagination"])(page, totalPages, separator, urlFormat);
+  console.log(page);
+  console.log(items);
 
   var handleLinkClick = function handleLinkClick() {
     window.scrollTo(0, 0);
@@ -48093,7 +48096,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-var usePagination = function usePagination(page, totalPages, separator, toUrl) {
+var usePagination = function usePagination(page, totalPages, separator, urlFormat) {
   var delta = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 2;
   return Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(function () {
     var left = page - delta;
@@ -48102,7 +48105,7 @@ var usePagination = function usePagination(page, totalPages, separator, toUrl) {
     var rangeWithSeparators = [];
 
     for (var i = 1; i <= totalPages; i++) {
-      if (i == 1 || i == totalPages || i >= left && i < right) {
+      if (i === 1 || i === totalPages || i >= left && i < right) {
         range.push(i);
       }
     }
@@ -48123,12 +48126,12 @@ var usePagination = function usePagination(page, totalPages, separator, toUrl) {
     return rangeWithSeparators.map(function (item) {
       return {
         item: item,
-        link: toUrl(item),
+        link: urlFormat.replace(/:page:/, item),
         isSeparator: item === separator,
         isCurrent: item === page
       };
     });
-  }, [page, totalPages, separator, toUrl]);
+  }, [page, totalPages, separator, urlFormat, delta]);
 };
 
 /***/ }),
@@ -48384,11 +48387,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var useApi = function useApi(key, fetch, transformer) {
+var useApi = function useApi(key, fetcher, transformer) {
   var _ref;
 
   var dependencies = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
   var page = Object(_hooks_usePageNumber__WEBPACK_IMPORTED_MODULE_2__["usePageNumber"])();
+  var fetch = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(fetcher, []);
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
       _useState2 = _slicedToArray(_useState, 2),
@@ -48402,10 +48406,10 @@ var useApi = function useApi(key, fetch, transformer) {
 
   var transformed = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(function () {
     return response ? transformer(response.data) : null;
-  }, [response ? response.data : null]);
+  }, [response, transformer]);
   var pageCount = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(function () {
     return response && response.meta ? response.meta.last_page : null;
-  }, [response ? response.meta : null]);
+  }, [response]);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     setLoading(true);
     fetch({
@@ -48415,7 +48419,8 @@ var useApi = function useApi(key, fetch, transformer) {
       setResponse(data);
       setLoading(false);
     });
-  }, [page].concat(_toConsumableArray(dependencies)));
+  }, [page, fetch].concat(_toConsumableArray(dependencies))); // eslint-disable-line react-hooks/exhaustive-deps
+
   return _ref = {}, _defineProperty(_ref, key, transformed), _defineProperty(_ref, "loading", loading), _defineProperty(_ref, "page", page), _defineProperty(_ref, "pageCount", pageCount), _ref;
 };
 
@@ -48444,8 +48449,8 @@ var usePageNumber = function usePageNumber() {
       search = _useLocation.search;
 
   return Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(function () {
-    var parsed = query_string__WEBPACK_IMPORTED_MODULE_1___default.a.parse(search || '');
-    return parsed.page || 1;
+    var parsed = query_string__WEBPACK_IMPORTED_MODULE_1___default.a.parse(search);
+    return parseInt(parsed.page, 10) || 1;
   }, [search]);
 };
 
@@ -48741,9 +48746,7 @@ var Patients = function Patients() {
   })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Spinner__WEBPACK_IMPORTED_MODULE_5__["Spinner"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Pagination__WEBPACK_IMPORTED_MODULE_7__["Pagination"], {
     page: page,
     totalPages: pageCount,
-    toUrl: function toUrl(page) {
-      return "/patients?page=".concat(page);
-    }
+    urlFormat: "/patients?page=:page:"
   })));
 };
 
@@ -49026,9 +49029,7 @@ var Practices = function Practices() {
   })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Spinner__WEBPACK_IMPORTED_MODULE_4__["Spinner"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Pagination__WEBPACK_IMPORTED_MODULE_5__["Pagination"], {
     page: page,
     totalPages: pageCount,
-    toUrl: function toUrl(page) {
-      return "/practices?page=".concat(page);
-    }
+    urlFormat: "/practices?page=:page:"
   })));
 };
 
@@ -49093,7 +49094,7 @@ var usePractices = function usePractices() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/jake/code/janda/resources/js/index.js */"./resources/js/index.js");
+module.exports = __webpack_require__(/*! /Users/jtaylor/code/janda/resources/js/index.js */"./resources/js/index.js");
 
 
 /***/ })
