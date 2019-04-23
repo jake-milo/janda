@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-export const usePagination = (page, totalPages, separator, toUrl, delta = 2) => useMemo(() => {
+export const usePagination = (page, totalPages, separator, urlFormat, delta = 2) => useMemo(() => {
     const left = page - delta;
     const right = page + delta + 1;
     const range = [];
@@ -28,8 +28,8 @@ export const usePagination = (page, totalPages, separator, toUrl, delta = 2) => 
 
     return rangeWithSeparators.map(item => ({
         item,
-        link: toUrl(item),
+        link: urlFormat.replace(/:page:/, item),
         isSeparator: item === separator,
         isCurrent: item === page,
     }));
-}, [page, totalPages, separator, delta, toUrl]);
+}, [page, totalPages, separator, urlFormat, delta]);

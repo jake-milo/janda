@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { PageTitle } from '../../components/PageTitle';
 import { Page } from '../../components/Page';
@@ -40,7 +40,7 @@ export const Patients = () => {
                 <Pagination
                     page={page}
                     totalPages={pageCount}
-                    toUrl={page => `/patients?page=${page}`}
+                    urlFormat="/patients?page=:page:"
                 />
             </Page>
         </>

@@ -5,8 +5,8 @@ import { usePagination } from './usePagination';
 
 import './Pagination.css';
 
-export const Pagination = ({ page, totalPages, toUrl, separator = '⋯' }) => {
-    const items = usePagination(page, totalPages, separator, toUrl);
+export const Pagination = ({ page, totalPages, urlFormat, separator = '⋯' }) => {
+    const items = usePagination(page, totalPages, separator, urlFormat);
 
     const handleLinkClick = () => {
         window.scrollTo(0, 0);
