@@ -52,7 +52,9 @@ class PatientTest extends TestCase
         $patient = factory(Patient::class)->create();
         $updates = factory(Patient::class)->create();
 
-        $this->patch("/api/patients/{$patient->id}", $updates->attributesToArray());
+        $response = $this->patch("/api/patients/{$patient->id}", $updates->attributesToArray());
+
+        $response->assertStatus(200);
 
         $this->assertDatabaseHas('patients', $updates->attributesToArray());
     }
@@ -79,7 +81,9 @@ class PatientTest extends TestCase
         $patient = factory(Patient::class)->create();
         $patient->delete();
 
-        $this->post("/api/patients/{$patient->id}/restore");
+        $response = $this->post("/api/patients/{$patient->id}/restore");
+
+        $response->assertStatus(200);
 
         $this->assertFalse($patient->fresh()->trashed());
     }
