@@ -15,7 +15,7 @@ class LabOrder extends Model
 
     protected $guarded = ['id', 'patient_id', 'practice_id', 'lab_id'];
 
-    protected $with = ['practice', 'lab'];
+    protected $with = ['practice', 'lab', 'patient'];
 
     public function patient()
     {

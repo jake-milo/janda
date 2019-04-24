@@ -19,7 +19,10 @@ class BrandTest extends TestCase
 
         $brand = factory(Brand::class)->make();
 
-        $response = $this->post("/api/brands/{$brand->id}", $brand->attributesToArray());
+        $response = $this->post("/api/brands", $brand->attributesToArray());
+
+        $this->assertDatabaseHas('brands', $brand->attributesToArray());
+        $response->assertStatus(201);
 
         $response->assertJsonStructure([
             'data' => [
