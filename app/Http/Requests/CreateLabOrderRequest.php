@@ -3,6 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Patient;
+use App\Models\Practice;
+use App\Models\Lab;
 
 class CreateLabOrderRequest extends FormRequest
 {
