@@ -5,9 +5,12 @@ import { Page } from '../../components/Page';
 import { usePatients } from './usePatients';
 import { Spinner } from '../../components/Spinner';
 import { Table, Row, Cell } from '../../components/Table';
+import { Pagination } from '../../components/Pagination';
 
-export const Patients = () => {
-    const { patients } = usePatients();
+export const Patients = ({ location }) => {
+    const { patients, page, pageCount } = usePatients(location.search);
+
+    console.log({ page, pageCount });
 
     return (
         <>
@@ -35,6 +38,8 @@ export const Patients = () => {
                 ) : (
                     <Spinner />
                 )}
+
+                <Pagination page={3} totalPages={15} />
             </Page>
         </>
     );

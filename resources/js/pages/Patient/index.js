@@ -70,8 +70,9 @@ export const Patient = ({ match }) => {
                                         <Cell>{contactLens.brand}</Cell>
                                         <Cell>{contactLens.lens}</Cell>
                                         <Cell>{contactLens.duration}</Cell>
-                                        <Cell>{contactLens.price + contactLens.shipping_cost}</Cell>
-                                        <Cell>{contactLens.price}</Cell>
+                                        <Cell>{contactLens.quantity}</Cell>
+                                        <Cell size="thin">{contactLens.cost}</Cell>
+                                        <Cell size="thin">{contactLens.costExclPostage}</Cell>
                                         <Cell> - </Cell>
                                         <Cell>{contactLens.solutions}</Cell>
                                     </Row>

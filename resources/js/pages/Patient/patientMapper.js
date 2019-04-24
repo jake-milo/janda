@@ -10,8 +10,10 @@ const labOrdersMapper = labOrders => labOrders.map(({ time, ...labOrder }) => ({
     time: timeMapper(time),
 }));
 
-const contactLensMapper = contactLenses => contactLenses.map(({ time, ...contactLens }) => ({
+const contactLensMapper = contactLenses => contactLenses.map(({ time, price, shipping_cost, ...contactLens }) => ({
     ...contactLens,
+    cost: '£' + ((parseInt(price, 10) + parseInt(shipping_cost, 10)) / 100).toFixed(2),
+    costExclPostage: '£' + (parseInt(price, 10) / 100).toFixed(2),
     time: timeMapper(time),
 }));
 

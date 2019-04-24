@@ -502,7 +502,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".table {\n    width: 100%;\n}\n\n.table .row {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n}\n\n.table .row:nth-child(even) {\n    background: rgba(226, 226, 226, 0.15);\n}\n\n.table .row .cell {\n    padding: .5rem .25rem;\n}\n\n.table .row .cell.\\--thin { flex: 2; }\n.table .row .cell.\\--normal { flex: 4; }\n.table .row .cell.\\--wide { flex: 8; }\n\n.table .row .cell.\\--header {\n    text-align: left;\n    font-weight: bold;\n    font-size: .875rem;\n    color: var(--dark-grey);\n}\n\n.table .row .cell a {\n    color: var(--primary);\n    text-decoration: none;\n}\n", ""]);
+exports.push([module.i, ".table {\n    width: 100%;\n    margin: 0 -.25rem;\n}\n\n.table .row {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n}\n\n.table .row:nth-child(even) {\n    background: rgba(226, 226, 226, 0.15);\n}\n\n.table .row .cell {\n    padding: .5rem .25rem;\n}\n\n.table .row .cell.\\--thin { flex: 2; }\n.table .row .cell.\\--normal { flex: 4; }\n.table .row .cell.\\--wide { flex: 8; }\n\n.table .row .cell.\\--header {\n    text-align: left;\n    font-weight: bold;\n    font-size: .875rem;\n    color: var(--dark-grey);\n}\n\n.table .row .cell a {\n    color: var(--primary);\n    text-decoration: none;\n}\n", ""]);
 
 // exports
 
@@ -42353,7 +42353,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47538,6 +47538,58 @@ var PageTitle = function PageTitle(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Pagination/index.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/Pagination/index.js ***!
+  \*****************************************************/
+/*! exports provided: Pagination */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Pagination", function() { return Pagination; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+var Pagination = function Pagination(_ref) {
+  var page = _ref.page,
+      totalPages = _ref.totalPages,
+      _ref$separator = _ref.separator,
+      separator = _ref$separator === void 0 ? '...' : _ref$separator;
+  var items = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(function () {
+    var arr = [];
+
+    if (totalPages <= 8) {
+      for (var i = 1; i <= totalPages; i++) {
+        arr.push(i);
+      }
+    } else {
+      // Always show 1 and 2
+      arr.push(1, 2);
+
+      if (!arr.includes(page)) {
+        // AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA i dunno how pagination works
+        if (page > 4) {
+          arr.push(separator, page - 1, page, page + 1);
+        } // Add final pages
+
+
+        if (page != totalPages && page != totalPages - 1) {
+          arr.push(separator, totalPages - 1, totalPages);
+        }
+      }
+    }
+
+    return arr;
+  }, [page, totalPages, separator]);
+  console.log(items);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pagination"
+  });
+};
+
+/***/ }),
+
 /***/ "./resources/js/components/Spinner/Spinner.css":
 /*!*****************************************************!*\
   !*** ./resources/js/components/Spinner/Spinner.css ***!
@@ -47839,7 +47891,11 @@ var Patient = function Patient(_ref) {
       key: contactLens.id
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       to: "/practices/".concat(contactLens.practice.id)
-    }, contactLens.practice.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.brand), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.lens), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.duration), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.price + contactLens.shipping_cost), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, " - "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.solutions));
+    }, contactLens.practice.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.brand), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.lens), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.duration), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.quantity), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], {
+      size: "thin"
+    }, contactLens.cost), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], {
+      size: "thin"
+    }, contactLens.costExclPostage), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, " - "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.solutions));
   })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No lenses found.")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Spinner__WEBPACK_IMPORTED_MODULE_4__["Spinner"], null)));
 };
 
@@ -47890,9 +47946,13 @@ var labOrdersMapper = function labOrdersMapper(labOrders) {
 var contactLensMapper = function contactLensMapper(contactLenses) {
   return contactLenses.map(function (_ref3) {
     var time = _ref3.time,
-        contactLens = _objectWithoutProperties(_ref3, ["time"]);
+        price = _ref3.price,
+        shipping_cost = _ref3.shipping_cost,
+        contactLens = _objectWithoutProperties(_ref3, ["time", "price", "shipping_cost"]);
 
     return _objectSpread({}, contactLens, {
+      cost: '£' + ((parseInt(price, 10) + parseInt(shipping_cost, 10)) / 100).toFixed(2),
+      costExclPostage: '£' + (parseInt(price, 10) / 100).toFixed(2),
       time: timeMapper(time)
     });
   });
@@ -47982,6 +48042,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _usePatients__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./usePatients */ "./resources/js/pages/Patients/usePatients.js");
 /* harmony import */ var _components_Spinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Spinner */ "./resources/js/components/Spinner/index.js");
 /* harmony import */ var _components_Table__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/Table */ "./resources/js/components/Table/index.js");
+/* harmony import */ var _components_Pagination__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/Pagination */ "./resources/js/components/Pagination/index.js");
 
 
 
@@ -47989,10 +48050,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Patients = function Patients() {
-  var _usePatients = Object(_usePatients__WEBPACK_IMPORTED_MODULE_4__["usePatients"])(),
-      patients = _usePatients.patients;
 
+var Patients = function Patients(_ref) {
+  var location = _ref.location;
+
+  var _usePatients = Object(_usePatients__WEBPACK_IMPORTED_MODULE_4__["usePatients"])(location.search),
+      patients = _usePatients.patients,
+      page = _usePatients.page,
+      pageCount = _usePatients.pageCount;
+
+  console.log({
+    page: page,
+    pageCount: pageCount
+  });
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PageTitle__WEBPACK_IMPORTED_MODULE_2__["PageTitle"], null, "Patients"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Page__WEBPACK_IMPORTED_MODULE_3__["Page"], null, patients ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Table"], {
     headers: {
       'Name': 'normal',
@@ -48005,7 +48075,10 @@ var Patients = function Patients() {
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       to: "/patients/".concat(patient.id)
     }, patient.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, patient.time.created.format('Do MMMM YYYY @ HH:mm')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, patient.time.updated.format('Do MMMM YYYY @ HH:mm')));
-  })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Spinner__WEBPACK_IMPORTED_MODULE_5__["Spinner"], null)));
+  })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Spinner__WEBPACK_IMPORTED_MODULE_5__["Spinner"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Pagination__WEBPACK_IMPORTED_MODULE_7__["Pagination"], {
+    page: 3,
+    totalPages: 15
+  })));
 };
 
 /***/ }),
@@ -48068,7 +48141,21 @@ var mapOrNull = function mapOrNull(response) {
   return response ? Object(_patientMapper__WEBPACK_IMPORTED_MODULE_2__["patientMapper"])(response.data) : null;
 };
 
-var usePatients = function usePatients() {
+var getPageNum = function getPageNum(search) {
+  if (search) {
+    var params = new URLSearchParams(search);
+    var p = params.get('page') || 1;
+    return parseInt(p, 10);
+  }
+
+  return 1;
+};
+
+var usePatients = function usePatients(search) {
+  var page = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(function () {
+    return getPageNum(search);
+  }, [search]);
+
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
       _useState2 = _slicedToArray(_useState, 2),
       response = _useState2[0],
@@ -48076,14 +48163,19 @@ var usePatients = function usePatients() {
 
   var patients = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(function () {
     return mapOrNull(response);
-  }, [(response || {}).data]);
+  }, [response ? response.data : null]);
+  var pageCount = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(function () {
+    return response ? response.meta.last_page : null;
+  }, [response ? response.meta : null]);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["get"])('/api/patients').then(function (data) {
+    Object(_helpers__WEBPACK_IMPORTED_MODULE_1__["get"])("/api/patients?page=".concat(page)).then(function (data) {
       setResponse(data);
     });
-  }, []);
+  }, [page]);
   return {
-    patients: patients
+    patients: patients,
+    page: page,
+    pageCount: pageCount
   };
 };
 
