@@ -15,7 +15,7 @@
 }
 
 .table .row .cell {
-    padding: .5rem .25rem;
+    padding: .5rem .125rem;
 }
 
 .table .row .cell.--thin { flex: 2; }
