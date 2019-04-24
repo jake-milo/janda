@@ -47780,6 +47780,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_Patient__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/Patient */ "./resources/js/pages/Patient/index.js");
 /* harmony import */ var _pages_Practices__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/Practices */ "./resources/js/pages/Practices/index.js");
 /* harmony import */ var _pages_Practice__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/Practice */ "./resources/js/pages/Practice/index.js");
+/* harmony import */ var _pages_LabOrders__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/LabOrders */ "./resources/js/pages/LabOrders/index.js");
+
 
 
 
@@ -47817,6 +47819,10 @@ var App = function App() {
     exact: true,
     path: "/practices/:id",
     component: _pages_Practice__WEBPACK_IMPORTED_MODULE_8__["Practice"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
+    path: "/lab-orders",
+    component: _pages_LabOrders__WEBPACK_IMPORTED_MODULE_9__["LabOrders"]
   }))));
 };
 
@@ -47882,6 +47888,8 @@ var Menu = function Menu() {
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/"
   }, "Dashboard"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/lab-orders"
+  }, "Lab Orders"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/patients"
   }, "Patients"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/practices"
@@ -48057,8 +48065,6 @@ var Pagination = function Pagination(_ref) {
       _ref$separator = _ref.separator,
       separator = _ref$separator === void 0 ? '⋯' : _ref$separator;
   var items = Object(_usePagination__WEBPACK_IMPORTED_MODULE_2__["usePagination"])(page, totalPages, separator, urlFormat);
-  console.log(page);
-  console.log(items);
 
   var handleLinkClick = function handleLinkClick() {
     window.scrollTo(0, 0);
@@ -48068,11 +48074,12 @@ var Pagination = function Pagination(_ref) {
     className: "pagination"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, items.map(function (_ref2) {
     var item = _ref2.item,
+        key = _ref2.key,
         link = _ref2.link,
         isSeparator = _ref2.isSeparator,
         isCurrent = _ref2.isCurrent;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      key: item
+      key: key
     }, isSeparator ? separator : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       className: isCurrent ? '--current' : '',
       onClick: handleLinkClick,
@@ -48097,7 +48104,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 var usePagination = function usePagination(page, totalPages, separator, urlFormat) {
-  var delta = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 2;
+  var delta = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 1;
   return Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(function () {
     var left = page - delta;
     var right = page + delta + 1;
@@ -48123,9 +48130,10 @@ var usePagination = function usePagination(page, totalPages, separator, urlForma
       rangeWithSeparators.push(item);
       last = item;
     });
-    return rangeWithSeparators.map(function (item) {
+    return rangeWithSeparators.map(function (item, i) {
       return {
         item: item,
+        key: item === separator ? "".concat(separator, "-").concat(i) : item,
         link: urlFormat.replace(/:page:/, item),
         isSeparator: item === separator,
         isCurrent: item === page
@@ -48506,6 +48514,298 @@ Object(react_dom__WEBPACK_IMPORTED_MODULE_2__["render"])(react__WEBPACK_IMPORTED
 
 /***/ }),
 
+/***/ "./resources/js/mappers/contactLenses.js":
+/*!***********************************************!*\
+  !*** ./resources/js/mappers/contactLenses.js ***!
+  \***********************************************/
+/*! exports provided: contactLensMapper, contactLensesMapper */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "contactLensMapper", function() { return contactLensMapper; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "contactLensesMapper", function() { return contactLensesMapper; });
+/* harmony import */ var _time__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./time */ "./resources/js/mappers/time.js");
+/* harmony import */ var _practices__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./practices */ "./resources/js/mappers/practices.js");
+/* harmony import */ var _patients__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./patients */ "./resources/js/mappers/patients.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+
+
+
+var formatMoney = function formatMoney(value) {
+  return "\xA3".concat((value / 100).toFixed(2));
+};
+
+var contactLensMapper = function contactLensMapper(_ref) {
+  var practice = _ref.practice,
+      patient = _ref.patient,
+      time = _ref.time,
+      priceRaw = _ref.price,
+      shipping_cost = _ref.shipping_cost,
+      rest = _objectWithoutProperties(_ref, ["practice", "patient", "time", "price", "shipping_cost"]);
+
+  var contactLens = _objectSpread({}, rest);
+
+  contactLens.time = Object(_time__WEBPACK_IMPORTED_MODULE_0__["timeMapper"])(time);
+  var price = parseInt(priceRaw, 10);
+  var shippingCost = parseInt(shipping_cost, 10);
+  contactLens.cost = formatMoney(price + shippingCost);
+  contactLens.costExclPostage = formatMoney(price);
+
+  if (practice) {
+    contactLens.practice = Object(_practices__WEBPACK_IMPORTED_MODULE_1__["practiceMapper"])(practice);
+  }
+
+  if (patient) {
+    contactLens.patient = Object(_patients__WEBPACK_IMPORTED_MODULE_2__["patientMapper"])(patient);
+  }
+
+  return contactLens;
+};
+var contactLensesMapper = function contactLensesMapper(contactLenses) {
+  return contactLenses.map(function (c) {
+    return contactLensMapper(c);
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/mappers/labOrders.js":
+/*!*******************************************!*\
+  !*** ./resources/js/mappers/labOrders.js ***!
+  \*******************************************/
+/*! exports provided: labOrderMapper, labOrdersMapper */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "labOrderMapper", function() { return labOrderMapper; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "labOrdersMapper", function() { return labOrdersMapper; });
+/* harmony import */ var _time__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./time */ "./resources/js/mappers/time.js");
+/* harmony import */ var _labs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./labs */ "./resources/js/mappers/labs.js");
+/* harmony import */ var _practices__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./practices */ "./resources/js/mappers/practices.js");
+/* harmony import */ var _patients__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./patients */ "./resources/js/mappers/patients.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+
+
+
+var labOrderMapper = function labOrderMapper(_ref) {
+  var practice = _ref.practice,
+      lab = _ref.lab,
+      patient = _ref.patient,
+      time = _ref.time,
+      rest = _objectWithoutProperties(_ref, ["practice", "lab", "patient", "time"]);
+
+  var labOrder = _objectSpread({}, rest);
+
+  labOrder.time = Object(_time__WEBPACK_IMPORTED_MODULE_0__["timeMapper"])(time);
+
+  if (practice) {
+    labOrder.practice = Object(_practices__WEBPACK_IMPORTED_MODULE_2__["practiceMapper"])(practice);
+  }
+
+  if (lab) {
+    labOrder.lab = Object(_labs__WEBPACK_IMPORTED_MODULE_1__["labMapper"])(lab);
+  }
+
+  if (patient) {
+    labOrder.patient = Object(_patients__WEBPACK_IMPORTED_MODULE_3__["patientMapper"])(patient);
+  }
+
+  return labOrder;
+};
+var labOrdersMapper = function labOrdersMapper(labOrders) {
+  return labOrders.map(function (l) {
+    return labOrderMapper(l);
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/mappers/labs.js":
+/*!**************************************!*\
+  !*** ./resources/js/mappers/labs.js ***!
+  \**************************************/
+/*! exports provided: labMapper, labsMapper */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "labMapper", function() { return labMapper; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "labsMapper", function() { return labsMapper; });
+/* harmony import */ var _time__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./time */ "./resources/js/mappers/time.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+var labMapper = function labMapper(_ref) {
+  var time = _ref.time,
+      rest = _objectWithoutProperties(_ref, ["time"]);
+
+  var lab = _objectSpread({}, rest);
+
+  lab.time = Object(_time__WEBPACK_IMPORTED_MODULE_0__["timeMapper"])(time);
+  return lab;
+};
+var labsMapper = function labsMapper(labs) {
+  return labs.map(function (l) {
+    return labMapper(l);
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/mappers/patients.js":
+/*!******************************************!*\
+  !*** ./resources/js/mappers/patients.js ***!
+  \******************************************/
+/*! exports provided: patientMapper, patientsMapper */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "patientMapper", function() { return patientMapper; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "patientsMapper", function() { return patientsMapper; });
+/* harmony import */ var _time__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./time */ "./resources/js/mappers/time.js");
+/* harmony import */ var _labOrders__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./labOrders */ "./resources/js/mappers/labOrders.js");
+/* harmony import */ var _contactLenses__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./contactLenses */ "./resources/js/mappers/contactLenses.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+
+
+var patientMapper = function patientMapper(_ref) {
+  var time = _ref.time,
+      lab_orders = _ref.lab_orders,
+      contact_lenses = _ref.contact_lenses,
+      rest = _objectWithoutProperties(_ref, ["time", "lab_orders", "contact_lenses"]);
+
+  var patient = _objectSpread({}, rest);
+
+  patient.time = Object(_time__WEBPACK_IMPORTED_MODULE_0__["timeMapper"])(time);
+
+  if (lab_orders) {
+    patient.labOrders = Object(_labOrders__WEBPACK_IMPORTED_MODULE_1__["labOrdersMapper"])(lab_orders);
+  }
+
+  if (contact_lenses) {
+    patient.contactLenses = Object(_contactLenses__WEBPACK_IMPORTED_MODULE_2__["contactLensesMapper"])(contact_lenses);
+  }
+
+  return patient;
+};
+var patientsMapper = function patientsMapper(patients) {
+  return patients.map(function (p) {
+    return patientMapper(p);
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/mappers/practices.js":
+/*!*******************************************!*\
+  !*** ./resources/js/mappers/practices.js ***!
+  \*******************************************/
+/*! exports provided: practiceMapper, practicesMapper */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "practiceMapper", function() { return practiceMapper; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "practicesMapper", function() { return practicesMapper; });
+/* harmony import */ var _time__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./time */ "./resources/js/mappers/time.js");
+/* harmony import */ var _labOrders__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./labOrders */ "./resources/js/mappers/labOrders.js");
+/* harmony import */ var _contactLenses__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./contactLenses */ "./resources/js/mappers/contactLenses.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+
+
+
+var practiceMapper = function practiceMapper(_ref) {
+  var time = _ref.time,
+      lab_orders = _ref.lab_orders,
+      contact_lenses = _ref.contact_lenses,
+      rest = _objectWithoutProperties(_ref, ["time", "lab_orders", "contact_lenses"]);
+
+  var practice = _objectSpread({}, rest);
+
+  practice.time = Object(_time__WEBPACK_IMPORTED_MODULE_0__["timeMapper"])(time);
+
+  if (lab_orders) {
+    practice.labOrders = Object(_labOrders__WEBPACK_IMPORTED_MODULE_1__["labOrdersMapper"])(lab_orders);
+  }
+
+  if (contact_lenses) {
+    practice.contactLenses = Object(_contactLenses__WEBPACK_IMPORTED_MODULE_2__["contactLensesMapper"])(contact_lenses);
+  }
+
+  return practice;
+};
+var practicesMapper = function practicesMapper(practices) {
+  return practices.map(function (p) {
+    return practiceMapper(p);
+  });
+};
+
+/***/ }),
+
+/***/ "./resources/js/mappers/time.js":
+/*!**************************************!*\
+  !*** ./resources/js/mappers/time.js ***!
+  \**************************************/
+/*! exports provided: timeMapper */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timeMapper", function() { return timeMapper; });
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+
+var timeMapper = function timeMapper(_ref) {
+  var created = _ref.created,
+      updated = _ref.updated;
+  return {
+    created: moment__WEBPACK_IMPORTED_MODULE_0___default()(created),
+    updated: moment__WEBPACK_IMPORTED_MODULE_0___default()(updated)
+  };
+};
+
+/***/ }),
+
 /***/ "./resources/js/pages/Dashboard/index.js":
 /*!***********************************************!*\
   !*** ./resources/js/pages/Dashboard/index.js ***!
@@ -48525,6 +48825,91 @@ __webpack_require__.r(__webpack_exports__);
 
 var Dashboard = function Dashboard() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PageTitle__WEBPACK_IMPORTED_MODULE_1__["PageTitle"], null, "Dashboard"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Page__WEBPACK_IMPORTED_MODULE_2__["Page"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "putpagehere")));
+};
+
+/***/ }),
+
+/***/ "./resources/js/pages/LabOrders/index.js":
+/*!***********************************************!*\
+  !*** ./resources/js/pages/LabOrders/index.js ***!
+  \***********************************************/
+/*! exports provided: LabOrders */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LabOrders", function() { return LabOrders; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _components_PageTitle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/PageTitle */ "./resources/js/components/PageTitle/index.js");
+/* harmony import */ var _components_Page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Page */ "./resources/js/components/Page/index.js");
+/* harmony import */ var _components_Table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Table */ "./resources/js/components/Table/index.js");
+/* harmony import */ var _components_Spinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Spinner */ "./resources/js/components/Spinner/index.js");
+/* harmony import */ var _components_Pagination__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/Pagination */ "./resources/js/components/Pagination/index.js");
+/* harmony import */ var _useLabOrders__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./useLabOrders */ "./resources/js/pages/LabOrders/useLabOrders.js");
+
+
+
+
+
+
+
+
+var LabOrders = function LabOrders() {
+  var _useLabOrders = Object(_useLabOrders__WEBPACK_IMPORTED_MODULE_7__["useLabOrders"])(),
+      labOrders = _useLabOrders.labOrders,
+      loading = _useLabOrders.loading,
+      page = _useLabOrders.page,
+      pageCount = _useLabOrders.pageCount;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PageTitle__WEBPACK_IMPORTED_MODULE_2__["PageTitle"], null, "Lab Orders"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Page__WEBPACK_IMPORTED_MODULE_3__["Page"], null, !loading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Table"], {
+    headers: {
+      'Patient': 'normal',
+      'Practice': 'normal',
+      'Lens': 'normal',
+      'Lab': 'normal',
+      'Order #': 'normal'
+    }
+  }, labOrders.map(function (labOrder) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Row"], {
+      key: labOrder.id
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/patients/".concat(labOrder.patient.id)
+    }, labOrder.patient.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/practices/".concat(labOrder.practice.id)
+    }, labOrder.practice.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, labOrder.lens), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/labs/".concat(labOrder.lab.id)
+    }, labOrder.lab.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, labOrder.reference));
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Pagination__WEBPACK_IMPORTED_MODULE_6__["Pagination"], {
+    page: page,
+    totalPages: pageCount,
+    urlFormat: "/lab-orders?page=:page:"
+  })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Spinner__WEBPACK_IMPORTED_MODULE_5__["Spinner"], null)));
+};
+
+/***/ }),
+
+/***/ "./resources/js/pages/LabOrders/useLabOrders.js":
+/*!******************************************************!*\
+  !*** ./resources/js/pages/LabOrders/useLabOrders.js ***!
+  \******************************************************/
+/*! exports provided: useLabOrders */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useLabOrders", function() { return useLabOrders; });
+/* harmony import */ var _hooks_useApi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../hooks/useApi */ "./resources/js/hooks/useApi.js");
+/* harmony import */ var _mappers_labOrders__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mappers/labOrders */ "./resources/js/mappers/labOrders.js");
+
+
+var useLabOrders = function useLabOrders() {
+  return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_0__["useApi"])('labOrders', function (_ref) {
+    var get = _ref.get,
+        page = _ref.page;
+    return get("/api/lab-orders?page=".concat(page));
+  }, _mappers_labOrders__WEBPACK_IMPORTED_MODULE_1__["labOrdersMapper"]);
 };
 
 /***/ }),
@@ -48602,78 +48987,6 @@ var Patient = function Patient(_ref) {
 
 /***/ }),
 
-/***/ "./resources/js/pages/Patient/patientMapper.js":
-/*!*****************************************************!*\
-  !*** ./resources/js/pages/Patient/patientMapper.js ***!
-  \*****************************************************/
-/*! exports provided: patientMapper */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "patientMapper", function() { return patientMapper; });
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-
-
-var timeMapper = function timeMapper(_ref) {
-  var created = _ref.created,
-      updated = _ref.updated;
-  return {
-    created: moment__WEBPACK_IMPORTED_MODULE_0___default()(created),
-    updated: moment__WEBPACK_IMPORTED_MODULE_0___default()(updated)
-  };
-};
-
-var labOrdersMapper = function labOrdersMapper(labOrders) {
-  return labOrders.map(function (_ref2) {
-    var time = _ref2.time,
-        labOrder = _objectWithoutProperties(_ref2, ["time"]);
-
-    return _objectSpread({}, labOrder, {
-      time: timeMapper(time)
-    });
-  });
-};
-
-var contactLensMapper = function contactLensMapper(contactLenses) {
-  return contactLenses.map(function (_ref3) {
-    var time = _ref3.time,
-        price = _ref3.price,
-        shipping_cost = _ref3.shipping_cost,
-        contactLens = _objectWithoutProperties(_ref3, ["time", "price", "shipping_cost"]);
-
-    return _objectSpread({}, contactLens, {
-      cost: '£' + ((parseInt(price, 10) + parseInt(shipping_cost, 10)) / 100).toFixed(2),
-      costExclPostage: '£' + (parseInt(price, 10) / 100).toFixed(2),
-      time: timeMapper(time)
-    });
-  });
-};
-
-var patientMapper = function patientMapper(_ref4) {
-  var time = _ref4.time,
-      contact_lenses = _ref4.contact_lenses,
-      lab_orders = _ref4.lab_orders,
-      patient = _objectWithoutProperties(_ref4, ["time", "contact_lenses", "lab_orders"]);
-
-  return _objectSpread({}, patient, {
-    labOrders: labOrdersMapper(lab_orders),
-    contactLenses: contactLensMapper(contact_lenses),
-    time: timeMapper(time)
-  });
-};
-
-/***/ }),
-
 /***/ "./resources/js/pages/Patient/usePatient.js":
 /*!**************************************************!*\
   !*** ./resources/js/pages/Patient/usePatient.js ***!
@@ -48684,15 +48997,15 @@ var patientMapper = function patientMapper(_ref4) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "usePatient", function() { return usePatient; });
-/* harmony import */ var _patientMapper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./patientMapper */ "./resources/js/pages/Patient/patientMapper.js");
-/* harmony import */ var _hooks_useApi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../hooks/useApi */ "./resources/js/hooks/useApi.js");
+/* harmony import */ var _hooks_useApi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../hooks/useApi */ "./resources/js/hooks/useApi.js");
+/* harmony import */ var _mappers_patients__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mappers/patients */ "./resources/js/mappers/patients.js");
 
 
 var usePatient = function usePatient(id) {
-  return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_1__["useApi"])('patient', function (_ref) {
+  return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_0__["useApi"])('patient', function (_ref) {
     var get = _ref.get;
     return get("/api/patients/".concat(id));
-  }, _patientMapper__WEBPACK_IMPORTED_MODULE_0__["patientMapper"], [id]);
+  }, _mappers_patients__WEBPACK_IMPORTED_MODULE_1__["patientMapper"], [id]);
 };
 
 /***/ }),
@@ -48752,34 +49065,6 @@ var Patients = function Patients() {
 
 /***/ }),
 
-/***/ "./resources/js/pages/Patients/patientMapper.js":
-/*!******************************************************!*\
-  !*** ./resources/js/pages/Patients/patientMapper.js ***!
-  \******************************************************/
-/*! exports provided: patientMapper */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "patientMapper", function() { return patientMapper; });
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
-
-var patientMapper = function patientMapper(patients) {
-  return patients.map(function (patient) {
-    return {
-      id: patient.id,
-      name: patient.name,
-      time: {
-        created: moment__WEBPACK_IMPORTED_MODULE_0___default()(patient.time.created),
-        updated: moment__WEBPACK_IMPORTED_MODULE_0___default()(patient.time.updated)
-      }
-    };
-  });
-};
-
-/***/ }),
-
 /***/ "./resources/js/pages/Patients/usePatients.js":
 /*!****************************************************!*\
   !*** ./resources/js/pages/Patients/usePatients.js ***!
@@ -48790,16 +49075,16 @@ var patientMapper = function patientMapper(patients) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "usePatients", function() { return usePatients; });
-/* harmony import */ var _patientMapper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./patientMapper */ "./resources/js/pages/Patients/patientMapper.js");
-/* harmony import */ var _hooks_useApi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../hooks/useApi */ "./resources/js/hooks/useApi.js");
+/* harmony import */ var _hooks_useApi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../hooks/useApi */ "./resources/js/hooks/useApi.js");
+/* harmony import */ var _mappers_patients__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mappers/patients */ "./resources/js/mappers/patients.js");
 
 
 var usePatients = function usePatients() {
-  return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_1__["useApi"])('patients', function (_ref) {
+  return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_0__["useApi"])('patients', function (_ref) {
     var get = _ref.get,
         page = _ref.page;
     return get("/api/patients?page=".concat(page));
-  }, _patientMapper__WEBPACK_IMPORTED_MODULE_0__["patientMapper"]);
+  }, _mappers_patients__WEBPACK_IMPORTED_MODULE_1__["patientsMapper"]);
 };
 
 /***/ }),
@@ -48885,78 +49170,6 @@ var Practice = function Practice(_ref) {
 
 /***/ }),
 
-/***/ "./resources/js/pages/Practice/practiceMapper.js":
-/*!*******************************************************!*\
-  !*** ./resources/js/pages/Practice/practiceMapper.js ***!
-  \*******************************************************/
-/*! exports provided: practiceMapper */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "practiceMapper", function() { return practiceMapper; });
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-
-
-var timeMapper = function timeMapper(_ref) {
-  var created = _ref.created,
-      updated = _ref.updated;
-  return {
-    created: moment__WEBPACK_IMPORTED_MODULE_0___default()(created),
-    updated: moment__WEBPACK_IMPORTED_MODULE_0___default()(updated)
-  };
-};
-
-var labOrdersMapper = function labOrdersMapper(labOrders) {
-  return labOrders.map(function (_ref2) {
-    var time = _ref2.time,
-        labOrder = _objectWithoutProperties(_ref2, ["time"]);
-
-    return _objectSpread({}, labOrder, {
-      time: timeMapper(time)
-    });
-  });
-};
-
-var contactLensMapper = function contactLensMapper(contactLenses) {
-  return contactLenses.map(function (_ref3) {
-    var time = _ref3.time,
-        price = _ref3.price,
-        shipping_cost = _ref3.shipping_cost,
-        contactLens = _objectWithoutProperties(_ref3, ["time", "price", "shipping_cost"]);
-
-    return _objectSpread({}, contactLens, {
-      cost: '£' + ((parseInt(price, 10) + parseInt(shipping_cost, 10)) / 100).toFixed(2),
-      costExclPostage: '£' + (parseInt(price, 10) / 100).toFixed(2),
-      time: timeMapper(time)
-    });
-  });
-};
-
-var practiceMapper = function practiceMapper(_ref4) {
-  var time = _ref4.time,
-      contact_lenses = _ref4.contact_lenses,
-      lab_orders = _ref4.lab_orders,
-      practice = _objectWithoutProperties(_ref4, ["time", "contact_lenses", "lab_orders"]);
-
-  return _objectSpread({}, practice, {
-    labOrders: labOrdersMapper(lab_orders),
-    contactLenses: contactLensMapper(contact_lenses),
-    time: timeMapper(time)
-  });
-};
-
-/***/ }),
-
 /***/ "./resources/js/pages/Practice/usePractice.js":
 /*!****************************************************!*\
   !*** ./resources/js/pages/Practice/usePractice.js ***!
@@ -48968,14 +49181,14 @@ var practiceMapper = function practiceMapper(_ref4) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "usePractice", function() { return usePractice; });
 /* harmony import */ var _hooks_useApi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../hooks/useApi */ "./resources/js/hooks/useApi.js");
-/* harmony import */ var _practiceMapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./practiceMapper */ "./resources/js/pages/Practice/practiceMapper.js");
+/* harmony import */ var _mappers_practices__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mappers/practices */ "./resources/js/mappers/practices.js");
 
 
 var usePractice = function usePractice(id) {
   return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_0__["useApi"])('practice', function (_ref) {
     var get = _ref.get;
     return get("/api/practices/".concat(id));
-  }, _practiceMapper__WEBPACK_IMPORTED_MODULE_1__["practiceMapper"], [id]);
+  }, _mappers_practices__WEBPACK_IMPORTED_MODULE_1__["practiceMapper"], [id]);
 };
 
 /***/ }),
@@ -49035,34 +49248,6 @@ var Practices = function Practices() {
 
 /***/ }),
 
-/***/ "./resources/js/pages/Practices/practiceMapper.js":
-/*!********************************************************!*\
-  !*** ./resources/js/pages/Practices/practiceMapper.js ***!
-  \********************************************************/
-/*! exports provided: practiceMapper */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "practiceMapper", function() { return practiceMapper; });
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
-
-var practiceMapper = function practiceMapper(practices) {
-  return practices.map(function (practice) {
-    return {
-      id: practice.id,
-      name: practice.name,
-      time: {
-        created: moment__WEBPACK_IMPORTED_MODULE_0___default()(practice.time.created),
-        updated: moment__WEBPACK_IMPORTED_MODULE_0___default()(practice.time.updated)
-      }
-    };
-  });
-};
-
-/***/ }),
-
 /***/ "./resources/js/pages/Practices/usePractices.js":
 /*!******************************************************!*\
   !*** ./resources/js/pages/Practices/usePractices.js ***!
@@ -49073,16 +49258,16 @@ var practiceMapper = function practiceMapper(practices) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "usePractices", function() { return usePractices; });
-/* harmony import */ var _practiceMapper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./practiceMapper */ "./resources/js/pages/Practices/practiceMapper.js");
-/* harmony import */ var _hooks_useApi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../hooks/useApi */ "./resources/js/hooks/useApi.js");
+/* harmony import */ var _hooks_useApi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../hooks/useApi */ "./resources/js/hooks/useApi.js");
+/* harmony import */ var _mappers_practices__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mappers/practices */ "./resources/js/mappers/practices.js");
 
 
 var usePractices = function usePractices() {
-  return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_1__["useApi"])('practices', function (_ref) {
+  return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_0__["useApi"])('practices', function (_ref) {
     var get = _ref.get,
         page = _ref.page;
     return get("/api/practices?page=".concat(page));
-  }, _practiceMapper__WEBPACK_IMPORTED_MODULE_0__["practiceMapper"]);
+  }, _mappers_practices__WEBPACK_IMPORTED_MODULE_1__["practicesMapper"]);
 };
 
 /***/ }),
@@ -49094,7 +49279,7 @@ var usePractices = function usePractices() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/jtaylor/code/janda/resources/js/index.js */"./resources/js/index.js");
+module.exports = __webpack_require__(/*! /home/jake/code/janda/resources/js/index.js */"./resources/js/index.js");
 
 
 /***/ })

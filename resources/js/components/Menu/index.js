@@ -12,6 +12,9 @@ export const Menu = () => {
 
             <nav>
                 <Link to="/">Dashboard</Link>
+
+                <Link to="/lab-orders">Lab Orders</Link>
+
                 <Link to="/patients">Patients</Link>
 
                 <Link to="/practices">Practices</Link>
