@@ -1,21 +1,23 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useCallback, useState, useMemo, useEffect } from 'react';
 import { get } from '../helpers';
 import { usePageNumber } from '../hooks/usePageNumber';
 
-export const useApi = (key, fetch, transformer, dependencies = []) => {
+export const useApi = (key, fetcher, transformer, dependencies = []) => {
     const page = usePageNumber();
+
+    const fetch = useCallback(fetcher, []);
 
     const [loading, setLoading] = useState(true);
     const [response, setResponse] = useState(null);
 
     const transformed = useMemo(
         () => response ? transformer(response.data) : null,
-        [response ? response.data : null],
+        [response, transformer],
     );
 
     const pageCount = useMemo(
         () => response && response.meta ? response.meta.last_page : null,
-        [response ? response.meta : null],
+        [response],
     );
 
     useEffect(() => {
@@ -26,7 +28,7 @@ export const useApi = (key, fetch, transformer, dependencies = []) => {
                 setResponse(data);
                 setLoading(false);
             });
-    }, [page, ...dependencies]);
+    }, [page, fetch, ...dependencies]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return {
         [key]: transformed,

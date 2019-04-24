@@ -40,7 +40,7 @@ export const Practices = () => {
                 <Pagination
                     page={page}
                     totalPages={pageCount}
-                    toUrl={page => `/practices?page=${page}`}
+                    urlFormat="/practices?page=:page:"
                 />
             </Page>
         </>

@@ -1,5 +1,5 @@
 import { useApi } from '../../hooks/useApi';
-import { practiceMapper } from './practiceMapper';
+import { practiceMapper } from '../../mappers/practices';
 
 export const usePractice = id => useApi(
     'practice',

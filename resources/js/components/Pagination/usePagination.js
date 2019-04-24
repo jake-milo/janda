@@ -1,13 +1,13 @@
 import { useMemo } from 'react';
 
-export const usePagination = (page, totalPages, separator, toUrl, delta = 2) => useMemo(() => {
+export const usePagination = (page, totalPages, separator, urlFormat, delta = 1) => useMemo(() => {
     const left = page - delta;
     const right = page + delta + 1;
     const range = [];
     const rangeWithSeparators = [];
 
     for (let i = 1; i <= totalPages; i++) {
-        if (i == 1 || i == totalPages || i >= left && i < right) {
+        if (i === 1 || i === totalPages || (i >= left && i < right)) {
             range.push(i);
         }
     }
@@ -26,10 +26,11 @@ export const usePagination = (page, totalPages, separator, toUrl, delta = 2) => 
         last = item;
     });
 
-    return rangeWithSeparators.map(item => ({
+    return rangeWithSeparators.map((item, i) => ({
         item,
-        link: toUrl(item),
+        key: item === separator ? `${separator}-${i}`: item,
+        link: urlFormat.replace(/:page:/, item),
         isSeparator: item === separator,
         isCurrent: item === page,
     }));
-}, [page, totalPages, separator, toUrl]);
+}, [page, totalPages, separator, urlFormat, delta]);
