@@ -6,9 +6,11 @@ import { Table, Row, Cell } from '../../components/Table';
 import { Spinner } from '../../components/Spinner';
 import { Pagination } from '../../components/Pagination';
 import { useLabOrders } from './useLabOrders';
+import { useFilters } from './useFilters';
 
 export const LabOrders = () => {
-    const { labOrders, loading, page, pageCount } = useLabOrders();
+    const { practice, practices, handlePracticeChange } = useFilters();
+    const { labOrders, loading, page, pageCount } = useLabOrders({ practice });
 
     return (
         <>
@@ -17,7 +19,22 @@ export const LabOrders = () => {
             <Page>
                 {!loading ? (
                     <>
+                        <div>
+                            <p>Practice</p>
+                            <select value={practice} onChange={handlePracticeChange}>
+                                <option>All</option>
+                                {practices.map(({ id, name }) => (
+                                    <option key={id} value={id}>
+                                        {name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
                         <Table headers={{
+                            'Date Sent': 'normal',
+                            'Date Required': 'normal',
+                            'Date Received': 'normal',
                             'Patient': 'normal',
                             'Practice': 'normal',
                             'Lens': 'normal',
@@ -26,6 +43,9 @@ export const LabOrders = () => {
                         }}>
                             {labOrders.map(labOrder => (
                                 <Row key={labOrder.id}>
+                                    <Cell>{labOrder.dates.sent}</Cell>
+                                    <Cell>{labOrder.dates.required}</Cell>
+                                    <Cell>{labOrder.dates.received || '-'}</Cell>
                                     <Cell>
                                         <Link to={`/patients/${labOrder.patient.id}`}>
                                             {labOrder.patient.name}
