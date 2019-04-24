@@ -46,7 +46,9 @@ class PracticeTest extends TestCase
         $practice = factory(Practice::class)->create();
         $updates = factory(Practice::class)->make();
 
-        $this->patch("/api/practices/{$practice->id}", $updates->attributesToArray());
+        $response = $this->patch("/api/practices/{$practice->id}", $updates->attributesToArray());
+
+        $response->assertStatus(200);
 
         $this->assertDatabaseHas('practices', $updates->attributesToArray());
     }
@@ -74,7 +76,9 @@ class PracticeTest extends TestCase
 
         $practice->delete();
 
-        $this->post("/api/practices/{$practice->id}/restore");
+        $response = $this->post("/api/practices/{$practice->id}/restore");
+
+        $response->assertStatus(200);
 
         $this->assertFalse($practice->fresh()->trashed());
     }

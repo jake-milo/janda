@@ -56,7 +56,9 @@ class LabTest extends TestCase
         $lab = factory(Lab::class)->create();
         $updates = factory(Lab::class)->make();
 
-        $this->patch("/api/labs/{$lab->id}", $updates->attributesToArray());
+        $response = $this->patch("/api/labs/{$lab->id}", $updates->attributesToArray());
+
+        $response->assertStatus(200);
 
         $this->assertDatabaseHas('labs', $updates->attributesToArray());
     }
@@ -86,7 +88,9 @@ class LabTest extends TestCase
 
         $lab->delete();
 
-        $this->post("/api/labs/{$lab->id}/restore");
+        $response = $this->post("/api/labs/{$lab->id}/restore");
+
+        $response->assertStatus(200);
 
         $this->assertFalse($lab->fresh()->trashed());
     }

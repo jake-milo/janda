@@ -73,6 +73,8 @@ class TypeTest extends TestCase
 
         $response = $this->patch('/api/brands/1/types/1', $updates);
 
+        $response->assertStatus(200);
+
         $response->assertJson([
             'data' => $updates,
         ]);
@@ -117,7 +119,9 @@ class TypeTest extends TestCase
 
         $type->delete();
 
-        $this->post('/api/brands/1/types/1/restore');
+        $response = $this->post('/api/brands/1/types/1/restore');
+
+        $response->assertStatus(200);
 
         $this->assertFalse($type->fresh()->trashed());
 

@@ -45,7 +45,9 @@ class BrandTest extends TestCase
         $brand = factory(Brand::class)->create();
         $updates = factory(Brand::class)->create();
 
-        $this->patch("/api/brands/{$brand->id}", $updates->attributesToArray());
+        $response = $this->patch("/api/brands/{$brand->id}", $updates->attributesToArray());
+
+        $response->assertStatus(200);
 
         $this->assertDatabaseHas('brands', $updates->attributesToArray());
     }
@@ -71,7 +73,9 @@ class BrandTest extends TestCase
 
         $brand->delete();
 
-        $this->post("/api/brands/{$brand->id}/restore");
+        $response = $this->post("/api/brands/{$brand->id}/restore");
+
+        $response->assertStatus(200);
 
         $this->assertFalse($brand->fresh()->trashed());
     }
