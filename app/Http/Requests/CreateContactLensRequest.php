@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Patient;
+use App\Models\Practice;
 
 class CreateContactLensRequest extends FormRequest
 {
@@ -30,8 +32,8 @@ class CreateContactLensRequest extends FormRequest
             'brand' => 'string|required',
             'duration' => 'string|required',
             'quantity' => 'string|required',
-            'price' =>  'string|required',
-            'shipping_cost' =>  'string|required',
+            'price' =>  'integer|required',
+            'shipping_cost' =>  'integer|required',
             'solutions' => 'string|required',
         ];
     }

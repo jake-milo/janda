@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Patient;
+use App\Models\Practice;
 
 class UpdateContactLensRequest extends FormRequest
 {
@@ -30,8 +32,8 @@ class UpdateContactLensRequest extends FormRequest
             'brand' => 'string',
             'duration' => 'string',
             'quantity' => 'string',
-            'price' =>  'string',
-            'shipping_cost' =>  'string',
+            'price' =>  'integer',
+            'shipping_cost' =>  'integer',
             'solutions' => 'string',
         ];
     }
@@ -47,7 +49,7 @@ class UpdateContactLensRequest extends FormRequest
     {
         $practiceId = $this->input('practice_id');
 
-        return Patient::find($practiceId);
+        return Practice::find($practiceId);
     }
 
     public function getUpdates()

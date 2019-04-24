@@ -16,7 +16,7 @@ class ContactLens extends Model
 
     protected $guarded = ['id', 'patient_id', 'practice_id'];
 
-    protected $with = ['practice'];
+    protected $with = ['practice', 'patient'];
 
     public function patient()
     {

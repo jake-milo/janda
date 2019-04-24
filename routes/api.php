@@ -18,8 +18,12 @@ Route::post('/labs/{lab}/restore', 'LabController@restore');
 Route::apiResource('lab-orders', 'LabOrderController');
 Route::post('/lab-orders/{lab_order}/restore', 'LabOrderController@restore');
 
-Route::apiResource('contact-lenses', 'ContactLensController');
-Route::post('/contact-lenses/{contact_lense}/restore', 'ContactLensController@restore');
+Route::apiResource('contact-lenses', 'ContactLensController', [
+    'parameters' => [
+        'contact-lenses' => 'contact_lens',
+    ],
+]);
+Route::post('/contact-lenses/{contact_lens}/restore', 'ContactLensController@restore');
 
 Route::apiResource('brands', 'BrandController');
 Route::post('/brands/{brand}/restore', 'BrandController@restore');
