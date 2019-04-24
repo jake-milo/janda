@@ -15,8 +15,8 @@ export const Pagination = ({ page, totalPages, urlFormat, separator = '⋯' }) =
     return totalPages !== 1 ? (
         <div className="pagination">
             <ul>
-                {items.map(({ item, link, isSeparator, isCurrent }) => (
-                    <li key={item}>
+                {items.map(({ item, key, link, isSeparator, isCurrent }) => (
+                    <li key={key}>
                         {isSeparator ? separator : (
                             <Link
                                 className={isCurrent ? '--current' : ''}
