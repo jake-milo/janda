@@ -15,7 +15,7 @@ class PracticeController extends Controller
      */
     public function index()
     {
-        $practices = Practice::orderBy('name','asc')->paginate(30);
+        $practices = Practice::orderBy('name','asc')->get();
 
         return PracticeResource::collection($practices);
     }
