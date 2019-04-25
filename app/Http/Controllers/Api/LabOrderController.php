@@ -7,16 +7,18 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\LabOrder as LabOrderResource;
 use App\Http\Requests\CreateLabOrderRequest;
 use App\Http\Requests\UpdateLabOrderRequest;
+use App\Http\Requests\GetLabOrdersRequest;
 
 class LabOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param GetLabOrdersRequest $request
      */
-    public function index()
+    public function index(GetLabOrdersRequest $request)
     {
-        $labOrders = LabOrder::paginate(30);
+        $labOrders = $request->getLabOrders();
 
         return LabOrderResource::collection($labOrders);
     }
