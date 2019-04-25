@@ -48376,14 +48376,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _hooks_usePageNumber__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hooks/usePageNumber */ "./resources/js/hooks/usePageNumber.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -48391,6 +48383,14 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 
 
@@ -48400,7 +48400,7 @@ var useApi = function useApi(key, fetcher, transformer) {
 
   var dependencies = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
   var page = Object(_hooks_usePageNumber__WEBPACK_IMPORTED_MODULE_2__["usePageNumber"])();
-  var fetch = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(fetcher, []);
+  var fetch = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(fetcher, _toConsumableArray(dependencies));
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
       _useState2 = _slicedToArray(_useState, 2),
@@ -48864,6 +48864,10 @@ var LabOrders = function LabOrders() {
       practices = _useFilters.practices,
       handlePracticeChange = _useFilters.handlePracticeChange;
 
+  console.log('useFilters returned', {
+    practice: practice
+  });
+
   var _useLabOrders = Object(_useLabOrders__WEBPACK_IMPORTED_MODULE_7__["useLabOrders"])({
     practice: practice
   }),
@@ -48987,7 +48991,9 @@ var useLabOrders = function useLabOrders(_ref) {
   return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_0__["useApi"])('labOrders', function (_ref2) {
     var get = _ref2.get,
         page = _ref2.page;
-    console.log(practice);
+    console.log('fetching with ', {
+      practice: practice
+    });
     return get("/api/lab-orders?page=".concat(page, "&practice=").concat(practice));
   }, _mappers_labOrders__WEBPACK_IMPORTED_MODULE_1__["labOrdersMapper"], [practice]);
 };
@@ -49359,7 +49365,7 @@ var usePractices = function usePractices() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/jake/code/janda/resources/js/index.js */"./resources/js/index.js");
+module.exports = __webpack_require__(/*! /Users/jtaylor/code/janda/resources/js/index.js */"./resources/js/index.js");
 
 
 /***/ })

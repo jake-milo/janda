@@ -5,7 +5,7 @@ import { usePageNumber } from '../hooks/usePageNumber';
 export const useApi = (key, fetcher, transformer, dependencies = []) => {
     const page = usePageNumber();
 
-    const fetch = useCallback(fetcher, []);
+    const fetch = useCallback(fetcher, [...dependencies]);
 
     const [loading, setLoading] = useState(true);
     const [response, setResponse] = useState(null);
