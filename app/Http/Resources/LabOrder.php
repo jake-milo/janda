@@ -22,6 +22,8 @@ class LabOrder extends JsonResource
             'id' => $this->id,
             'lens' => $this->lens,
             'reference'=> $this->reference,
+            'overdue' => $this->isOverdue(),
+            'urgent' => $this->isUrgent(),
             'dates' => [
                 'sent' => $this->date_sent,
                 'required' => $this->date_required,

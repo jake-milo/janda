@@ -7,6 +7,7 @@ use App\Models\Traits\HasResourceRelations;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
 class LabOrder extends Model
 {
     use SoftDeletes, HasResourceRelations;
@@ -14,6 +15,8 @@ class LabOrder extends Model
     protected $resourceRelations = ['patient', 'practice', 'lab'];
 
     protected $guarded = ['id', 'patient_id', 'practice_id', 'lab_id'];
+
+    protected $dates = ['date_required', 'date_sent', 'date_received'];
 
     protected $with = ['practice', 'lab', 'patient'];
 
@@ -35,7 +38,8 @@ class LabOrder extends Model
     public function scopeOverdue($query)
     {
         $today = Date::now();
-        return $query->whereDate('date_required', '<=', $today);
+        return $query->whereDate('date_required', '<=', $today)
+                     ->complete();
     }
 
     public function scopeUrgent($query)
@@ -55,4 +59,22 @@ class LabOrder extends Model
     {
         return $query->whereNull('date_received');
     }
+
+    public function isOverdue(): bool
+    {
+        $today = Date::now();
+        $dateRequired = $this->date_required;
+
+        return $dateRequired->lt($today) && !$this->date_received;
+    }
+
+    public function isUrgent(): bool
+    {
+        $today = Date::now();
+        $dateRequired = $this->date_required;
+        $twoDaysAhead = $today->addDays(2);
+
+        return $dateRequired->gt($today) && $dateRequired->lte($twoDaysAhead);
+    }
+
 }

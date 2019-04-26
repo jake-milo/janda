@@ -12,6 +12,7 @@ $factory->define(LabOrder::class, function (Faker $faker) {
     $dateSent = Date::instance($dateSent);
 
     $dateRequired = $dateSent->addDays(rand(4, 8));
+    $dateRequired = $faker->randomElement([$dateRequired, Date::now()->addDays($faker->numberBetween(1,3))]);
     $dateReceived = $dateRequired->addDays($faker->numberBetween(-2, 2));
 
     return [
