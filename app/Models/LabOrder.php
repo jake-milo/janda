@@ -45,4 +45,14 @@ class LabOrder extends Model
         return $query->whereDate('date_required', '>' , $today)
                      ->whereDate('date_required', '<=', $twoDaysAhead);
     }
+
+    public function scopeComplete($query)
+    {
+        return $query->whereNotNull('date_received');
+    }
+
+    public function scopeIncomplete($query)
+    {
+        return $query->whereNull('date_received');
+    }
 }

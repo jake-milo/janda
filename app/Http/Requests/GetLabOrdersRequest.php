@@ -26,6 +26,7 @@ class GetLabOrdersRequest extends FormRequest
     {
         return [
             'practice' => 'nullable|integer|exists:practices,id',
+            'status' => 'nullable|string|in:overdue,urgent,complete,incomplete',
         ];
     }
 
@@ -35,6 +36,10 @@ class GetLabOrdersRequest extends FormRequest
 
         if ($practice = $this->input('practice')) {
             $query->where('practice_id', $practice);
+        }
+
+        if ($status = $this->input('status')) {
+            $query->$status();
         }
 
         return $query->paginate(30);
