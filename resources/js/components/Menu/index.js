@@ -15,6 +15,8 @@ export const Menu = () => {
 
                 <Link to="/lab-orders">Lab Orders</Link>
 
+                <Link to="/contact-lenses">Contact Lenses</Link>
+
                 <Link to="/patients">Patients</Link>
 
                 <Link to="/practices">Practices</Link>
