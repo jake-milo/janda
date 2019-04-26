@@ -23,11 +23,9 @@ class LabOrderTest extends TestCase
         factory(Patient::class)->create();
         factory(Practice::class)->create();
         factory(Lab::class)->create();
-
         $labOrder = factory(LabOrder::class)->make();
 
-
-        $response = $this->post("/api/lab-orders", $labOrder->attributesToArray());
+        $response = $this->post('/api/lab-orders', $labOrder->attributesToArray());
 
         $response->assertStatus(201);
         $this->assertDatabaseHas('lab_orders', $labOrder->attributesToArray());
@@ -40,11 +38,11 @@ class LabOrderTest extends TestCase
                 'dates' => [
                     'sent',
                     'required',
+                    'received',
                 ],
                 'patient',
                 'practice',
                 'lab',
-
                 'time' => [
                     'created',
                     'updated',
@@ -63,13 +61,11 @@ class LabOrderTest extends TestCase
         factory(Lab::class)->create();
 
         $labOrder = factory(LabOrder::class)->create();
-
         $updates = factory(LabOrder::class)->make();
 
         $response = $this->patch("/api/lab-orders/{$labOrder->id}", $updates->attributesToArray());
 
         $response->assertStatus(200);
-
         $this->assertDatabaseHas('lab_orders', $updates->attributesToArray());
     }
 
@@ -81,15 +77,12 @@ class LabOrderTest extends TestCase
         factory(Patient::class)->create();
         factory(Practice::class)->create();
         factory(Lab::class)->create();
-
         $labOrder = factory(LabOrder::class)->create();
 
         $response = $this->delete("/api/lab-orders/{$labOrder->id}");
 
         $response->assertStatus(200);
-
         $this->assertSoftDeleted($labOrder);
-
     }
 
     public function testUserCanRestoreLabOrder()
@@ -107,8 +100,6 @@ class LabOrderTest extends TestCase
         $response = $this->post("/api/lab-orders/{$labOrder->id}/restore");
 
         $response->assertStatus(200);
-
         $this->assertFalse($labOrder->fresh()->trashed());
     }
-
 }

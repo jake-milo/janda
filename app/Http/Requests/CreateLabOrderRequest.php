@@ -34,6 +34,7 @@ class CreateLabOrderRequest extends FormRequest
             'reference' => 'string|required',
             'date_sent' => 'date|required',
             'date_required' => 'date|required',
+            'date_received' => 'date|nullable',
         ];
     }
 
@@ -60,6 +61,6 @@ class CreateLabOrderRequest extends FormRequest
 
     public function getLabOrderData()
     {
-        return $this->only('lens', 'reference', 'date_sent', 'date_required');
+        return $this->only('lens', 'reference', 'date_sent', 'date_required', 'date_received');
     }
 }

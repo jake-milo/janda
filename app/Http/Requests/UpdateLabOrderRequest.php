@@ -34,6 +34,7 @@ class UpdateLabOrderRequest extends FormRequest
             'reference' => 'string',
             'date_sent' => 'date',
             'date_required' => 'date',
+            'date_received' => 'date',
         ];
     }
     public function getPatient()
@@ -59,6 +60,6 @@ class UpdateLabOrderRequest extends FormRequest
 
     public function getUpdates()
     {
-        return $this->only('lens', 'reference', 'date_sent', 'date_required');
+        return $this->only('lens', 'reference', 'date_sent', 'date_required', 'date_received');
     }
 }

@@ -25,6 +25,7 @@ class LabOrder extends JsonResource
             'dates' => [
                 'sent' => $this->date_sent,
                 'required' => $this->date_required,
+                'received' => $this->date_received,
             ],
 
             'patient' => Patient::make(

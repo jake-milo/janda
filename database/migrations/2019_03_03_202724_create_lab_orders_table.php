@@ -23,6 +23,7 @@ class CreateLabOrdersTable extends Migration
             $table->string('reference');
             $table->date('date_sent');
             $table->date('date_required');
+            $table->date('date_received')->nullable();
 
             $table->foreign('patient_id')->references('id')->on('patients');
             $table->foreign('lab_id')->references('id')->on('labs');
