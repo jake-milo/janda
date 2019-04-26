@@ -14,15 +14,15 @@ class StockSeeder extends Seeder
      */
     public function run()
     {
-        factory(Brand::class, 150)
+        factory(Brand::class, 75)
             ->create()
             ->each(function ($brand) {
                 $brand->types()
-                    ->saveMany(factory(Type::class, 20)->make())
+                    ->saveMany(factory(Type::class, 10)->make())
                     ->each(function ($type) {
                         $type->variants()
                             ->saveMany(
-                                factory(Variant::class, rand(1,5))
+                                factory(Variant::class, rand(1,4))
                                     ->make()
                             );
                     });
