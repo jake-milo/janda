@@ -407,7 +407,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ":root {\n    --header-width: 16rem;\n    --off-white: #f1f5f8;\n    --white: #ffffff;\n    --primary: #2779bd;\n    --black: #22292f;\n    --dark-grey: #3d4852;\n    --logo-max-width: 11rem;\n}\n\n@media (max-width: 1400px) {\n    :root {\n        --header-width: 12rem;\n    }\n}\n\n*, *:before, *:after {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n}\n\nhtml, body, #app {\n    height: 100%;\n    font-size: 16px;\n    background: var(--off-white);\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\n    color: var(--black);\n}\n\n.container {\n    width: 100%;\n    padding-left: var(--header-width);\n}\n\n.container .inner-container {\n    padding: 2rem;\n}\n", ""]);
+exports.push([module.i, ":root {\r\n    --header-width: 16rem;\r\n    --off-white: #f1f5f8;\r\n    --white: #ffffff;\r\n    --primary: #2779bd;\r\n    --black: #22292f;\r\n    --dark-grey: #3d4852;\r\n    --logo-max-width: 11rem;\r\n}\r\n\r\n@media (max-width: 1400px) {\r\n    :root {\r\n        --header-width: 12rem;\r\n    }\r\n}\r\n\r\n*, *:before, *:after {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n}\r\n\r\nhtml, body, #app {\r\n    height: 100%;\r\n    font-size: 16px;\r\n    background: var(--off-white);\r\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\r\n    color: var(--black);\r\n}\r\n\r\n.container {\r\n    width: 100%;\r\n    padding-left: var(--header-width);\r\n}\r\n\r\n.container .inner-container {\r\n    padding: 2rem;\r\n}\r\n", ""]);
 
 // exports
 
@@ -426,7 +426,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".menu {\n    position: fixed;\n    left: 0;\n    top: 0;\n    bottom: 0;\n    width: var(--header-width);\n    background: var(--white);\n    padding: 1rem;\n    box-shadow: 0 0 60px -15px rgba(0, 0, 0, 0.25);\n}\n\n.menu .logo-container {\n    text-align: center;\n}\n\n.menu .logo-container .logo {\n    margin: 2rem 0;\n    width: 95%;\n    max-width: var(--logo-max-width);\n}\n\n.menu nav {\n    display: flex;\n    flex-direction: column;\n}\n\n.menu nav a {\n    display: block;\n    width: 100%;\n    font-weight: 500;\n    text-decoration: none;\n    color: var(--primary);\n}\n\n.menu nav a:not(:last-of-type) {\n    margin-bottom: 0.5rem;\n}\n", ""]);
+exports.push([module.i, ".menu {\r\n    position: fixed;\r\n    left: 0;\r\n    top: 0;\r\n    bottom: 0;\r\n    width: var(--header-width);\r\n    background: var(--white);\r\n    padding: 1rem;\r\n    box-shadow: 0 0 60px -15px rgba(0, 0, 0, 0.25);\r\n}\r\n\r\n.menu .logo-container {\r\n    text-align: center;\r\n}\r\n\r\n.menu .logo-container .logo {\r\n    margin: 2rem 0;\r\n    width: 95%;\r\n    max-width: var(--logo-max-width);\r\n}\r\n\r\n.menu nav {\r\n    display: flex;\r\n    flex-direction: column;\r\n}\r\n\r\n.menu nav a {\r\n    display: block;\r\n    width: 100%;\r\n    font-weight: 500;\r\n    text-decoration: none;\r\n    color: var(--primary);\r\n}\r\n\r\n.menu nav a:not(:last-of-type) {\r\n    margin-bottom: 0.5rem;\r\n}\r\n", ""]);
 
 // exports
 
@@ -445,7 +445,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".page {\n    background: var(--white);\n    padding: 1rem;\n    border-radius: .5rem;\n    box-shadow: 0 4px 60px -15px rgba(0, 0, 0, 0.25);\n}\n\n.page h2 {\n    font-size: 1.2rem;\n    opacity: 0.9;\n}\n\n.page h2:not(:first-of-type) {\n    margin-top: 2rem;\n}\n\n.page p.\\--centered {\n    text-align: center;\n}\n\n.page a {\n    color: var(--primary);\n    text-decoration: none;\n}\n\n.page a:hover {\n    text-decoration: underline;\n}\n", ""]);
+exports.push([module.i, ".page {\r\n    background: var(--white);\r\n    padding: 1rem;\r\n    border-radius: .5rem;\r\n    box-shadow: 0 4px 60px -15px rgba(0, 0, 0, 0.25);\r\n}\r\n\r\n.page h2 {\r\n    font-size: 1.2rem;\r\n    opacity: 0.9;\r\n}\r\n\r\n.page h2:not(:first-of-type) {\r\n    margin-top: 2rem;\r\n}\r\n\r\n.page p.\\--centered {\r\n    text-align: center;\r\n}\r\n\r\n.page a {\r\n    color: var(--primary);\r\n    text-decoration: none;\r\n}\r\n\r\n.page a:hover {\r\n    text-decoration: underline;\r\n}\r\n", ""]);
 
 // exports
 
@@ -464,7 +464,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".page-title {\n    font-size: 2rem;\n    font-weight: 800;\n    margin-bottom: 1rem;\n}\n", ""]);
+exports.push([module.i, ".page-title {\r\n    font-size: 2rem;\r\n    font-weight: 800;\r\n    margin-bottom: 1rem;\r\n}\r\n", ""]);
 
 // exports
 
@@ -483,7 +483,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".pagination {\n    width: 100%;\n    text-align: center;\n    padding: .25rem 0;\n}\n\n.pagination ul {\n    list-style-type: none;\n    display: flex;\n    flex-directon: row;\n    justify-content: center;\n    align-items: center;\n}\n\n.pagination ul li {\n    margin: 0 .25rem;\n    width: 2rem;\n    height: 2rem;\n    line-height: 2rem;\n    display: block;\n}\n\n.pagination ul li a {\n    display: block;\n    width: 100%;\n    height: 100%;\n    border-radius: 50%;\n    text-decoration: none;\n    color: var(--primary);\n    transition: all .2s;\n}\n\n.pagination ul li a.\\--current {\n    background: var(--primary);\n    color: var(--white);\n}\n\n.pagination ul li a:hover {\n    background: rgba(0, 0, 0, 0.1);\n    color: var(--primary);\n}\n", ""]);
+exports.push([module.i, ".pagination {\r\n    width: 100%;\r\n    text-align: center;\r\n    padding: .25rem 0;\r\n}\r\n\r\n.pagination ul {\r\n    list-style-type: none;\r\n    display: flex;\r\n    flex-directon: row;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.pagination ul li {\r\n    margin: 0 .25rem;\r\n    width: 2rem;\r\n    height: 2rem;\r\n    line-height: 2rem;\r\n    display: block;\r\n}\r\n\r\n.pagination ul li a {\r\n    display: block;\r\n    width: 100%;\r\n    height: 100%;\r\n    border-radius: 50%;\r\n    text-decoration: none;\r\n    color: var(--primary);\r\n    transition: all .2s;\r\n}\r\n\r\n.pagination ul li a.\\--current {\r\n    background: var(--primary);\r\n    color: var(--white);\r\n}\r\n\r\n.pagination ul li a:hover {\r\n    background: rgba(0, 0, 0, 0.1);\r\n    color: var(--primary);\r\n}\r\n", ""]);
 
 // exports
 
@@ -502,7 +502,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".spinner-container {\n    text-align: center;\n    width: 100%;\n}\n\n.spinner-container .spinner {\n    margin: 3rem auto;\n    width: 2.5rem;\n    height: 2.5rem;\n    border: 2px solid var(--primary);\n    border-right: 2px solid transparent;\n    border-radius: 50%;\n    animation: spin 1s infinite;\n}\n\n@keyframes spin {\n    from {\n        transform: rotate(0deg);\n    }\n\n    to {\n        transform: rotate(360deg);\n    }\n}\n", ""]);
+exports.push([module.i, ".spinner-container {\r\n    text-align: center;\r\n    width: 100%;\r\n}\r\n\r\n.spinner-container .spinner {\r\n    margin: 3rem auto;\r\n    width: 2.5rem;\r\n    height: 2.5rem;\r\n    border: 2px solid var(--primary);\r\n    border-right: 2px solid transparent;\r\n    border-radius: 50%;\r\n    animation: spin 1s infinite;\r\n}\r\n\r\n@keyframes spin {\r\n    from {\r\n        transform: rotate(0deg);\r\n    }\r\n\r\n    to {\r\n        transform: rotate(360deg);\r\n    }\r\n}\r\n", ""]);
 
 // exports
 
@@ -521,7 +521,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".table {\n    width: 100%;\n    margin: 0 -.25rem;\n    margin-bottom: .75rem;\n}\n\n.table .row {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n}\n\n.table .row:nth-child(even) {\n    background: rgba(226, 226, 226, 0.15);\n}\n\n.table .row .cell {\n    padding: .5rem .125rem;\n}\n\n.table .row .cell.\\--thin { flex: 2; }\n.table .row .cell.\\--normal { flex: 4; }\n.table .row .cell.\\--wide { flex: 8; }\n\n.table .row .cell.\\--header {\n    text-align: left;\n    font-weight: bold;\n    font-size: .875rem;\n    color: var(--dark-grey);\n}\n\n.table .row .cell a {\n    color: var(--primary);\n    text-decoration: none;\n}\n", ""]);
+exports.push([module.i, ".table {\r\n    width: 100%;\r\n    margin: 0 -.25rem;\r\n    margin-bottom: .75rem;\r\n}\r\n\r\n.table .row {\r\n    display: flex;\r\n    flex-direction: row;\r\n    align-items: center;\r\n}\r\n\r\n.table .row:nth-child(even) {\r\n    background: rgba(226, 226, 226, 0.15);\r\n}\r\n\r\n.table .row .cell {\r\n    padding: .5rem .125rem;\r\n}\r\n\r\n.table .row .cell.\\--thin { flex: 2; }\r\n.table .row .cell.\\--normal { flex: 4; }\r\n.table .row .cell.\\--wide { flex: 8; }\r\n\r\n.table .row .cell.\\--header {\r\n    text-align: left;\r\n    font-weight: bold;\r\n    font-size: .875rem;\r\n    color: var(--dark-grey);\r\n}\r\n\r\n.table .row .cell a {\r\n    color: var(--primary);\r\n    text-decoration: none;\r\n}\r\n", ""]);
 
 // exports
 
@@ -42750,7 +42750,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47781,6 +47781,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_Practices__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/Practices */ "./resources/js/pages/Practices/index.js");
 /* harmony import */ var _pages_Practice__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/Practice */ "./resources/js/pages/Practice/index.js");
 /* harmony import */ var _pages_LabOrders__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/LabOrders */ "./resources/js/pages/LabOrders/index.js");
+/* harmony import */ var _pages_ContactLenses__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pages/ContactLenses */ "./resources/js/pages/ContactLenses/index.js");
+
 
 
 
@@ -47823,6 +47825,10 @@ var App = function App() {
     exact: true,
     path: "/lab-orders",
     component: _pages_LabOrders__WEBPACK_IMPORTED_MODULE_9__["LabOrders"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
+    path: "/contact-lenses",
+    component: _pages_ContactLenses__WEBPACK_IMPORTED_MODULE_10__["ContactLenses"]
   }))));
 };
 
@@ -47890,6 +47896,8 @@ var Menu = function Menu() {
   }, "Dashboard"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/lab-orders"
   }, "Lab Orders"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/contact-lenses"
+  }, "Contact Lenses"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/patients"
   }, "Patients"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/practices"
@@ -48372,8 +48380,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useApi", function() { return useApi; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers */ "./resources/js/helpers.js");
-/* harmony import */ var _hooks_usePageNumber__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../hooks/usePageNumber */ "./resources/js/hooks/usePageNumber.js");
+/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! query-string */ "./node_modules/query-string/index.js");
+/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(query_string__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers */ "./resources/js/helpers.js");
+/* harmony import */ var _hooks_usePageNumber__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../hooks/usePageNumber */ "./resources/js/hooks/usePageNumber.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
@@ -48395,12 +48405,16 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 
+
 var useApi = function useApi(key, fetcher, transformer) {
   var _ref;
 
   var dependencies = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : [];
-  var page = Object(_hooks_usePageNumber__WEBPACK_IMPORTED_MODULE_2__["usePageNumber"])();
+  var page = Object(_hooks_usePageNumber__WEBPACK_IMPORTED_MODULE_3__["usePageNumber"])();
   var fetch = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(fetcher, _toConsumableArray(dependencies));
+  var toQueryString = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (obj) {
+    return '?' + query_string__WEBPACK_IMPORTED_MODULE_1___default.a.stringify(obj);
+  }, []);
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
       _useState2 = _slicedToArray(_useState, 2),
@@ -48422,7 +48436,8 @@ var useApi = function useApi(key, fetcher, transformer) {
     setLoading(true);
     fetch({
       page: page,
-      get: _helpers__WEBPACK_IMPORTED_MODULE_1__["get"]
+      get: _helpers__WEBPACK_IMPORTED_MODULE_2__["get"],
+      toQueryString: toQueryString
     }).then(function (data) {
       setResponse(data);
       setLoading(false);
@@ -48460,6 +48475,57 @@ var usePageNumber = function usePageNumber() {
     var parsed = query_string__WEBPACK_IMPORTED_MODULE_1___default.a.parse(search);
     return parseInt(parsed.page, 10) || 1;
   }, [search]);
+};
+
+/***/ }),
+
+/***/ "./resources/js/hooks/usePracticeFilter.js":
+/*!*************************************************!*\
+  !*** ./resources/js/hooks/usePracticeFilter.js ***!
+  \*************************************************/
+/*! exports provided: usePracticeFilter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "usePracticeFilter", function() { return usePracticeFilter; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _useApi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useApi */ "./resources/js/hooks/useApi.js");
+/* harmony import */ var _mappers_practices__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mappers/practices */ "./resources/js/mappers/practices.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+var usePracticeFilter = function usePracticeFilter() {
+  var getPractices = function getPractices(_ref) {
+    var get = _ref.get;
+    return get('/api/practices');
+  };
+
+  var _useApi = Object(_useApi__WEBPACK_IMPORTED_MODULE_1__["useApi"])('practices', getPractices, _mappers_practices__WEBPACK_IMPORTED_MODULE_2__["practicesMapper"]),
+      practices = _useApi.practices;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      practice = _useState2[0],
+      setPractice = _useState2[1];
+
+  var handlePracticeChange = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (e) {
+    setPractice(e.target.value);
+  }, []);
+  return {
+    practice: practice,
+    practices: practices || [],
+    handlePracticeChange: handlePracticeChange
+  };
 };
 
 /***/ }),
@@ -48806,6 +48872,118 @@ var timeMapper = function timeMapper(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/pages/ContactLenses/index.js":
+/*!***************************************************!*\
+  !*** ./resources/js/pages/ContactLenses/index.js ***!
+  \***************************************************/
+/*! exports provided: ContactLenses */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ContactLenses", function() { return ContactLenses; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _components_PageTitle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/PageTitle */ "./resources/js/components/PageTitle/index.js");
+/* harmony import */ var _components_Page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Page */ "./resources/js/components/Page/index.js");
+/* harmony import */ var _components_Table__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Table */ "./resources/js/components/Table/index.js");
+/* harmony import */ var _components_Spinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Spinner */ "./resources/js/components/Spinner/index.js");
+/* harmony import */ var _components_Pagination__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/Pagination */ "./resources/js/components/Pagination/index.js");
+/* harmony import */ var _useContactLenses__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./useContactLenses */ "./resources/js/pages/ContactLenses/useContactLenses.js");
+/* harmony import */ var _hooks_usePracticeFilter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../hooks/usePracticeFilter */ "./resources/js/hooks/usePracticeFilter.js");
+
+
+
+
+
+
+
+
+
+var ContactLenses = function ContactLenses() {
+  var _usePracticeFilter = Object(_hooks_usePracticeFilter__WEBPACK_IMPORTED_MODULE_8__["usePracticeFilter"])(),
+      practice = _usePracticeFilter.practice,
+      practices = _usePracticeFilter.practices,
+      handlePracticeChange = _usePracticeFilter.handlePracticeChange;
+
+  var _useContactLenses = Object(_useContactLenses__WEBPACK_IMPORTED_MODULE_7__["useContactLenses"])({
+    practice: practice
+  }),
+      contactLenses = _useContactLenses.contactLenses,
+      loading = _useContactLenses.loading,
+      page = _useContactLenses.page,
+      pageCount = _useContactLenses.pageCount;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PageTitle__WEBPACK_IMPORTED_MODULE_2__["PageTitle"], null, "Contact Lenses"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Page__WEBPACK_IMPORTED_MODULE_3__["Page"], null, !loading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Practice"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    value: practice,
+    onChange: handlePracticeChange
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "All"), practices.map(function (_ref) {
+    var id = _ref.id,
+        name = _ref.name;
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      key: id,
+      value: id
+    }, name);
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Table"], {
+    headers: {
+      'Patient': 'normal',
+      'Practice': 'normal',
+      'Brand': 'normal',
+      'Lens': 'normal',
+      'Duration': 'normal',
+      'Quantity': 'normal',
+      'Price': 'thin',
+      'Cost Excl. Postage': 'thin',
+      'Notes': 'normal',
+      'Solutions': 'normal'
+    }
+  }, contactLenses.map(function (contactLens) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Row"], {
+      key: contactLens.id
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/patients/".concat(contactLens.patient.id)
+    }, contactLens.patient.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/practices/".concat(contactLens.practice.id)
+    }, contactLens.practice.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, contactLens.brand), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, contactLens.lens), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, contactLens.duration), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, contactLens.quantity), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], {
+      size: "thin"
+    }, contactLens.cost), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], {
+      size: "thin"
+    }, contactLens.costExclPostage), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, " - "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, contactLens.solutions));
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Pagination__WEBPACK_IMPORTED_MODULE_6__["Pagination"], {
+    page: page,
+    totalPages: pageCount,
+    urlFormat: "/contact-lenses?page=:page:"
+  })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Spinner__WEBPACK_IMPORTED_MODULE_5__["Spinner"], null)));
+};
+
+/***/ }),
+
+/***/ "./resources/js/pages/ContactLenses/useContactLenses.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/pages/ContactLenses/useContactLenses.js ***!
+  \**************************************************************/
+/*! exports provided: useContactLenses */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useContactLenses", function() { return useContactLenses; });
+/* harmony import */ var _hooks_useApi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../hooks/useApi */ "./resources/js/hooks/useApi.js");
+/* harmony import */ var _mappers_contactLenses__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mappers/contactLenses */ "./resources/js/mappers/contactLenses.js");
+
+
+var useContactLenses = function useContactLenses(_ref) {
+  var practice = _ref.practice;
+  return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_0__["useApi"])('contactLenses', function (_ref2) {
+    var get = _ref2.get,
+        page = _ref2.page;
+    return get("/api/contact-lenses?page=".concat(page, "&practice=").concat(practice));
+  }, _mappers_contactLenses__WEBPACK_IMPORTED_MODULE_1__["contactLensesMapper"], [practice]);
+};
+
+/***/ }),
+
 /***/ "./resources/js/pages/Dashboard/index.js":
 /*!***********************************************!*\
   !*** ./resources/js/pages/Dashboard/index.js ***!
@@ -48848,7 +49026,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Spinner__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Spinner */ "./resources/js/components/Spinner/index.js");
 /* harmony import */ var _components_Pagination__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/Pagination */ "./resources/js/components/Pagination/index.js");
 /* harmony import */ var _useLabOrders__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./useLabOrders */ "./resources/js/pages/LabOrders/useLabOrders.js");
-/* harmony import */ var _useFilters__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./useFilters */ "./resources/js/pages/LabOrders/useFilters.js");
+/* harmony import */ var _hooks_usePracticeFilter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../hooks/usePracticeFilter */ "./resources/js/hooks/usePracticeFilter.js");
+/* harmony import */ var _useStatusFilter__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./useStatusFilter */ "./resources/js/pages/LabOrders/useStatusFilter.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -48859,17 +49047,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var LabOrders = function LabOrders() {
-  var _useFilters = Object(_useFilters__WEBPACK_IMPORTED_MODULE_8__["useFilters"])(),
-      practice = _useFilters.practice,
-      practices = _useFilters.practices,
-      handlePracticeChange = _useFilters.handlePracticeChange;
+  var _useStatusFilter = Object(_useStatusFilter__WEBPACK_IMPORTED_MODULE_9__["useStatusFilter"])(),
+      status = _useStatusFilter.status,
+      statuses = _useStatusFilter.statuses,
+      handleStatusChange = _useStatusFilter.handleStatusChange;
 
-  console.log('useFilters returned', {
-    practice: practice
-  });
+  var _usePracticeFilter = Object(_hooks_usePracticeFilter__WEBPACK_IMPORTED_MODULE_8__["usePracticeFilter"])(),
+      practice = _usePracticeFilter.practice,
+      practices = _usePracticeFilter.practices,
+      handlePracticeChange = _usePracticeFilter.handlePracticeChange;
 
   var _useLabOrders = Object(_useLabOrders__WEBPACK_IMPORTED_MODULE_7__["useLabOrders"])({
-    practice: practice
+    practice: practice,
+    status: status
   }),
       labOrders = _useLabOrders.labOrders,
       loading = _useLabOrders.loading,
@@ -48879,13 +49069,29 @@ var LabOrders = function LabOrders() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PageTitle__WEBPACK_IMPORTED_MODULE_2__["PageTitle"], null, "Lab Orders"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Page__WEBPACK_IMPORTED_MODULE_3__["Page"], null, !loading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Practice"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
     value: practice,
     onChange: handlePracticeChange
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "All"), practices.map(function (_ref) {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: ""
+  }, "All"), practices.map(function (_ref) {
     var id = _ref.id,
         name = _ref.name;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
       key: id,
       value: id
     }, name);
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Status"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    value: status,
+    onChange: handleStatusChange
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: ""
+  }, "All"), statuses.map(function (_ref2) {
+    var _ref3 = _slicedToArray(_ref2, 2),
+        value = _ref3[0],
+        label = _ref3[1];
+
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      key: value,
+      value: value
+    }, label);
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Table"], {
     headers: {
       'Date Sent': 'normal',
@@ -48916,62 +49122,6 @@ var LabOrders = function LabOrders() {
 
 /***/ }),
 
-/***/ "./resources/js/pages/LabOrders/useFilters.js":
-/*!****************************************************!*\
-  !*** ./resources/js/pages/LabOrders/useFilters.js ***!
-  \****************************************************/
-/*! exports provided: useFilters */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useFilters", function() { return useFilters; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _hooks_useApi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../hooks/useApi */ "./resources/js/hooks/useApi.js");
-/* harmony import */ var _mappers_practices__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mappers/practices */ "./resources/js/mappers/practices.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-var useFilters = function useFilters() {
-  var getPractices = function getPractices(_ref) {
-    var get = _ref.get;
-    return get('/api/practices');
-  };
-
-  var _useApi = Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_1__["useApi"])('practices', getPractices, _mappers_practices__WEBPACK_IMPORTED_MODULE_2__["practicesMapper"]),
-      practices = _useApi.practices;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
-      _useState2 = _slicedToArray(_useState, 2),
-      practice = _useState2[0],
-      setPractice = _useState2[1];
-
-  var handlePracticeChange = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (e) {
-    setPractice(e.target.value);
-  }, []);
-  return {
-    practice: practice,
-    practices: practices ? practices.map(function (p) {
-      return {
-        id: p.id,
-        name: p.name
-      };
-    }) : [],
-    handlePracticeChange: handlePracticeChange
-  };
-};
-
-/***/ }),
-
 /***/ "./resources/js/pages/LabOrders/useLabOrders.js":
 /*!******************************************************!*\
   !*** ./resources/js/pages/LabOrders/useLabOrders.js ***!
@@ -48987,15 +49137,69 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var useLabOrders = function useLabOrders(_ref) {
-  var practice = _ref.practice;
+  var practice = _ref.practice,
+      status = _ref.status;
   return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_0__["useApi"])('labOrders', function (_ref2) {
     var get = _ref2.get,
-        page = _ref2.page;
-    console.log('fetching with ', {
-      practice: practice
+        page = _ref2.page,
+        toQueryString = _ref2.toQueryString;
+    return get('/api/lab-orders' + toQueryString({
+      page: page,
+      practice: practice,
+      status: status
+    }));
+  }, _mappers_labOrders__WEBPACK_IMPORTED_MODULE_1__["labOrdersMapper"], [practice, status]);
+};
+
+/***/ }),
+
+/***/ "./resources/js/pages/LabOrders/useStatusFilter.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/pages/LabOrders/useStatusFilter.js ***!
+  \*********************************************************/
+/*! exports provided: useStatusFilter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useStatusFilter", function() { return useStatusFilter; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+var useStatusFilter = function useStatusFilter() {
+  // All available statuses
+  var statuses = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(function () {
+    return Object.entries({
+      complete: 'Completed',
+      incomplete: 'Incomplete',
+      overdue: 'Overdue',
+      urgent: 'Urgent'
     });
-    return get("/api/lab-orders?page=".concat(page, "&practice=").concat(practice));
-  }, _mappers_labOrders__WEBPACK_IMPORTED_MODULE_1__["labOrdersMapper"], [practice]);
+  }, []); // Currently selected status
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      status = _useState2[0],
+      setStatus = _useState2[1]; // Change handler
+
+
+  var handleStatusChange = Object(react__WEBPACK_IMPORTED_MODULE_0__["useCallback"])(function (e) {
+    setStatus(e.target.value);
+  }, []); // Return to the user
+
+  return {
+    status: status,
+    statuses: statuses,
+    handleStatusChange: handleStatusChange
+  };
 };
 
 /***/ }),
@@ -49365,7 +49569,7 @@ var usePractices = function usePractices() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/jtaylor/code/janda/resources/js/index.js */"./resources/js/index.js");
+module.exports = __webpack_require__(/*! D:\CODE\laragon\www\janda\resources\js\index.js */"./resources/js/index.js");
 
 
 /***/ })

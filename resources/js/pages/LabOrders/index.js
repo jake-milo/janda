@@ -6,11 +6,13 @@ import { Table, Row, Cell } from '../../components/Table';
 import { Spinner } from '../../components/Spinner';
 import { Pagination } from '../../components/Pagination';
 import { useLabOrders } from './useLabOrders';
-import { useFilters } from './useFilters';
+import { usePracticeFilter } from '../../hooks/usePracticeFilter';
+import { useStatusFilter } from './useStatusFilter';
 
 export const LabOrders = () => {
-    const { practice, practices, handlePracticeChange } = useFilters();
-    const { labOrders, loading, page, pageCount } = useLabOrders({ practice });
+    const { status, statuses, handleStatusChange } = useStatusFilter();
+    const { practice, practices, handlePracticeChange } = usePracticeFilter();
+    const { labOrders, loading, page, pageCount } = useLabOrders({ practice, status });
 
     return (
         <>
@@ -22,10 +24,22 @@ export const LabOrders = () => {
                         <div>
                             <p>Practice</p>
                             <select value={practice} onChange={handlePracticeChange}>
-                                <option>All</option>
+                                <option value="">All</option>
                                 {practices.map(({ id, name }) => (
                                     <option key={id} value={id}>
                                         {name}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div>
+                            <p>Status</p>
+                            <select value={status} onChange={handleStatusChange}>
+                                <option value="">All</option>
+                                {statuses.map(([value, label]) => (
+                                    <option key={value} value={value}>
+                                        {label}
                                     </option>
                                 ))}
                             </select>

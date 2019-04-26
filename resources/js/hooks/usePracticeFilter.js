@@ -1,8 +1,8 @@
 import { useState, useCallback } from 'react';
-import { useApi } from '../../hooks/useApi';
-import { practicesMapper } from '../../mappers/practices';
+import { useApi } from './useApi';
+import { practicesMapper } from '../mappers/practices';
 
-export const useFilters = () => {
+export const usePracticeFilter = () => {
     const getPractices = ({ get }) => get('/api/practices');
     const { practices } = useApi('practices', getPractices, practicesMapper);
 
@@ -14,10 +14,7 @@ export const useFilters = () => {
 
     return {
         practice,
-        practices: practices ? practices.map(p => ({
-            id: p.id,
-            name: p.name
-        })) : [],
+        practices: practices || [],
         handlePracticeChange,
     };
 };

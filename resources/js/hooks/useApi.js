@@ -1,4 +1,5 @@
 import { useCallback, useState, useMemo, useEffect } from 'react';
+import qs from 'query-string';
 import { get } from '../helpers';
 import { usePageNumber } from '../hooks/usePageNumber';
 
@@ -6,6 +7,8 @@ export const useApi = (key, fetcher, transformer, dependencies = []) => {
     const page = usePageNumber();
 
     const fetch = useCallback(fetcher, [...dependencies]);
+
+    const toQueryString = useCallback(obj => '?' + qs.stringify(obj), []);
 
     const [loading, setLoading] = useState(true);
     const [response, setResponse] = useState(null);
@@ -23,7 +26,7 @@ export const useApi = (key, fetcher, transformer, dependencies = []) => {
     useEffect(() => {
         setLoading(true);
 
-        fetch({ page, get })
+        fetch({ page, get, toQueryString })
             .then(data => {
                 setResponse(data);
                 setLoading(false);
