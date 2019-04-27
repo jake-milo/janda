@@ -1,0 +1,22 @@
+.fab {
+    text-align: center;
+    color: var(--white) !important;
+    font-size: var(--fab-font-size);
+    position: fixed;
+    bottom: var(--fab-offset);
+    right: var(--fab-offset);
+    width: var(--fab-size);
+    height: var(--fab-size);
+    background: var(--primary);
+    border-radius: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);
+    transition: all .2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fab:hover {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.25);
+    transform: translateY(-.25rem);
+}
