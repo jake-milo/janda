@@ -3,9 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\LabOrder;
+use App\Models\ContactLens;
 
-class GetLabOrdersRequest extends FormRequest
+class GetContactLensRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,25 +26,15 @@ class GetLabOrdersRequest extends FormRequest
     {
         return [
             'practice' => 'nullable|integer|exists:practices,id',
-            'status' => 'nullable|string|in:overdue,urgent,complete,incomplete',
-            'lab' => 'nullable|integer|exists:labs,id',
         ];
     }
 
-    public function getLabOrders()
+    public function getContactLenses()
     {
-        $query = (new LabOrder)->newQuery();
+        $query = (new ContactLens)->newQuery();
 
         if ($practice = $this->input('practice')) {
             $query->where('practice_id', $practice);
-        }
-
-        if ($status = $this->input('status')) {
-            $query->$status();
-        }
-
-        if($lab = $this->input('lab')) {
-            $query->where('lab_id', $lab);
         }
 
         return $query->paginate(30);
