@@ -4,7 +4,7 @@ import { get } from '../helpers';
 import { usePageNumber } from '../hooks/usePageNumber';
 
 export const useApi = (key, fetcher, transformer, dependencies = []) => {
-    const page = usePageNumber();
+    const { page, setPage } = usePageNumber();
 
     const fetch = useCallback(fetcher, [...dependencies]);
 
@@ -23,10 +23,12 @@ export const useApi = (key, fetcher, transformer, dependencies = []) => {
         [response],
     );
 
+    const resetPage = () => setPage(1);
+
     useEffect(() => {
         setLoading(true);
 
-        fetch({ page, get, toQueryString })
+        fetch({ page, get, toQueryString, resetPage })
             .then(data => {
                 setResponse(data);
                 setLoading(false);

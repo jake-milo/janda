@@ -5,3 +5,4 @@ export const useRouter = () => useContext(RouterContext);
 
 export const useLocation = () => useRouter().location || {};
 
+export const useHistory = () => useRouter().history || {};
