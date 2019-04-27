@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import RoundAdd from 'react-md-icon/dist/RoundAdd';
 import { PageTitle } from '../../components/PageTitle';
 import { Page } from '../../components/Page';
 import { Table, Row, Cell } from '../../components/Table';
 import { Spinner } from '../../components/Spinner';
 import { Pagination } from '../../components/Pagination';
+import { FloatingActionButton } from '../../components/FloatingActionButton';
 import { useLabOrders } from './useLabOrders';
 import { usePracticeFilter } from '../../hooks/usePracticeFilter';
 import { useStatusFilter } from './useStatusFilter';
+import { CreateLabOrderModal } from './CreateLabOrderModal';
 
 import './LabOrders.css';
 
@@ -15,6 +18,8 @@ export const LabOrders = () => {
     const { status, statuses, handleStatusChange } = useStatusFilter();
     const { practice, practices, handlePracticeChange } = usePracticeFilter();
     const { labOrders, loading, page, pageCount } = useLabOrders({ practice, status });
+
+    const [showCreateModal, setShowCreateModal] = useState(false);
 
     return (
         <>
@@ -78,7 +83,7 @@ export const LabOrders = () => {
                                             {labOrder.lab.name}
                                         </Link>
                                     </Cell>
-                                    <Cell>{labOrder.reference}</Cell>
+                                    Lab Orders         <Cell>{labOrder.reference}</Cell>
                                 </Row>
                             ))}
                         </Table>
@@ -92,6 +97,12 @@ export const LabOrders = () => {
                 ) : (
                     <Spinner />
                 )}
+
+                <FloatingActionButton onClick={() => setShowCreateModal(true)}>
+                    <RoundAdd />
+                </FloatingActionButton>
+
+                <CreateLabOrderModal show={showCreateModal} hide={() => setShowCreateModal(false)} />
             </Page>
         </>
     );

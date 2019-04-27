@@ -8,6 +8,10 @@
     --red: #E3342F;
     --orange: #F6993F;
     --logo-max-width: 11rem;
+    --fab-size: 4rem;
+    --fab-offset: 1rem;
+    --fab-font-size: 2rem;
+    --modal-width: 32rem;
 }
 
 @media (max-width: 1400px) {
