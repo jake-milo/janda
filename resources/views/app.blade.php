@@ -10,6 +10,8 @@
     <body>
         <div id="app"></div>
 
+        <div id="modal-root"></div>
+
         <script src="/js/app.js"></script>
     </body>
 </html>
