@@ -1,37 +1,42 @@
 .menu {
-    position: fixed;
+    position: absolute;
     left: 0;
     top: 0;
-    bottom: 0;
-    width: var(--header-width);
+    right: 0;
+    height: var(--header-height);
     background: var(--white);
-    padding: 1rem;
-    box-shadow: 0 0 60px -15px rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--light-grey);
+    z-index: 10;
 }
 
-.menu .logo-container {
-    text-align: center;
+.menu .menu-inner {
+    width: var(--page-width);
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.menu .logo-container .logo {
-    margin: 2rem 0;
-    width: 95%;
-    max-width: var(--logo-max-width);
+.menu .logo {
+    height: 75%;
 }
 
 .menu nav {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1rem;
 }
 
 .menu nav a {
     display: block;
-    width: 100%;
     font-weight: 500;
     text-decoration: none;
     color: var(--primary);
 }
 
 .menu nav a:not(:last-of-type) {
-    margin-bottom: 0.5rem;
+    margin-right: 1.25rem;
 }

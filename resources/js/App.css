@@ -1,10 +1,12 @@
 :root {
-    --header-width: 16rem;
+    --page-width: 80%;
+    --header-height: 5rem;
     --off-white: #f1f5f8;
     --white: #ffffff;
     --primary: #2779bd;
     --black: #22292f;
-    --dark-grey: #3d4852;
+    --dark-grey: #606f7b;
+    --light-grey: #dae1e7;
     --red: #E3342F;
     --orange: #F6993F;
     --logo-max-width: 11rem;
@@ -36,9 +38,11 @@ html, body, #app {
 
 .container {
     width: 100%;
-    padding-left: var(--header-width);
+    padding-top: var(--header-height);
 }
 
 .container .inner-container {
-    padding: 2rem;
+    width: var(--page-width);
+    padding: 2rem 0;
+    margin: 0 auto;
 }

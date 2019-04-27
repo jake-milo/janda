@@ -21,7 +21,7 @@ export const Table = ({ headers, children }) => {
 
     return (
         <div className="table">
-            <Row>
+            <Row header>
                 {names.map((name, i) => (
                     <Cell key={name} size={sizes[i]} header>
                         {name}
@@ -34,8 +34,8 @@ export const Table = ({ headers, children }) => {
     );
 };
 
-export const Row = ({ children, classes = [], }) => (
-    <div className={`row ${classes.join(' ')}`}>
+export const Row = ({ children, header = false, classes = [], }) => (
+    <div className={`row ${header ? '--header' : ''} ${classes.join(' ')}`}>
         {children}
     </div>
 );

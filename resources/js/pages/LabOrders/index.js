@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import RoundAdd from 'react-md-icon/dist/RoundAdd';
 import { PageTitle } from '../../components/PageTitle';
 import { Page } from '../../components/Page';
-import { Table, Row, Cell } from '../../components/Table';
+import { Table, Row, Cell, Filters } from '../../components/Table';
 import { Spinner } from '../../components/Spinner';
 import { Pagination } from '../../components/Pagination';
 import { FloatingActionButton } from '../../components/FloatingActionButton';
@@ -11,12 +11,13 @@ import { useLabOrders } from './useLabOrders';
 import { usePracticeFilter } from '../../hooks/usePracticeFilter';
 import { useStatusFilter } from './useStatusFilter';
 import { CreateLabOrderModal } from './CreateLabOrderModal';
+import { PracticePicker } from '../../components/PracticePicker';
 
 import './LabOrders.css';
 
 export const LabOrders = () => {
     const { status, statuses, handleStatusChange } = useStatusFilter();
-    const { practice, practices, handlePracticeChange } = usePracticeFilter();
+    const { practice, handlePracticeChange } = usePracticeFilter();
     const { labOrders, loading, page, pageCount } = useLabOrders({ practice, status });
 
     const [showCreateModal, setShowCreateModal] = useState(false);
@@ -28,28 +29,26 @@ export const LabOrders = () => {
             <Page>
                 {!loading ? (
                     <>
-                        <div>
-                            <p>Practice</p>
-                            <select value={practice} onChange={handlePracticeChange}>
-                                <option value="">All</option>
-                                {practices.map(({ id, name }) => (
-                                    <option key={id} value={id}>
-                                        {name}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
+                        <div className="filters">
+                            <div className="select-wrapper">
+                                <PracticePicker
+                                    value={practice}
+                                    onChange={handlePracticeChange}
+                                    emptyText="All"
+                                />
+                            </div>
 
-                        <div>
-                            <p>Status</p>
-                            <select value={status} onChange={handleStatusChange}>
-                                <option value="">All</option>
-                                {statuses.map(([value, label]) => (
-                                    <option key={value} value={value}>
-                                        {label}
-                                    </option>
-                                ))}
-                            </select>
+                            <div className="select-wrapper">
+                                <label htmlFor="status">Status</label>
+                                <select value={status} onChange={handleStatusChange}>
+                                    <option value="">All</option>
+                                    {statuses.map(([value, label]) => (
+                                        <option key={value} value={value}>
+                                            {label}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
                         </div>
 
                         <Table headers={{
@@ -83,7 +82,7 @@ export const LabOrders = () => {
                                             {labOrder.lab.name}
                                         </Link>
                                     </Cell>
-                                    Lab Orders         <Cell>{labOrder.reference}</Cell>
+                                    <Cell>{labOrder.reference}</Cell>
                                 </Row>
                             ))}
                         </Table>
