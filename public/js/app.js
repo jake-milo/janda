@@ -407,7 +407,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ":root {\r\n    --header-width: 16rem;\r\n    --off-white: #f1f5f8;\r\n    --white: #ffffff;\r\n    --primary: #2779bd;\r\n    --black: #22292f;\r\n    --dark-grey: #3d4852;\r\n    --logo-max-width: 11rem;\r\n}\r\n\r\n@media (max-width: 1400px) {\r\n    :root {\r\n        --header-width: 12rem;\r\n    }\r\n}\r\n\r\n*, *:before, *:after {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n}\r\n\r\nhtml, body, #app {\r\n    height: 100%;\r\n    font-size: 16px;\r\n    background: var(--off-white);\r\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\r\n    color: var(--black);\r\n}\r\n\r\n.container {\r\n    width: 100%;\r\n    padding-left: var(--header-width);\r\n}\r\n\r\n.container .inner-container {\r\n    padding: 2rem;\r\n}\r\n", ""]);
+exports.push([module.i, ":root {\r\n    --header-width: 16rem;\r\n    --off-white: #f1f5f8;\r\n    --white: #ffffff;\r\n    --primary: #2779bd;\r\n    --black: #22292f;\r\n    --dark-grey: #3d4852;\r\n    --red: #E3342F;\r\n    --orange: #F6993F;\r\n    --logo-max-width: 11rem;\r\n}\r\n\r\n@media (max-width: 1400px) {\r\n    :root {\r\n        --header-width: 12rem;\r\n    }\r\n}\r\n\r\n*, *:before, *:after {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n}\r\n\r\nhtml, body, #app {\r\n    height: 100%;\r\n    font-size: 16px;\r\n    background: var(--off-white);\r\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\r\n    color: var(--black);\r\n}\r\n\r\n.container {\r\n    width: 100%;\r\n    padding-left: var(--header-width);\r\n}\r\n\r\n.container .inner-container {\r\n    padding: 2rem;\r\n}\r\n", ""]);
 
 // exports
 
@@ -522,6 +522,25 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 // module
 exports.push([module.i, ".table {\r\n    width: 100%;\r\n    margin: 0 -.25rem;\r\n    margin-bottom: .75rem;\r\n}\r\n\r\n.table .row {\r\n    display: flex;\r\n    flex-direction: row;\r\n    align-items: center;\r\n}\r\n\r\n.table .row:nth-child(even) {\r\n    background: rgba(226, 226, 226, 0.15);\r\n}\r\n\r\n.table .row .cell {\r\n    padding: .5rem .125rem;\r\n}\r\n\r\n.table .row .cell.\\--thin { flex: 2; }\r\n.table .row .cell.\\--normal { flex: 4; }\r\n.table .row .cell.\\--wide { flex: 8; }\r\n\r\n.table .row .cell.\\--header {\r\n    text-align: left;\r\n    font-weight: bold;\r\n    font-size: .875rem;\r\n    color: var(--dark-grey);\r\n}\r\n\r\n.table .row .cell a {\r\n    color: var(--primary);\r\n    text-decoration: none;\r\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/pages/LabOrders/LabOrders.css":
+/*!************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--5-1!./node_modules/postcss-loader/src??ref--5-2!./resources/js/pages/LabOrders/LabOrders.css ***!
+  \************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".table{\r\n    margin-left: .25rem;\r\n}\r\n\r\n.table .row.\\--overdue, .table .row.\\--urgent {\r\n    position: relative;\r\n}\r\n\r\n.table .row.\\--overdue:before, .table .row.\\--urgent:before {\r\n    position: absolute;\r\n    content: ' ';\r\n    left: -10px;\r\n    top: 5px;\r\n    bottom: 5px;\r\n    width: 4px;\r\n}\r\n\r\n\r\n\r\n.table .row.\\--overdue:before{\r\n    background: var(--red);\r\n}\r\n\r\n.table .row.\\--urgent:before{\r\n    background: var(--orange);\r\n}\r\n", ""]);
 
 // exports
 
@@ -42750,7 +42769,7 @@ if (false) {} else {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48330,9 +48349,11 @@ var Table = function Table(_ref) {
   })), children);
 };
 var Row = function Row(_ref4) {
-  var children = _ref4.children;
+  var children = _ref4.children,
+      _ref4$classes = _ref4.classes,
+      classes = _ref4$classes === void 0 ? [] : _ref4$classes;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row"
+    className: "row ".concat(classes.join(' '))
   }, children);
 };
 var Cell = function Cell(_ref5) {
@@ -49007,6 +49028,36 @@ var Dashboard = function Dashboard() {
 
 /***/ }),
 
+/***/ "./resources/js/pages/LabOrders/LabOrders.css":
+/*!****************************************************!*\
+  !*** ./resources/js/pages/LabOrders/LabOrders.css ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--5-1!../../../../node_modules/postcss-loader/src??ref--5-2!./LabOrders.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/pages/LabOrders/LabOrders.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./resources/js/pages/LabOrders/index.js":
 /*!***********************************************!*\
   !*** ./resources/js/pages/LabOrders/index.js ***!
@@ -49028,6 +49079,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _useLabOrders__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./useLabOrders */ "./resources/js/pages/LabOrders/useLabOrders.js");
 /* harmony import */ var _hooks_usePracticeFilter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../hooks/usePracticeFilter */ "./resources/js/hooks/usePracticeFilter.js");
 /* harmony import */ var _useStatusFilter__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./useStatusFilter */ "./resources/js/pages/LabOrders/useStatusFilter.js");
+/* harmony import */ var _LabOrders_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./LabOrders.css */ "./resources/js/pages/LabOrders/LabOrders.css");
+/* harmony import */ var _LabOrders_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_LabOrders_css__WEBPACK_IMPORTED_MODULE_10__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -49035,6 +49088,7 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -49105,7 +49159,8 @@ var LabOrders = function LabOrders() {
     }
   }, labOrders.map(function (labOrder) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Row"], {
-      key: labOrder.id
+      key: labOrder.id,
+      classes: [labOrder.overdue ? '--overdue' : '', labOrder.urgent ? '--urgent' : '']
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, labOrder.dates.sent), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, labOrder.dates.required), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, labOrder.dates.received || '-'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       to: "/patients/".concat(labOrder.patient.id)
     }, labOrder.patient.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {

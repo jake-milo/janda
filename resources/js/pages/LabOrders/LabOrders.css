@@ -1,0 +1,26 @@
+.table{
+    margin-left: .25rem;
+}
+
+.table .row.--overdue, .table .row.--urgent {
+    position: relative;
+}
+
+.table .row.--overdue:before, .table .row.--urgent:before {
+    position: absolute;
+    content: ' ';
+    left: -10px;
+    top: 5px;
+    bottom: 5px;
+    width: 4px;
+}
+
+
+
+.table .row.--overdue:before{
+    background: var(--red);
+}
+
+.table .row.--urgent:before{
+    background: var(--orange);
+}

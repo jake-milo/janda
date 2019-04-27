@@ -9,6 +9,8 @@ import { useLabOrders } from './useLabOrders';
 import { usePracticeFilter } from '../../hooks/usePracticeFilter';
 import { useStatusFilter } from './useStatusFilter';
 
+import './LabOrders.css';
+
 export const LabOrders = () => {
     const { status, statuses, handleStatusChange } = useStatusFilter();
     const { practice, practices, handlePracticeChange } = usePracticeFilter();
@@ -56,7 +58,7 @@ export const LabOrders = () => {
                             'Order #': 'normal',
                         }}>
                             {labOrders.map(labOrder => (
-                                <Row key={labOrder.id}>
+                                <Row key={labOrder.id} classes={[labOrder.overdue ? '--overdue' :   '', labOrder.urgent ? '--urgent' : '',]}>
                                     <Cell>{labOrder.dates.sent}</Cell>
                                     <Cell>{labOrder.dates.required}</Cell>
                                     <Cell>{labOrder.dates.received || '-'}</Cell>

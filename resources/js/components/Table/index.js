@@ -34,7 +34,11 @@ export const Table = ({ headers, children }) => {
     );
 };
 
-export const Row = ({ children }) => <div className="row">{children}</div>;
+export const Row = ({ children, classes = [], }) => (
+    <div className={`row ${classes.join(' ')}`}>
+        {children}
+    </div>
+);
 
 export const Cell = ({ children, size = 'normal', header = false }) => (
     <div className={`cell --${size} ${header ? '--header' : ''}`}>
