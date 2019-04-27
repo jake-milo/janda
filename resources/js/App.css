@@ -6,6 +6,10 @@
     --black: #22292f;
     --dark-grey: #3d4852;
     --logo-max-width: 11rem;
+    --fab-size: 4rem;
+    --fab-offset: 1rem;
+    --fab-font-size: 2rem;
+    --modal-width: 32rem;
 }
 
 @media (max-width: 1400px) {
