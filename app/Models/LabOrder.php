@@ -39,7 +39,7 @@ class LabOrder extends Model
     {
         $today = Date::now();
         return $query->whereDate('date_required', '<=', $today)
-                     ->complete();
+                     ->incomplete();
     }
 
     public function scopeUrgent($query)
