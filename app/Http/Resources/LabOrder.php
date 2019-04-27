@@ -25,9 +25,9 @@ class LabOrder extends JsonResource
             'overdue' => $this->isOverdue(),
             'urgent' => $this->isUrgent(),
             'dates' => [
-                'sent' => $this->date_sent,
-                'required' => $this->date_required,
-                'received' => $this->date_received,
+                'sent' => $this->date_sent->format('jS F Y'),
+                'required' => $this->date_required->format('jS F Y'),
+                'received' => optional($this->date_received)->format('jS F Y'),
             ],
 
             'patient' => Patient::make(
