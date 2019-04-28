@@ -426,7 +426,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".select-wrapper, .input-wrapper {\n    border-radius: .125rem;\n    border: 1px solid var(--light-grey);\n    position: relative;\n    display: flex;\n    flex-direction: row;\n    align-items: stretch;\n    margin-bottom: .5rem;\n}\n\n.select-wrapper.\\--inline, .input-wrapper.\\--inline {\n    margin-bottom: 0;\n    margin-right: .5rem;\n}\n\n.select-wrapper:after {\n    content: '';\n    width: 1rem;\n    height: 1rem;\n    background: url('/img/dropdown.svg');\n    position: absolute;\n    top: 50%;\n    right: .25rem;\n    transform: translateY(-50%);\n    pointer-events: none;\n}\n\n.select-wrapper label, .input-wrapper label {\n    display: block;\n    font-size: .875rem;\n    opacity: 0.8;\n    padding: .5rem;\n    border-right: 1px solid var(--light-grey);\n}\n\n.select-wrapper:not(.\\--inline) label, .input-wrapper:not(.\\--inline) label {\n    width: 6rem;\n}\n\n.input-wrapper input {\n    display: block;\n    flex: 2;\n    border: none;\n    font-size: .875rem;\n}\n\n.input-wrapper input:focus {\n    outline: 0;\n}\n\n.select-wrapper select {\n    display: block;\n    flex: 2;\n    border: none;\n    background: none;\n    font-size: .875rem;\n    appearance: none;\n    -webkit-appearance: none;\n    padding-right: 1.5rem;\n    padding-left: .5rem;\n}\n\n.select-wrapper select:focus {\n    outline: 0;\n}\n\n.select-wrapper.\\--inline select {\n    text-align-last: right;\n}\n\n.select-wrapper.\\--inline select option {\n    direction: rtl;\n};\n", ""]);
+exports.push([module.i, ".select-wrapper, .input-wrapper {\n    border-radius: .125rem;\n    border: 1px solid var(--light-grey);\n    position: relative;\n    display: flex;\n    flex-direction: row;\n    align-items: stretch;\n    margin-bottom: .5rem;\n}\n\n.select-wrapper.\\--inline, .input-wrapper.\\--inline {\n    margin-bottom: 0;\n    margin-right: .5rem;\n}\n\n.select-wrapper:after {\n    content: '';\n    width: 1rem;\n    height: 1rem;\n    background: url('/img/dropdown.svg');\n    position: absolute;\n    top: 50%;\n    right: .25rem;\n    transform: translateY(-50%);\n    pointer-events: none;\n}\n\n.select-wrapper label, .input-wrapper label {\n    display: block;\n    font-size: .875rem;\n    opacity: 0.8;\n    padding: .5rem;\n    border-right: 1px solid var(--light-grey);\n}\n\n.select-wrapper:not(.\\--inline) label, .input-wrapper:not(.\\--inline) label {\n    width: 6rem;\n}\n\n.input-wrapper input {\n    display: block;\n    flex: 2;\n    border: none;\n    font-size: .875rem;\n    padding: 0 .5rem;\n}\n\n.input-wrapper input:focus {\n    outline: 0;\n}\n\n.select-wrapper select {\n    display: block;\n    flex: 2;\n    border: none;\n    background: none;\n    font-size: .875rem;\n    appearance: none;\n    -webkit-appearance: none;\n    padding-right: 1.5rem;\n    padding-left: .5rem;\n}\n\n.select-wrapper select:focus {\n    outline: 0;\n}\n\n.select-wrapper.\\--inline select {\n    text-align-last: right;\n}\n\n.select-wrapper.\\--inline select option {\n    direction: rtl;\n};\n", ""]);
 
 // exports
 
@@ -49187,7 +49187,7 @@ if (typeof Object.assign != "function") {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54733,6 +54733,71 @@ var FloatingActionButton = function FloatingActionButton(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/components/LabPicker/index.js":
+/*!****************************************************!*\
+  !*** ./resources/js/components/LabPicker/index.js ***!
+  \****************************************************/
+/*! exports provided: LabPicker */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LabPicker", function() { return LabPicker; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _useLabs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useLabs */ "./resources/js/components/LabPicker/useLabs.js");
+
+
+var LabPicker = function LabPicker(_ref) {
+  var value = _ref.value,
+      onChange = _ref.onChange,
+      _ref$emptyText = _ref.emptyText,
+      emptyText = _ref$emptyText === void 0 ? 'Please Choose' : _ref$emptyText;
+
+  var _useLabs = Object(_useLabs__WEBPACK_IMPORTED_MODULE_1__["useLabs"])(),
+      labs = _useLabs.labs;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "lab_id"
+  }, "Lab"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    name: "lab_id",
+    value: value,
+    onChange: onChange
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: ""
+  }, emptyText), (labs || []).map(function (lab) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      value: lab.id,
+      key: lab.id
+    }, lab.name);
+  })));
+};
+
+/***/ }),
+
+/***/ "./resources/js/components/LabPicker/useLabs.js":
+/*!******************************************************!*\
+  !*** ./resources/js/components/LabPicker/useLabs.js ***!
+  \******************************************************/
+/*! exports provided: useLabs */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useLabs", function() { return useLabs; });
+/* harmony import */ var _mappers_labs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mappers/labs */ "./resources/js/mappers/labs.js");
+/* harmony import */ var _hooks_useApi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../hooks/useApi */ "./resources/js/hooks/useApi.js");
+
+
+var useLabs = function useLabs() {
+  return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_1__["useApi"])('labs', function (_ref) {
+    var get = _ref.get;
+    return get('/api/labs');
+  }, _mappers_labs__WEBPACK_IMPORTED_MODULE_0__["labsMapper"]);
+};
+
+/***/ }),
+
 /***/ "./resources/js/components/Menu/Menu.css":
 /*!***********************************************!*\
   !*** ./resources/js/components/Menu/Menu.css ***!
@@ -56287,8 +56352,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _useStatusFilter__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./useStatusFilter */ "./resources/js/pages/LabOrders/useStatusFilter.js");
 /* harmony import */ var _CreateLabOrderModal__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./CreateLabOrderModal */ "./resources/js/pages/LabOrders/CreateLabOrderModal/index.js");
 /* harmony import */ var _components_PracticePicker__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../components/PracticePicker */ "./resources/js/components/PracticePicker/index.js");
-/* harmony import */ var _LabOrders_css__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./LabOrders.css */ "./resources/js/pages/LabOrders/LabOrders.css");
-/* harmony import */ var _LabOrders_css__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_LabOrders_css__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _components_LabPicker__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../components/LabPicker */ "./resources/js/components/LabPicker/index.js");
+/* harmony import */ var _useLabFilter__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./useLabFilter */ "./resources/js/pages/LabOrders/useLabFilter.js");
+/* harmony import */ var _LabOrders_css__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./LabOrders.css */ "./resources/js/pages/LabOrders/LabOrders.css");
+/* harmony import */ var _LabOrders_css__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_LabOrders_css__WEBPACK_IMPORTED_MODULE_16__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -56296,6 +56363,8 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -56322,9 +56391,15 @@ var LabOrders = function LabOrders() {
       practice = _usePracticeFilter.practice,
       handlePracticeChange = _usePracticeFilter.handlePracticeChange;
 
+  var _useLabFilter = Object(_useLabFilter__WEBPACK_IMPORTED_MODULE_15__["useLabFilter"])(),
+      lab = _useLabFilter.lab,
+      labs = _useLabFilter.labs,
+      handleLabChange = _useLabFilter.handleLabChange;
+
   var _useLabOrders = Object(_useLabOrders__WEBPACK_IMPORTED_MODULE_9__["useLabOrders"])({
     practice: practice,
-    status: status
+    status: status,
+    lab: lab
   }),
       labOrders = _useLabOrders.labOrders,
       loading = _useLabOrders.loading,
@@ -56339,13 +56414,13 @@ var LabOrders = function LabOrders() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PageTitle__WEBPACK_IMPORTED_MODULE_3__["PageTitle"], null, "Lab Orders"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Page__WEBPACK_IMPORTED_MODULE_4__["Page"], null, !loading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filters"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "select-wrapper"
+    className: "select-wrapper --inline"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PracticePicker__WEBPACK_IMPORTED_MODULE_13__["PracticePicker"], {
     value: practice,
     onChange: handlePracticeChange,
     emptyText: "All"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "select-wrapper"
+    className: "select-wrapper --inline"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "status"
   }, "Status"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
@@ -56362,7 +56437,13 @@ var LabOrders = function LabOrders() {
       key: value,
       value: value
     }, label);
-  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_5__["Table"], {
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "select-wrapper --inline"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_LabPicker__WEBPACK_IMPORTED_MODULE_14__["LabPicker"], {
+    value: lab,
+    onChange: handleLabChange,
+    emptyText: "All"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_5__["Table"], {
     headers: {
       'Date Sent': 'normal',
       'Date Required': 'normal',
@@ -56402,6 +56483,45 @@ var LabOrders = function LabOrders() {
 
 /***/ }),
 
+/***/ "./resources/js/pages/LabOrders/useLabFilter.js":
+/*!******************************************************!*\
+  !*** ./resources/js/pages/LabOrders/useLabFilter.js ***!
+  \******************************************************/
+/*! exports provided: useLabFilter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useLabFilter", function() { return useLabFilter; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+var useLabFilter = function useLabFilter() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      lab = _useState2[0],
+      setLab = _useState2[1];
+
+  var handleLabChange = function handleLabChange(e) {
+    setLab(e.target.value);
+  };
+
+  return {
+    lab: lab,
+    handleLabChange: handleLabChange
+  };
+};
+
+/***/ }),
+
 /***/ "./resources/js/pages/LabOrders/useLabOrders.js":
 /*!******************************************************!*\
   !*** ./resources/js/pages/LabOrders/useLabOrders.js ***!
@@ -56430,9 +56550,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var useLabOrders = function useLabOrders(_ref) {
   var practice = _ref.practice,
-      status = _ref.status;
+      status = _ref.status,
+      lab = _ref.lab;
 
-  var _usePrev = Object(_hooks_usePrev__WEBPACK_IMPORTED_MODULE_3__["usePrev"])([practice, status]),
+  var _usePrev = Object(_hooks_usePrev__WEBPACK_IMPORTED_MODULE_3__["usePrev"])([practice, status, lab]),
       _usePrev2 = _slicedToArray(_usePrev, 2),
       filters = _usePrev2[0],
       prevFilters = _usePrev2[1];
@@ -56450,11 +56571,12 @@ var useLabOrders = function useLabOrders(_ref) {
     return get('/api/lab-orders' + toQueryString({
       page: page,
       practice: practice,
-      status: status
+      status: status,
+      lab: lab
     }));
   };
 
-  return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_0__["useApi"])('labOrders', fetch, _mappers_labOrders__WEBPACK_IMPORTED_MODULE_1__["labOrdersMapper"], [practice, status]);
+  return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_0__["useApi"])('labOrders', fetch, _mappers_labOrders__WEBPACK_IMPORTED_MODULE_1__["labOrdersMapper"], [practice, status, lab]);
 };
 
 /***/ }),

@@ -12,13 +12,17 @@ import { usePracticeFilter } from '../../hooks/usePracticeFilter';
 import { useStatusFilter } from './useStatusFilter';
 import { CreateLabOrderModal } from './CreateLabOrderModal';
 import { PracticePicker } from '../../components/PracticePicker';
+import { LabPicker } from '../../components/LabPicker';
+import { useLabFilter } from './useLabFilter';
 
 import './LabOrders.css';
 
 export const LabOrders = () => {
     const { status, statuses, handleStatusChange } = useStatusFilter();
     const { practice, handlePracticeChange } = usePracticeFilter();
-    const { labOrders, loading, page, pageCount } = useLabOrders({ practice, status });
+    const { lab, labs, handleLabChange } = useLabFilter();
+
+    const { labOrders, loading, page, pageCount } = useLabOrders({ practice, status, lab });
 
     const [showCreateModal, setShowCreateModal] = useState(false);
 
@@ -30,7 +34,7 @@ export const LabOrders = () => {
                 {!loading ? (
                     <>
                         <div className="filters">
-                            <div className="select-wrapper">
+                            <div className="select-wrapper --inline">
                                 <PracticePicker
                                     value={practice}
                                     onChange={handlePracticeChange}
@@ -38,7 +42,7 @@ export const LabOrders = () => {
                                 />
                             </div>
 
-                            <div className="select-wrapper">
+                            <div className="select-wrapper --inline">
                                 <label htmlFor="status">Status</label>
                                 <select value={status} onChange={handleStatusChange}>
                                     <option value="">All</option>
@@ -49,8 +53,16 @@ export const LabOrders = () => {
                                     ))}
                                 </select>
                             </div>
-                        </div>
 
+
+                            <div className="select-wrapper --inline">
+                                <LabPicker
+                                    value={lab}
+                                    onChange={handleLabChange}
+                                    emptyText="All"
+                                />
+                            </div>
+                        </div>
                         <Table headers={{
                             'Date Sent': 'normal',
                             'Date Required': 'normal',
