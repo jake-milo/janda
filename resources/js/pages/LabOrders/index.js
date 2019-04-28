@@ -18,6 +18,7 @@ import './LabOrders.css';
 export const LabOrders = () => {
     const { status, statuses, handleStatusChange } = useStatusFilter();
     const { practice, handlePracticeChange } = usePracticeFilter();
+
     const { labOrders, loading, page, pageCount } = useLabOrders({ practice, status });
 
     const [showCreateModal, setShowCreateModal] = useState(false);
@@ -50,6 +51,18 @@ export const LabOrders = () => {
                                 </select>
                             </div>
                         </div>
+
+                        {/* <div>
+                            <p>Lab</p>
+                            <select value={lab} onChange={handleLabChange}>
+                                <option value="">All</option>
+                                {labs.map(([value, label]) => (
+                                    <option key={value} value={value}>
+                                        {label}
+                                    </option>
+                                ))}
+                            </select>
+                        </div> */}
 
                         <Table headers={{
                             'Date Sent': 'normal',
