@@ -7,10 +7,11 @@ import { Spinner } from '../../components/Spinner';
 import { Pagination } from '../../components/Pagination';
 import { useContactLenses } from './useContactLenses';
 import { usePracticeFilter } from '../../hooks/usePracticeFilter';
+import { PracticePicker } from '../../components/PracticePicker';
 
 
 export const ContactLenses = () => {
-    const { practice, practices, handlePracticeChange } = usePracticeFilter();
+    const { practice, handlePracticeChange } = usePracticeFilter();
     const { contactLenses, loading, page, pageCount } = useContactLenses({ practice });
 
     return (
@@ -20,24 +21,22 @@ export const ContactLenses = () => {
             <Page>
                 {!loading ? (
                     <>
-                        <div>
-                            <p>Practice</p>
-                            <select value={practice} onChange={handlePracticeChange}>
-                                <option>All</option>
-                                {practices.map(({id, name}) => (
-                                    <option key={id} value={id}>
-                                        {name}
-                                    </option>
-                                ))}
-                            </select>
+                        <div className="filters">
+                            <div className="select-wrapper">
+                                <PracticePicker
+                                    value={practice}
+                                    onChange={handlePracticeChange}
+                                    emptyText="All"
+                                />
+                            </div>
                         </div>
 
                         <Table headers={{
                             'Patient': 'normal',
                             'Practice': 'normal',
                             'Brand': 'normal',
-                            'Lens': 'normal',
-                            'Duration': 'normal',
+                            'Lens': 'wide',
+                            'Duration': 'thin',
                             'Quantity': 'normal',
                             'Price': 'thin',
                             'Cost Excl. Postage': 'thin',
@@ -57,8 +56,8 @@ export const ContactLenses = () => {
                                         </Link>
                                     </Cell>
                                     <Cell>{contactLens.brand}</Cell>
-                                    <Cell>{contactLens.lens}</Cell>
-                                    <Cell>{contactLens.duration}</Cell>
+                                    <Cell size="wide">{contactLens.lens}</Cell>
+                                    <Cell size="thin">{contactLens.duration}</Cell>
                                     <Cell>{contactLens.quantity}</Cell>
                                     <Cell size="thin">{contactLens.cost}</Cell>
                                     <Cell size="thin">{contactLens.costExclPostage}</Cell>
