@@ -1,0 +1,74 @@
+.select-wrapper, .input-wrapper {
+    border-radius: .125rem;
+    border: 1px solid var(--light-grey);
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    margin-bottom: .5rem;
+}
+
+.select-wrapper.--inline, .input-wrapper.--inline {
+    margin-bottom: 0;
+    margin-right: .5rem;
+}
+
+.select-wrapper:after {
+    content: '';
+    width: 1rem;
+    height: 1rem;
+    background: url('/img/dropdown.svg');
+    position: absolute;
+    top: 50%;
+    right: .25rem;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.select-wrapper label, .input-wrapper label {
+    display: block;
+    font-size: .875rem;
+    opacity: 0.8;
+    padding: .5rem;
+    border-right: 1px solid var(--light-grey);
+}
+
+.select-wrapper:not(.--inline) label, .input-wrapper:not(.--inline) label {
+    width: 6rem;
+}
+
+.input-wrapper input {
+    display: block;
+    flex: 2;
+    border: none;
+    font-size: .875rem;
+    padding: 0 .5rem;
+}
+
+.input-wrapper input:focus {
+    outline: 0;
+}
+
+.select-wrapper select {
+    display: block;
+    flex: 2;
+    border: none;
+    background: none;
+    font-size: .875rem;
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 1.5rem;
+    padding-left: .5rem;
+}
+
+.select-wrapper select:focus {
+    outline: 0;
+}
+
+.select-wrapper.--inline select {
+    text-align-last: right;
+}
+
+.select-wrapper.--inline select option {
+    direction: rtl;
+};

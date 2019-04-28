@@ -414,6 +414,25 @@ exports.push([module.i, ":root {\n    --page-width: 80%;\n    --header-height: 5
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/Forms.css":
+/*!****************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--5-1!./node_modules/postcss-loader/src??ref--5-2!./resources/js/Forms.css ***!
+  \****************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".select-wrapper, .input-wrapper {\n    border-radius: .125rem;\n    border: 1px solid var(--light-grey);\n    position: relative;\n    display: flex;\n    flex-direction: row;\n    align-items: stretch;\n    margin-bottom: .5rem;\n}\n\n.select-wrapper.\\--inline, .input-wrapper.\\--inline {\n    margin-bottom: 0;\n    margin-right: .5rem;\n}\n\n.select-wrapper:after {\n    content: '';\n    width: 1rem;\n    height: 1rem;\n    background: url('/img/dropdown.svg');\n    position: absolute;\n    top: 50%;\n    right: .25rem;\n    transform: translateY(-50%);\n    pointer-events: none;\n}\n\n.select-wrapper label, .input-wrapper label {\n    display: block;\n    font-size: .875rem;\n    opacity: 0.8;\n    padding: .5rem;\n    border-right: 1px solid var(--light-grey);\n}\n\n.select-wrapper:not(.\\--inline) label, .input-wrapper:not(.\\--inline) label {\n    width: 6rem;\n}\n\n.input-wrapper input {\n    display: block;\n    flex: 2;\n    border: none;\n    font-size: .875rem;\n}\n\n.input-wrapper input:focus {\n    outline: 0;\n}\n\n.select-wrapper select {\n    display: block;\n    flex: 2;\n    border: none;\n    background: none;\n    font-size: .875rem;\n    appearance: none;\n    -webkit-appearance: none;\n    padding-right: 1.5rem;\n    padding-left: .5rem;\n}\n\n.select-wrapper select:focus {\n    outline: 0;\n}\n\n.select-wrapper.\\--inline select {\n    text-align-last: right;\n}\n\n.select-wrapper.\\--inline select option {\n    direction: rtl;\n};\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/FloatingActionButton/FloatingActionButton.css":
 /*!***************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--5-1!./node_modules/postcss-loader/src??ref--5-2!./resources/js/components/FloatingActionButton/FloatingActionButton.css ***!
@@ -464,7 +483,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".modal-container {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.2);\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.modal-container .modal {\n    width: var(--modal-width);\n    max-width: 95%;\n    min-height: 2rem;\n    background: var(--white);\n    border-radius: .5rem;\n    padding: 1.5rem;\n}\n", ""]);
+exports.push([module.i, ".modal-container {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.08);\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n\n    z-index: 15;\n}\n\n.modal-container .modal {\n    width: var(--modal-width);\n    max-width: 95%;\n    min-height: 2rem;\n    background: var(--white);\n    border-radius: .5rem;\n    padding: 1.5rem;\n    border: 1px solid var(--light-grey);\n    box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.2);\n}\n", ""]);
 
 // exports
 
@@ -559,7 +578,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".table {\n    margin: 0 -1rem;\n    margin-bottom: .75rem;\n}\n\n.table .row {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    padding: 0 1rem;\n}\n\n.table .row.\\--header {\n    border-top: 1px solid var(--light-grey);\n    border-bottom: 1px solid var(--light-grey);\n}\n\n.table .row:not(.\\--header):nth-child(odd) {\n    background: rgba(220, 220, 220, 0.1);\n}\n\n.table .row .cell {\n    padding: .5rem .125rem;\n    font-size: .875rem;\n}\n\n.table .row .cell.\\--thin { flex: 3; }\n.table .row .cell.\\--normal { flex: 4; }\n.table .row .cell.\\--wide { flex: 8; }\n\n.table .row .cell.\\--header {\n    text-align: left;\n    font-weight: bold;\n    text-transform: uppercase;\n    font-size: .75rem;\n    color: var(--dark-grey);\n}\n\n.table .row .cell a {\n    color: var(--primary);\n    text-decoration: none;\n}\n\n.filters {\n    margin-bottom: 1rem;\n    display: flex;\n    flex-direction: row;\n    justify-content: flex-start;\n    align-items: center;\n}\n\n.filters .select-wrapper {\n    border-radius: .125rem;\n    padding: .5rem;\n    margin-right: .5rem;\n    border: 1px solid var(--light-grey);\n    position: relative;\n}\n\n.filters .select-wrapper:after {\n    content: '';\n    width: 1rem;\n    height: 1rem;\n    background: url('/img/dropdown.svg');\n    position: absolute;\n    top: 50%;\n    right: .25rem;\n    transform: translateY(-50%);\n    pointer-events: none;\n}\n\n.filters .select-wrapper label {\n    font-size: .875rem;\n    margin-right: .5rem;\n    opacity: 0.8;\n}\n\n.filters .select-wrapper select {\n    border: none;\n    background: none;\n    font-size: .875rem;\n    text-align-last: right;\n    appearance: none;\n    -webkit-appearance: none;\n    padding-right: 1rem;\n}\n\n.filters .select-wrapper select:focus {\n    outline: 0;\n}\n\n.filters .select-wrapper select option {\n    direction: rtl;\n}\n", ""]);
+exports.push([module.i, ".table {\n    margin: 0 -1rem;\n    margin-bottom: .75rem;\n}\n\n.table .row {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    padding: 0 1rem;\n}\n\n.table .row.\\--header {\n    border-top: 1px solid var(--light-grey);\n    border-bottom: 1px solid var(--light-grey);\n}\n\n.table .row:not(.\\--header):nth-child(odd) {\n    background: rgba(220, 220, 220, 0.1);\n}\n\n.table .row .cell {\n    padding: .5rem .125rem;\n    font-size: .875rem;\n}\n\n.table .row .cell.\\--thin { flex: 3; }\n.table .row .cell.\\--normal { flex: 4; }\n.table .row .cell.\\--wide { flex: 8; }\n\n.table .row .cell.\\--header {\n    text-align: left;\n    font-weight: bold;\n    text-transform: uppercase;\n    font-size: .75rem;\n    color: var(--dark-grey);\n}\n\n.table .row .cell a {\n    color: var(--primary);\n    text-decoration: none;\n}\n\n.filters {\n    margin-bottom: 1rem;\n    display: flex;\n    flex-direction: row;\n    justify-content: flex-start;\n    align-items: center;\n}\n", ""]);
 
 // exports
 
@@ -54620,6 +54639,36 @@ var App = function App() {
 
 /***/ }),
 
+/***/ "./resources/js/Forms.css":
+/*!********************************!*\
+  !*** ./resources/js/Forms.css ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader??ref--5-1!../../node_modules/postcss-loader/src??ref--5-2!./Forms.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/Forms.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./resources/js/components/FloatingActionButton/FloatingActionButton.css":
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/FloatingActionButton/FloatingActionButton.css ***!
@@ -55654,17 +55703,20 @@ var useHistory = function useHistory() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App.css */ "./resources/js/App.css");
 /* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_App_css__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./App */ "./resources/js/App.js");
+/* harmony import */ var _Forms_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Forms.css */ "./resources/js/Forms.css");
+/* harmony import */ var _Forms_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_Forms_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./App */ "./resources/js/App.js");
+
 
 
 
 
 var container = document.getElementById('app');
-Object(react_dom__WEBPACK_IMPORTED_MODULE_2__["render"])(react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_App__WEBPACK_IMPORTED_MODULE_3__["App"], null), container);
+Object(react_dom__WEBPACK_IMPORTED_MODULE_3__["render"])(react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(_App__WEBPACK_IMPORTED_MODULE_4__["App"], null), container);
 
 /***/ }),
 
@@ -56147,10 +56199,32 @@ var CreateLabOrderModal = function CreateLabOrderModal(_ref) {
           values = _ref2.values;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: handleSubmit
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "select-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PracticePicker__WEBPACK_IMPORTED_MODULE_4__["PracticePicker"], {
         onChange: handleChange,
         value: values.practice_id
-      }));
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "input-wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "lens"
+      }, "Lens"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        id: "lens",
+        name: "lens",
+        onChange: handleChange,
+        value: values.lens
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "input-wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "reference"
+      }, "Reference"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        id: "reference",
+        name: "reference",
+        onChange: handleChange,
+        value: values.reference
+      })));
     }
   }));
 };

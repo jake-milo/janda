@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik } from 'formik';
 import { Modal } from '../../../components/Modal';
 import { PageTitle } from '../../../components/PageTitle';
-import { usePractices } from './usePractices';
+import { PracticePicker } from '../../../components/PracticePicker';
 
 const getInitialValues = () => ({
     patient_id: '',
@@ -16,8 +16,6 @@ const getInitialValues = () => ({
 });
 
 export const CreateLabOrderModal = ({ show, hide }) => {
-    const { practices } = usePractices();
-
     return (
         <Modal show={show} hide={hide}>
             <PageTitle>Create Lab Order</PageTitle>
@@ -26,14 +24,19 @@ export const CreateLabOrderModal = ({ show, hide }) => {
                 initialValues={getInitialValues()}
                 render={({ handleSubmit, handleChange, values }) => (
                     <form onSubmit={handleSubmit}>
-                        <label for="practice_id">Practice</label>
-                        <select name="practice_id" value={values.practice_id} onChange={handleChange}>
-                            {(practices || []).map(practice => (
-                                <option value={practice.id}>
-                                    {practice.name}
-                                </option>
-                            ))}
-                        </select>
+                        <div className="select-wrapper">
+                            <PracticePicker onChange={handleChange} value={values.practice_id} />
+                        </div>
+
+                        <div className="input-wrapper">
+                            <label htmlFor="lens">Lens</label>
+                            <input type="text" id="lens" name="lens" onChange={handleChange} value={values.lens} />
+                        </div>
+
+                        <div className="input-wrapper">
+                            <label htmlFor="reference">Reference</label>
+                            <input type="text" id="reference" name="reference" onChange={handleChange} value={values.reference} />
+                        </div>
                     </form>
                 )}
             />
