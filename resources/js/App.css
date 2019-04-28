@@ -19,6 +19,7 @@
 @media (max-width: 1400px) {
     :root {
         --header-width: 12rem;
+        --page-width: 90%;
     }
 }
 

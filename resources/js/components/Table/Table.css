@@ -24,7 +24,7 @@
     font-size: .875rem;
 }
 
-.table .row .cell.--thin { flex: 2; }
+.table .row .cell.--thin { flex: 3; }
 .table .row .cell.--normal { flex: 4; }
 .table .row .cell.--wide { flex: 8; }
 
@@ -54,6 +54,19 @@
     padding: .5rem;
     margin-right: .5rem;
     border: 1px solid var(--light-grey);
+    position: relative;
+}
+
+.filters .select-wrapper:after {
+    content: '';
+    width: 1rem;
+    height: 1rem;
+    background: url('/img/dropdown.svg');
+    position: absolute;
+    top: 50%;
+    right: .25rem;
+    transform: translateY(-50%);
+    pointer-events: none;
 }
 
 .filters .select-wrapper label {
@@ -67,6 +80,9 @@
     background: none;
     font-size: .875rem;
     text-align-last: right;
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 1rem;
 }
 
 .filters .select-wrapper select:focus {

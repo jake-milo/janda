@@ -407,7 +407,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ":root {\n    --page-width: 80%;\n    --header-height: 5rem;\n    --off-white: #f1f5f8;\n    --white: #ffffff;\n    --primary: #2779bd;\n    --black: #22292f;\n    --dark-grey: #606f7b;\n    --light-grey: #dae1e7;\n    --red: #E3342F;\n    --orange: #F6993F;\n    --logo-max-width: 11rem;\n    --fab-size: 4rem;\n    --fab-offset: 1rem;\n    --fab-font-size: 2rem;\n    --modal-width: 32rem;\n}\n\n@media (max-width: 1400px) {\n    :root {\n        --header-width: 12rem;\n    }\n}\n\n*, *:before, *:after {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n}\n\nhtml, body, #app {\n    height: 100%;\n    font-size: 16px;\n    background: var(--off-white);\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\n    color: var(--black);\n}\n\n.container {\n    width: 100%;\n    padding-top: var(--header-height);\n}\n\n.container .inner-container {\n    width: var(--page-width);\n    padding: 2rem 0;\n    margin: 0 auto;\n}\n", ""]);
+exports.push([module.i, ":root {\n    --page-width: 80%;\n    --header-height: 5rem;\n    --off-white: #f1f5f8;\n    --white: #ffffff;\n    --primary: #2779bd;\n    --black: #22292f;\n    --dark-grey: #606f7b;\n    --light-grey: #dae1e7;\n    --red: #E3342F;\n    --orange: #F6993F;\n    --logo-max-width: 11rem;\n    --fab-size: 4rem;\n    --fab-offset: 1rem;\n    --fab-font-size: 2rem;\n    --modal-width: 32rem;\n}\n\n@media (max-width: 1400px) {\n    :root {\n        --header-width: 12rem;\n        --page-width: 90%;\n    }\n}\n\n*, *:before, *:after {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n}\n\nhtml, body, #app {\n    height: 100%;\n    font-size: 16px;\n    background: var(--off-white);\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\n    color: var(--black);\n}\n\n.container {\n    width: 100%;\n    padding-top: var(--header-height);\n}\n\n.container .inner-container {\n    width: var(--page-width);\n    padding: 2rem 0;\n    margin: 0 auto;\n}\n", ""]);
 
 // exports
 
@@ -559,7 +559,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".table {\n    margin: 0 -1rem;\n    margin-bottom: .75rem;\n}\n\n.table .row {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    padding: 0 1rem;\n}\n\n.table .row.\\--header {\n    border-top: 1px solid var(--light-grey);\n    border-bottom: 1px solid var(--light-grey);\n}\n\n.table .row:not(.\\--header):nth-child(odd) {\n    background: rgba(220, 220, 220, 0.1);\n}\n\n.table .row .cell {\n    padding: .5rem .125rem;\n    font-size: .875rem;\n}\n\n.table .row .cell.\\--thin { flex: 2; }\n.table .row .cell.\\--normal { flex: 4; }\n.table .row .cell.\\--wide { flex: 8; }\n\n.table .row .cell.\\--header {\n    text-align: left;\n    font-weight: bold;\n    text-transform: uppercase;\n    font-size: .75rem;\n    color: var(--dark-grey);\n}\n\n.table .row .cell a {\n    color: var(--primary);\n    text-decoration: none;\n}\n\n.filters {\n    margin-bottom: 1rem;\n    display: flex;\n    flex-direction: row;\n    justify-content: flex-start;\n    align-items: center;\n}\n\n.filters .select-wrapper {\n    border-radius: .125rem;\n    padding: .5rem;\n    margin-right: .5rem;\n    border: 1px solid var(--light-grey);\n}\n\n.filters .select-wrapper label {\n    font-size: .875rem;\n    margin-right: .5rem;\n    opacity: 0.8;\n}\n\n.filters .select-wrapper select {\n    border: none;\n    background: none;\n    font-size: .875rem;\n    text-align-last: right;\n}\n\n.filters .select-wrapper select:focus {\n    outline: 0;\n}\n\n.filters .select-wrapper select option {\n    direction: rtl;\n}\n", ""]);
+exports.push([module.i, ".table {\n    margin: 0 -1rem;\n    margin-bottom: .75rem;\n}\n\n.table .row {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    padding: 0 1rem;\n}\n\n.table .row.\\--header {\n    border-top: 1px solid var(--light-grey);\n    border-bottom: 1px solid var(--light-grey);\n}\n\n.table .row:not(.\\--header):nth-child(odd) {\n    background: rgba(220, 220, 220, 0.1);\n}\n\n.table .row .cell {\n    padding: .5rem .125rem;\n    font-size: .875rem;\n}\n\n.table .row .cell.\\--thin { flex: 3; }\n.table .row .cell.\\--normal { flex: 4; }\n.table .row .cell.\\--wide { flex: 8; }\n\n.table .row .cell.\\--header {\n    text-align: left;\n    font-weight: bold;\n    text-transform: uppercase;\n    font-size: .75rem;\n    color: var(--dark-grey);\n}\n\n.table .row .cell a {\n    color: var(--primary);\n    text-decoration: none;\n}\n\n.filters {\n    margin-bottom: 1rem;\n    display: flex;\n    flex-direction: row;\n    justify-content: flex-start;\n    align-items: center;\n}\n\n.filters .select-wrapper {\n    border-radius: .125rem;\n    padding: .5rem;\n    margin-right: .5rem;\n    border: 1px solid var(--light-grey);\n    position: relative;\n}\n\n.filters .select-wrapper:after {\n    content: '';\n    width: 1rem;\n    height: 1rem;\n    background: url('/img/dropdown.svg');\n    position: absolute;\n    top: 50%;\n    right: .25rem;\n    transform: translateY(-50%);\n    pointer-events: none;\n}\n\n.filters .select-wrapper label {\n    font-size: .875rem;\n    margin-right: .5rem;\n    opacity: 0.8;\n}\n\n.filters .select-wrapper select {\n    border: none;\n    background: none;\n    font-size: .875rem;\n    text-align-last: right;\n    appearance: none;\n    -webkit-appearance: none;\n    padding-right: 1rem;\n}\n\n.filters .select-wrapper select:focus {\n    outline: 0;\n}\n\n.filters .select-wrapper select option {\n    direction: rtl;\n}\n", ""]);
 
 // exports
 
@@ -55980,6 +55980,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Pagination__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/Pagination */ "./resources/js/components/Pagination/index.js");
 /* harmony import */ var _useContactLenses__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./useContactLenses */ "./resources/js/pages/ContactLenses/useContactLenses.js");
 /* harmony import */ var _hooks_usePracticeFilter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../hooks/usePracticeFilter */ "./resources/js/hooks/usePracticeFilter.js");
+/* harmony import */ var _components_PracticePicker__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/PracticePicker */ "./resources/js/components/PracticePicker/index.js");
+
 
 
 
@@ -55992,7 +55994,6 @@ __webpack_require__.r(__webpack_exports__);
 var ContactLenses = function ContactLenses() {
   var _usePracticeFilter = Object(_hooks_usePracticeFilter__WEBPACK_IMPORTED_MODULE_8__["usePracticeFilter"])(),
       practice = _usePracticeFilter.practice,
-      practices = _usePracticeFilter.practices,
       handlePracticeChange = _usePracticeFilter.handlePracticeChange;
 
   var _useContactLenses = Object(_useContactLenses__WEBPACK_IMPORTED_MODULE_7__["useContactLenses"])({
@@ -56003,23 +56004,21 @@ var ContactLenses = function ContactLenses() {
       page = _useContactLenses.page,
       pageCount = _useContactLenses.pageCount;
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PageTitle__WEBPACK_IMPORTED_MODULE_2__["PageTitle"], null, "Contact Lenses"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Page__WEBPACK_IMPORTED_MODULE_3__["Page"], null, !loading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Practice"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PageTitle__WEBPACK_IMPORTED_MODULE_2__["PageTitle"], null, "Contact Lenses"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Page__WEBPACK_IMPORTED_MODULE_3__["Page"], null, !loading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filters"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "select-wrapper"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PracticePicker__WEBPACK_IMPORTED_MODULE_9__["PracticePicker"], {
     value: practice,
-    onChange: handlePracticeChange
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "All"), practices.map(function (_ref) {
-    var id = _ref.id,
-        name = _ref.name;
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-      key: id,
-      value: id
-    }, name);
+    onChange: handlePracticeChange,
+    emptyText: "All"
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Table"], {
     headers: {
       'Patient': 'normal',
       'Practice': 'normal',
       'Brand': 'normal',
-      'Lens': 'normal',
-      'Duration': 'normal',
+      'Lens': 'wide',
+      'Duration': 'thin',
       'Quantity': 'normal',
       'Price': 'thin',
       'Cost Excl. Postage': 'thin',
@@ -56033,7 +56032,11 @@ var ContactLenses = function ContactLenses() {
       to: "/patients/".concat(contactLens.patient.id)
     }, contactLens.patient.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       to: "/practices/".concat(contactLens.practice.id)
-    }, contactLens.practice.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, contactLens.brand), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, contactLens.lens), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, contactLens.duration), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, contactLens.quantity), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], {
+    }, contactLens.practice.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, contactLens.brand), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], {
+      size: "wide"
+    }, contactLens.lens), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], {
+      size: "thin"
+    }, contactLens.duration), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], null, contactLens.quantity), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], {
       size: "thin"
     }, contactLens.cost), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_4__["Cell"], {
       size: "thin"
