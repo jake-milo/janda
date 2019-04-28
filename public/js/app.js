@@ -407,7 +407,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ":root {\n    --page-width: 80%;\n    --header-height: 5rem;\n    --off-white: #f1f5f8;\n    --white: #ffffff;\n    --primary: #2779bd;\n    --black: #22292f;\n    --dark-grey: #606f7b;\n    --light-grey: #dae1e7;\n    --red: #E3342F;\n    --orange: #F6993F;\n    --logo-max-width: 11rem;\n    --fab-size: 4rem;\n    --fab-offset: 1rem;\n    --fab-font-size: 2rem;\n    --modal-width: 32rem;\n}\n\n@media (max-width: 1400px) {\n    :root {\n        --header-width: 12rem;\n        --page-width: 90%;\n    }\n}\n\n*, *:before, *:after {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n}\n\nhtml, body, #app {\n    height: 100%;\n    font-size: 16px;\n    background: var(--off-white);\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\n    color: var(--black);\n}\n\n.container {\n    width: 100%;\n    padding-top: var(--header-height);\n}\n\n.container .inner-container {\n    width: var(--page-width);\n    padding: 2rem 0;\n    margin: 0 auto;\n}\n", ""]);
+exports.push([module.i, ":root {\r\n    --page-width: 80%;\r\n    --header-height: 5rem;\r\n    --off-white: #f1f5f8;\r\n    --white: #ffffff;\r\n    --primary: #2779bd;\r\n    --black: #22292f;\r\n    --dark-grey: #606f7b;\r\n    --light-grey: #dae1e7;\r\n    --red: #E3342F;\r\n    --orange: #F6993F;\r\n    --logo-max-width: 11rem;\r\n    --fab-size: 4rem;\r\n    --fab-offset: 1rem;\r\n    --fab-font-size: 2rem;\r\n    --modal-width: 32rem;\r\n}\r\n\r\n@media (max-width: 1400px) {\r\n    :root {\r\n        --header-width: 12rem;\r\n        --page-width: 90%;\r\n    }\r\n}\r\n\r\n*, *:before, *:after {\r\n    margin: 0;\r\n    padding: 0;\r\n    box-sizing: border-box;\r\n}\r\n\r\nhtml, body, #app {\r\n    height: 100%;\r\n    font-size: 16px;\r\n    background: var(--off-white);\r\n    font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\";\r\n    color: var(--black);\r\n}\r\n\r\n.container {\r\n    width: 100%;\r\n    padding-top: var(--header-height);\r\n}\r\n\r\n.container .inner-container {\r\n    width: var(--page-width);\r\n    padding: 2rem 0;\r\n    margin: 0 auto;\r\n}\r\n", ""]);
 
 // exports
 
@@ -426,7 +426,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".fab {\n    text-align: center;\n    color: var(--white) !important;\n    font-size: var(--fab-font-size);\n    position: fixed;\n    bottom: var(--fab-offset);\n    right: var(--fab-offset);\n    width: var(--fab-size);\n    height: var(--fab-size);\n    background: var(--primary);\n    border-radius: 50%;\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);\n    transition: all .2s;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.fab:hover {\n    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.25);\n    transform: translateY(-.25rem);\n}\n", ""]);
+exports.push([module.i, ".fab {\r\n    text-align: center;\r\n    color: var(--white) !important;\r\n    font-size: var(--fab-font-size);\r\n    position: fixed;\r\n    bottom: var(--fab-offset);\r\n    right: var(--fab-offset);\r\n    width: var(--fab-size);\r\n    height: var(--fab-size);\r\n    background: var(--primary);\r\n    border-radius: 50%;\r\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);\r\n    transition: all .2s;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.fab:hover {\r\n    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.25);\r\n    transform: translateY(-.25rem);\r\n}\r\n", ""]);
 
 // exports
 
@@ -445,7 +445,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".menu {\n    position: absolute;\n    left: 0;\n    top: 0;\n    right: 0;\n    height: var(--header-height);\n    background: var(--white);\n    border: 1px solid var(--light-grey);\n    z-index: 10;\n}\n\n.menu .menu-inner {\n    width: var(--page-width);\n    margin: 0 auto;\n    height: 100%;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n\n.menu .logo {\n    height: 75%;\n}\n\n.menu nav {\n    display: flex;\n    flex-direction: row;\n    justify-content: flex-end;\n    align-items: center;\n    padding: 1rem;\n}\n\n.menu nav a {\n    display: block;\n    font-weight: 500;\n    text-decoration: none;\n    color: var(--primary);\n}\n\n.menu nav a:not(:last-of-type) {\n    margin-right: 1.25rem;\n}\n", ""]);
+exports.push([module.i, ".menu {\r\n    position: absolute;\r\n    left: 0;\r\n    top: 0;\r\n    right: 0;\r\n    height: var(--header-height);\r\n    background: var(--white);\r\n    border: 1px solid var(--light-grey);\r\n    z-index: 10;\r\n}\r\n\r\n.menu .menu-inner {\r\n    width: var(--page-width);\r\n    margin: 0 auto;\r\n    height: 100%;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n}\r\n\r\n.menu .logo {\r\n    height: 75%;\r\n}\r\n\r\n.menu nav {\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: flex-end;\r\n    align-items: center;\r\n    padding: 1rem;\r\n}\r\n\r\n.menu nav a {\r\n    display: block;\r\n    font-weight: 500;\r\n    text-decoration: none;\r\n    color: var(--primary);\r\n}\r\n\r\n.menu nav a:not(:last-of-type) {\r\n    margin-right: 1.25rem;\r\n}\r\n", ""]);
 
 // exports
 
@@ -464,7 +464,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".modal-container {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.2);\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.modal-container .modal {\n    width: var(--modal-width);\n    max-width: 95%;\n    min-height: 2rem;\n    background: var(--white);\n    border-radius: .5rem;\n    padding: 1.5rem;\n}\n", ""]);
+exports.push([module.i, ".modal-container {\r\n    position: fixed;\r\n    top: 0;\r\n    right: 0;\r\n    bottom: 0;\r\n    left: 0;\r\n    background: rgba(0, 0, 0, 0.2);\r\n\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.modal-container .modal {\r\n    width: var(--modal-width);\r\n    max-width: 95%;\r\n    min-height: 2rem;\r\n    background: var(--white);\r\n    border-radius: .5rem;\r\n    padding: 1.5rem;\r\n}\r\n", ""]);
 
 // exports
 
@@ -483,7 +483,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".page {\n    background: var(--white);\n    padding: 1rem;\n    border-radius: .25rem;\n    /* box-shadow: 0 4px 60px -15px rgba(0, 0, 0, 0.25); */\n    border: 1px solid var(--light-grey);\n}\n\n.page h2 {\n    font-size: 1.2rem;\n    opacity: 0.9;\n}\n\n.page h2:not(:first-of-type) {\n    margin-top: 2rem;\n}\n\n.page p.\\--centered {\n    text-align: center;\n}\n\n.page a {\n    color: var(--primary);\n    text-decoration: none;\n}\n\n.page a:hover {\n    text-decoration: underline;\n}\n", ""]);
+exports.push([module.i, ".page {\r\n    background: var(--white);\r\n    padding: 1rem;\r\n    border-radius: .25rem;\r\n    /* box-shadow: 0 4px 60px -15px rgba(0, 0, 0, 0.25); */\r\n    border: 1px solid var(--light-grey);\r\n}\r\n\r\n.page h2 {\r\n    font-size: 1.2rem;\r\n    opacity: 0.9;\r\n}\r\n\r\n.page h2:not(:first-of-type) {\r\n    margin-top: 2rem;\r\n}\r\n\r\n.page p.\\--centered {\r\n    text-align: center;\r\n}\r\n\r\n.page a {\r\n    color: var(--primary);\r\n    text-decoration: none;\r\n}\r\n\r\n.page a:hover {\r\n    text-decoration: underline;\r\n}\r\n", ""]);
 
 // exports
 
@@ -502,7 +502,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".page-title {\n    font-size: 2rem;\n    font-weight: 800;\n    margin-bottom: 1rem;\n}\n", ""]);
+exports.push([module.i, ".page-title {\r\n    font-size: 2rem;\r\n    font-weight: 800;\r\n    margin-bottom: 1rem;\r\n}\r\n", ""]);
 
 // exports
 
@@ -521,7 +521,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".pagination {\n    width: 100%;\n    text-align: center;\n    padding: .25rem 0;\n}\n\n.pagination ul {\n    list-style-type: none;\n    display: flex;\n    flex-directon: row;\n    justify-content: center;\n    align-items: center;\n}\n\n.pagination ul li {\n    margin: 0 .25rem;\n    width: 2rem;\n    height: 2rem;\n    line-height: 2rem;\n    display: block;\n}\n\n.pagination ul li a {\n    display: block;\n    width: 100%;\n    height: 100%;\n    border-radius: 50%;\n    text-decoration: none;\n    color: var(--primary);\n    transition: all .2s;\n}\n\n.pagination ul li a.\\--current {\n    background: var(--primary);\n    color: var(--white);\n}\n\n.pagination ul li a:hover {\n    background: rgba(0, 0, 0, 0.1);\n    color: var(--primary);\n}\n", ""]);
+exports.push([module.i, ".pagination {\r\n    width: 100%;\r\n    text-align: center;\r\n    padding: .25rem 0;\r\n}\r\n\r\n.pagination ul {\r\n    list-style-type: none;\r\n    display: flex;\r\n    flex-directon: row;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.pagination ul li {\r\n    margin: 0 .25rem;\r\n    width: 2rem;\r\n    height: 2rem;\r\n    line-height: 2rem;\r\n    display: block;\r\n}\r\n\r\n.pagination ul li a {\r\n    display: block;\r\n    width: 100%;\r\n    height: 100%;\r\n    border-radius: 50%;\r\n    text-decoration: none;\r\n    color: var(--primary);\r\n    transition: all .2s;\r\n}\r\n\r\n.pagination ul li a.\\--current {\r\n    background: var(--primary);\r\n    color: var(--white);\r\n}\r\n\r\n.pagination ul li a:hover {\r\n    background: rgba(0, 0, 0, 0.1);\r\n    color: var(--primary);\r\n}\r\n", ""]);
 
 // exports
 
@@ -540,7 +540,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".spinner-container {\n    text-align: center;\n    width: 100%;\n}\n\n.spinner-container .spinner {\n    margin: 3rem auto;\n    width: 2.5rem;\n    height: 2.5rem;\n    border: 2px solid var(--primary);\n    border-right: 2px solid transparent;\n    border-radius: 50%;\n    animation: spin 1s infinite;\n}\n\n@keyframes spin {\n    from {\n        transform: rotate(0deg);\n    }\n\n    to {\n        transform: rotate(360deg);\n    }\n}\n", ""]);
+exports.push([module.i, ".spinner-container {\r\n    text-align: center;\r\n    width: 100%;\r\n}\r\n\r\n.spinner-container .spinner {\r\n    margin: 3rem auto;\r\n    width: 2.5rem;\r\n    height: 2.5rem;\r\n    border: 2px solid var(--primary);\r\n    border-right: 2px solid transparent;\r\n    border-radius: 50%;\r\n    animation: spin 1s infinite;\r\n}\r\n\r\n@keyframes spin {\r\n    from {\r\n        transform: rotate(0deg);\r\n    }\r\n\r\n    to {\r\n        transform: rotate(360deg);\r\n    }\r\n}\r\n", ""]);
 
 // exports
 
@@ -559,7 +559,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".table {\n    margin: 0 -1rem;\n    margin-bottom: .75rem;\n}\n\n.table .row {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    padding: 0 1rem;\n}\n\n.table .row.\\--header {\n    border-top: 1px solid var(--light-grey);\n    border-bottom: 1px solid var(--light-grey);\n}\n\n.table .row:not(.\\--header):nth-child(odd) {\n    background: rgba(220, 220, 220, 0.1);\n}\n\n.table .row .cell {\n    padding: .5rem .125rem;\n    font-size: .875rem;\n}\n\n.table .row .cell.\\--thin { flex: 3; }\n.table .row .cell.\\--normal { flex: 4; }\n.table .row .cell.\\--wide { flex: 8; }\n\n.table .row .cell.\\--header {\n    text-align: left;\n    font-weight: bold;\n    text-transform: uppercase;\n    font-size: .75rem;\n    color: var(--dark-grey);\n}\n\n.table .row .cell a {\n    color: var(--primary);\n    text-decoration: none;\n}\n\n.filters {\n    margin-bottom: 1rem;\n    display: flex;\n    flex-direction: row;\n    justify-content: flex-start;\n    align-items: center;\n}\n\n.filters .select-wrapper {\n    border-radius: .125rem;\n    padding: .5rem;\n    margin-right: .5rem;\n    border: 1px solid var(--light-grey);\n    position: relative;\n}\n\n.filters .select-wrapper:after {\n    content: '';\n    width: 1rem;\n    height: 1rem;\n    background: url('/img/dropdown.svg');\n    position: absolute;\n    top: 50%;\n    right: .25rem;\n    transform: translateY(-50%);\n    pointer-events: none;\n}\n\n.filters .select-wrapper label {\n    font-size: .875rem;\n    margin-right: .5rem;\n    opacity: 0.8;\n}\n\n.filters .select-wrapper select {\n    border: none;\n    background: none;\n    font-size: .875rem;\n    text-align-last: right;\n    appearance: none;\n    -webkit-appearance: none;\n    padding-right: 1rem;\n}\n\n.filters .select-wrapper select:focus {\n    outline: 0;\n}\n\n.filters .select-wrapper select option {\n    direction: rtl;\n}\n", ""]);
+exports.push([module.i, ".table {\r\n    margin: 0 -1rem;\r\n    margin-bottom: .75rem;\r\n}\r\n\r\n.table .row {\r\n    display: flex;\r\n    flex-direction: row;\r\n    align-items: center;\r\n    padding: 0 1rem;\r\n}\r\n\r\n.table .row.\\--header {\r\n    border-top: 1px solid var(--light-grey);\r\n    border-bottom: 1px solid var(--light-grey);\r\n}\r\n\r\n.table .row:not(.\\--header):nth-child(odd) {\r\n    background: rgba(220, 220, 220, 0.1);\r\n}\r\n\r\n.table .row .cell {\r\n    padding: .5rem .125rem;\r\n    font-size: .875rem;\r\n}\r\n\r\n.table .row .cell.\\--thin { flex: 3; }\r\n.table .row .cell.\\--normal { flex: 4; }\r\n.table .row .cell.\\--wide { flex: 8; }\r\n\r\n.table .row .cell.\\--header {\r\n    text-align: left;\r\n    font-weight: bold;\r\n    text-transform: uppercase;\r\n    font-size: .75rem;\r\n    color: var(--dark-grey);\r\n}\r\n\r\n.table .row .cell a {\r\n    color: var(--primary);\r\n    text-decoration: none;\r\n}\r\n\r\n.filters {\r\n    margin-bottom: 1rem;\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: flex-start;\r\n    align-items: center;\r\n}\r\n\r\n.filters .select-wrapper {\r\n    border-radius: .125rem;\r\n    padding: .5rem;\r\n    margin-right: .5rem;\r\n    border: 1px solid var(--light-grey);\r\n    position: relative;\r\n}\r\n\r\n.filters .select-wrapper:after {\r\n    content: '';\r\n    width: 1rem;\r\n    height: 1rem;\r\n    background: url('/img/dropdown.svg');\r\n    position: absolute;\r\n    top: 50%;\r\n    right: .25rem;\r\n    transform: translateY(-50%);\r\n    pointer-events: none;\r\n}\r\n\r\n.filters .select-wrapper label {\r\n    font-size: .875rem;\r\n    margin-right: .5rem;\r\n    opacity: 0.8;\r\n}\r\n\r\n.filters .select-wrapper select {\r\n    border: none;\r\n    background: none;\r\n    font-size: .875rem;\r\n    text-align-last: right;\r\n    appearance: none;\r\n    -webkit-appearance: none;\r\n    padding-right: 1rem;\r\n}\r\n\r\n.filters .select-wrapper select:focus {\r\n    outline: 0;\r\n}\r\n\r\n.filters .select-wrapper select option {\r\n    direction: rtl;\r\n}\r\n", ""]);
 
 // exports
 
@@ -578,7 +578,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".table .row.\\--overdue, .table .row.\\--urgent {\n    position: relative;\n}\n\n.table .row.\\--overdue:before, .table .row.\\--urgent:before {\n    position: absolute;\n    content: ' ';\n    left: -10px;\n    top: 5px;\n    bottom: 5px;\n    width: 4px;\n}\n\n\n\n.table .row.\\--overdue:before{\n    background: var(--red);\n}\n\n.table .row.\\--urgent:before{\n    background: var(--orange);\n}\n", ""]);
+exports.push([module.i, ".table .row.\\--overdue, .table .row.\\--urgent {\r\n    position: relative;\r\n}\r\n\r\n.table .row.\\--overdue:before, .table .row.\\--urgent:before {\r\n    position: absolute;\r\n    content: ' ';\r\n    left: -10px;\r\n    top: 5px;\r\n    bottom: 5px;\r\n    width: 4px;\r\n}\r\n\r\n\r\n\r\n.table .row.\\--overdue:before{\r\n    background: var(--red);\r\n}\r\n\r\n.table .row.\\--urgent:before{\r\n    background: var(--orange);\r\n}\r\n", ""]);
 
 // exports
 
@@ -54684,6 +54684,71 @@ var FloatingActionButton = function FloatingActionButton(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/components/LabPicker/index.js":
+/*!****************************************************!*\
+  !*** ./resources/js/components/LabPicker/index.js ***!
+  \****************************************************/
+/*! exports provided: LabPicker */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LabPicker", function() { return LabPicker; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _useLabs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useLabs */ "./resources/js/components/LabPicker/useLabs.js");
+
+
+var LabPicker = function LabPicker(_ref) {
+  var value = _ref.value,
+      onChange = _ref.onChange,
+      _ref$emptyText = _ref.emptyText,
+      emptyText = _ref$emptyText === void 0 ? 'Please Choose' : _ref$emptyText;
+
+  var _useLabs = Object(_useLabs__WEBPACK_IMPORTED_MODULE_1__["useLabs"])(),
+      labs = _useLabs.labs;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "lab_id"
+  }, "Lab"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    name: "lab_id",
+    value: value,
+    onChange: onChange
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: ""
+  }, emptyText), (labs || []).map(function (lab) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+      value: lab.id,
+      key: lab.id
+    }, lab.name);
+  })));
+};
+
+/***/ }),
+
+/***/ "./resources/js/components/LabPicker/useLabs.js":
+/*!******************************************************!*\
+  !*** ./resources/js/components/LabPicker/useLabs.js ***!
+  \******************************************************/
+/*! exports provided: useLabs */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useLabs", function() { return useLabs; });
+/* harmony import */ var _mappers_labs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mappers/labs */ "./resources/js/mappers/labs.js");
+/* harmony import */ var _hooks_useApi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../hooks/useApi */ "./resources/js/hooks/useApi.js");
+
+
+var useLabs = function useLabs() {
+  return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_1__["useApi"])('labs', function (_ref) {
+    var get = _ref.get;
+    return get('/api/labs');
+  }, _mappers_labs__WEBPACK_IMPORTED_MODULE_0__["labsMapper"]);
+};
+
+/***/ }),
+
 /***/ "./resources/js/components/Menu/Menu.css":
 /*!***********************************************!*\
   !*** ./resources/js/components/Menu/Menu.css ***!
@@ -56113,7 +56178,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
 /* harmony import */ var _components_Modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/Modal */ "./resources/js/components/Modal/index.js");
 /* harmony import */ var _components_PageTitle__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/PageTitle */ "./resources/js/components/PageTitle/index.js");
-/* harmony import */ var _components_PracticePicker__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../components/PracticePicker */ "./resources/js/components/PracticePicker/index.js");
+/* harmony import */ var _usePractices__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./usePractices */ "./resources/js/pages/LabOrders/CreateLabOrderModal/usePractices.js");
 
 
 
@@ -56136,6 +56201,10 @@ var getInitialValues = function getInitialValues() {
 var CreateLabOrderModal = function CreateLabOrderModal(_ref) {
   var show = _ref.show,
       hide = _ref.hide;
+
+  var _usePractices = Object(_usePractices__WEBPACK_IMPORTED_MODULE_4__["usePractices"])(),
+      practices = _usePractices.practices;
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Modal__WEBPACK_IMPORTED_MODULE_2__["Modal"], {
     show: show,
     hide: hide
@@ -56147,12 +56216,42 @@ var CreateLabOrderModal = function CreateLabOrderModal(_ref) {
           values = _ref2.values;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: handleSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PracticePicker__WEBPACK_IMPORTED_MODULE_4__["PracticePicker"], {
-        onChange: handleChange,
-        value: values.practice_id
-      }));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        for: "practice_id"
+      }, "Practice"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        name: "practice_id",
+        value: values.practice_id,
+        onChange: handleChange
+      }, (practices || []).map(function (practice) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: practice.id
+        }, practice.name);
+      })));
     }
   }));
+};
+
+/***/ }),
+
+/***/ "./resources/js/pages/LabOrders/CreateLabOrderModal/usePractices.js":
+/*!**************************************************************************!*\
+  !*** ./resources/js/pages/LabOrders/CreateLabOrderModal/usePractices.js ***!
+  \**************************************************************************/
+/*! exports provided: usePractices */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "usePractices", function() { return usePractices; });
+/* harmony import */ var _mappers_practices__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../mappers/practices */ "./resources/js/mappers/practices.js");
+/* harmony import */ var _hooks_useApi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../hooks/useApi */ "./resources/js/hooks/useApi.js");
+
+
+var usePractices = function usePractices() {
+  return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_1__["useApi"])('practices', function (_ref) {
+    var get = _ref.get;
+    return get('/api/practices');
+  }, _mappers_practices__WEBPACK_IMPORTED_MODULE_0__["practicesMapper"]);
 };
 
 /***/ }),
@@ -56213,8 +56312,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _useStatusFilter__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./useStatusFilter */ "./resources/js/pages/LabOrders/useStatusFilter.js");
 /* harmony import */ var _CreateLabOrderModal__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./CreateLabOrderModal */ "./resources/js/pages/LabOrders/CreateLabOrderModal/index.js");
 /* harmony import */ var _components_PracticePicker__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../components/PracticePicker */ "./resources/js/components/PracticePicker/index.js");
-/* harmony import */ var _LabOrders_css__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./LabOrders.css */ "./resources/js/pages/LabOrders/LabOrders.css");
-/* harmony import */ var _LabOrders_css__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_LabOrders_css__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _components_LabPicker__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../components/LabPicker */ "./resources/js/components/LabPicker/index.js");
+/* harmony import */ var _useLabFilter__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./useLabFilter */ "./resources/js/pages/LabOrders/useLabFilter.js");
+/* harmony import */ var _LabOrders_css__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./LabOrders.css */ "./resources/js/pages/LabOrders/LabOrders.css");
+/* harmony import */ var _LabOrders_css__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_LabOrders_css__WEBPACK_IMPORTED_MODULE_16__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -56222,6 +56323,8 @@ function _nonIterableRest() { throw new TypeError("Invalid attempt to destructur
 function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -56248,9 +56351,15 @@ var LabOrders = function LabOrders() {
       practice = _usePracticeFilter.practice,
       handlePracticeChange = _usePracticeFilter.handlePracticeChange;
 
+  var _useLabFilter = Object(_useLabFilter__WEBPACK_IMPORTED_MODULE_15__["useLabFilter"])(),
+      lab = _useLabFilter.lab,
+      labs = _useLabFilter.labs,
+      handleLabChange = _useLabFilter.handleLabChange;
+
   var _useLabOrders = Object(_useLabOrders__WEBPACK_IMPORTED_MODULE_9__["useLabOrders"])({
     practice: practice,
-    status: status
+    status: status,
+    lab: lab
   }),
       labOrders = _useLabOrders.labOrders,
       loading = _useLabOrders.loading,
@@ -56265,13 +56374,13 @@ var LabOrders = function LabOrders() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PageTitle__WEBPACK_IMPORTED_MODULE_3__["PageTitle"], null, "Lab Orders"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Page__WEBPACK_IMPORTED_MODULE_4__["Page"], null, !loading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "filters"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "select-wrapper"
+    className: "select-wrapper --inline"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PracticePicker__WEBPACK_IMPORTED_MODULE_13__["PracticePicker"], {
     value: practice,
     onChange: handlePracticeChange,
     emptyText: "All"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "select-wrapper"
+    className: "select-wrapper --inline"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "status"
   }, "Status"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
@@ -56288,7 +56397,13 @@ var LabOrders = function LabOrders() {
       key: value,
       value: value
     }, label);
-  })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_5__["Table"], {
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "select-wrapper --inline"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_LabPicker__WEBPACK_IMPORTED_MODULE_14__["LabPicker"], {
+    value: lab,
+    onChange: handleLabChange,
+    emptyText: "All"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_5__["Table"], {
     headers: {
       'Date Sent': 'normal',
       'Date Required': 'normal',
@@ -56328,6 +56443,45 @@ var LabOrders = function LabOrders() {
 
 /***/ }),
 
+/***/ "./resources/js/pages/LabOrders/useLabFilter.js":
+/*!******************************************************!*\
+  !*** ./resources/js/pages/LabOrders/useLabFilter.js ***!
+  \******************************************************/
+/*! exports provided: useLabFilter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useLabFilter", function() { return useLabFilter; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+var useLabFilter = function useLabFilter() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      lab = _useState2[0],
+      setLab = _useState2[1];
+
+  var handleLabChange = function handleLabChange(e) {
+    setLab(e.target.value);
+  };
+
+  return {
+    lab: lab,
+    handleLabChange: handleLabChange
+  };
+};
+
+/***/ }),
+
 /***/ "./resources/js/pages/LabOrders/useLabOrders.js":
 /*!******************************************************!*\
   !*** ./resources/js/pages/LabOrders/useLabOrders.js ***!
@@ -56356,9 +56510,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var useLabOrders = function useLabOrders(_ref) {
   var practice = _ref.practice,
-      status = _ref.status;
+      status = _ref.status,
+      lab = _ref.lab;
 
-  var _usePrev = Object(_hooks_usePrev__WEBPACK_IMPORTED_MODULE_3__["usePrev"])([practice, status]),
+  var _usePrev = Object(_hooks_usePrev__WEBPACK_IMPORTED_MODULE_3__["usePrev"])([practice, status, lab]),
       _usePrev2 = _slicedToArray(_usePrev, 2),
       filters = _usePrev2[0],
       prevFilters = _usePrev2[1];
@@ -56376,11 +56531,12 @@ var useLabOrders = function useLabOrders(_ref) {
     return get('/api/lab-orders' + toQueryString({
       page: page,
       practice: practice,
-      status: status
+      status: status,
+      lab: lab
     }));
   };
 
-  return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_0__["useApi"])('labOrders', fetch, _mappers_labOrders__WEBPACK_IMPORTED_MODULE_1__["labOrdersMapper"], [practice, status]);
+  return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_0__["useApi"])('labOrders', fetch, _mappers_labOrders__WEBPACK_IMPORTED_MODULE_1__["labOrdersMapper"], [practice, status, lab]);
 };
 
 /***/ }),
@@ -56801,7 +56957,7 @@ var usePractices = function usePractices() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/jake/code/janda/resources/js/index.js */"./resources/js/index.js");
+module.exports = __webpack_require__(/*! D:\CODE\laragon\www\janda\resources\js\index.js */"./resources/js/index.js");
 
 
 /***/ })

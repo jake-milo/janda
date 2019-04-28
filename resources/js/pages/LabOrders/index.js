@@ -12,6 +12,7 @@ import { usePracticeFilter } from '../../hooks/usePracticeFilter';
 import { useStatusFilter } from './useStatusFilter';
 import { CreateLabOrderModal } from './CreateLabOrderModal';
 import { PracticePicker } from '../../components/PracticePicker';
+import { LabPicker } from '../../components/LabPicker';
 import { useLabFilter } from './useLabFilter';
 
 import './LabOrders.css';
@@ -21,7 +22,7 @@ export const LabOrders = () => {
     const { practice, handlePracticeChange } = usePracticeFilter();
     const { lab, labs, handleLabChange } = useLabFilter();
 
-    const { labOrders, loading, page, pageCount } = useLabOrders({ practice, status });
+    const { labOrders, loading, page, pageCount } = useLabOrders({ practice, status, lab });
 
     const [showCreateModal, setShowCreateModal] = useState(false);
 
@@ -33,7 +34,7 @@ export const LabOrders = () => {
                 {!loading ? (
                     <>
                         <div className="filters">
-                            <div className="select-wrapper">
+                            <div className="select-wrapper --inline">
                                 <PracticePicker
                                     value={practice}
                                     onChange={handlePracticeChange}
@@ -41,7 +42,7 @@ export const LabOrders = () => {
                                 />
                             </div>
 
-                            <div className="select-wrapper">
+                            <div className="select-wrapper --inline">
                                 <label htmlFor="status">Status</label>
                                 <select value={status} onChange={handleStatusChange}>
                                     <option value="">All</option>
@@ -52,32 +53,16 @@ export const LabOrders = () => {
                                     ))}
                                 </select>
                             </div>
+
+
+                            <div className="select-wrapper --inline">
+                                <LabPicker
+                                    value={lab}
+                                    onChange={handleLabChange}
+                                    emptyText="All"
+                                />
+                            </div>
                         </div>
-
-                        {/* <div>
-                            <p>Lab</p>
-                            <select value={lab} onChange={handleLabChange}>
-                                <option value="">All</option>
-                                {labs.map(([value, label]) => (
-                                    <option key={value} value={value}>
-                                        {label}
-                                    </option>
-                                ))}
-                            </select>
-                        </div> */}
-
-                        <div>
-                            <p>Lab</p>
-                            <select value={lab} onChange={handleLabChange}>
-                                <option value="">All</option>
-                                {labs.map(([value, label]) => (
-                                    <option key={value} value={value}>
-                                        {label}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-
                         <Table headers={{
                             'Date Sent': 'normal',
                             'Date Required': 'normal',

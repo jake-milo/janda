@@ -3,8 +3,8 @@ import { labOrdersMapper } from '../../mappers/labOrders';
 import { arraysEqual } from '../../helpers';
 import { usePrev } from '../../hooks/usePrev';
 
-export const useLabOrders = ({ practice, status }) => {
-    const [filters, prevFilters] = usePrev([practice, status]);
+export const useLabOrders = ({ practice, status, lab }) => {
+    const [filters, prevFilters] = usePrev([practice, status, lab]);
 
     const fetch = ({ get, page, toQueryString, resetPage }) => {
         if (!arraysEqual(filters, prevFilters)) {
@@ -15,6 +15,7 @@ export const useLabOrders = ({ practice, status }) => {
             page,
             practice,
             status,
+            lab,
         }));
     }
 
@@ -22,6 +23,6 @@ export const useLabOrders = ({ practice, status }) => {
         'labOrders',
         fetch,
         labOrdersMapper,
-        [practice, status],
+        [practice, status, lab],
     );
 }
