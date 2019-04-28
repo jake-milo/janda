@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ContactLens as ContactLensResource;
 use App\Http\Requests\CreateContactLensRequest;
 use App\Http\Requests\UpdateContactLensRequest;
+use App\Http\Requests\GetContactLensRequest;
 
 class ContactLensController extends Controller
 {
@@ -15,9 +16,9 @@ class ContactLensController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(GetContactLensRequest $request)
     {
-        $contactLenses = ContactLens::paginate(30);
+        $contactLenses = $request->getContactLenses();
 
         return ContactLensResource::collection($contactLenses);
     }
