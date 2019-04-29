@@ -27,7 +27,7 @@ export const CreateLabOrderModal = ({ show, hide }) => {
                 render={({ handleSubmit, handleChange, values }) => (
                     <form onSubmit={handleSubmit}>
                         <div className="select-wrapper">
-                            <PatientPicker onChange={handleChange} value={values.patient_id} />
+                            <PatientPicker name="patient_id" value={values.patient_id} />
                         </div>
 
                         <div className="select-wrapper">

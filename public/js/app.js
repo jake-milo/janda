@@ -54682,6 +54682,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Spinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Spinner */ "./resources/js/components/Spinner/index.js");
+/* harmony import */ var _hooks_useOnClickOutside__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useOnClickOutside */ "./resources/js/hooks/useOnClickOutside.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -54692,31 +54693,34 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var FilterableSelect = function FilterableSelect(_ref) {
-  var name = _ref.name,
-      value = _ref.value,
+  var value = _ref.value,
       options = _ref.options,
       onChange = _ref.onChange,
       filter = _ref.filter,
       onFilterChange = _ref.onFilterChange,
-      getLabel = _ref.getLabel,
-      getIdentifier = _ref.getIdentifier,
-      loading = _ref.loading;
+      loading = _ref.loading,
+      emptyText = _ref.emptyText;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       popped = _useState2[0],
       setPopped = _useState2[1];
 
-  console.log({
-    value: value,
-    label: getLabel(value)
-  });
+  var ref = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])();
 
   var handleSelectClick = function handleSelectClick(e) {
     e.preventDefault();
-    setPopped(true);
+
+    if (!ref.current.contains(e.target)) {
+      setPopped(true);
+    }
   };
+
+  Object(_hooks_useOnClickOutside__WEBPACK_IMPORTED_MODULE_2__["useOnClickOutside"])(ref, function () {
+    setPopped(false);
+  });
 
   var handleFilterChange = function handleFilterChange(e) {
     onFilterChange(e.target.value);
@@ -54725,17 +54729,23 @@ var FilterableSelect = function FilterableSelect(_ref) {
   var handleOptionClick = function handleOptionClick(id) {
     return function (e) {
       e.preventDefault();
-      console.log(id);
-      onChange(e);
       setPopped(false);
+      onChange(id);
     };
+  };
+
+  var getLabel = function getLabel() {
+    return value ? options.find(function (op) {
+      return op.value === value;
+    }).label : emptyText;
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "select",
     onClick: handleSelectClick
-  }, getLabel(value), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "select-popup ".concat(popped ? '' : '--hidden')
+  }, getLabel(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "select-popup ".concat(popped ? '' : '--hidden'),
+    ref: ref
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "search",
     placeholder: "Filter",
@@ -54744,14 +54754,13 @@ var FilterableSelect = function FilterableSelect(_ref) {
     className: "filter"
   }), !loading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "options"
-  }, options.map(function (option) {
-    var id = getIdentifier(option);
-    var label = getLabel(id);
+  }, options.map(function (_ref2) {
+    var value = _ref2.value,
+        label = _ref2.label;
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      name: name,
       href: "#",
-      key: id,
-      onClick: handleOptionClick(id)
+      key: value,
+      onClick: handleOptionClick(value)
     }, label);
   })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Spinner__WEBPACK_IMPORTED_MODULE_1__["Spinner"], null))));
 };
@@ -55290,9 +55299,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PatientPicker", function() { return PatientPicker; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _FilterableSelect__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../FilterableSelect */ "./resources/js/components/FilterableSelect/index.js");
-/* harmony import */ var _usePatients__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./usePatients */ "./resources/js/components/PatientPicker/usePatients.js");
-/* harmony import */ var _hooks_useDebounced__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../hooks/useDebounced */ "./resources/js/hooks/useDebounced.js");
+/* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
+/* harmony import */ var _FilterableSelect__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../FilterableSelect */ "./resources/js/components/FilterableSelect/index.js");
+/* harmony import */ var _usePatients__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./usePatients */ "./resources/js/components/PatientPicker/usePatients.js");
+/* harmony import */ var _hooks_useDebounced__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../hooks/useDebounced */ "./resources/js/hooks/useDebounced.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -55305,9 +55315,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var PatientPicker = function PatientPicker(_ref) {
-  var value = _ref.value,
-      onChange = _ref.onChange,
+
+
+var BasePatientPicker = function BasePatientPicker(_ref) {
+  var name = _ref.name,
+      value = _ref.value,
+      formik = _ref.formik,
       _ref$emptyText = _ref.emptyText,
       emptyText = _ref$emptyText === void 0 ? 'Please Choose' : _ref$emptyText;
 
@@ -55316,39 +55329,39 @@ var PatientPicker = function PatientPicker(_ref) {
       filter = _useState2[0],
       setFilter = _useState2[1];
 
-  var debouncedFilter = Object(_hooks_useDebounced__WEBPACK_IMPORTED_MODULE_3__["useDebounced"])(filter, 500);
+  var debouncedFilter = Object(_hooks_useDebounced__WEBPACK_IMPORTED_MODULE_4__["useDebounced"])(filter, 500);
 
-  var _usePatients = Object(_usePatients__WEBPACK_IMPORTED_MODULE_2__["usePatients"])({
+  var _usePatients = Object(_usePatients__WEBPACK_IMPORTED_MODULE_3__["usePatients"])({
     filter: debouncedFilter
   }),
       patients = _usePatients.patients,
       loading = _usePatients.loading;
 
-  var getPracticeLabel = function getPracticeLabel(val) {
-    return patients.find(function (patient) {
-      return patient.id === val;
-    }).name;
+  console.log(formik);
+
+  var handleChange = function handleChange(newVal) {
+    formik.setFieldValue(name, newVal);
   };
 
-  console.log(value);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-    htmlFor: "patient_id"
-  }, "Patient"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FilterableSelect__WEBPACK_IMPORTED_MODULE_1__["FilterableSelect"], {
-    name: "patient_id",
-    onChange: onChange,
+    htmlFor: name
+  }, "Patient"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FilterableSelect__WEBPACK_IMPORTED_MODULE_2__["FilterableSelect"], {
+    emptyText: emptyText,
+    onChange: handleChange,
     value: value,
     filter: filter,
     onFilterChange: setFilter,
-    options: patients,
-    getIdentifier: function getIdentifier(patient) {
-      return patient.id;
-    },
-    getLabel: function getLabel(id) {
-      return id ? getPracticeLabel(id) : emptyText;
-    },
+    options: (patients || []).map(function (patient) {
+      return {
+        value: patient.id,
+        label: patient.name
+      };
+    }),
     loading: loading
   }));
 };
+
+var PatientPicker = Object(formik__WEBPACK_IMPORTED_MODULE_1__["connect"])(BasePatientPicker);
 
 /***/ }),
 
@@ -56501,7 +56514,7 @@ var CreateLabOrderModal = function CreateLabOrderModal(_ref) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "select-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PatientPicker__WEBPACK_IMPORTED_MODULE_6__["PatientPicker"], {
-        onChange: handleChange,
+        name: "patient_id",
         value: values.patient_id
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "select-wrapper"

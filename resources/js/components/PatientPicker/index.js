@@ -1,31 +1,43 @@
 import React, { useState } from 'react';
+import { connect } from 'formik';
 import { FilterableSelect } from '../FilterableSelect';
 import { usePatients } from './usePatients';
 import { useDebounced } from '../../hooks/useDebounced';
 
-export const PatientPicker = ({ value, onChange, emptyText = 'Please Choose' }) => {
+const BasePatientPicker = ({
+    name,
+    value,
+    formik,
+    emptyText = 'Please Choose',
+}) => {
     const [filter, setFilter] = useState('');
     const debouncedFilter = useDebounced(filter, 500);
     const { patients, loading } = usePatients({ filter: debouncedFilter });
 
-    const getPracticeLabel = val => patients.find(patient => patient.id === val).name;
+    console.log(formik);
 
-    console.log(value);
+    const handleChange = (newVal) => {
+        formik.setFieldValue(name, newVal);
+    };
 
     return (
         <>
-            <label htmlFor="patient_id">Patient</label>
+            <label htmlFor={name}>Patient</label>
             <FilterableSelect
-                name="patient_id"
-                onChange={onChange}
+                emptyText={emptyText}
+                onChange={handleChange}
                 value={value}
                 filter={filter}
                 onFilterChange={setFilter}
-                options={patients}
-                getIdentifier={patient => patient.id}
-                getLabel={id => id ? getPracticeLabel(id) : emptyText}
+                options={(patients || []).map(patient => ({
+                    value: patient.id,
+                    label: patient.name,
+                }))}
                 loading={loading}
             />
         </>
     );
 };
+
+export const PatientPicker = connect(BasePatientPicker);
+

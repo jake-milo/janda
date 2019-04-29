@@ -1,16 +1,22 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useRef } from 'react';
 import { Spinner } from '../Spinner';
+import { useOnClickOutside } from '../../hooks/useOnClickOutside';
 
-export const FilterableSelect = ({ name, value, options, onChange, filter, onFilterChange, getLabel, getIdentifier, loading }) => {
+export const FilterableSelect = ({ value, options, onChange, filter, onFilterChange, loading, emptyText }) => {
     const [popped, setPopped] = useState(false);
-
-    console.log({ value, label: getLabel(value) });
+    const ref = useRef();
 
     const handleSelectClick = (e) => {
         e.preventDefault();
 
-        setPopped(true);
+        if (!ref.current.contains(e.target)) {
+            setPopped(true);
+        }
     };
+
+    useOnClickOutside(ref, () => {
+        setPopped(false);
+    });
 
     const handleFilterChange = (e) => {
         onFilterChange(e.target.value);
@@ -19,18 +25,20 @@ export const FilterableSelect = ({ name, value, options, onChange, filter, onFil
     const handleOptionClick = id => (e) => {
         e.preventDefault();
 
-        console.log(id);
-
-        onChange(e);
         setPopped(false);
+        onChange(id);
     };
+
+    const getLabel = () => value
+        ? options.find(op => op.value === value).label
+        : emptyText;
 
     return (
         <>
             <div className="select" onClick={handleSelectClick}>
-                {getLabel(value)}
+                {getLabel()}
 
-                <div className={`select-popup ${popped ? '' : '--hidden'}`}>
+                <div className={`select-popup ${popped ? '' : '--hidden'}`} ref={ref}>
                     <input
                         type="search"
                         placeholder="Filter"
@@ -41,21 +49,15 @@ export const FilterableSelect = ({ name, value, options, onChange, filter, onFil
 
                     {!loading ? (
                         <div className="options">
-                            {options.map((option) => {
-                                const id = getIdentifier(option);
-                                const label = getLabel(id);
-
-                                return (
-                                    <a
-                                        name={name}
-                                        href="#"
-                                        key={id}
-                                        onClick={handleOptionClick(id)}
-                                    >
-                                        {label}
-                                    </a>
-                                );
-                            })}
+                            {options.map(({ value, label }) => (
+                                <a
+                                    href="#"
+                                    key={value}
+                                    onClick={handleOptionClick(value)}
+                                >
+                                    {label}
+                                </a>
+                            ))}
                         </div>
                     ) : (
                         <Spinner />
