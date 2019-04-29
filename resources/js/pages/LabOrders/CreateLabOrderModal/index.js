@@ -3,6 +3,8 @@ import { Formik } from 'formik';
 import { Modal } from '../../../components/Modal';
 import { PageTitle } from '../../../components/PageTitle';
 import { PracticePicker } from '../../../components/PracticePicker';
+import { LabPicker } from '../../../components/LabPicker';
+import { PatientPicker } from '../../../components/PatientPicker';
 
 const getInitialValues = () => ({
     patient_id: '',
@@ -25,7 +27,15 @@ export const CreateLabOrderModal = ({ show, hide }) => {
                 render={({ handleSubmit, handleChange, values }) => (
                     <form onSubmit={handleSubmit}>
                         <div className="select-wrapper">
+                            <PatientPicker onChange={handleChange} value={values.patient_id} />
+                        </div>
+
+                        <div className="select-wrapper">
                             <PracticePicker onChange={handleChange} value={values.practice_id} />
+                        </div>
+
+                        <div className="select-wrapper">
+                            <LabPicker onChange={handleChange} value={values.lab_id} />
                         </div>
 
                         <div className="input-wrapper">
