@@ -8,6 +8,12 @@
     flex-direction: row;
     align-items: center;
     padding: 0 1rem;
+    /*
+     * We apply a blend mode so that we
+     * can have additive background colors
+     * elsewhere, see LabOrders.css
+     */
+    background-blend-mode: multiply;
 }
 
 .table .row.--header {
@@ -16,7 +22,12 @@
 }
 
 .table .row:not(.--header):nth-child(odd) {
-    background: rgba(220, 220, 220, 0.1);
+    /*
+     * Apply a background-color to every other child.
+     * We use background-color not background so that
+     * it won't be overriden elsewhere.
+     */
+    background-color: rgba(220, 220, 220, 0.1);
 }
 
 .table .row .cell {

@@ -483,7 +483,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".modal-container {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.08);\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n\n    z-index: 15;\n}\n\n.modal-container .modal {\n    width: var(--modal-width);\n    max-width: 95%;\n    min-height: 2rem;\n    background: var(--white);\n    border-radius: .5rem;\n    padding: 1.5rem;\n    border: 1px solid var(--light-grey);\n    box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.2);\n}\n", ""]);
+exports.push([module.i, ".modal-container {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.2);\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n\n    z-index: 15;\n}\n\n.modal-container .modal {\n    width: var(--modal-width);\n    max-width: 95%;\n    min-height: 2rem;\n    background: var(--white);\n    border-radius: .5rem;\n    padding: 1.5rem;\n    border: 1px solid var(--light-grey);\n    box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.2);\n}\n", ""]);
 
 // exports
 
@@ -578,7 +578,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".table {\n    margin: 0 -1rem;\n    margin-bottom: .75rem;\n}\n\n.table .row {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    padding: 0 1rem;\n}\n\n.table .row.\\--header {\n    border-top: 1px solid var(--light-grey);\n    border-bottom: 1px solid var(--light-grey);\n}\n\n.table .row:not(.\\--header):nth-child(odd) {\n    background: rgba(220, 220, 220, 0.1);\n}\n\n.table .row .cell {\n    padding: .5rem .125rem;\n    font-size: .875rem;\n}\n\n.table .row .cell.\\--thin { flex: 3; }\n.table .row .cell.\\--normal { flex: 4; }\n.table .row .cell.\\--wide { flex: 8; }\n\n.table .row .cell.\\--header {\n    text-align: left;\n    font-weight: bold;\n    text-transform: uppercase;\n    font-size: .75rem;\n    color: var(--dark-grey);\n}\n\n.table .row .cell a {\n    color: var(--primary);\n    text-decoration: none;\n}\n\n.filters {\n    margin-bottom: 1rem;\n    display: flex;\n    flex-direction: row;\n    justify-content: flex-start;\n    align-items: center;\n}\n", ""]);
+exports.push([module.i, ".table {\n    margin: 0 -1rem;\n    margin-bottom: .75rem;\n}\n\n.table .row {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    padding: 0 1rem;\n    /*\n     * We apply a blend mode so that we\n     * can have additive background colors\n     * elsewhere, see LabOrders.css\n     */\n    background-blend-mode: multiply;\n}\n\n.table .row.\\--header {\n    border-top: 1px solid var(--light-grey);\n    border-bottom: 1px solid var(--light-grey);\n}\n\n.table .row:not(.\\--header):nth-child(odd) {\n    /*\n     * Apply a background-color to every other child.\n     * We use background-color not background so that\n     * it won't be overriden elsewhere.\n     */\n    background-color: rgba(220, 220, 220, 0.1);\n}\n\n.table .row .cell {\n    padding: .5rem .125rem;\n    font-size: .875rem;\n}\n\n.table .row .cell.\\--thin { flex: 3; }\n.table .row .cell.\\--normal { flex: 4; }\n.table .row .cell.\\--wide { flex: 8; }\n\n.table .row .cell.\\--header {\n    text-align: left;\n    font-weight: bold;\n    text-transform: uppercase;\n    font-size: .75rem;\n    color: var(--dark-grey);\n}\n\n.table .row .cell a {\n    color: var(--primary);\n    text-decoration: none;\n}\n\n.filters {\n    margin-bottom: 1rem;\n    display: flex;\n    flex-direction: row;\n    justify-content: flex-start;\n    align-items: center;\n}\n", ""]);
 
 // exports
 
@@ -597,7 +597,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".table .row.\\--overdue, .table .row.\\--urgent {\n    position: relative;\n}\n\n.table .row.\\--overdue:before, .table .row.\\--urgent:before {\n    position: absolute;\n    content: ' ';\n    left: -10px;\n    top: 5px;\n    bottom: 5px;\n    width: 4px;\n}\n\n\n\n.table .row.\\--overdue:before{\n    background: var(--red);\n}\n\n.table .row.\\--urgent:before{\n    background: var(--orange);\n}\n", ""]);
+exports.push([module.i, ".table .row.\\--overdue, .table .row.\\--urgent {\n    position: relative;\n}\n\n.table .row.\\--overdue {\n    /**\n     * Apply a solid color using a gradient and background-image.\n     * This is weird but makes this row colour additive - every\n     * other row will still appear darker. This works because\n     * of the blend mode specified in Table.css. We have to use\n     * a gradient as an image, otherwise just setting a colour\n     * would override the colours set in Table.css\n     */\n    --row-color: rgba(197, 48, 48, 0.1);\n    background-image: linear-gradient(var(--row-color), var(--row-color));\n}\n\n.table .row.\\--urgent {\n    /**\n     * Same as above.\n     */\n    --row-color: rgba(237, 137, 54, 0.1);\n    background-image: linear-gradient(var(--row-color), var(--row-color));\n}\n\n.table .row.\\--overdue:before, .table .row.\\--urgent:before {\n    position: absolute;\n    content: ' ';\n    left: 0;\n    top: 0;\n    bottom: 0;\n    width: 4px;\n}\n\n.table .row.\\--overdue:before{\n    background: var(--red);\n}\n\n.table .row.\\--urgent:before{\n    background: var(--orange);\n}\n", ""]);
 
 // exports
 
@@ -49187,7 +49187,7 @@ if (typeof Object.assign != "function") {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -56997,7 +56997,7 @@ var usePractices = function usePractices() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/jake/code/janda/resources/js/index.js */"./resources/js/index.js");
+module.exports = __webpack_require__(/*! /Users/jtaylor/code/janda/resources/js/index.js */"./resources/js/index.js");
 
 
 /***/ })

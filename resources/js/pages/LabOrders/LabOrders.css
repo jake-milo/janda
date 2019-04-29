@@ -2,16 +2,35 @@
     position: relative;
 }
 
+.table .row.--overdue {
+    /**
+     * Apply a solid color using a gradient and background-image.
+     * This is weird but makes this row colour additive - every
+     * other row will still appear darker. This works because
+     * of the blend mode specified in Table.css. We have to use
+     * a gradient as an image, otherwise just setting a colour
+     * would override the colours set in Table.css
+     */
+    --row-color: rgba(197, 48, 48, 0.1);
+    background-image: linear-gradient(var(--row-color), var(--row-color));
+}
+
+.table .row.--urgent {
+    /**
+     * Same as above.
+     */
+    --row-color: rgba(237, 137, 54, 0.1);
+    background-image: linear-gradient(var(--row-color), var(--row-color));
+}
+
 .table .row.--overdue:before, .table .row.--urgent:before {
     position: absolute;
     content: ' ';
-    left: -10px;
-    top: 5px;
-    bottom: 5px;
+    left: 0;
+    top: 0;
+    bottom: 0;
     width: 4px;
 }
-
-
 
 .table .row.--overdue:before{
     background: var(--red);
