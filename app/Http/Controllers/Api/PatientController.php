@@ -7,15 +7,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Patient as PatientResource;
 use App\Http\Requests\CreatePatientRequest;
 use App\Http\Requests\UpdatePatientRequest;
+use App\Http\Requests\GetPatientsRequest;
 
 class PatientController extends Controller
 {
     /**
      * Shows all patients, paginated.
      */
-    public function index()
+    public function index(GetPatientsRequest $request)
     {
-        $patients = Patient::orderBy('name','asc')->paginate(30);
+        $patients = $request->getPatients();
 
         return PatientResource::collection($patients);
     }
