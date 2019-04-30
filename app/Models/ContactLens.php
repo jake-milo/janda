@@ -12,11 +12,11 @@ class ContactLens extends Model
 
     protected $table = 'contact_lenses';
 
-    protected $resourceRelations = ['patient', 'practice'];
+    protected $resourceRelations = ['patient', 'practice', 'brand'];
 
     protected $guarded = ['id', 'patient_id', 'practice_id'];
 
-    protected $with = ['practice', 'patient'];
+    protected $with = ['practice', 'patient', 'brand'];
 
     public function patient()
     {
@@ -26,5 +26,10 @@ class ContactLens extends Model
     public function practice()
     {
         return $this->belongsTo(Practice::class);
+    }
+
+    public function brand()
+    {
+        return $this->hasMany(Brand::class);
     }
 }

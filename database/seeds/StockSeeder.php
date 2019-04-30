@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\Brand;
-use App\Models\Type;
-use App\Models\Variant;
+use App\Models\Stock\Brand;
+use App\Models\Stock\Type;
+use App\Models\Stock\Variant;
 
 class StockSeeder extends Seeder
 {

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Brand;
+use App\Models\Stock\Brand;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Brand as BrandResource;
 use App\Http\Requests\CreateBrandRequest;

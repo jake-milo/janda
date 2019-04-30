@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\ContactLens;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -8,14 +8,14 @@ use App\Models\Traits\HasResourceRelations;
 
 class Brand extends Model
 {
-    use SoftDeletes, HasResourceRelations;
-
-    protected $resourceRelations = ['types'];
+    use HasResourceRelations, SoftDeletes;
 
     protected $fillable = ['name'];
 
-    public function types()
+    protected $table = 'contact_lens_brands';
+
+    function contactLens()
     {
-        return $this->hasMany(Type::class);
+        return $this->belongsTo(ContactLens::class);
     }
 }

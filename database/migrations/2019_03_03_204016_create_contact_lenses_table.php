@@ -18,7 +18,7 @@ class CreateContactLensesTable extends Migration
             $table->timestamps();
             $table->bigInteger('patient_id')->unsigned();
             $table->bigInteger('practice_id')->unsigned();
-            $table->string('brand');
+            $table->bigInteger('brand_id')->unsigned();
             $table->string('lens');
             $table->string('duration');
             $table->string('quantity');
@@ -28,6 +28,7 @@ class CreateContactLensesTable extends Migration
 
             $table->foreign('patient_id')->references('id')->on('patients');
             $table->foreign('practice_id')->references('id')->on('practices');
+            $table->foreign('brand_id')->references('id')->on('contact_lens_brands');
 
             $table->softDeletes();
         });

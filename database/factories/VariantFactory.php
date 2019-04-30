@@ -1,7 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
-use App\Models\Variant;
+use App\Models\Stock\Variant;
 
 $factory->define(Variant::class, function (Faker $faker) {
     return [

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Type;
+use App\Models\Stock\Type;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Type as TypeResource;
 use App\Http\Requests\CreateTypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
-use App\Models\Brand;
-use App\Models\Variant;
+use App\Models\Stock\Brand;
+use App\Models\Stock\Variant;
 
 class TypeController extends Controller
 {
