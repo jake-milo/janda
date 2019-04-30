@@ -15,7 +15,7 @@ class LabController extends Controller
      */
     public function index()
     {
-        $labs = Lab::paginate(30);
+        $labs = Lab::orderBy('name','asc')->paginate(30);
 
         return LabResource::collection($labs);
     }
