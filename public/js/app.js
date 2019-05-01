@@ -69683,28 +69683,39 @@ var BaseDatePicker = function BaseDatePicker(_ref) {
   var value = _ref.value,
       onChange = _ref.onChange,
       formik = _ref.formik,
-      name = _ref.name;
+      name = _ref.name,
+      min = _ref.min;
   Object(_useMomentValidator__WEBPACK_IMPORTED_MODULE_4__["useMomentValidator"])(value);
+  Object(_useMomentValidator__WEBPACK_IMPORTED_MODULE_4__["useMomentValidator"])(min || '');
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    if (min && value && value.isBefore(min)) {
+      handleChange(min);
+    }
+  }, [min]);
   var date = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(function () {
     return value ? value.toDate() : null;
   }, [value]);
+  var minDate = Object(react__WEBPACK_IMPORTED_MODULE_0__["useMemo"])(function () {
+    return min ? min.toDate() : null;
+  }, [min]);
 
   var handleChange = function handleChange(val) {
-    var newVal = val ? moment__WEBPACK_IMPORTED_MODULE_1___default()(val) : '';
-
     if (formik && formik.setFieldValue) {
-      formik.setFieldValue(name, newVal);
+      formik.setFieldValue(name, val);
     }
 
     if (onChange) {
-      onChange(newVal);
+      onChange(val);
     }
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_datepicker__WEBPACK_IMPORTED_MODULE_3__["default"], {
     selected: date,
-    onChange: handleChange,
-    dateFormat: "dd/MM/yyyy"
+    onChange: function onChange(val) {
+      return handleChange(val ? moment__WEBPACK_IMPORTED_MODULE_1___default()(val) : '');
+    },
+    dateFormat: "dd/MM/yyyy",
+    minDate: minDate
   });
 };
 
@@ -69731,7 +69742,7 @@ __webpack_require__.r(__webpack_exports__);
 var useMomentValidator = function useMomentValidator(date) {
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     if (date !== '' && !moment__WEBPACK_IMPORTED_MODULE_1___default.a.isMoment(date)) {
-      throw new Error('You can only supply a Moment instance to <DatePicker />');
+      throw new Error('You can only supply Moment instances to <DatePicker />');
     }
   }, [date]);
 };
@@ -71684,6 +71695,14 @@ var CreateLabOrderModal = function CreateLabOrderModal(_ref) {
       }, "Date Sent"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_DatePicker__WEBPACK_IMPORTED_MODULE_8__["DatePicker"], {
         name: "date_sent",
         value: values.date_sent
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "input-wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "date_required"
+      }, "Date Required"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_DatePicker__WEBPACK_IMPORTED_MODULE_8__["DatePicker"], {
+        name: "date_required",
+        value: values.date_required,
+        min: values.date_sent
       })));
     }
   }));
