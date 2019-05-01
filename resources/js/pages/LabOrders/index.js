@@ -3,24 +3,22 @@ import { Link } from 'react-router-dom';
 import RoundAdd from 'react-md-icon/dist/RoundAdd';
 import { PageTitle } from '../../components/PageTitle';
 import { Page } from '../../components/Page';
-import { Table, Row, Cell, Filters } from '../../components/Table';
+import { Table, Row, Cell } from '../../components/Table';
 import { Spinner } from '../../components/Spinner';
 import { Pagination } from '../../components/Pagination';
 import { FloatingActionButton } from '../../components/FloatingActionButton';
 import { useLabOrders } from './useLabOrders';
-import { usePracticeFilter } from '../../hooks/usePracticeFilter';
-import { useStatusFilter } from './useStatusFilter';
 import { CreateLabOrderModal } from './CreateLabOrderModal';
 import { PracticePicker } from '../../components/PracticePicker';
 import { LabPicker } from '../../components/LabPicker';
-import { useLabFilter } from './useLabFilter';
+import { StatusPicker } from './StatusPicker';
 
 import './LabOrders.css';
 
 export const LabOrders = () => {
-    const { status, statuses, handleStatusChange } = useStatusFilter();
-    const { practice, handlePracticeChange } = usePracticeFilter();
-    const { lab, handleLabChange } = useLabFilter();
+    const [practice, setPractice] = useState('');
+    const [status, setStatus] = useState('');
+    const [lab, setLab] = useState('');
 
     const { labOrders, loading, page, pageCount } = useLabOrders({ practice, status, lab });
 
@@ -37,27 +35,22 @@ export const LabOrders = () => {
                             <div className="select-wrapper --inline">
                                 <PracticePicker
                                     value={practice}
-                                    onChange={handlePracticeChange}
+                                    onChange={setPractice}
                                     emptyText="All"
                                 />
                             </div>
 
                             <div className="select-wrapper --inline">
-                                <label htmlFor="status">Status</label>
-                                <select value={status} onChange={handleStatusChange}>
-                                    <option value="">All</option>
-                                    {statuses.map(([value, label]) => (
-                                        <option key={value} value={value}>
-                                            {label}
-                                        </option>
-                                    ))}
-                                </select>
+                                <StatusPicker
+                                    value={status}
+                                    onChange={setStatus}
+                                />
                             </div>
 
                             <div className="select-wrapper --inline">
                                 <LabPicker
                                     value={lab}
-                                    onChange={handleLabChange}
+                                    onChange={setLab}
                                     emptyText="All"
                                 />
                             </div>

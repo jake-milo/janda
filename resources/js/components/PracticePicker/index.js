@@ -1,13 +1,30 @@
 import React from 'react';
+import { connect } from 'formik';
 import { usePractices } from './usePractices';
 
-export const PracticePicker = ({ value, onChange, emptyText = 'Please Choose' }) => {
+const BasePracticePicker = ({
+    value,
+    onChange,
+    formik,
+    name = 'practice_id',
+    emptyText = 'Please Choose',
+}) => {
     const { practices } = usePractices();
+
+    const handleChange = (e) => {
+        if (formik && formik.setFieldValue) {
+            formik.setFieldValue(name, e.target.value);
+        }
+
+        if (onChange) {
+            onChange(e.target.value);
+        }
+    };
 
     return (
         <>
-            <label htmlFor="practice_id">Practice</label>
-            <select name="practice_id" value={value} onChange={onChange}>
+            <label htmlFor={name}>Practice</label>
+            <select name={name} value={value} onChange={handleChange}>
                 <option value="">{emptyText}</option>
                 {(practices || []).map(practice => (
                     <option value={practice.id} key={practice.id}>
@@ -18,3 +35,5 @@ export const PracticePicker = ({ value, onChange, emptyText = 'Please Choose' })
         </>
     );
 }
+
+export const PracticePicker = connect(BasePracticePicker);

@@ -6,12 +6,10 @@ import { Table, Row, Cell } from '../../components/Table';
 import { Spinner } from '../../components/Spinner';
 import { Pagination } from '../../components/Pagination';
 import { useContactLenses } from './useContactLenses';
-import { usePracticeFilter } from '../../hooks/usePracticeFilter';
 import { PracticePicker } from '../../components/PracticePicker';
 
-
 export const ContactLenses = () => {
-    const { practice, handlePracticeChange } = usePracticeFilter();
+    const [practice, setPractice] = useState('');
     const { contactLenses, loading, page, pageCount } = useContactLenses({ practice });
 
     return (
@@ -25,7 +23,7 @@ export const ContactLenses = () => {
                             <div className="select-wrapper">
                                 <PracticePicker
                                     value={practice}
-                                    onChange={handlePracticeChange}
+                                    onChange={setPractice}
                                     emptyText="All"
                                 />
                             </div>

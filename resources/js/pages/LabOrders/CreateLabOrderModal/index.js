@@ -1,10 +1,12 @@
 import React from 'react';
+import moment from 'moment';
 import { Formik } from 'formik';
 import { Modal } from '../../../components/Modal';
 import { PageTitle } from '../../../components/PageTitle';
 import { PracticePicker } from '../../../components/PracticePicker';
 import { LabPicker } from '../../../components/LabPicker';
 import { PatientPicker } from '../../../components/PatientPicker';
+import { DatePicker } from '../../../components/DatePicker';
 
 const getInitialValues = () => ({
     patient_id: '',
@@ -12,7 +14,7 @@ const getInitialValues = () => ({
     lab_id: '',
     lens: '',
     reference: '',
-    date_sent: '',
+    date_sent: moment(),
     date_required: '',
     date_received: '',
 });
@@ -31,11 +33,11 @@ export const CreateLabOrderModal = ({ show, hide }) => {
                         </div>
 
                         <div className="select-wrapper">
-                            <PracticePicker onChange={handleChange} value={values.practice_id} />
+                            <PracticePicker name="practice_id" value={values.practice_id} />
                         </div>
 
                         <div className="select-wrapper">
-                            <LabPicker onChange={handleChange} value={values.lab_id} />
+                            <LabPicker name="lab_id" value={values.lab_id} />
                         </div>
 
                         <div className="input-wrapper">
@@ -46,6 +48,11 @@ export const CreateLabOrderModal = ({ show, hide }) => {
                         <div className="input-wrapper">
                             <label htmlFor="reference">Reference</label>
                             <input type="text" id="reference" name="reference" onChange={handleChange} value={values.reference} />
+                        </div>
+
+                        <div className="input-wrapper">
+                            <label htmlFor="date_sent">Date Sent</label>
+                            <DatePicker name="date_sent" value={values.date_sent} />
                         </div>
                     </form>
                 )}

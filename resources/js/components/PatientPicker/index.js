@@ -14,8 +14,6 @@ const BasePatientPicker = ({
     const debouncedFilter = useDebounced(filter, 500);
     const { patients, loading } = usePatients({ filter: debouncedFilter });
 
-    console.log(formik);
-
     const handleChange = (newVal) => {
         formik.setFieldValue(name, newVal);
     };
