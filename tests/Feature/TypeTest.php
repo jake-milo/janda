@@ -5,10 +5,10 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Models\Brand;
+use App\Models\Stock\Brand;
 use App\Models\User;
-use App\Models\Type;
-use App\Models\Variant;
+use App\Models\Stock\Type;
+use App\Models\Stock\Variant;
 
 class TypeTest extends TestCase
 {

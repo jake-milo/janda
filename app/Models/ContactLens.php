@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Traits\HasResourceRelations;
+use App\Models\ContactLens\Brand;
 
 class ContactLens extends Model
 {
@@ -30,6 +31,6 @@ class ContactLens extends Model
 
     public function brand()
     {
-        return $this->hasMany(Brand::class);
+        return $this->belongsTo(Brand::class);
     }
 }

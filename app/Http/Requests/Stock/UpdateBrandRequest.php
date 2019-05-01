@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Stock;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Variant;
 
-class CreateTypeRequest extends FormRequest
+class UpdateBrandRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,19 +25,10 @@ class CreateTypeRequest extends FormRequest
     {
         return [
             'name' => 'string|required',
-            'variants' => 'array|required',
-            'variants.*.color' => 'string|required',
-            'variants.*.price' => 'integer|required',
-            'variants.*.year' => 'string|required',
         ];
     }
 
-    public function getVariants()
-    {
-        return $this->input('variants');
-    }
-
-    public function getTypeData()
+    public function getUpdates()
     {
         return $this->only('name');
     }

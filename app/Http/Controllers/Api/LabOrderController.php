@@ -95,7 +95,7 @@ class LabOrderController extends Controller
         $labOrder->delete();
 
         return response()->json([
-            'Deleted lab order.'
+            'Deleted lab order'
         ]);
     }
 

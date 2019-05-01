@@ -9,6 +9,7 @@ use App\Models\ContactLens;
 use App\Models\User;
 use App\Models\Patient;
 use App\Models\Practice;
+use App\Models\ContactLens\Brand;
 
 class ContactLensTest extends TestCase
 {
@@ -21,11 +22,12 @@ class ContactLensTest extends TestCase
 
         factory(Patient::class)->create();
         factory(Practice::class)->create();
+        factory(Brand::class)->create();
+
 
         $contactLens = factory(ContactLens::class)->make();
 
         $response = $this->post("/api/contact-lenses", $contactLens->attributesToArray());
-
         $response->assertStatus(201);
         $this->assertDatabaseHas('contact_lenses', $contactLens->attributesToArray());
 
@@ -34,7 +36,6 @@ class ContactLensTest extends TestCase
             'data' => [
                 'id',
                 'lens',
-                'brand',
                 'duration',
                 'quantity',
                 'price',
@@ -42,6 +43,7 @@ class ContactLensTest extends TestCase
                 'solutions',
                 'patient',
                 'practice',
+                'brand',
                 'time' => [
                     'created',
                     'updated',
@@ -57,6 +59,7 @@ class ContactLensTest extends TestCase
 
         factory(Patient::class)->create();
         factory(Practice::class)->create();
+        factory(Brand::class)->create();
 
         $contactLens = factory(ContactLens::class)->create();
 
@@ -76,6 +79,8 @@ class ContactLensTest extends TestCase
 
         factory(Patient::class)->create();
         factory(Practice::class)->create();
+        factory(Brand::class)->create();
+
 
         $contactLens = factory(ContactLens::class)->create();
 
@@ -94,6 +99,8 @@ class ContactLensTest extends TestCase
 
         factory(Patient::class)->create();
         factory(Practice::class)->create();
+        factory(Brand::class)->create();
+
 
         $contactLens = factory(ContactLens::class)->create();
         $contactLens->delete();

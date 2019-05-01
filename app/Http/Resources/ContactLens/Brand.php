@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\ContactLens;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Traits\HasTimestamps;
 
-class Variant extends JsonResource
+class Brand extends JsonResource
 {
     use HasTimestamps;
     /**
@@ -18,14 +18,7 @@ class Variant extends JsonResource
     {
         return $this->withTimeStamps([
             'id' => $this->id,
-            'color' => $this->color,
-            'price' => $this->price,
-            'year' => $this->year,
-
-            'type' => Type::make(
-                $this->whenLoaded('type')
-            ),
-
+            'name' => $this->name,
         ]);
     }
 }

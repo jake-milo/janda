@@ -80,7 +80,7 @@ class LabController extends Controller
         $lab->delete();
 
         return response()->json([
-            'Deleted lab.',
+            'Deleted lab',
         ]);
     }
 

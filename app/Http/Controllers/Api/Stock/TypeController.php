@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Stock;
 
 use App\Models\Stock\Type;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Type as TypeResource;
-use App\Http\Requests\CreateTypeRequest;
-use App\Http\Requests\UpdateTypeRequest;
+use App\Http\Resources\Stock\Type as TypeResource;
+use App\Http\Requests\Stock\CreateTypeRequest;
+use App\Http\Requests\Stock\UpdateTypeRequest;
 use App\Models\Stock\Brand;
 use App\Models\Stock\Variant;
 
@@ -94,7 +94,7 @@ class TypeController extends Controller
         $type->delete();
 
         return response()->json([
-            'Deleted type.',
+            'Deleted type',
         ]);
     }
 
@@ -104,7 +104,7 @@ class TypeController extends Controller
         $type->restore();
 
         return response()->json([
-            'Restored type.',
+            'Restored type',
         ]);
     }
 }
