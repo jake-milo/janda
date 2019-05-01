@@ -7,6 +7,7 @@ import { Patients } from './pages/Patients';
 import { Patient } from './pages/Patient';
 import { Practices } from './pages/Practices';
 import { Practice } from './pages/Practice';
+import { Labs } from './pages/Labs';
 import { LabOrders } from './pages/LabOrders';
 import { ContactLenses } from './pages/ContactLenses';
 
@@ -28,6 +29,8 @@ export const App = () => {
 
                     <Route exact path="/practices" component={Practices} />
                     <Route exact path="/practices/:id" component={Practice} />
+
+                    <Route exact path="/labs" component={Labs} />
 
                     <Route exact path="/lab-orders" component={LabOrders} />
 
