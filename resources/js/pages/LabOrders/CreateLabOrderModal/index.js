@@ -54,6 +54,15 @@ export const CreateLabOrderModal = ({ show, hide }) => {
                             <label htmlFor="date_sent">Date Sent</label>
                             <DatePicker name="date_sent" value={values.date_sent} />
                         </div>
+
+                        <div className="input-wrapper">
+                            <label htmlFor="date_required">Date Required</label>
+                            <DatePicker
+                                name="date_required"
+                                value={values.date_required}
+                                min={values.date_sent}
+                            />
+                        </div>
                     </form>
                 )}
             />
