@@ -9,6 +9,7 @@
 .page h2 {
     font-size: 1.2rem;
     opacity: 0.9;
+    margin-bottom: .75rem;
 }
 
 .page h2:not(:first-of-type) {
