@@ -65,7 +65,11 @@ export const Patient = ({ match }) => {
                                                 {contactLens.practice.name}
                                             </Link>
                                         </Cell>
-                                        <Cell>{contactLens.brand}</Cell>
+                                        <Cell>
+                                            <Link to={`/contact-lens-brands/${contactLens.brand.id}`}>
+                                                {contactLens.brand.name}
+                                            </Link>
+                                        </Cell>
                                         <Cell>{contactLens.lens}</Cell>
                                         <Cell>{contactLens.duration}</Cell>
                                         <Cell>{contactLens.quantity}</Cell>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PageTitle } from '../../components/PageTitle';
 import { Page } from '../../components/Page';
@@ -53,7 +53,11 @@ export const ContactLenses = () => {
                                             {contactLens.practice.name}
                                         </Link>
                                     </Cell>
-                                    <Cell>{contactLens.brand}</Cell>
+                                    <Cell>
+                                        <Link to={`/contact-lens-brands/${contactLens.brand.id}`}>
+                                            {contactLens.brand.name}
+                                        </Link>
+                                    </Cell>
                                     <Cell size="wide">{contactLens.lens}</Cell>
                                     <Cell size="thin">{contactLens.duration}</Cell>
                                     <Cell>{contactLens.quantity}</Cell>

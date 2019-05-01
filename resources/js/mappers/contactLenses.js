@@ -1,12 +1,14 @@
 import { timeMapper } from './time';
 import { practiceMapper } from './practices';
 import { patientMapper } from './patients';
+import { contactLensBrandMapper } from './contactLensBrands';
 
 const formatMoney = value => `£${(value / 100).toFixed(2)}`;
 
 export const contactLensMapper = ({
     practice,
     patient,
+    brand,
     time,
     price: priceRaw,
     shipping_cost,
@@ -27,6 +29,12 @@ export const contactLensMapper = ({
 
     if (patient) {
         contactLens.patient = patientMapper(patient);
+    }
+
+    console.log(brand);
+
+    if (brand) {
+        contactLens.brand = contactLensBrandMapper(brand);
     }
 
     return contactLens;
