@@ -25,9 +25,15 @@ Route::apiResource('contact-lenses', 'ContactLensController', [
 ]);
 Route::post('/contact-lenses/{contact_lens}/restore', 'ContactLensController@restore');
 
-Route::apiResource('brands', 'BrandController');
-Route::post('/brands/{brand}/restore', 'BrandController@restore');
+Route::apiResource('contact-lens-brands', 'ContactLens\BrandController', [
+    'parameters' => [
+        'contact-lens-brands' => 'brand',
+    ],
+]);
 
-Route::apiResource('brands.types', 'TypeController');
-Route::post('/brands/{brand}/types/{type}/restore', 'TypeController@restore');
+Route::apiResource('brands', 'Stock\BrandController');
+Route::post('/brands/{brand}/restore', 'Stock\BrandController@restore');
+
+Route::apiResource('brands.types', 'Stock\TypeController');
+Route::post('/brands/{brand}/types/{type}/restore', 'Stock\TypeController@restore');
 

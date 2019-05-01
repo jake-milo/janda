@@ -80,7 +80,7 @@ class PatientController extends Controller
         $patient->delete();
 
         return response()->json([
-            'Deleted patient.',
+            'Deleted patient',
         ]);
     }
 

@@ -14,8 +14,8 @@ class Brand extends Model
 
     protected $table = 'contact_lens_brands';
 
-    function contactLens()
+    function contactLenses()
     {
-        return $this->belongsTo(ContactLens::class);
+        return $this->hasMany(ContactLens::class);
     }
 }

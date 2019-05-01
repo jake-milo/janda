@@ -34,7 +34,7 @@ class UpdateLabOrderRequest extends FormRequest
             'reference' => 'string',
             'date_sent' => 'date',
             'date_required' => 'date',
-            'date_received' => 'date',
+            'date_received' => 'nullable|date',
         ];
     }
     public function getPatient()

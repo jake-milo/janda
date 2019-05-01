@@ -80,7 +80,7 @@ class PracticeController extends Controller
         $practice->delete();
 
         return response()->json([
-            'Deleted practice.',
+            'Deleted practice',
         ]);
     }
 

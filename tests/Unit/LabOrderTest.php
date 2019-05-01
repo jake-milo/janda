@@ -42,6 +42,7 @@ class LabOrderTest extends TestCase
             ->make()
             ->each(function (LabOrder $labOrder) {
                 $labOrder->date_required = Date::now()->subDays(2);
+                $labOrder->date_received = null;
                 $labOrder->save();
             });
 

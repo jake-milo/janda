@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\ContactLens;
 
-use App\Models\Stock\Brand;
+use App\Models\ContactLens\Brand;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Brand as BrandResource;
-use App\Http\Requests\CreateBrandRequest;
-use App\Http\Requests\UpdateBrandRequest;
+use App\Http\Resources\ContactLens\Brand as BrandResource;
+use App\Http\Requests\ContactLens\CreateBrandRequest;
+use App\Http\Requests\ContactLens\UpdateBrandRequest;
 
 class BrandController extends Controller
 {
@@ -17,20 +17,20 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = Brand::paginate(30);
+        $brand = Brand::paginate(30);
 
-        return BrandResource::collection($brands);
+        return BrandResource::collection($brand);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\CreateBrandrequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateBrandRequest $request)
     {
-        $brandData = $request->getBrandData();
+        $brandData = request()->getBrandData();
 
         $brand = Brand::create($brandData);
 
@@ -49,17 +49,17 @@ class BrandController extends Controller
     {
         $brand->loadResourceRelations();
 
-        return BrandResource::make($brand);
+        return BrandResource::make();
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateBrandRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBrandRequest $request, Brand $brand)
+    public function update(Request $request, Brand $brand)
     {
         $updates = $request->getUpdates();
 
@@ -82,7 +82,7 @@ class BrandController extends Controller
         $brand->delete();
 
         return response()->json([
-            'Deleted brand',
+            'Deleted Brand'
         ]);
     }
 
@@ -92,7 +92,7 @@ class BrandController extends Controller
         $brand->restore();
 
         return response()->json([
-            'Restored brand',
+            'Restored Brand'
         ]);
     }
 }

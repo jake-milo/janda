@@ -64,7 +64,6 @@ class LabOrderTest extends TestCase
         $updates = factory(LabOrder::class)->make();
 
         $response = $this->patch("/api/lab-orders/{$labOrder->id}", $updates->attributesToArray());
-
         $response->assertStatus(200);
         $this->assertDatabaseHas('lab_orders', $updates->attributesToArray());
     }

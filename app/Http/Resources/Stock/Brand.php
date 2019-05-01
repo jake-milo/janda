@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Stock;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Traits\HasTimestamps;
 
-class Type extends JsonResource
+class Brand extends JsonResource
 {
     use HasTimestamps;
     /**
@@ -20,12 +20,8 @@ class Type extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
 
-            'brand' => Brand::make(
-                $this->whenLoaded('brand')
-            ),
-
-            'variants' => Variant::collection(
-                $this->whenLoaded('variants')
+            'types' => Type::collection(
+                $this->whenLoaded('types')
             ),
         ]);
     }
