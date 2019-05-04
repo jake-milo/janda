@@ -17,6 +17,8 @@
     width: var(--modal-width);
     max-width: 95%;
     min-height: 2rem;
+    max-height: 95%;
+    overflow-y: scroll;
     background: var(--white);
     border-radius: .5rem;
     padding: 1.5rem;

@@ -129,3 +129,13 @@
 .select-wrapper.--inline select option {
     direction: rtl;
 };
+
+input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: .5rem;
+    border: none;
+    background: var(--primary);
+    border-radius: .25rem;
+    cursor: pointer;
+}

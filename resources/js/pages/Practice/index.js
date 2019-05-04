@@ -45,6 +45,7 @@ export const Practice = ({ match }) => {
 
                             <p className="--centered">
                                 Only showing the latest 10 results.
+                                {' '}
                                 <Link to={`/lab-orders?practice=${practice.id}`}>See More</Link>
                             </p>
                         </>
@@ -91,6 +92,7 @@ export const Practice = ({ match }) => {
 
                             <p className="--centered">
                                 Only showing the latest 10 results.
+                                {' '}
                                 <Link to={`/contact-lenses?practice=${practice.id}`}>See More</Link>
                             </p>
                         </>

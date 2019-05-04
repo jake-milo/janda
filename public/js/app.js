@@ -624,7 +624,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".select-wrapper, .input-wrapper {\n    border-radius: .125rem;\n    border: 1px solid var(--light-grey);\n    position: relative;\n    display: flex;\n    flex-direction: row;\n    align-items: stretch;\n    margin-bottom: .5rem;\n}\n\n.select-wrapper.\\--inline, .input-wrapper.\\--inline {\n    margin-bottom: 0;\n    margin-right: .5rem;\n}\n\n.select-wrapper:after {\n    content: '';\n    width: 1rem;\n    height: 1rem;\n    background: url('/img/dropdown.svg');\n    position: absolute;\n    top: 50%;\n    right: .25rem;\n    transform: translateY(-50%);\n    pointer-events: none;\n}\n\n.select-wrapper label, .input-wrapper label {\n    display: block;\n    font-size: .875rem;\n    opacity: 0.8;\n    padding: .5rem;\n    border-right: 1px solid var(--light-grey);\n}\n\n.select-wrapper:not(.\\--inline) label, .input-wrapper:not(.\\--inline) label {\n    width: 6rem;\n}\n\n.input-wrapper input {\n    display: block;\n    flex: 2;\n    border: none;\n    font-size: .875rem;\n    padding: 0 .5rem;\n}\n\n.input-wrapper input:focus {\n    outline: 0;\n}\n\n.select-wrapper select, .select-wrapper .select {\n    display: block;\n    flex: 2;\n    border: none;\n    background: none;\n    font-size: .875rem;\n    appearance: none;\n    -webkit-appearance: none;\n    padding-right: 1.5rem;\n    padding-left: .5rem;\n    cursor: default;\n    color: var(--black);\n}\n\n.select-wrapper .select {\n    padding: .5rem;\n    padding-right: 1.5rem;\n    position: relative;\n}\n\n.select-wrapper .select .select-popup {\n    position: absolute;\n    top: 100%;\n    right: -1px;\n    left: -1px;\n    background: var(--white);\n    border: 1px solid var(--light-grey);\n    border-radius: .125rem;\n    z-index: 20;\n    box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.2);\n}\n\n.select-wrapper .select .select-popup.\\--hidden {\n    display: none;\n}\n\n.select-wrapper .select .select-popup .filter {\n    padding: .25rem .5rem;\n    background: var(--light-grey);\n    color: var(--black);\n    font-size: 0.875rem;\n    border: none;\n    width: 100%;\n}\n\n.select-wrapper .select .select-popup .filter:focus {\n    outline: 0;\n}\n\n.select-wrapper .select .select-popup .options {\n    display: flex;\n    flex-direction: column;\n    max-height: 12rem;\n    overflow-y: scroll;\n}\n\n.select-wrapper .select .select-popup .options a {\n    display: block;\n    padding: .25rem .5rem;\n    color: var(--black);\n    text-decoration: none;\n    cursor: default;\n    font-size: 0.875rem;\n}\n\n.select-wrapper .select .select-popup .options a:hover {\n    background: rgba(0, 0, 0, 0.15);\n}\n\n.select-wrapper select:focus {\n    outline: 0;\n}\n\n.select-wrapper.\\--inline select, .select-wrapper.\\--inline .select {\n    text-align-last: right;\n}\n\n.select-wrapper.\\--inline select option {\n    direction: rtl;\n};\n", ""]);
+exports.push([module.i, ".select-wrapper, .input-wrapper {\n    border-radius: .125rem;\n    border: 1px solid var(--light-grey);\n    position: relative;\n    display: flex;\n    flex-direction: row;\n    align-items: stretch;\n    margin-bottom: .5rem;\n}\n\n.select-wrapper.\\--inline, .input-wrapper.\\--inline {\n    margin-bottom: 0;\n    margin-right: .5rem;\n}\n\n.select-wrapper:after {\n    content: '';\n    width: 1rem;\n    height: 1rem;\n    background: url('/img/dropdown.svg');\n    position: absolute;\n    top: 50%;\n    right: .25rem;\n    transform: translateY(-50%);\n    pointer-events: none;\n}\n\n.select-wrapper label, .input-wrapper label {\n    display: block;\n    font-size: .875rem;\n    opacity: 0.8;\n    padding: .5rem;\n    border-right: 1px solid var(--light-grey);\n}\n\n.select-wrapper:not(.\\--inline) label, .input-wrapper:not(.\\--inline) label {\n    width: 6rem;\n}\n\n.input-wrapper input {\n    display: block;\n    flex: 2;\n    border: none;\n    font-size: .875rem;\n    padding: 0 .5rem;\n}\n\n.input-wrapper input:focus {\n    outline: 0;\n}\n\n.select-wrapper select, .select-wrapper .select {\n    display: block;\n    flex: 2;\n    border: none;\n    background: none;\n    font-size: .875rem;\n    appearance: none;\n    -webkit-appearance: none;\n    padding-right: 1.5rem;\n    padding-left: .5rem;\n    cursor: default;\n    color: var(--black);\n}\n\n.select-wrapper .select {\n    padding: .5rem;\n    padding-right: 1.5rem;\n    position: relative;\n}\n\n.select-wrapper .select .select-popup {\n    position: absolute;\n    top: 100%;\n    right: -1px;\n    left: -1px;\n    background: var(--white);\n    border: 1px solid var(--light-grey);\n    border-radius: .125rem;\n    z-index: 20;\n    box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.2);\n}\n\n.select-wrapper .select .select-popup.\\--hidden {\n    display: none;\n}\n\n.select-wrapper .select .select-popup .filter {\n    padding: .25rem .5rem;\n    background: var(--light-grey);\n    color: var(--black);\n    font-size: 0.875rem;\n    border: none;\n    width: 100%;\n}\n\n.select-wrapper .select .select-popup .filter:focus {\n    outline: 0;\n}\n\n.select-wrapper .select .select-popup .options {\n    display: flex;\n    flex-direction: column;\n    max-height: 12rem;\n    overflow-y: scroll;\n}\n\n.select-wrapper .select .select-popup .options a {\n    display: block;\n    padding: .25rem .5rem;\n    color: var(--black);\n    text-decoration: none;\n    cursor: default;\n    font-size: 0.875rem;\n}\n\n.select-wrapper .select .select-popup .options a:hover {\n    background: rgba(0, 0, 0, 0.15);\n}\n\n.select-wrapper select:focus {\n    outline: 0;\n}\n\n.select-wrapper.\\--inline select, .select-wrapper.\\--inline .select {\n    text-align-last: right;\n}\n\n.select-wrapper.\\--inline select option {\n    direction: rtl;\n};\n\ninput[type=\"submit\"] {\n    display: block;\n    width: 100%;\n    padding: .5rem;\n    border: none;\n    background: var(--primary);\n    border-radius: .25rem;\n    cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -700,7 +700,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".modal-container {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.2);\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n\n    z-index: 15;\n}\n\n.modal-container .modal {\n    width: var(--modal-width);\n    max-width: 95%;\n    min-height: 2rem;\n    background: var(--white);\n    border-radius: .5rem;\n    padding: 1.5rem;\n    border: 1px solid var(--light-grey);\n    box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.2);\n}\n", ""]);
+exports.push([module.i, ".modal-container {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.2);\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n\n    z-index: 15;\n}\n\n.modal-container .modal {\n    width: var(--modal-width);\n    max-width: 95%;\n    min-height: 2rem;\n    max-height: 95%;\n    overflow-y: scroll;\n    background: var(--white);\n    border-radius: .5rem;\n    padding: 1.5rem;\n    border: 1px solid var(--light-grey);\n    box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.2);\n}\n", ""]);
 
 // exports
 
@@ -71075,6 +71075,30 @@ var usePrev = function usePrev() {
 
 /***/ }),
 
+/***/ "./resources/js/hooks/useQueryParams.js":
+/*!**********************************************!*\
+  !*** ./resources/js/hooks/useQueryParams.js ***!
+  \**********************************************/
+/*! exports provided: useQueryParams */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useQueryParams", function() { return useQueryParams; });
+/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! query-string */ "./node_modules/query-string/index.js");
+/* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(query_string__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _useRouter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useRouter */ "./resources/js/hooks/useRouter.js");
+
+
+var useQueryParams = function useQueryParams() {
+  var _useLocation = Object(_useRouter__WEBPACK_IMPORTED_MODULE_1__["useLocation"])(),
+      search = _useLocation.search;
+
+  return query_string__WEBPACK_IMPORTED_MODULE_0___default.a.parse(search);
+};
+
+/***/ }),
+
 /***/ "./resources/js/hooks/useRouter.js":
 /*!*****************************************!*\
   !*** ./resources/js/hooks/useRouter.js ***!
@@ -71231,8 +71255,6 @@ var contactLensMapper = function contactLensMapper(_ref) {
   if (patient) {
     contactLens.patient = Object(_patients__WEBPACK_IMPORTED_MODULE_2__["patientMapper"])(patient);
   }
-
-  console.log(brand);
 
   if (brand) {
     contactLens.brand = Object(_contactLensBrands__WEBPACK_IMPORTED_MODULE_3__["contactLensBrandMapper"])(brand);
@@ -71600,6 +71622,52 @@ var useContactLenses = function useContactLenses(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/pages/Dashboard/LabOrdersTable.js":
+/*!********************************************************!*\
+  !*** ./resources/js/pages/Dashboard/LabOrdersTable.js ***!
+  \********************************************************/
+/*! exports provided: LabOrdersTable */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LabOrdersTable", function() { return LabOrdersTable; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _components_Table__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Table */ "./resources/js/components/Table/index.js");
+
+
+
+var LabOrdersTable = function LabOrdersTable(_ref) {
+  var labOrders = _ref.labOrders;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_2__["Table"], {
+    headers: {
+      'Date Sent': 'normal',
+      'Date Required': 'normal',
+      'Date Received': 'normal',
+      'Patient': 'normal',
+      'Practice': 'normal',
+      'Lens': 'normal',
+      'Lab': 'normal',
+      'Order #': 'normal'
+    }
+  }, labOrders.map(function (labOrder) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_2__["Row"], {
+      key: labOrder.id,
+      classes: [labOrder.overdue ? '--overdue' : '', labOrder.urgent ? '--urgent' : '']
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_2__["Cell"], null, labOrder.dates.sent), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_2__["Cell"], null, labOrder.dates.required), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_2__["Cell"], null, labOrder.dates.received || '-'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_2__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/patients/".concat(labOrder.patient.id)
+    }, labOrder.patient.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_2__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/practices/".concat(labOrder.practice.id)
+    }, labOrder.practice.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_2__["Cell"], null, labOrder.lens), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_2__["Cell"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/labs/".concat(labOrder.lab.id)
+    }, labOrder.lab.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_2__["Cell"], null, labOrder.reference));
+  }));
+};
+
+/***/ }),
+
 /***/ "./resources/js/pages/Dashboard/index.js":
 /*!***********************************************!*\
   !*** ./resources/js/pages/Dashboard/index.js ***!
@@ -71612,13 +71680,81 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Dashboard", function() { return Dashboard; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_PageTitle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/PageTitle */ "./resources/js/components/PageTitle/index.js");
-/* harmony import */ var _components_Page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Page */ "./resources/js/components/Page/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _components_PageTitle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/PageTitle */ "./resources/js/components/PageTitle/index.js");
+/* harmony import */ var _components_Page__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/Page */ "./resources/js/components/Page/index.js");
+/* harmony import */ var _LabOrdersTable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./LabOrdersTable */ "./resources/js/pages/Dashboard/LabOrdersTable.js");
+/* harmony import */ var _useOverdueLabOrders__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./useOverdueLabOrders */ "./resources/js/pages/Dashboard/useOverdueLabOrders.js");
+/* harmony import */ var _useUrgentLabOrders__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./useUrgentLabOrders */ "./resources/js/pages/Dashboard/useUrgentLabOrders.js");
+
+
+
+
 
 
 
 var Dashboard = function Dashboard() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PageTitle__WEBPACK_IMPORTED_MODULE_1__["PageTitle"], null, "Dashboard"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Page__WEBPACK_IMPORTED_MODULE_2__["Page"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "putpagehere")));
+  var _useOverdueLabOrders = Object(_useOverdueLabOrders__WEBPACK_IMPORTED_MODULE_5__["useOverdueLabOrders"])(),
+      overdueLabOrders = _useOverdueLabOrders.overdueLabOrders;
+
+  var _useUrgentLabOrders = Object(_useUrgentLabOrders__WEBPACK_IMPORTED_MODULE_6__["useUrgentLabOrders"])(),
+      urgentLabOrders = _useUrgentLabOrders.urgentLabOrders;
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PageTitle__WEBPACK_IMPORTED_MODULE_2__["PageTitle"], null, "Dashboard"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Page__WEBPACK_IMPORTED_MODULE_3__["Page"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Overdue Lab Orders"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_LabOrdersTable__WEBPACK_IMPORTED_MODULE_4__["LabOrdersTable"], {
+    labOrders: overdueLabOrders || []
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "--centered"
+  }, "Only showing the latest 10 results.", ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/lab-orders?status=overdue"
+  }, "See More"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Urgent Lab Orders"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_LabOrdersTable__WEBPACK_IMPORTED_MODULE_4__["LabOrdersTable"], {
+    labOrders: urgentLabOrders || []
+  }))));
+};
+
+/***/ }),
+
+/***/ "./resources/js/pages/Dashboard/useOverdueLabOrders.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/pages/Dashboard/useOverdueLabOrders.js ***!
+  \*************************************************************/
+/*! exports provided: useOverdueLabOrders */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useOverdueLabOrders", function() { return useOverdueLabOrders; });
+/* harmony import */ var _hooks_useApi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../hooks/useApi */ "./resources/js/hooks/useApi.js");
+/* harmony import */ var _mappers_labOrders__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mappers/labOrders */ "./resources/js/mappers/labOrders.js");
+
+
+var useOverdueLabOrders = function useOverdueLabOrders() {
+  return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_0__["useApi"])('overdueLabOrders', function (_ref) {
+    var get = _ref.get;
+    return get('/api/lab-orders?status=overdue&limit=10');
+  }, _mappers_labOrders__WEBPACK_IMPORTED_MODULE_1__["labOrdersMapper"]);
+};
+
+/***/ }),
+
+/***/ "./resources/js/pages/Dashboard/useUrgentLabOrders.js":
+/*!************************************************************!*\
+  !*** ./resources/js/pages/Dashboard/useUrgentLabOrders.js ***!
+  \************************************************************/
+/*! exports provided: useUrgentLabOrders */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useUrgentLabOrders", function() { return useUrgentLabOrders; });
+/* harmony import */ var _hooks_useApi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../hooks/useApi */ "./resources/js/hooks/useApi.js");
+/* harmony import */ var _mappers_labOrders__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mappers/labOrders */ "./resources/js/mappers/labOrders.js");
+
+
+var useUrgentLabOrders = function useUrgentLabOrders() {
+  return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_0__["useApi"])('urgentLabOrders', function (_ref) {
+    var get = _ref.get;
+    return get('/api/lab-orders?status=urgent&limit=10');
+  }, _mappers_labOrders__WEBPACK_IMPORTED_MODULE_1__["labOrdersMapper"]);
 };
 
 /***/ }),
@@ -71670,6 +71806,15 @@ var getInitialValues = function getInitialValues() {
 var CreateLabOrderModal = function CreateLabOrderModal(_ref) {
   var show = _ref.show,
       hide = _ref.hide;
+
+  var handleSubmit = function handleSubmit() {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    console.log(args);
+  };
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Modal__WEBPACK_IMPORTED_MODULE_3__["Modal"], {
     show: show,
     hide: hide
@@ -71731,7 +71876,18 @@ var CreateLabOrderModal = function CreateLabOrderModal(_ref) {
         name: "date_required",
         value: values.date_required,
         min: values.date_sent
-      })));
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "input-wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "date_received"
+      }, "Date Received"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_DatePicker__WEBPACK_IMPORTED_MODULE_8__["DatePicker"], {
+        name: "date_received",
+        value: values.date_received,
+        min: values.date_sent
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "submit",
+        value: "Create"
+      }));
     }
   }));
 };
@@ -71852,8 +72008,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_PracticePicker__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../components/PracticePicker */ "./resources/js/components/PracticePicker/index.js");
 /* harmony import */ var _components_LabPicker__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../components/LabPicker */ "./resources/js/components/LabPicker/index.js");
 /* harmony import */ var _StatusPicker__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./StatusPicker */ "./resources/js/pages/LabOrders/StatusPicker/index.js");
-/* harmony import */ var _LabOrders_css__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./LabOrders.css */ "./resources/js/pages/LabOrders/LabOrders.css");
-/* harmony import */ var _LabOrders_css__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_LabOrders_css__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _hooks_useQueryParams__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../../hooks/useQueryParams */ "./resources/js/hooks/useQueryParams.js");
+/* harmony import */ var _hooks_useRouter__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../hooks/useRouter */ "./resources/js/hooks/useRouter.js");
+/* harmony import */ var _LabOrders_css__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./LabOrders.css */ "./resources/js/pages/LabOrders/LabOrders.css");
+/* harmony import */ var _LabOrders_css__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_LabOrders_css__WEBPACK_IMPORTED_MODULE_16__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -71877,13 +72035,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 var LabOrders = function LabOrders() {
+  var params = Object(_hooks_useQueryParams__WEBPACK_IMPORTED_MODULE_14__["useQueryParams"])();
+
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
       _useState2 = _slicedToArray(_useState, 2),
       practice = _useState2[0],
       setPractice = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(params.status || ''),
       _useState4 = _slicedToArray(_useState3, 2),
       status = _useState4[0],
       setStatus = _useState4[1];
@@ -71892,6 +72054,17 @@ var LabOrders = function LabOrders() {
       _useState6 = _slicedToArray(_useState5, 2),
       lab = _useState6[0],
       setLab = _useState6[1];
+
+  var _useLocation = Object(_hooks_useRouter__WEBPACK_IMPORTED_MODULE_15__["useLocation"])(),
+      pathname = _useLocation.pathname;
+
+  var history = Object(_hooks_useRouter__WEBPACK_IMPORTED_MODULE_15__["useHistory"])();
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    history.replace({
+      pathname: pathname,
+      search: "?page=".concat(params.page || 1)
+    });
+  }, []);
 
   var _useLabOrders = Object(_useLabOrders__WEBPACK_IMPORTED_MODULE_9__["useLabOrders"])({
     practice: practice,
@@ -72330,7 +72503,7 @@ var Practice = function Practice(_ref) {
     }, labOrder.lab.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, labOrder.reference));
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "--centered"
-  }, "Only showing the latest 10 results.", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, "Only showing the latest 10 results.", ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/lab-orders?practice=".concat(practice.id)
   }, "See More"))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No lab orders found."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Lenses"), practice.contactLenses.length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Table"], {
     headers: {
@@ -72358,7 +72531,7 @@ var Practice = function Practice(_ref) {
     }, contactLens.costExclPostage), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, " - "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Table__WEBPACK_IMPORTED_MODULE_6__["Cell"], null, contactLens.solutions));
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "--centered"
-  }, "Only showing the latest 10 results.", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, "Only showing the latest 10 results.", ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/contact-lenses?practice=".concat(practice.id)
   }, "See More"))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No lenses found.")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Spinner__WEBPACK_IMPORTED_MODULE_5__["Spinner"], null)));
 };

@@ -31,8 +31,6 @@ export const contactLensMapper = ({
         contactLens.patient = patientMapper(patient);
     }
 
-    console.log(brand);
-
     if (brand) {
         contactLens.brand = contactLensBrandMapper(brand);
     }
