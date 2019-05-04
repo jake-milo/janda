@@ -426,7 +426,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, ".select-wrapper, .input-wrapper {\n    border-radius: .125rem;\n    border: 1px solid var(--light-grey);\n    position: relative;\n    display: flex;\n    flex-direction: row;\n    align-items: stretch;\n    margin-bottom: .5rem;\n}\n\n.select-wrapper.\\--inline, .input-wrapper.\\--inline {\n    margin-bottom: 0;\n    margin-right: .5rem;\n}\n\n.select-wrapper:after {\n    content: '';\n    width: 1rem;\n    height: 1rem;\n    background: url('/img/dropdown.svg');\n    position: absolute;\n    top: 50%;\n    right: .25rem;\n    transform: translateY(-50%);\n    pointer-events: none;\n}\n\n.select-wrapper label, .input-wrapper label {\n    display: block;\n    font-size: .875rem;\n    opacity: 0.8;\n    padding: .5rem;\n    border-right: 1px solid var(--light-grey);\n}\n\n.select-wrapper:not(.\\--inline) label, .input-wrapper:not(.\\--inline) label {\n    width: 6rem;\n}\n\n.input-wrapper input {\n    display: block;\n    flex: 2;\n    border: none;\n    font-size: .875rem;\n    padding: 0 .5rem;\n}\n\n.input-wrapper input:focus {\n    outline: 0;\n}\n\n.select-wrapper select {\n    display: block;\n    flex: 2;\n    border: none;\n    background: none;\n    font-size: .875rem;\n    appearance: none;\n    -webkit-appearance: none;\n    padding-right: 1.5rem;\n    padding-left: .5rem;\n}\n\n.select-wrapper select:focus {\n    outline: 0;\n}\n\n.select-wrapper.\\--inline select {\n    text-align-last: right;\n}\n\n.select-wrapper.\\--inline select option {\n    direction: rtl;\n};\n", ""]);
+exports.push([module.i, ".select-wrapper, .input-wrapper {\n    border-radius: .125rem;\n    border: 1px solid var(--light-grey);\n    position: relative;\n    display: flex;\n    flex-direction: row;\n    align-items: stretch;\n    margin-bottom: .5rem;\n}\n\n.select-wrapper.\\--inline, .input-wrapper.\\--inline {\n    margin-bottom: 0;\n    margin-right: .5rem;\n}\n\n.select-wrapper:after {\n    content: '';\n    width: 1rem;\n    height: 1rem;\n    background: url('/img/dropdown.svg');\n    position: absolute;\n    top: 50%;\n    right: .25rem;\n    transform: translateY(-50%);\n    pointer-events: none;\n}\n\n.select-wrapper label, .input-wrapper label {\n    display: block;\n    font-size: .875rem;\n    opacity: 0.8;\n    padding: .5rem;\n    border-right: 1px solid var(--light-grey);\n}\n\n.select-wrapper:not(.\\--inline) label, .input-wrapper:not(.\\--inline) label {\n    width: 6rem;\n}\n\n.input-wrapper input {\n    display: block;\n    flex: 2;\n    border: none;\n    font-size: .875rem;\n    padding: 0 .5rem;\n}\n\n.input-wrapper input:focus {\n    outline: 0;\n}\n\n.select-wrapper select, .select-wrapper .select {\n    display: block;\n    flex: 2;\n    border: none;\n    background: none;\n    font-size: .875rem;\n    appearance: none;\n    -webkit-appearance: none;\n    padding-right: 1.5rem;\n    padding-left: .5rem;\n    cursor: default;\n    color: var(--black);\n}\n\n.select-wrapper .select {\n    padding: .5rem;\n    padding-right: 1.5rem;\n    position: relative;\n}\n\n.select-wrapper .select .select-popup {\n    position: absolute;\n    top: 100%;\n    right: -1px;\n    left: -1px;\n    background: var(--white);\n    border: 1px solid var(--light-grey);\n    border-radius: .125rem;\n    z-index: 20;\n    box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.2);\n}\n\n.select-wrapper .select .select-popup.\\--hidden {\n    display: none;\n}\n\n.select-wrapper .select .select-popup .filter {\n    padding: .25rem .5rem;\n    background: var(--light-grey);\n    color: var(--black);\n    font-size: 0.875rem;\n    border: none;\n    width: 100%;\n}\n\n.select-wrapper .select .select-popup .filter:focus {\n    outline: 0;\n}\n\n.select-wrapper .select .select-popup .options {\n    display: flex;\n    flex-direction: column;\n    max-height: 12rem;\n    overflow-y: scroll;\n}\n\n.select-wrapper .select .select-popup .options a {\n    display: block;\n    padding: .25rem .5rem;\n    color: var(--black);\n    text-decoration: none;\n    cursor: default;\n    font-size: 0.875rem;\n}\n\n.select-wrapper .select .select-popup .options a:hover {\n    background: rgba(0, 0, 0, 0.15);\n}\n\n.select-wrapper select:focus {\n    outline: 0;\n}\n\n.select-wrapper.\\--inline select, .select-wrapper.\\--inline .select {\n    text-align-last: right;\n}\n\n.select-wrapper.\\--inline select option {\n    direction: rtl;\n};\n", ""]);
 
 // exports
 
@@ -483,7 +483,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".modal-container {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.08);\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n\n    z-index: 15;\n}\n\n.modal-container .modal {\n    width: var(--modal-width);\n    max-width: 95%;\n    min-height: 2rem;\n    background: var(--white);\n    border-radius: .5rem;\n    padding: 1.5rem;\n    border: 1px solid var(--light-grey);\n    box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.2);\n}\n", ""]);
+exports.push([module.i, ".modal-container {\n    position: fixed;\n    top: 0;\n    right: 0;\n    bottom: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.2);\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n\n    z-index: 15;\n}\n\n.modal-container .modal {\n    width: var(--modal-width);\n    max-width: 95%;\n    min-height: 2rem;\n    background: var(--white);\n    border-radius: .5rem;\n    padding: 1.5rem;\n    border: 1px solid var(--light-grey);\n    box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.2);\n}\n", ""]);
 
 // exports
 
@@ -578,7 +578,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".table {\n    margin: 0 -1rem;\n    margin-bottom: .75rem;\n}\n\n.table .row {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    padding: 0 1rem;\n}\n\n.table .row.\\--header {\n    border-top: 1px solid var(--light-grey);\n    border-bottom: 1px solid var(--light-grey);\n}\n\n.table .row:not(.\\--header):nth-child(odd) {\n    background: rgba(220, 220, 220, 0.1);\n}\n\n.table .row .cell {\n    padding: .5rem .125rem;\n    font-size: .875rem;\n}\n\n.table .row .cell.\\--thin { flex: 3; }\n.table .row .cell.\\--normal { flex: 4; }\n.table .row .cell.\\--wide { flex: 8; }\n\n.table .row .cell.\\--header {\n    text-align: left;\n    font-weight: bold;\n    text-transform: uppercase;\n    font-size: .75rem;\n    color: var(--dark-grey);\n}\n\n.table .row .cell a {\n    color: var(--primary);\n    text-decoration: none;\n}\n\n.filters {\n    margin-bottom: 1rem;\n    display: flex;\n    flex-direction: row;\n    justify-content: flex-start;\n    align-items: center;\n}\n", ""]);
+exports.push([module.i, ".table {\n    margin: 0 -1rem;\n    margin-bottom: .75rem;\n}\n\n.table .row {\n    display: flex;\n    flex-direction: row;\n    align-items: center;\n    padding: 0 1rem;\n    /*\n     * We apply a blend mode so that we\n     * can have additive background colors\n     * elsewhere, see LabOrders.css\n     */\n    background-blend-mode: multiply;\n}\n\n.table .row.\\--header {\n    border-top: 1px solid var(--light-grey);\n    border-bottom: 1px solid var(--light-grey);\n}\n\n.table .row:not(.\\--header):nth-child(odd) {\n    /*\n     * Apply a background-color to every other child.\n     * We use background-color not background so that\n     * it won't be overriden elsewhere.\n     */\n    background-color: rgba(220, 220, 220, 0.1);\n}\n\n.table .row .cell {\n    padding: .5rem .125rem;\n    font-size: .875rem;\n}\n\n.table .row .cell.\\--thin { flex: 3; }\n.table .row .cell.\\--normal { flex: 4; }\n.table .row .cell.\\--wide { flex: 8; }\n\n.table .row .cell.\\--header {\n    text-align: left;\n    font-weight: bold;\n    text-transform: uppercase;\n    font-size: .75rem;\n    color: var(--dark-grey);\n}\n\n.table .row .cell a {\n    color: var(--primary);\n    text-decoration: none;\n}\n\n.filters {\n    margin-bottom: 1rem;\n    display: flex;\n    flex-direction: row;\n    justify-content: flex-start;\n    align-items: center;\n}\n", ""]);
 
 // exports
 
@@ -597,7 +597,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".table .row.\\--overdue, .table .row.\\--urgent {\n    position: relative;\n}\n\n.table .row.\\--overdue:before, .table .row.\\--urgent:before {\n    position: absolute;\n    content: ' ';\n    left: -10px;\n    top: 5px;\n    bottom: 5px;\n    width: 4px;\n}\n\n\n\n.table .row.\\--overdue:before{\n    background: var(--red);\n}\n\n.table .row.\\--urgent:before{\n    background: var(--orange);\n}\n", ""]);
+exports.push([module.i, ".table .row.\\--overdue, .table .row.\\--urgent {\n    position: relative;\n}\n\n.table .row.\\--overdue {\n    /**\n     * Apply a solid color using a gradient and background-image.\n     * This is weird but makes this row colour additive - every\n     * other row will still appear darker. This works because\n     * of the blend mode specified in Table.css. We have to use\n     * a gradient as an image, otherwise just setting a colour\n     * would override the colours set in Table.css\n     */\n    --row-color: rgba(197, 48, 48, 0.1);\n    background-image: linear-gradient(var(--row-color), var(--row-color));\n}\n\n.table .row.\\--urgent {\n    /**\n     * Same as above.\n     */\n    --row-color: rgba(237, 137, 54, 0.1);\n    background-image: linear-gradient(var(--row-color), var(--row-color));\n}\n\n.table .row.\\--overdue:before, .table .row.\\--urgent:before {\n    position: absolute;\n    content: ' ';\n    left: 0;\n    top: 0;\n    bottom: 0;\n    width: 4px;\n}\n\n.table .row.\\--overdue:before{\n    background: var(--red);\n}\n\n.table .row.\\--urgent:before{\n    background: var(--orange);\n}\n", ""]);
 
 // exports
 
@@ -49187,7 +49187,7 @@ if (typeof Object.assign != "function") {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54669,6 +54669,104 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./resources/js/components/FilterableSelect/index.js":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/FilterableSelect/index.js ***!
+  \***********************************************************/
+/*! exports provided: FilterableSelect */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FilterableSelect", function() { return FilterableSelect; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Spinner__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Spinner */ "./resources/js/components/Spinner/index.js");
+/* harmony import */ var _hooks_useOnClickOutside__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../hooks/useOnClickOutside */ "./resources/js/hooks/useOnClickOutside.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+var FilterableSelect = function FilterableSelect(_ref) {
+  var value = _ref.value,
+      options = _ref.options,
+      onChange = _ref.onChange,
+      filter = _ref.filter,
+      onFilterChange = _ref.onFilterChange,
+      loading = _ref.loading,
+      emptyText = _ref.emptyText;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      popped = _useState2[0],
+      setPopped = _useState2[1];
+
+  var ref = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])();
+
+  var handleSelectClick = function handleSelectClick(e) {
+    e.preventDefault();
+
+    if (!ref.current.contains(e.target)) {
+      setPopped(true);
+    }
+  };
+
+  Object(_hooks_useOnClickOutside__WEBPACK_IMPORTED_MODULE_2__["useOnClickOutside"])(ref, function () {
+    setPopped(false);
+  });
+
+  var handleFilterChange = function handleFilterChange(e) {
+    onFilterChange(e.target.value);
+  };
+
+  var handleOptionClick = function handleOptionClick(id) {
+    return function (e) {
+      e.preventDefault();
+      setPopped(false);
+      onChange(id);
+    };
+  };
+
+  var getLabel = function getLabel() {
+    return value ? options.find(function (op) {
+      return op.value === value;
+    }).label : emptyText;
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "select",
+    onClick: handleSelectClick
+  }, getLabel(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "select-popup ".concat(popped ? '' : '--hidden'),
+    ref: ref
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "search",
+    placeholder: "Filter",
+    value: filter,
+    onChange: handleFilterChange,
+    className: "filter"
+  }), !loading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "options"
+  }, options.map(function (_ref2) {
+    var value = _ref2.value,
+        label = _ref2.label;
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      href: "#",
+      key: value,
+      onClick: handleOptionClick(value)
+    }, label);
+  })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Spinner__WEBPACK_IMPORTED_MODULE_1__["Spinner"], null))));
+};
+
+/***/ }),
+
 /***/ "./resources/js/components/FloatingActionButton/FloatingActionButton.css":
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/FloatingActionButton/FloatingActionButton.css ***!
@@ -55189,6 +55287,111 @@ var usePagination = function usePagination(page, totalPages, separator, urlForma
 
 /***/ }),
 
+/***/ "./resources/js/components/PatientPicker/index.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/PatientPicker/index.js ***!
+  \********************************************************/
+/*! exports provided: PatientPicker */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PatientPicker", function() { return PatientPicker; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
+/* harmony import */ var _FilterableSelect__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../FilterableSelect */ "./resources/js/components/FilterableSelect/index.js");
+/* harmony import */ var _usePatients__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./usePatients */ "./resources/js/components/PatientPicker/usePatients.js");
+/* harmony import */ var _hooks_useDebounced__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../hooks/useDebounced */ "./resources/js/hooks/useDebounced.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+var BasePatientPicker = function BasePatientPicker(_ref) {
+  var name = _ref.name,
+      value = _ref.value,
+      formik = _ref.formik,
+      _ref$emptyText = _ref.emptyText,
+      emptyText = _ref$emptyText === void 0 ? 'Please Choose' : _ref$emptyText;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      filter = _useState2[0],
+      setFilter = _useState2[1];
+
+  var debouncedFilter = Object(_hooks_useDebounced__WEBPACK_IMPORTED_MODULE_4__["useDebounced"])(filter, 500);
+
+  var _usePatients = Object(_usePatients__WEBPACK_IMPORTED_MODULE_3__["usePatients"])({
+    filter: debouncedFilter
+  }),
+      patients = _usePatients.patients,
+      loading = _usePatients.loading;
+
+  console.log(formik);
+
+  var handleChange = function handleChange(newVal) {
+    formik.setFieldValue(name, newVal);
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: name
+  }, "Patient"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FilterableSelect__WEBPACK_IMPORTED_MODULE_2__["FilterableSelect"], {
+    emptyText: emptyText,
+    onChange: handleChange,
+    value: value,
+    filter: filter,
+    onFilterChange: setFilter,
+    options: (patients || []).map(function (patient) {
+      return {
+        value: patient.id,
+        label: patient.name
+      };
+    }),
+    loading: loading
+  }));
+};
+
+var PatientPicker = Object(formik__WEBPACK_IMPORTED_MODULE_1__["connect"])(BasePatientPicker);
+
+/***/ }),
+
+/***/ "./resources/js/components/PatientPicker/usePatients.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/PatientPicker/usePatients.js ***!
+  \**************************************************************/
+/*! exports provided: usePatients */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "usePatients", function() { return usePatients; });
+/* harmony import */ var _hooks_useApi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../hooks/useApi */ "./resources/js/hooks/useApi.js");
+/* harmony import */ var _mappers_patients__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mappers/patients */ "./resources/js/mappers/patients.js");
+
+
+var usePatients = function usePatients(_ref) {
+  var filter = _ref.filter;
+  return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_0__["useApi"])('patients', function (_ref2) {
+    var get = _ref2.get,
+        toQueryString = _ref2.toQueryString;
+    return get('/api/patients' + toQueryString({
+      filter: filter
+    }));
+  }, _mappers_patients__WEBPACK_IMPORTED_MODULE_1__["patientsMapper"], [filter]);
+};
+
+/***/ }),
+
 /***/ "./resources/js/components/PracticePicker/index.js":
 /*!*********************************************************!*\
   !*** ./resources/js/components/PracticePicker/index.js ***!
@@ -55575,6 +55778,46 @@ var useApi = function useApi(key, fetcher, transformer) {
   }, [page, fetch].concat(_toConsumableArray(dependencies))); // eslint-disable-line react-hooks/exhaustive-deps
 
   return _ref = {}, _defineProperty(_ref, key, transformed), _defineProperty(_ref, "loading", loading), _defineProperty(_ref, "page", page), _defineProperty(_ref, "pageCount", pageCount), _ref;
+};
+
+/***/ }),
+
+/***/ "./resources/js/hooks/useDebounced.js":
+/*!********************************************!*\
+  !*** ./resources/js/hooks/useDebounced.js ***!
+  \********************************************/
+/*! exports provided: useDebounced */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useDebounced", function() { return useDebounced; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+var useDebounced = function useDebounced(value, delay) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(value),
+      _useState2 = _slicedToArray(_useState, 2),
+      debounced = _useState2[0],
+      setDebounced = _useState2[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    var timeout = setTimeout(function () {
+      setDebounced(value);
+    }, delay);
+    return function () {
+      clearTimeout(timeout);
+    };
+  }, [value, delay]);
+  return debounced;
 };
 
 /***/ }),
@@ -56231,6 +56474,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/Modal */ "./resources/js/components/Modal/index.js");
 /* harmony import */ var _components_PageTitle__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../components/PageTitle */ "./resources/js/components/PageTitle/index.js");
 /* harmony import */ var _components_PracticePicker__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../components/PracticePicker */ "./resources/js/components/PracticePicker/index.js");
+/* harmony import */ var _components_LabPicker__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../components/LabPicker */ "./resources/js/components/LabPicker/index.js");
+/* harmony import */ var _components_PatientPicker__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../components/PatientPicker */ "./resources/js/components/PatientPicker/index.js");
+
+
 
 
 
@@ -56266,9 +56513,19 @@ var CreateLabOrderModal = function CreateLabOrderModal(_ref) {
         onSubmit: handleSubmit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "select-wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PatientPicker__WEBPACK_IMPORTED_MODULE_6__["PatientPicker"], {
+        name: "patient_id",
+        value: values.patient_id
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "select-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PracticePicker__WEBPACK_IMPORTED_MODULE_4__["PracticePicker"], {
         onChange: handleChange,
         value: values.practice_id
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "select-wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_LabPicker__WEBPACK_IMPORTED_MODULE_5__["LabPicker"], {
+        onChange: handleChange,
+        value: values.lab_id
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "input-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -56393,7 +56650,6 @@ var LabOrders = function LabOrders() {
 
   var _useLabFilter = Object(_useLabFilter__WEBPACK_IMPORTED_MODULE_15__["useLabFilter"])(),
       lab = _useLabFilter.lab,
-      labs = _useLabFilter.labs,
       handleLabChange = _useLabFilter.handleLabChange;
 
   var _useLabOrders = Object(_useLabOrders__WEBPACK_IMPORTED_MODULE_9__["useLabOrders"])({
@@ -56406,7 +56662,7 @@ var LabOrders = function LabOrders() {
       page = _useLabOrders.page,
       pageCount = _useLabOrders.pageCount;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
       _useState2 = _slicedToArray(_useState, 2),
       showCreateModal = _useState2[0],
       setShowCreateModal = _useState2[1];

@@ -20,11 +20,11 @@ import './LabOrders.css';
 export const LabOrders = () => {
     const { status, statuses, handleStatusChange } = useStatusFilter();
     const { practice, handlePracticeChange } = usePracticeFilter();
-    const { lab, labs, handleLabChange } = useLabFilter();
+    const { lab, handleLabChange } = useLabFilter();
 
     const { labOrders, loading, page, pageCount } = useLabOrders({ practice, status, lab });
 
-    const [showCreateModal, setShowCreateModal] = useState(false);
+    const [showCreateModal, setShowCreateModal] = useState(true);
 
     return (
         <>
@@ -54,7 +54,6 @@ export const LabOrders = () => {
                                 </select>
                             </div>
 
-
                             <div className="select-wrapper --inline">
                                 <LabPicker
                                     value={lab}
@@ -63,6 +62,7 @@ export const LabOrders = () => {
                                 />
                             </div>
                         </div>
+
                         <Table headers={{
                             'Date Sent': 'normal',
                             'Date Required': 'normal',
