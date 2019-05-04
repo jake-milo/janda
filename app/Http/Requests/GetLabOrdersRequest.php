@@ -28,6 +28,7 @@ class GetLabOrdersRequest extends FormRequest
             'practice' => 'nullable|integer|exists:practices,id',
             'status' => 'nullable|string|in:overdue,urgent,complete,incomplete',
             'lab' => 'nullable|integer|exists:labs,id',
+            'limit' => 'nullable|integer',
         ];
     }
 
@@ -43,10 +44,13 @@ class GetLabOrdersRequest extends FormRequest
             $query->$status();
         }
 
-        if($lab = $this->input('lab')) {
+        if ($lab = $this->input('lab')) {
             $query->where('lab_id', $lab);
         }
 
-        return $query->paginate(30);
+        $limit = $this->input('limit');
+        return $limit
+            ? $query->limit($limit)->get()
+            : $query->paginate(30);
     }
 }
