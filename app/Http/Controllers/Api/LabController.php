@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Lab;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GetLabsRequest;
 use App\Http\Requests\CreateLabRequest;
 use App\Http\Requests\UpdateLabRequest;
 use App\Http\Resources\Lab as LabResource;
@@ -13,9 +14,10 @@ class LabController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(GetLabsRequest $request)
     {
-        $labs = Lab::orderBy('name','asc')->paginate(30);
+        $labs = $request->getLabs();
+        // $labs = Lab::orderBy('name','asc')->paginate(30);
 
         return LabResource::collection($labs);
     }

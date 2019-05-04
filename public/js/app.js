@@ -69925,6 +69925,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
 /* harmony import */ var _useLabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./useLabs */ "./resources/js/components/LabPicker/useLabs.js");
+/* harmony import */ var _FilterableSelect__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../FilterableSelect */ "./resources/js/components/FilterableSelect/index.js");
+/* harmony import */ var _hooks_useDebounced__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../hooks/useDebounced */ "./resources/js/hooks/useDebounced.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
 
 
 
@@ -69937,33 +69949,45 @@ var BaseLabPicker = function BaseLabPicker(_ref) {
       _ref$emptyText = _ref.emptyText,
       emptyText = _ref$emptyText === void 0 ? 'Please Choose' : _ref$emptyText;
 
-  var _useLabs = Object(_useLabs__WEBPACK_IMPORTED_MODULE_2__["useLabs"])(),
-      labs = _useLabs.labs;
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      filter = _useState2[0],
+      setFilter = _useState2[1];
 
-  var handleChange = function handleChange(e) {
+  var debouncedFilter = Object(_hooks_useDebounced__WEBPACK_IMPORTED_MODULE_4__["useDebounced"])(filter, 500);
+
+  var _useLabs = Object(_useLabs__WEBPACK_IMPORTED_MODULE_2__["useLabs"])({
+    filter: debouncedFilter
+  }),
+      labs = _useLabs.labs,
+      loading = _useLabs.loading;
+
+  var handleChange = function handleChange(newVal) {
     if (formik && formik.setFieldValue) {
-      formik.setFieldValue(name, e.target.value);
+      formik.setFieldValue(name, newVal);
     }
 
     if (onChange) {
-      onChange(e.target.value);
+      onChange(newVal);
     }
   };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: name
-  }, "Lab"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-    name: name,
+  }, "Lab"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_FilterableSelect__WEBPACK_IMPORTED_MODULE_3__["FilterableSelect"], {
+    emptyText: emptyText,
+    onChange: handleChange,
     value: value,
-    onChange: handleChange
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: ""
-  }, emptyText), (labs || []).map(function (lab) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-      value: lab.id,
-      key: lab.id
-    }, lab.name);
-  })));
+    filter: filter,
+    onFilterChange: setFilter,
+    options: (labs || []).map(function (lab) {
+      return {
+        value: lab.id,
+        label: lab.name
+      };
+    }),
+    loading: loading
+  }));
 };
 
 var LabPicker = Object(formik__WEBPACK_IMPORTED_MODULE_1__["connect"])(BaseLabPicker);
@@ -69984,11 +70008,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _hooks_useApi__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../hooks/useApi */ "./resources/js/hooks/useApi.js");
 
 
-var useLabs = function useLabs() {
-  return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_1__["useApi"])('labs', function (_ref) {
-    var get = _ref.get;
-    return get('/api/labs');
-  }, _mappers_labs__WEBPACK_IMPORTED_MODULE_0__["labsMapper"]);
+var useLabs = function useLabs(_ref) {
+  var filter = _ref.filter;
+  return Object(_hooks_useApi__WEBPACK_IMPORTED_MODULE_1__["useApi"])('labs', function (_ref2) {
+    var get = _ref2.get,
+        toQueryString = _ref2.toQueryString;
+    return get('/api/labs' + toQueryString({
+      filter: filter
+    }));
+  }, _mappers_labs__WEBPACK_IMPORTED_MODULE_0__["labsMapper"], [filter]);
 };
 
 /***/ }),

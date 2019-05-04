@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'formik';
 import { useLabs } from './useLabs';
+import { FilterableSelect } from '../FilterableSelect';
+import { useDebounced } from '../../hooks/useDebounced';
 
 const BaseLabPicker = ({
     name,
@@ -9,29 +11,35 @@ const BaseLabPicker = ({
     formik,
     emptyText = 'Please Choose',
 }) => {
-    const { labs } = useLabs();
+    const [filter, setFilter] = useState('');
+    const debouncedFilter = useDebounced(filter, 500);
+    const { labs, loading } = useLabs({ filter: debouncedFilter });
 
-    const handleChange = (e) => {
+    const handleChange = (newVal) => {
         if (formik && formik.setFieldValue) {
-            formik.setFieldValue(name, e.target.value);
+            formik.setFieldValue(name, newVal);
         }
 
         if (onChange) {
-            onChange(e.target.value);
+            onChange(newVal);
         }
     };
 
     return (
         <>
             <label htmlFor={name}>Lab</label>
-            <select name={name} value={value} onChange={handleChange}>
-                <option value="">{emptyText}</option>
-                {(labs || []).map(lab => (
-                    <option value={lab.id} key={lab.id}>
-                        {lab.name}
-                    </option>
-                ))}
-            </select>
+            <FilterableSelect
+                emptyText={emptyText}
+                onChange={handleChange}
+                value={value}
+                filter={filter}
+                onFilterChange={setFilter}
+                options={(labs || []).map(lab => ({
+                    value: lab.id,
+                    label: lab.name,
+                }))}
+                loading={loading}
+            />
         </>
     );
 };
