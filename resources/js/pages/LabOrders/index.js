@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import RoundAdd from 'react-md-icon/dist/RoundAdd';
 import { PageTitle } from '../../components/PageTitle';
@@ -12,13 +12,25 @@ import { CreateLabOrderModal } from './CreateLabOrderModal';
 import { PracticePicker } from '../../components/PracticePicker';
 import { LabPicker } from '../../components/LabPicker';
 import { StatusPicker } from './StatusPicker';
+import { useQueryParams } from '../../hooks/useQueryParams';
+import { useHistory, useLocation } from '../../hooks/useRouter';
 
 import './LabOrders.css';
 
 export const LabOrders = () => {
+    const params = useQueryParams();
     const [practice, setPractice] = useState('');
-    const [status, setStatus] = useState('');
+    const [status, setStatus] = useState(params.status || '');
     const [lab, setLab] = useState('');
+
+    const { pathname } = useLocation();
+    const history = useHistory();
+    useEffect(() => {
+        history.replace({
+            pathname,
+            search: `?page=${params.page || 1}`,
+        });
+    }, []);
 
     const { labOrders, loading, page, pageCount } = useLabOrders({ practice, status, lab });
 
