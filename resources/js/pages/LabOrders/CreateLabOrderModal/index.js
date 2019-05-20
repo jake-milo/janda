@@ -20,6 +20,11 @@ const getInitialValues = () => ({
 });
 
 export const CreateLabOrderModal = ({ show, hide }) => {
+    const handleSubmit = (...args) => {
+        console.log(args);
+    };
+
+
     return (
         <Modal show={show} hide={hide}>
             <PageTitle>Create Lab Order</PageTitle>
@@ -63,6 +68,17 @@ export const CreateLabOrderModal = ({ show, hide }) => {
                                 min={values.date_sent}
                             />
                         </div>
+
+                        <div className="input-wrapper">
+                            <label htmlFor="date_received">Date Received</label>
+                            <DatePicker
+                                name="date_received"
+                                value={values.date_received}
+                                min={values.date_sent}
+                            />
+                        </div>
+
+                        <input type="submit" value="Create" />
                     </form>
                 )}
             />
