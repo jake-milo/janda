@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Patient;
 use App\Models\Practice;
 use App\Models\ContactLens\Brand;
+use App\Models\ContactLens\Type;
 
 class CreateContactLensRequest extends FormRequest
 {
@@ -29,7 +30,7 @@ class CreateContactLensRequest extends FormRequest
         return [
             'patient_id' => 'integer|required|exists:patients,id',
             'practice_id' =>'integer|required|exists:practices,id',
-            'brand_id' => 'integer|required|exists:contact_lens_brands,id',
+            'type_id' => 'integer|required|exists:contact_lens_types,id',
             'lens' => 'string|required',
             'duration' => 'string|required',
             'quantity' => 'string|required',
@@ -53,15 +54,15 @@ class CreateContactLensRequest extends FormRequest
         return Practice::find($practiceId);
     }
 
-    public function getBrand()
+    public function getType()
     {
-        $brandId = $this->input('brand_id');
+        $typeId = $this->input('type_id');
 
-        return Brand::find($brandId);
+        return Type::find($typeId);
     }
 
     public function getContactLensData()
     {
-        return $this->only('lens','brand', 'duration', 'quantity', 'price', 'shipping_cost', 'solutions');
+        return $this->only('lens', 'duration', 'quantity', 'price', 'shipping_cost', 'solutions');
     }
 }

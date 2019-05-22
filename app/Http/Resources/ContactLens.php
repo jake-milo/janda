@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Traits\HasTimestamps;
+use App\Http\Resources\ContactLens\Type;
 
 class ContactLens extends JsonResource
 {

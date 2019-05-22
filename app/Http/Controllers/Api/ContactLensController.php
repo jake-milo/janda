@@ -33,14 +33,14 @@ class ContactLensController extends Controller
     {
         $patient = $request->getPatient();
         $practice = $request->getPractice();
-        $brand = $request->getBrand();
+        $type = $request->getType();
 
         $contactLensData = $request->getContactLensData();
 
         $contactLens = new ContactLens($contactLensData);
         $contactLens->patient()->associate($patient);
         $contactLens->practice()->associate($practice);
-        $contactLens->brand()->associate($brand);
+        $contactLens->type()->associate($type);
         $contactLens->save();
 
         return ContactLensResource::make($contactLens);
@@ -70,14 +70,14 @@ class ContactLensController extends Controller
     {
         $patient = $request->getPatient();
         $practice = $request->getPractice();
-        $brand = $request->getBrand();
+        $type = $request->getType();
 
         $updates = $request->getUpdates();
 
         $contactLens->fill($updates);
         $contactLens->patient()->associate($patient);
         $contactLens->practice()->associate($practice);
-        $contactLens->brand()->associate($brand);
+        $contactLens->type()->associate($type);
         $contactLens->save();
 
         $contactLens->loadResourceRelations();
