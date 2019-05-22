@@ -4,7 +4,6 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Traits\HasTimestamps;
-use App\Http\Resources\ContactLens\Brand;
 
 class ContactLens extends JsonResource
 {
@@ -34,8 +33,8 @@ class ContactLens extends JsonResource
                 $this->whenLoaded('practice')
             ),
 
-            'brand' => Brand::make(
-                $this->whenLoaded('brand')
+            'type' => Type::make(
+                $this->whenLoaded('type')
             ),
         ]);
     }

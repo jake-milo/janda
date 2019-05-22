@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PracticesTableSeeder::class);
         $this->call(LabOrdersTableSeeder::class);
         $this->call(ContactLensBrandSeeder::class);
+        $this->call(ContactLensTypeSeeder::class);
         $this->call(ContactLensesTableSeeder::class);
         $this->call(StockSeeder::class);
     }
