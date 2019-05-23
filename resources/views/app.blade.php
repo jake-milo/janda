@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+@extends('layout')
 
-        <title>{{ env('APP_NAME') }}</title>
-    </head>
-    <body>
-        <div id="app"></div>
+@section('title', env('APP_NAME'))
 
-        <div id="modal-root"></div>
+@section('content')
+    <div id="app"></div>
 
-        <script src="/js/app.js"></script>
-    </body>
-</html>
+    <div id="modal-root"></div>
+
+    <script src="/js/app.js"></script>
+@endsection
