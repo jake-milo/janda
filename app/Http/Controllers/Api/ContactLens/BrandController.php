@@ -30,7 +30,7 @@ class BrandController extends Controller
      */
     public function store(CreateBrandRequest $request)
     {
-        $brandData = $request()->getBrandData();
+        $brandData = $request->getBrandData();
 
         $brand = Brand::create($brandData);
 

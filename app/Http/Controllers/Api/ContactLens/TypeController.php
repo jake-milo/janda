@@ -33,7 +33,7 @@ class TypeController extends Controller
      */
     public function store(CreateTypeRequest $request, Brand $brand)
     {
-        $typeData = $request()->getTypeData();
+        $typeData = $request->getTypeData();
 
         $type = $brand->types()->create($typeData);
 
