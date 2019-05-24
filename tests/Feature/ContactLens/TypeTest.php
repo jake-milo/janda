@@ -37,4 +37,48 @@ class TypeTest extends TestCase
             ],
         ]);
     }
+
+    public function testUserCanUpdateType()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        $brand = factory(Brand::class)->create();
+        $type = factory(Type::class)->create();
+        $updates = factory(Type::class)->create();
+
+        $response = $this->patch("/api/contact-lens-brands/{$brand->id}/types/{$type->id}");
+        $response->assertStatus(200);
+
+        $this->assertDatabaseHas('contact_lens_types', $updates->attributesToArray());
+    }
+
+    public function testUserCanDeleteType()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        $brand = factory(Brand::class)->create();
+        $type = factory(Type::class)->create();
+
+        $response = $this->delete("/api/contact-lens-brands/{$brand->id}/types/{$type->id}");
+        $response->assertStatus(200);
+    }
+
+    public function testUserCanRestoreType()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        $brand = factory(Brand::class)->create();
+        $type = factory(Type::class)->create();
+        $type->delete();
+
+        $response = $this->post("/api/contact-lens-brands/{$brand->id}/types/{$type->id}/restore");
+        $response->assertStatus(200);
+
+        $this->assertFalse($type->fresh()->trashed());
+    }
 }
+
+

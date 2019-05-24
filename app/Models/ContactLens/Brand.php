@@ -8,7 +8,7 @@ use App\Models\Traits\HasResourceRelations;
 
 class Brand extends Model
 {
-    use HasResourceRelations, SoftDeletes;
+    use SoftDeletes, HasResourceRelations;
 
     protected $fillable = ['name'];
 

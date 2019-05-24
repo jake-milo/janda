@@ -34,4 +34,43 @@ class BrandTest extends TestCase
             ],
         ]);
     }
+
+    public function testUserCanUpdateBrand()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        $brand = factory(Brand::class)->create();
+        $updates = factory(Brand::class)->create();
+
+        $response = $this->patch("/api/contact-lens-brands/{$brand->id}");
+        $response->assertStatus(200);
+
+        $this->assertDatabaseHas('contact_lens_brands', $updates->attributesToArray());
+    }
+
+    public function testUserCanDeleteBrand()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        $brand = factory(Brand::class)->create();
+
+        $response = $this->delete("/api/contact-lens-brands/{$brand->id}");
+        $response->assertStatus(200);
+    }
+
+    public function testUserCanRestoreBrand()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        $brand = factory(Brand::class)->create();
+        $brand->delete();
+
+        $response = $this->post("/api/contact-lens-brands/{$brand->id}/restore");
+        $response->assertStatus(200);
+
+        $this->assertFalse($brand->fresh()->trashed());
+    }
 }

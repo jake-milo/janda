@@ -50,7 +50,7 @@ class PatientTest extends TestCase
         $this->actingAs($user);
 
         $patient = factory(Patient::class)->create();
-        $updates = factory(Patient::class)->create();
+        $updates = factory(Patient::class)->make();
 
         $response = $this->patch("/api/patients/{$patient->id}", $updates->attributesToArray());
 
