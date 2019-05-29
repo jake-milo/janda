@@ -43,6 +43,8 @@ class ContactLensTest extends TestCase
                 'price',
                 'shipping_cost',
                 'solutions',
+                'R',
+                'L',
                 'patient',
                 'practice',
                 'type',
