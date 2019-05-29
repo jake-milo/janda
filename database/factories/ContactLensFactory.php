@@ -17,7 +17,7 @@ $factory->define(ContactLens::class, function (Faker $faker) {
         'price' => $faker->numberBetween(30, 200) * 100,
         'shipping_cost' => $faker->numberBetween(10, 40) * 100,
         'solutions' => $faker->word,
-        'R' => $faker->numberBetween(10,2000),
-        'L' => $faker->numberBetween(10,2000),
+        'Right' => $faker->numberBetween(10,2000),
+        'Left' => $faker->numberBetween(10,2000),
     ];
 });
