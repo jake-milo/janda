@@ -25,8 +25,8 @@ class ContactLens extends JsonResource
             'price' => $this->price,
             'shipping_cost' => $this->shipping_cost,
             'solutions' => $this->solutions,
-            'Right' => $this->Right,
-            'Left' => $this->Left,
+            'right' => $this->right,
+            'left' => $this->left,
 
             'patient' => Patient::make(
                 $this->whenLoaded('patient')

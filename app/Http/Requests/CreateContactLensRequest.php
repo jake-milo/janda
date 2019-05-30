@@ -37,8 +37,8 @@ class CreateContactLensRequest extends FormRequest
             'price' =>  'integer|required',
             'shipping_cost' =>  'integer|required',
             'solutions' => 'string|required',
-            'Right' => 'integer|required',
-            'Left' => 'integer|required',
+            'right' => 'string|required',
+            'left' => 'string|required',
         ];
     }
 
@@ -65,6 +65,6 @@ class CreateContactLensRequest extends FormRequest
 
     public function getContactLensData()
     {
-        return $this->only('lens', 'duration', 'quantity', 'price', 'shipping_cost', 'solutions', 'Right', 'Left');
+        return $this->only('lens', 'duration', 'quantity', 'price', 'shipping_cost', 'solutions', 'right', 'left');
     }
 }

@@ -25,8 +25,8 @@ class CreateContactLensesTable extends Migration
             $table->string('price');
             $table->string('shipping_cost');
             $table->string('solutions');
-            $table->integer('Right');
-            $table->integer('Left');
+            $table->string('right');
+            $table->string('left');
 
             $table->foreign('patient_id')->references('id')->on('patients');
             $table->foreign('practice_id')->references('id')->on('practices');

@@ -36,8 +36,8 @@ class UpdateContactLensRequest extends FormRequest
             'price' =>  'integer',
             'shipping_cost' =>  'integer',
             'solutions' => 'string',
-            'Right' => 'integer',
-            'Left' => 'integer',
+            'right' => 'string',
+            'left' => 'string',
         ];
     }
 
@@ -64,7 +64,7 @@ class UpdateContactLensRequest extends FormRequest
 
     public function getUpdates()
     {
-        return $this->only('lens', 'duration', 'quantity', 'price', 'shipping_cost', 'solutions', 'Right', 'Left');
+        return $this->only('lens', 'duration', 'quantity', 'price', 'shipping_cost', 'solutions', 'right', 'left');
     }
 
 }
