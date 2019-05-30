@@ -67,4 +67,32 @@ class UpdateContactLensRequest extends FormRequest
         return $this->only('lens', 'duration', 'quantity', 'price', 'shipping_cost', 'solutions', 'right', 'left');
     }
 
+            /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'exists' => ':attribute could not be found.'
+        ];
+    }
+
+        /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'patient_id' => 'Patient',
+            'practice_id' => 'Practice',
+            'type_id' => 'Type',
+        ];
+    }
+
+
+
 }

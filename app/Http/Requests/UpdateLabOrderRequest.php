@@ -62,4 +62,20 @@ class UpdateLabOrderRequest extends FormRequest
     {
         return $this->only('lens', 'reference', 'date_sent', 'date_required', 'date_received');
     }
+
+    public function messages()
+    {
+        return [
+            'exists' => ':attribute could not be found.',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'patient_id' => 'Patient',
+            'practice_id' => 'Practice',
+            'lab_id' => 'Lab',
+        ];
+    }
 }

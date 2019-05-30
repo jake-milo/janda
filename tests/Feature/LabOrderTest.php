@@ -26,7 +26,6 @@ class LabOrderTest extends TestCase
         $labOrder = factory(LabOrder::class)->make();
 
         $response = $this->post('/api/lab-orders', $labOrder->attributesToArray());
-
         $response->assertStatus(201);
         $this->assertDatabaseHas('lab_orders', $labOrder->attributesToArray());
 

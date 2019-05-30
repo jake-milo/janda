@@ -67,4 +67,34 @@ class CreateContactLensRequest extends FormRequest
     {
         return $this->only('lens', 'duration', 'quantity', 'price', 'shipping_cost', 'solutions', 'right', 'left');
     }
+
+    public function messages()
+    {
+        return [
+            'required' => ':attribute is required.',
+            'exists' => ':attribute could not be found.',
+        ];
+    }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'patient_id' => 'Patient',
+            'practice_id' => 'Practice',
+            'type_id' => 'Type',
+            'lens' => 'Lens',
+            'duration' => 'Duration',
+            'quantity' => 'Quantity',
+            'price' => 'Price',
+            'shipping_cost' => 'Shipping cost',
+            'solutions' => 'Solutions',
+            'right' => 'Right',
+            'left' => 'Left',
+        ];
+    }
 }

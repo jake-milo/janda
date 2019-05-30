@@ -63,4 +63,36 @@ class CreateLabOrderRequest extends FormRequest
     {
         return $this->only('lens', 'reference', 'date_sent', 'date_required', 'date_received');
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'required' => ':attribute is required.',
+            'exists' => ':attribute could not be found.',
+        ];
+    }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'patient_id' => 'Patient',
+            'practice_id' => 'Practice',
+            'lab_id' => 'Lab',
+            'lens' => 'Lens',
+            'reference' => 'Reference',
+            'date_sent' => 'Date sent',
+            'date_required' => 'Date required',
+            'date_received' => 'Date received',
+        ];
+    }
 }

@@ -49,6 +49,7 @@ class GetLabOrdersRequest extends FormRequest
         }
 
         $limit = $this->input('limit');
+
         return $limit
             ? $query->limit($limit)->get()
             : $query->paginate(30);
