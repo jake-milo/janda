@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Patient;
 use App\Models\Practice;
 use App\Models\ContactLens\Brand;
+use App\Models\ContactLens\Type;
 
 class ContactLensTest extends TestCase
 {
@@ -23,6 +24,7 @@ class ContactLensTest extends TestCase
         factory(Patient::class)->create();
         factory(Practice::class)->create();
         factory(Brand::class)->create();
+        factory(Type::class)->create();
 
 
         $contactLens = factory(ContactLens::class)->make();
@@ -41,9 +43,11 @@ class ContactLensTest extends TestCase
                 'price',
                 'shipping_cost',
                 'solutions',
+                'right',
+                'left',
                 'patient',
                 'practice',
-                'brand',
+                'type',
                 'time' => [
                     'created',
                     'updated',
@@ -60,6 +64,7 @@ class ContactLensTest extends TestCase
         factory(Patient::class)->create();
         factory(Practice::class)->create();
         factory(Brand::class)->create();
+        factory(Type::class)->create();
 
         $contactLens = factory(ContactLens::class)->create();
 
@@ -80,7 +85,7 @@ class ContactLensTest extends TestCase
         factory(Patient::class)->create();
         factory(Practice::class)->create();
         factory(Brand::class)->create();
-
+        factory(Type::class)->create();
 
         $contactLens = factory(ContactLens::class)->create();
 
@@ -100,7 +105,7 @@ class ContactLensTest extends TestCase
         factory(Patient::class)->create();
         factory(Practice::class)->create();
         factory(Brand::class)->create();
-
+        factory(Type::class)->create();
 
         $contactLens = factory(ContactLens::class)->create();
         $contactLens->delete();

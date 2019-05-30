@@ -8,14 +8,14 @@ use App\Models\Traits\HasResourceRelations;
 
 class Brand extends Model
 {
-    use HasResourceRelations, SoftDeletes;
+    use SoftDeletes, HasResourceRelations;
 
     protected $fillable = ['name'];
 
     protected $table = 'contact_lens_brands';
 
-    function contactLenses()
+    public function types()
     {
-        return $this->hasMany(ContactLens::class);
+        return $this->hasMany(Type::class);
     }
 }

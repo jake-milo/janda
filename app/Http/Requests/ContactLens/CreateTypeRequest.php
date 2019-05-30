@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Stock;
+namespace App\Http\Requests\ContactLens;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Stock\Variant;
 
 class CreateTypeRequest extends FormRequest
 {
@@ -26,16 +25,7 @@ class CreateTypeRequest extends FormRequest
     {
         return [
             'name' => 'string|required',
-            'variants' => 'array|required',
-            'variants.*.color' => 'string|required',
-            'variants.*.price' => 'integer|required',
-            'variants.*.year' => 'string|required',
         ];
-    }
-
-    public function getVariants()
-    {
-        return $this->input('variants');
     }
 
     public function getTypeData()
@@ -64,10 +54,6 @@ class CreateTypeRequest extends FormRequest
     {
         return [
             'name' => 'Name',
-            'variants' => 'Variants',
-            'variants.*.color' => 'Variant color',
-            'variants.*.price' => 'Variant price',
-            'variants.*.year' => 'Variant year',
         ];
     }
 }

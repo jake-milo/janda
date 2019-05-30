@@ -18,17 +18,19 @@ class CreateContactLensesTable extends Migration
             $table->timestamps();
             $table->bigInteger('patient_id')->unsigned();
             $table->bigInteger('practice_id')->unsigned();
-            $table->bigInteger('brand_id')->unsigned();
+            $table->bigInteger('type_id')->unsigned();
             $table->string('lens');
             $table->string('duration');
             $table->string('quantity');
             $table->string('price');
             $table->string('shipping_cost');
             $table->string('solutions');
+            $table->string('right');
+            $table->string('left');
 
             $table->foreign('patient_id')->references('id')->on('patients');
             $table->foreign('practice_id')->references('id')->on('practices');
-            $table->foreign('brand_id')->references('id')->on('contact_lens_brands');
+            $table->foreign('type_id')->references('id')->on('contact_lens_types');
 
             $table->softDeletes();
         });

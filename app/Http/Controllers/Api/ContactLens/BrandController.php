@@ -30,7 +30,7 @@ class BrandController extends Controller
      */
     public function store(CreateBrandRequest $request)
     {
-        $brandData = request()->getBrandData();
+        $brandData = $request->getBrandData();
 
         $brand = Brand::create($brandData);
 
@@ -59,7 +59,7 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(UpdateBrandRequest $request, Brand $brand)
     {
         $updates = $request->getUpdates();
 

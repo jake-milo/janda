@@ -32,4 +32,30 @@ class CreatePatientRequest extends FormRequest
     {
         return $this->only('name');
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'required' => ':attribute is required'
+        ];
+    }
+
+        /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'name' => 'Name',
+        ];
+    }
+
+
 }
