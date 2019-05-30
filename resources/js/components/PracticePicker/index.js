@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'formik';
 import { usePractices } from './usePractices';
 
-const BasePracticePicker = ({
+export const PracticePicker = ({
     value,
     onChange,
     formik,
@@ -12,12 +12,14 @@ const BasePracticePicker = ({
     const { practices } = usePractices();
 
     const handleChange = (e) => {
+        const val = parseInt(e.target.value, 10);
+
         if (formik && formik.setFieldValue) {
-            formik.setFieldValue(name, e.target.value);
+            formik.setFieldValue(name, val);
         }
 
         if (onChange) {
-            onChange(e.target.value);
+            onChange(val);
         }
     };
 
@@ -36,4 +38,4 @@ const BasePracticePicker = ({
     );
 }
 
-export const PracticePicker = connect(BasePracticePicker);
+PracticePicker.Formik = connect(PracticePicker);

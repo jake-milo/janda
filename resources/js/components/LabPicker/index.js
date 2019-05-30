@@ -4,7 +4,7 @@ import { useLabs } from './useLabs';
 import { FilterableSelect } from '../FilterableSelect';
 import { useDebounced } from '../../hooks/useDebounced';
 
-const BaseLabPicker = ({
+export const LabPicker = ({
     name,
     value,
     onChange,
@@ -44,4 +44,4 @@ const BaseLabPicker = ({
     );
 };
 
-export const LabPicker = connect(BaseLabPicker);
+LabPicker.Formik = connect(LabPicker);

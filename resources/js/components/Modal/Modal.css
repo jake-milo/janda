@@ -13,6 +13,10 @@
     z-index: 15;
 }
 
+.modal-container.--hide {
+    display: none;
+}
+
 .modal-container .modal {
     width: var(--modal-width);
     max-width: 95%;

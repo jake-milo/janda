@@ -7,21 +7,37 @@ import { PracticePicker } from '../../../components/PracticePicker';
 import { LabPicker } from '../../../components/LabPicker';
 import { PatientPicker } from '../../../components/PatientPicker';
 import { DatePicker } from '../../../components/DatePicker';
+import { post } from '../../../helpers';
 
 const getInitialValues = () => ({
     patient_id: '',
     practice_id: '',
     lab_id: '',
-    lens: '',
-    reference: '',
+    lens: '123',
+    reference: 'ABC',
     date_sent: moment(),
-    date_required: '',
+    date_required: moment().add(7, 'days'),
     date_received: '',
 });
 
-export const CreateLabOrderModal = ({ show, hide }) => {
-    const handleSubmit = (...args) => {
-        console.log(args);
+export const CreateLabOrderModal = ({ show, hide, onSuccess }) => {
+    const toStringOrNull = m => moment.isMoment(m) ? m.format('YYYY-MM-DD') : null;
+
+    const handleSubmit = (values, { setSubmitting }) => {
+        const { date_sent, date_required, date_received, ...labOrder } = values;
+
+        labOrder.date_sent = toStringOrNull(date_sent);
+        labOrder.date_required = toStringOrNull(date_required);
+        labOrder.date_received = toStringOrNull(date_received);
+
+        post('/api/lab-orders', labOrder)
+            .then(() => {
+                hide();
+                onSuccess();
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
 
@@ -31,18 +47,19 @@ export const CreateLabOrderModal = ({ show, hide }) => {
 
             <Formik
                 initialValues={getInitialValues()}
-                render={({ handleSubmit, handleChange, values }) => (
-                    <form onSubmit={handleSubmit}>
+                onSubmit={handleSubmit}
+                render={({ handleSubmit: onSubmit, handleChange, values }) => (
+                    <form onSubmit={onSubmit}>
                         <div className="select-wrapper">
-                            <PatientPicker name="patient_id" value={values.patient_id} />
+                            <PatientPicker.Formik name="patient_id" value={values.patient_id} />
                         </div>
 
                         <div className="select-wrapper">
-                            <PracticePicker name="practice_id" value={values.practice_id} />
+                            <PracticePicker.Formik name="practice_id" value={values.practice_id} />
                         </div>
 
                         <div className="select-wrapper">
-                            <LabPicker name="lab_id" value={values.lab_id} />
+                            <LabPicker.Formik name="lab_id" value={values.lab_id} />
                         </div>
 
                         <div className="input-wrapper">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import RoundAdd from 'react-md-icon/dist/RoundAdd';
 import { PageTitle } from '../../components/PageTitle';
@@ -32,9 +32,14 @@ export const LabOrders = () => {
         });
     }, []);
 
-    const { labOrders, loading, page, pageCount } = useLabOrders({ practice, status, lab });
+    const { labOrders, loading, page, pageCount, refresh } = useLabOrders({ practice, status, lab });
 
-    const [showCreateModal, setShowCreateModal] = useState(true);
+    const [showCreateModal, setShowCreateModal] = useState(false);
+
+    const handleLabOrderCreated = () => {
+        console.log('refreshing');
+        refresh();
+    };
 
     return (
         <>
@@ -118,7 +123,11 @@ export const LabOrders = () => {
                     <RoundAdd />
                 </FloatingActionButton>
 
-                <CreateLabOrderModal show={showCreateModal} hide={() => setShowCreateModal(false)} />
+                <CreateLabOrderModal
+                    show={showCreateModal}
+                    hide={() => setShowCreateModal(false)}
+                    onSuccess={handleLabOrderCreated}
+                />
             </Page>
         </>
     );

@@ -4,7 +4,7 @@ import { FilterableSelect } from '../FilterableSelect';
 import { usePatients } from './usePatients';
 import { useDebounced } from '../../hooks/useDebounced';
 
-const BasePatientPicker = ({
+export const PatientPicker = ({
     name,
     value,
     formik,
@@ -37,5 +37,5 @@ const BasePatientPicker = ({
     );
 };
 
-export const PatientPicker = connect(BasePatientPicker);
+PatientPicker.Formik = connect(PatientPicker);
 

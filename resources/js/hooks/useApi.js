@@ -25,14 +25,19 @@ export const useApi = (key, fetcher, transformer, dependencies = []) => {
 
     const resetPage = () => setPage(1);
 
+    let cancelled = false;
     useEffect(() => {
         setLoading(true);
 
         fetch({ page, get, toQueryString, resetPage })
             .then(data => {
+                if (cancelled) return;
+
                 setResponse(data);
                 setLoading(false);
             });
+
+        return () => cancelled = true;
     }, [page, fetch, ...dependencies]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return {
