@@ -7,10 +7,11 @@ import { usePrev } from '../../hooks/usePrev';
 export const useLabOrders = ({ practice, status, lab }) => {
     const [reloadToggle, setReloadToggle] = useState(false);
 
-    const [filters, prevFilters] = usePrev([practice, status, lab]);
+    const [filters, prevFilters] = usePrev(practice, status, lab);
 
     const fetch = ({ get, page, toQueryString, resetPage }) => {
         if (!arraysEqual(filters, prevFilters)) {
+            console.log('reset');
             resetPage();
         }
 
