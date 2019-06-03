@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { PageTitle } from '../../components/PageTitle';
 import { Page } from '../../components/Page';
-import { LabOrdersTable } from './LabOrdersTable';
+import { LabOrdersTable } from '../../components/LabOrdersTable';
 import { useOverdueLabOrders } from './useOverdueLabOrders';
 import { useUrgentLabOrders } from './useUrgentLabOrders';
 
