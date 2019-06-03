@@ -18,8 +18,7 @@ export const post = (url, data) => {
         .then(res => res.json())
         .then(data => {
             if (has(data)('errors')) {
-                console.log(data);
-                throw 'error - this needs handling';
+                throw data.errors;
             } else {
                 return data;
             }

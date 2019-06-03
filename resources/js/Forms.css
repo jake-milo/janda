@@ -67,6 +67,7 @@
     padding: .5rem;
     padding-right: 1.5rem;
     position: relative;
+    min-width: 14rem;
 }
 
 .select-wrapper .select .select-popup {
@@ -128,14 +129,29 @@
 
 .select-wrapper.--inline select option {
     direction: rtl;
-};
+}
 
 input[type="submit"] {
     display: block;
     width: 100%;
-    padding: .5rem;
+    padding: .75rem;
     border: none;
     background: var(--primary);
     border-radius: .25rem;
     cursor: pointer;
+    color: var(--white);
+    font-weight: bold;
+    transition: opacity .2s;
+}
+
+input[type="submit"]:hover {
+    opacity: 0.95;
+}
+
+p.field-error {
+    font-size: .875rem;
+    color: var(--red);
+    margin-top: -.25rem;
+    margin-bottom: .75rem;
+    text-align: right;
 }
