@@ -46,33 +46,33 @@ export const LabOrders = () => {
             <PageTitle>Lab Orders</PageTitle>
 
             <Page>
+                <div className="filters">
+                    <div className="select-wrapper --inline">
+                        <PracticePicker
+                            value={practice}
+                            onChange={setPractice}
+                            emptyText="All"
+                        />
+                    </div>
+
+                    <div className="select-wrapper --inline">
+                        <StatusPicker
+                            value={status}
+                            onChange={setStatus}
+                        />
+                    </div>
+
+                    <div className="select-wrapper --inline">
+                        <LabPicker
+                            value={lab}
+                            onChange={setLab}
+                            emptyText="All"
+                        />
+                    </div>
+                </div>
+
                 {!loading ? (
                     <>
-                        <div className="filters">
-                            <div className="select-wrapper --inline">
-                                <PracticePicker
-                                    value={practice}
-                                    onChange={setPractice}
-                                    emptyText="All"
-                                />
-                            </div>
-
-                            <div className="select-wrapper --inline">
-                                <StatusPicker
-                                    value={status}
-                                    onChange={setStatus}
-                                />
-                            </div>
-
-                            <div className="select-wrapper --inline">
-                                <LabPicker
-                                    value={lab}
-                                    onChange={setLab}
-                                    emptyText="All"
-                                />
-                            </div>
-                        </div>
-
                         <Table headers={{
                             'Date Sent': 'normal',
                             'Date Required': 'normal',

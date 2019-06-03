@@ -3,9 +3,7 @@ import {useApi} from '../../hooks/useApi';
 
 export const useLabs = ({ filter }) => useApi(
     'labs',
-    ({ get, toQueryString }) => get('/api/labs' + toQueryString({
-        filter,
-    })),
+    ({ get, toQueryString }) => get('/api/labs' + toQueryString({ filter })),
     labsMapper,
     [filter],
 );

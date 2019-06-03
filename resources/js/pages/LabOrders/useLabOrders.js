@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useApi } from '../../hooks/useApi';
+import { usePaginatedApi } from '../../hooks/useApi';
 import { labOrdersMapper } from '../../mappers/labOrders';
 import { arraysEqual } from '../../helpers';
 import { usePrev } from '../../hooks/usePrev';
@@ -23,7 +23,7 @@ export const useLabOrders = ({ practice, status, lab }) => {
     }
 
     return {
-        ...useApi(
+        ...usePaginatedApi(
             'labOrders',
             fetch,
             labOrdersMapper,

@@ -10,7 +10,6 @@ import { Pagination } from '../../components/Pagination';
 export const Labs = () => {
     const { labs, loading, page, pageCount } = useLabs();
 
-
     return (
         <>
             <PageTitle>Labs</PageTitle>

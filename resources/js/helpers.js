@@ -1,3 +1,5 @@
+import qs from 'query-string';
+
 export const get = url => fetch(url, { credentials: 'same-origin' })
     .then(res => res.json());
 
@@ -37,3 +39,5 @@ export const arraysEqual = (a, b) => {
 };
 
 export const has = obj => prop => Object.prototype.hasOwnProperty.call(obj, prop);
+
+export const toQueryString = obj => '?' + qs.stringify(obj);
