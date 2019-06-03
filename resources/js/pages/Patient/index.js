@@ -5,6 +5,7 @@ import { Page } from '../../components/Page';
 import { Spinner } from '../../components/Spinner';
 import { usePatient } from './usePatient';
 import { Table, Row, Cell } from '../../components/Table';
+import { ContactLensesTable } from '../../components/ContactLensesTable';
 
 export const Patient = ({ match }) => {
     const { patient } = usePatient(match.params.id);
@@ -47,39 +48,7 @@ export const Patient = ({ match }) => {
 
                         <h2>Lenses</h2>
                         {patient.contactLenses.length > 0 ? (
-                            <Table headers={{
-                                'Practice': 'normal',
-                                'Brand': 'normal',
-                                'Lens': 'normal',
-                                'Duration': 'normal',
-                                'Quantity': 'normal',
-                                'Price': 'thin',
-                                'Cost Excl. Postage': 'thin',
-                                'Notes': 'normal',
-                                'Solutions': 'normal',
-                            }}>
-                                {patient.contactLenses.map(contactLens => (
-                                    <Row key={contactLens.id}>
-                                        <Cell>
-                                            <Link to={`/practices/${contactLens.practice.id}`}>
-                                                {contactLens.practice.name}
-                                            </Link>
-                                        </Cell>
-                                        <Cell>
-                                            <Link to={`/contact-lens-brands/${contactLens.brand.id}`}>
-                                                {contactLens.brand.name}
-                                            </Link>
-                                        </Cell>
-                                        <Cell>{contactLens.lens}</Cell>
-                                        <Cell>{contactLens.duration}</Cell>
-                                        <Cell>{contactLens.quantity}</Cell>
-                                        <Cell size="thin">{contactLens.cost}</Cell>
-                                        <Cell size="thin">{contactLens.costExclPostage}</Cell>
-                                        <Cell> - </Cell>
-                                        <Cell>{contactLens.solutions}</Cell>
-                                    </Row>
-                                ))}
-                            </Table>
+                            <ContactLensesTable contactLenses={patient.contactLenses} />
                         ) : (
                             <p>No lenses found.</p>
                         )}

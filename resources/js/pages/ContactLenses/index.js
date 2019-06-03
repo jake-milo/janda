@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { PageTitle } from '../../components/PageTitle';
 import { Page } from '../../components/Page';
-import { Table, Row, Cell } from '../../components/Table';
 import { Spinner } from '../../components/Spinner';
 import { Pagination } from '../../components/Pagination';
 import { useContactLenses } from './useContactLenses';
 import { PracticePicker } from '../../components/PracticePicker';
+import { ContactLensesTable } from '../../components/ContactLensesTable';
 
 export const ContactLenses = () => {
     const [practice, setPractice] = useState('');
@@ -29,45 +28,7 @@ export const ContactLenses = () => {
                             </div>
                         </div>
 
-                        <Table headers={{
-                            'Patient': 'normal',
-                            'Practice': 'normal',
-                            'Brand': 'normal',
-                            'Lens': 'wide',
-                            'Duration': 'thin',
-                            'Quantity': 'normal',
-                            'Price': 'thin',
-                            'Cost Excl. Postage': 'thin',
-                            'Notes': 'normal',
-                            'Solutions': 'normal',
-                        }}>
-                            {contactLenses.map(contactLens => (
-                                <Row key={contactLens.id}>
-                                    <Cell>
-                                        <Link to={`/patients/${contactLens.patient.id}`}>
-                                            {contactLens.patient.name}
-                                        </Link>
-                                    </Cell>
-                                    <Cell>
-                                        <Link to={`/practices/${contactLens.practice.id}`}>
-                                            {contactLens.practice.name}
-                                        </Link>
-                                    </Cell>
-                                    <Cell>
-                                        <Link to={`/contact-lens-brands/${contactLens.brand.id}`}>
-                                            {contactLens.brand.name}
-                                        </Link>
-                                    </Cell>
-                                    <Cell size="wide">{contactLens.lens}</Cell>
-                                    <Cell size="thin">{contactLens.duration}</Cell>
-                                    <Cell>{contactLens.quantity}</Cell>
-                                    <Cell size="thin">{contactLens.cost}</Cell>
-                                    <Cell size="thin">{contactLens.costExclPostage}</Cell>
-                                    <Cell> - </Cell>
-                                    <Cell>{contactLens.solutions}</Cell>
-                                </Row>
-                            ))}
-                        </Table>
+                        <ContactLensesTable contactLenses={contactLenses} />
 
                         <Pagination
                             page={page}

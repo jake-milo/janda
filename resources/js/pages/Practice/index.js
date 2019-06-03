@@ -5,6 +5,7 @@ import { PageTitle } from '../../components/PageTitle';
 import { Page } from '../../components/Page';
 import { Spinner } from '../../components/Spinner';
 import { Table, Row, Cell } from '../../components/Table';
+import { ContactLensesTable } from '../../components/ContactLensesTable';
 
 export const Practice = ({ match }) => {
     const { practice } = usePractice(match.params.id);
@@ -56,40 +57,8 @@ export const Practice = ({ match }) => {
                     <h2>Lenses</h2>
                     {practice.contactLenses.length > 0 ? (
                         <>
-                            <Table headers={{
-                                'Patient': 'normal',
-                                'Brand': 'normal',
-                                'Lens': 'normal',
-                                'Duration': 'normal',
-                                'Quantity': 'normal',
-                                'Price': 'thin',
-                                'Cost Excl. Postage': 'thin',
-                                'Notes': 'normal',
-                                'Solutions': 'normal',
-                            }}>
-                                {practice.contactLenses.map(contactLens => (
-                                    <Row key={contactLens.id}>
-                                        <Cell>
-                                            <Link to={`/patients/${contactLens.patient.id}`}>
-                                                {contactLens.patient.name}
-                                            </Link>
-                                        </Cell>
-                                        <Cell>
-                                            <Link to={`/contact-lens-brands/${contactLens.brand.id}`}>
-                                                {contactLens.brand.name}
-                                            </Link>
-                                        </Cell>
-                                        <Cell>{contactLens.lens}</Cell>
-                                        <Cell>{contactLens.duration}</Cell>
-                                        <Cell>{contactLens.quantity}</Cell>
-                                        <Cell size="thin">{contactLens.cost}</Cell>
-                                        <Cell size="thin">{contactLens.costExclPostage}</Cell>
-                                        <Cell> - </Cell>
-                                        <Cell>{contactLens.solutions}</Cell>
-                                    </Row>
-                                ))}
-                            </Table>
-
+                            <ContactLensesTable contactLenses={practice.contactLenses} />
+                            
                             <p className="--centered">
                                 Only showing the latest 10 results.
                                 {' '}
