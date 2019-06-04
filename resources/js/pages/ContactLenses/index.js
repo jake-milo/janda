@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import RoundAdd from 'react-md-icon/dist/RoundAdd';
 import { PageTitle } from '../../components/PageTitle';
 import { Page } from '../../components/Page';
 import { Spinner } from '../../components/Spinner';
@@ -6,28 +7,36 @@ import { Pagination } from '../../components/Pagination';
 import { useContactLenses } from './useContactLenses';
 import { PracticePicker } from '../../components/PracticePicker';
 import { ContactLensesTable } from '../../components/ContactLensesTable';
+import { FloatingActionButton } from '../../components/FloatingActionButton';
+import { CreateContactLensModal } from './CreateContactLensModal';
 
 export const ContactLenses = () => {
     const [practice, setPractice] = useState('');
     const { contactLenses, loading, page, pageCount } = useContactLenses({ practice });
+
+    const [showCreateModal, setShowCreateModal] = useState(false);
+
+    const handleContactLensCreated = () => {
+        //
+    };
 
     return (
         <>
             <PageTitle>Contact Lenses</PageTitle>
 
             <Page>
+                <div className="filters">
+                    <div className="select-wrapper">
+                        <PracticePicker
+                            value={practice}
+                            onChange={setPractice}
+                            emptyText="All"
+                        />
+                    </div>
+                </div>
+
                 {!loading ? (
                     <>
-                        <div className="filters">
-                            <div className="select-wrapper">
-                                <PracticePicker
-                                    value={practice}
-                                    onChange={setPractice}
-                                    emptyText="All"
-                                />
-                            </div>
-                        </div>
-
                         <ContactLensesTable contactLenses={contactLenses} />
 
                         <Pagination
@@ -39,8 +48,17 @@ export const ContactLenses = () => {
                 ) : (
                     <Spinner />
                 )}
-            </Page>
 
+                <FloatingActionButton onClick={() => setShowCreateModal(true)}>
+                    <RoundAdd />
+                </FloatingActionButton>
+
+                <CreateContactLensModal
+                    show={showCreateModal}
+                    hide={() => setShowCreateModal(false)}
+                    onSuccess={handleContactLensCreated}
+                />
+            </Page>
         </>
     );
 };

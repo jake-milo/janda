@@ -1,9 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import RoundAdd from 'react-md-icon/dist/RoundAdd';
 import { PageTitle } from '../../components/PageTitle';
 import { Page } from '../../components/Page';
-import { Table, Row, Cell } from '../../components/Table';
 import { Spinner } from '../../components/Spinner';
 import { Pagination } from '../../components/Pagination';
 import { FloatingActionButton } from '../../components/FloatingActionButton';
@@ -14,9 +12,9 @@ import { LabPicker } from '../../components/LabPicker';
 import { StatusPicker } from './StatusPicker';
 import { useQueryParams } from '../../hooks/useQueryParams';
 import { useHistory, useLocation } from '../../hooks/useRouter';
+import { LabOrdersTable } from '../../components/LabOrdersTable';
 
 import './LabOrders.css';
-import { LabOrdersTable } from '../../components/LabOrdersTable';
 
 export const LabOrders = () => {
     const params = useQueryParams();
@@ -75,7 +73,7 @@ export const LabOrders = () => {
                 {!loading ? (
                     <>
                         <LabOrdersTable labOrders={labOrders} />
-                        
+
                         <Pagination
                             page={page}
                             totalPages={pageCount}
