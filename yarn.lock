@@ -5792,7 +5792,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
+prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -5990,6 +5990,13 @@ react-md-icon@^1.13.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/react-md-icon/-/react-md-icon-1.13.0.tgz#cfc1edcdd144c97e08cf0695fc4427f5d67d346e"
   integrity sha512-00ZvMqs9uA89FLPC7eLPf4Z8qWlSKdHaBnCj9nNiazTvkvQFjihNab9hDTjRmv5tOorCUEmuxYWIWsJvxJm2bw==
+
+react-number-format@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-4.0.8.tgz#f0a0dfbeded9a746f4d8b309926cf55d7effebb2"
+  integrity sha512-A7Gi4BSkdgnyY1DO98lwFvWujcyxZCOfNP6tkiOKkwMY6oFP+JTQhd/vQ9dXXs6TpyXfl1eBJdueokM7o98YTQ==
+  dependencies:
+    prop-types "^15.7.2"
 
 react-onclickoutside@^6.7.1:
   version "6.8.0"

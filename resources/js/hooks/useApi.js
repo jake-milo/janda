@@ -32,11 +32,14 @@ const useApiCore = (key, fetcher, transformer, dependencies, page = null, setPag
             args.resetPage = () => setPage(1);
         }
 
-        fetch(args)
-            .then(data => {
+        const promise = fetch(args);
+
+        if (promise) {
+            promise.then(data => {
                 setResponse(data);
                 setLoading(false);
             });
+        }
     }, [page, fetch, ...dependencies]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return {

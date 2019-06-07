@@ -68,6 +68,12 @@
     padding-right: 1.5rem;
     position: relative;
     min-width: 14rem;
+    user-select: none;
+}
+
+.select-wrapper .select.--disabled {
+    background: var(--light-grey);
+    color: var(--dark-grey);
 }
 
 .select-wrapper .select .select-popup {
