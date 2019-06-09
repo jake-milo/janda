@@ -25,11 +25,12 @@ class UpdateTypeRequest extends FormRequest
     {
         return [
             'name' => 'string',
+            'duration' => 'string',
         ];
     }
 
     public function getUpdates()
     {
-        return $this->only('name');
+        return $this->only('name', 'duration');
     }
 }

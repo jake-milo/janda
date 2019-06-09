@@ -38,7 +38,6 @@ class ContactLensTest extends TestCase
             'data' => [
                 'id',
                 'lens',
-                'duration',
                 'quantity',
                 'price',
                 'shipping_cost',

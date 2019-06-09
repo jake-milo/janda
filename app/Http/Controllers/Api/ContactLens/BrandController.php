@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ContactLens\Brand as BrandResource;
 use App\Http\Requests\ContactLens\CreateBrandRequest;
 use App\Http\Requests\ContactLens\UpdateBrandRequest;
+use App\Http\Requests\GetBrandRequest;
 
 class BrandController extends Controller
 {
@@ -15,9 +16,9 @@ class BrandController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(GetBrandRequest $request)
     {
-        $brand = Brand::paginate(30);
+        $brand = $request->getBrands();
 
         return BrandResource::collection($brand);
     }

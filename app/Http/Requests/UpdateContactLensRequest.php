@@ -64,7 +64,7 @@ class UpdateContactLensRequest extends FormRequest
 
     public function getUpdates()
     {
-        return $this->only('lens', 'duration', 'quantity', 'price', 'shipping_cost', 'solutions', 'right', 'left');
+        return $this->only('lens', 'quantity', 'price', 'shipping_cost', 'solutions', 'right', 'left');
     }
 
             /**

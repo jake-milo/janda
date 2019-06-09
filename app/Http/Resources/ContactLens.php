@@ -20,7 +20,6 @@ class ContactLens extends JsonResource
         return $this->withTimestamps([
             'id' => $this->id,
             'lens' => $this->lens,
-            'duration' => $this->duration,
             'quantity' => $this->quantity,
             'price' => $this->price,
             'shipping_cost' => $this->shipping_cost,

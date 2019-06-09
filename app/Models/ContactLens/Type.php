@@ -10,7 +10,7 @@ class Type extends Model
 {
     use HasResourceRelations, SoftDeletes;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'duration'];
 
     protected $resourceRelations = ['brand'];
 
