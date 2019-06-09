@@ -29,6 +29,7 @@ class TypeTest extends TestCase
             'data' => [
                 'id',
                 'name',
+                'duration',
                 'brand',
                 'time' => [
                     'created',

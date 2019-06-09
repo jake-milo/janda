@@ -20,7 +20,6 @@ class CreateContactLensesTable extends Migration
             $table->bigInteger('practice_id')->unsigned();
             $table->bigInteger('type_id')->unsigned();
             $table->string('lens');
-            $table->string('duration');
             $table->string('quantity');
             $table->string('price');
             $table->string('shipping_cost');

@@ -25,12 +25,13 @@ class CreateTypeRequest extends FormRequest
     {
         return [
             'name' => 'string|required',
+            'duration' => 'string|required',
         ];
     }
 
     public function getTypeData()
     {
-        return $this->only('name');
+        return $this->only('name', 'duration');
     }
 
             /**
@@ -54,6 +55,7 @@ class CreateTypeRequest extends FormRequest
     {
         return [
             'name' => 'Name',
+            'duration' => 'Duration'
         ];
     }
 }

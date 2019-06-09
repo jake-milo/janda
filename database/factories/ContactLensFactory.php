@@ -12,7 +12,6 @@ $factory->define(ContactLens::class, function (Faker $faker) {
         'practice_id' => Practice::inRandomOrder()->first()->id,
         'type_id' => Type::inRandomOrder()->first()->id,
         'lens' => $faker->colorName, //color name is similar to real data
-        'duration' => $faker->randomElement(['daily','monthly']),
         'quantity' => $faker->numberBetween(1, 9) . ' months',
         'price' => $faker->numberBetween(30, 200) * 100,
         'shipping_cost' => $faker->numberBetween(10, 40) * 100,

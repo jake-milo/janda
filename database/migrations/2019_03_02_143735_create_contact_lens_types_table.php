@@ -16,6 +16,7 @@ class CreateContactLensTypesTable extends Migration
         Schema::create('contact_lens_types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->string('duration');
             $table->timestamps();
             $table->bigInteger('brand_id')->unsigned();
             $table->softDeletes();
