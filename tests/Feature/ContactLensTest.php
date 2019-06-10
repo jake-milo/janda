@@ -37,7 +37,6 @@ class ContactLensTest extends TestCase
         $response->assertJsonStructure([
             'data' => [
                 'id',
-                'lens',
                 'quantity',
                 'price',
                 'solutions',

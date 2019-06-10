@@ -30,7 +30,6 @@ class UpdateContactLensRequest extends FormRequest
             'patient_id' => 'integer|exists:patients,id',
             'practice_id' =>'integer|exists:practices,id',
             'type_id' =>'integer|exists:contact_lens_types,id',
-            'lens' => 'string',
             'duration' => 'string',
             'quantity' => 'string',
             'price' =>  'integer',
@@ -63,7 +62,7 @@ class UpdateContactLensRequest extends FormRequest
 
     public function getUpdates()
     {
-        return $this->only('lens', 'quantity', 'price', 'solutions', 'right', 'left');
+        return $this->only('quantity', 'price', 'solutions', 'right', 'left');
     }
 
             /**

@@ -19,7 +19,6 @@ class ContactLens extends JsonResource
     {
         return $this->withTimestamps([
             'id' => $this->id,
-            'lens' => $this->lens,
             'quantity' => $this->quantity,
             'price' => $this->price,
             'solutions' => $this->solutions,
