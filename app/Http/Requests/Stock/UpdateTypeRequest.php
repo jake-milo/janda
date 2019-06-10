@@ -38,6 +38,7 @@ class UpdateTypeRequest extends FormRequest
             'variants.*.color' => 'string',
             'variants.*.price' => 'integer',
             'variants.*.year' => 'string',
+            'variants.*.quantity' => 'integer',
         ];
     }
 

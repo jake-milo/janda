@@ -20,6 +20,7 @@ class CreateVariantsTable extends Migration
             $table->string('color');
             $table->bigInteger('price');
             $table->string('year');
+            $table->integer('quantity');
 
             $table->foreign('type_id')->references('id')->on('types');
             $table->softDeletes();

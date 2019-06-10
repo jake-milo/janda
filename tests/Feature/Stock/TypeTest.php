@@ -67,6 +67,7 @@ class TypeTest extends TestCase
                     'color' => 'colorupdate',
                     'price' => 9000,
                     'year' => '3035',
+                    'quantity' => 34,
                 ],
             ],
         ];
