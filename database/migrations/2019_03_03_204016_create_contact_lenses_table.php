@@ -22,7 +22,6 @@ class CreateContactLensesTable extends Migration
             $table->string('lens');
             $table->string('quantity');
             $table->string('price');
-            $table->string('shipping_cost');
             $table->string('solutions');
             $table->string('right');
             $table->string('left');

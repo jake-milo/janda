@@ -14,7 +14,6 @@ $factory->define(ContactLens::class, function (Faker $faker) {
         'lens' => $faker->colorName, //color name is similar to real data
         'quantity' => $faker->numberBetween(1, 9) . ' months',
         'price' => $faker->numberBetween(30, 200) * 100,
-        'shipping_cost' => $faker->numberBetween(10, 40) * 100,
         'solutions' => $faker->word,
         'right' => '' . $faker->numberBetween(10,2000),
         'left' => '' . $faker->numberBetween(10,2000),

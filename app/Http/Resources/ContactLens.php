@@ -22,7 +22,6 @@ class ContactLens extends JsonResource
             'lens' => $this->lens,
             'quantity' => $this->quantity,
             'price' => $this->price,
-            'shipping_cost' => $this->shipping_cost,
             'solutions' => $this->solutions,
             'right' => $this->right,
             'left' => $this->left,
