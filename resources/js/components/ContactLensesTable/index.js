@@ -31,12 +31,12 @@ export const ContactLensesTable = ({ contactLenses, remove = [] }) => {
                         <br />
                         {contactLens.type.name}
                     </Cell>
+                    <Cell when={hasHeader(h.DURATION)} size="thin">{contactLens.type.duration}</Cell>
                     <Cell when={hasHeader(h.PRESCRIPTION)} size="wide">
                         <strong>Left:</strong> {contactLens.left}
                         &nbsp;
                         <strong>Right:</strong> {contactLens.right}
                     </Cell>
-                    <Cell when={hasHeader(h.DURATION)} size="thin">{contactLens.type.duration}</Cell>
                     <Cell when={hasHeader(h.QUANTITY)}>{contactLens.quantity}</Cell>
                     <Cell when={hasHeader(h.PRICE)} size="thin">{contactLens.price}</Cell>
                     <Cell when={hasHeader(h.SOLUTIONS)}>{contactLens.solutions || '-'}</Cell>
