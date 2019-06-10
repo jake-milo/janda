@@ -21,7 +21,7 @@ class CreateContactLensesTable extends Migration
             $table->bigInteger('type_id')->unsigned();
             $table->string('lens');
             $table->string('quantity');
-            $table->string('price');
+            $table->bigInteger('price')->unsigned();
             $table->string('solutions');
             $table->string('right');
             $table->string('left');

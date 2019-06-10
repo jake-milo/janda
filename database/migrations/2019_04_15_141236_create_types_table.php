@@ -18,7 +18,8 @@ class CreateTypesTable extends Migration
             $table->timestamps();
             $table->bigInteger('brand_id')->unsigned();
             $table->string('name');
-
+            $table->bigInteger('buy')->unsigned();
+            $table->bigInteger('sell')->unsigned();
 
             $table->foreign('brand_id')->references('id')->on('brands');
             $table->softDeletes();

@@ -32,9 +32,10 @@ class TypeTest extends TestCase
 
         $response = $this->post("/api/brands/{$brand->id}/types", [
             'name' => $type->name,
+            'buy' => $type->buy,
+            'sell' => $type->sell,
             'variants' => $variants->toArray(),
         ]);
-
         $response->assertStatus(201);
         $this->assertDatabaseHas('types', $type->attributesToArray());
 
@@ -42,6 +43,8 @@ class TypeTest extends TestCase
             'data' => [
                 'id',
                 'name',
+                'buy',
+                'sell',
                 'variants' => [],
                 'brand',
             ],
@@ -61,6 +64,8 @@ class TypeTest extends TestCase
 
         $updates = [
             'name' => 'yeet',
+            'buy' => 200000,
+            'sell' => 7000000,
             'variants' => [
                 [
                     'id' => 1,

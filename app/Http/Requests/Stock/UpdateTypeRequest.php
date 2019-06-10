@@ -33,6 +33,8 @@ class UpdateTypeRequest extends FormRequest
     {
         return [
             'name' => 'string',
+            'buy' => 'integer',
+            'sell' => 'integer',
             'variants' => 'array',
             'variants.*.id' => 'exists:variants',
             'variants.*.color' => 'string',
@@ -52,7 +54,7 @@ class UpdateTypeRequest extends FormRequest
 
     public function getUpdates()
     {
-        return $this->only('name');
+        return $this->only('name', 'buy', 'sell');
     }
 
     /**

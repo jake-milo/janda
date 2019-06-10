@@ -19,6 +19,8 @@ class Type extends JsonResource
         return $this->withTimeStamps([
             'id' => $this->id,
             'name' => $this->name,
+            'buy' => $this->buy,
+            'sell' => $this->sell,
 
             'brand' => Brand::make(
                 $this->whenLoaded('brand')

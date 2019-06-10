@@ -26,6 +26,8 @@ class CreateTypeRequest extends FormRequest
     {
         return [
             'name' => 'string|required',
+            'buy' => 'integer|required',
+            'sell' => 'integer|required',
             'variants' => 'array|required',
             'variants.*.color' => 'string|required',
             'variants.*.price' => 'integer|required',
@@ -43,7 +45,7 @@ class CreateTypeRequest extends FormRequest
 
     public function getTypeData()
     {
-        return $this->only('name');
+        return $this->only('name', 'buy', 'sell');
     }
 
             /**
@@ -67,6 +69,8 @@ class CreateTypeRequest extends FormRequest
     {
         return [
             'name' => 'Name',
+            'buy' => 'Buy',
+            'sell' => 'Sell',
             'variants' => 'Variants',
             'variants.*.color' => 'Variant color',
             'variants.*.price' => 'Variant price',

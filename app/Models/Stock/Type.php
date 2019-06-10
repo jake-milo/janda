@@ -12,7 +12,7 @@ class Type extends Model
 
     protected $resourceRelations = ['brand', 'variants'];
 
-    protected $fillable = ['name',];
+    protected $fillable = ['name', 'buy', 'sell'];
 
     protected $with = ['variants'];
 
