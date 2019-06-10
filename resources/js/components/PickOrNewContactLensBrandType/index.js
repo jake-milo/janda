@@ -40,8 +40,10 @@ export const PickOrNewContactLensBrandType = ({
 
     const toggleBrandMode = () => {
         handleBrandChange('');
-        handleTypeChange('');
-        handleDurationChange('');
+        if (!creatingType || creatingBrand) {
+            handleTypeChange('');
+            handleDurationChange('');
+        }
         setCreatingBrand(!creatingBrand);
     };
 
