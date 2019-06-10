@@ -68,6 +68,8 @@ class TypeTest extends TestCase
                     'price' => 9000,
                     'year' => '3035',
                     'quantity' => 34,
+                    'eyesize' => '20mm',
+                    'dbl' => '20mm',
                 ],
             ],
         ];

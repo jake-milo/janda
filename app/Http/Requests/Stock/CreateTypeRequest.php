@@ -31,6 +31,8 @@ class CreateTypeRequest extends FormRequest
             'variants.*.price' => 'integer|required',
             'variants.*.year' => 'string|required',
             'variants.*.quantity' => 'integer|required',
+            'variants.*.eyesize' => 'string|required',
+            'variants.*.dbl' => 'string|required',
         ];
     }
 
@@ -70,6 +72,8 @@ class CreateTypeRequest extends FormRequest
             'variants.*.price' => 'Variant price',
             'variants.*.year' => 'Variant year',
             'variants.*.quantity' => 'Variant quantity',
+            'variants.*.eyesize' => 'Variant eyesize',
+            'variants.*.dbl' => 'Variant DBL',
         ];
     }
 }
