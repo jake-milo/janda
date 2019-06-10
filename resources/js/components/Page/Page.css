@@ -28,3 +28,44 @@
 .page a:hover {
     text-decoration: underline;
 }
+
+.tabs {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.tabs a {
+    display: block;
+    padding: .5rem 1rem;
+    color: var(--black);
+    text-decoration: none;
+    margin-right: .25rem;
+    background: var(--white);
+    border: 1px solid var(--light-grey);
+    border-bottom: none;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    background: var(--off-white);
+    color: var(--dark-grey);
+}
+
+.tabs a.--active {
+    background: var(--white);
+    color: var(--black);
+    position: relative;
+}
+
+.tabs a.--active:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    height: 2px;
+    background: var(--white);
+}
+
+.tabs + .page {
+    border-top-left-radius: 0;
+}
