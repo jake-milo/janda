@@ -14,7 +14,11 @@
 }
 
 .select-wrapper.--create, .input-wrapper.--create {
-    margin-right: 2rem;
+    padding-right: 2rem;
+}
+
+.select-wrapper.--create:after {
+    right: 2.25rem;
 }
 
 .select-wrapper:after {
@@ -43,7 +47,7 @@
 
 .select-wrapper.--create .create, .input-wrapper.--create .create {
     position: absolute;
-    left: 100%;
+    right: 0;
     top: 0;
     bottom: 0;
     font-size: 1.5rem;
@@ -52,6 +56,7 @@
     justify-content: center;
     width: 2rem;
     color: var(--primary);
+    border-left: 1px solid var(--light-grey);
 }
 
 .input-wrapper input {
