@@ -23,6 +23,8 @@ class CreateVariantsTable extends Migration
             $table->integer('quantity');
             $table->string('eyesize');
             $table->string('dbl');
+            $table->bigInteger('buy')->nullable();
+            $table->bigInteger('sell')->nullable();
 
             $table->foreign('type_id')->references('id')->on('types');
             $table->softDeletes();

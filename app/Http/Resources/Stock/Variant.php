@@ -24,6 +24,8 @@ class Variant extends JsonResource
             'quantity' => $this->quantity,
             'eyesize' => $this->eyesize,
             'dbl' => $this->dbl,
+            'buy' => $this->buy,
+            'sell' => $this->sell,
 
             'type' => Type::make(
                 $this->whenLoaded('type')

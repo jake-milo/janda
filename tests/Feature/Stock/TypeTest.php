@@ -36,6 +36,7 @@ class TypeTest extends TestCase
             'sell' => $type->sell,
             'variants' => $variants->toArray(),
         ]);
+
         $response->assertStatus(201);
         $this->assertDatabaseHas('types', $type->attributesToArray());
 
@@ -75,6 +76,8 @@ class TypeTest extends TestCase
                     'quantity' => 34,
                     'eyesize' => '20mm',
                     'dbl' => '20mm',
+                    'buy' => NULL,
+                    'sell' => NULL,
                 ],
             ],
         ];

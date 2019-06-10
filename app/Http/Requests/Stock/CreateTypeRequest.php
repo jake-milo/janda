@@ -35,6 +35,8 @@ class CreateTypeRequest extends FormRequest
             'variants.*.quantity' => 'integer|required',
             'variants.*.eyesize' => 'string|required',
             'variants.*.dbl' => 'string|required',
+            'variants.*.buy' => 'integer|nullable',
+            'variants.*.sell' => 'integer|nullable',
         ];
     }
 
