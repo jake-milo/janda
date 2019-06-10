@@ -14,6 +14,8 @@ class Type extends Model
 
     protected $resourceRelations = ['brand'];
 
+    protected $with = ['brand'];
+
     protected $table = 'contact_lens_types';
 
     public function contactLenses()

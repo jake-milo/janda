@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ContactLens\Brand as BrandResource;
 use App\Http\Requests\ContactLens\CreateBrandRequest;
 use App\Http\Requests\ContactLens\UpdateBrandRequest;
-use App\Http\Requests\GetBrandRequest;
+use App\Http\Requests\ContactLens\GetBrandRequest;
 
 class BrandController extends Controller
 {

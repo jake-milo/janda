@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\ContactLens;
 
 use App\Models\ContactLens\Brand;
 use Illuminate\Foundation\Http\FormRequest;

@@ -1,15 +1,30 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Spinner } from '../Spinner';
 import { useOnClickOutside } from '../../hooks/useOnClickOutside';
 
-export const FilterableSelect = ({ value, options, onChange, filter, onFilterChange, loading, emptyText }) => {
+export const FilterableSelect = ({
+    value,
+    options,
+    onChange,
+    filter,
+    onFilterChange,
+    loading,
+    emptyText,
+    disabled = false,
+}) => {
     const [popped, setPopped] = useState(false);
     const ref = useRef();
+
+    useEffect(() => {
+        if (disabled && popped) {
+            setPopped(false);
+        }
+    }, [disabled]);
 
     const handleSelectClick = (e) => {
         e.preventDefault();
 
-        if (!ref.current.contains(e.target)) {
+        if (!ref.current.contains(e.target) && !disabled) {
             setPopped(true);
         }
     };
@@ -35,7 +50,7 @@ export const FilterableSelect = ({ value, options, onChange, filter, onFilterCha
 
     return (
         <>
-            <div className="select" onClick={handleSelectClick}>
+            <div className={`select ${disabled ? '--disabled' : ''}`} onClick={handleSelectClick}>
                 {getLabel()}
 
                 <div className={`select-popup ${popped ? '' : '--hidden'}`} ref={ref}>

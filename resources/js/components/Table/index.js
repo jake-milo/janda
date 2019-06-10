@@ -40,8 +40,8 @@ export const Row = ({ children, header = false, classes = [], }) => (
     </div>
 );
 
-export const Cell = ({ children, size = 'normal', header = false }) => (
+export const Cell = ({ children, size = 'normal', header = false, when = true }) => when ? (
     <div className={`cell --${size} ${header ? '--header' : ''}`}>
         {children}
     </div>
-);
+) : null;

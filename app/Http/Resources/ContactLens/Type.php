@@ -25,7 +25,5 @@ class Type extends JsonResource
                 $this->whenLoaded('brand')
             ),
         ]);
-
-
     }
 }
