@@ -9,13 +9,20 @@ export const ContactLensBrandPicker = ({
     value,
     formik,
     emptyText = 'Please Choose',
+    onChange,
 }) => {
     const [filter, setFilter] = useState('');
     const debouncedFilter = useDebounced(filter, 500);
     const { brands, loading } = useBrands({ filter: debouncedFilter });
 
     const handleChange = (newVal) => {
-        formik.setFieldValue(name, newVal);
+        if (formik && formik.setFieldValue) {
+            formik.setFieldValue(name, newVal);
+        }
+
+        if (onChange) {
+            onChange(newVal);
+        }
     };
 
     return (
@@ -38,4 +45,3 @@ export const ContactLensBrandPicker = ({
 };
 
 ContactLensBrandPicker.Formik = connect(ContactLensBrandPicker);
-

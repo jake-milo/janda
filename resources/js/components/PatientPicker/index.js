@@ -8,6 +8,7 @@ export const PatientPicker = ({
     name,
     value,
     formik,
+    onChange,
     emptyText = 'Please Choose',
 }) => {
     const [filter, setFilter] = useState('');
@@ -15,7 +16,13 @@ export const PatientPicker = ({
     const { patients, loading } = usePatients({ filter: debouncedFilter });
 
     const handleChange = (newVal) => {
-        formik.setFieldValue(name, newVal);
+        if (formik && formik.setFieldValue) {
+            formik.setFieldValue(name, newVal);
+        }
+
+        if (onChange) {
+            onChange(newVal);
+        }
     };
 
     return (
@@ -38,4 +45,3 @@ export const PatientPicker = ({
 };
 
 PatientPicker.Formik = connect(PatientPicker);
-

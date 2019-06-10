@@ -2,7 +2,7 @@ import React from 'react';
 import NumberFormat from 'react-number-format';
 import { connect } from 'formik';
 
-export const MoneyInput = ({ value, onChange, formik, name }) => {
+export const MoneyInput = ({ value, onChange, formik, name, disabled = false }) => {
     const handleChange = ({ floatValue }) => {
         const value = floatValue * 100;
 
@@ -22,6 +22,7 @@ export const MoneyInput = ({ value, onChange, formik, name }) => {
             thousandSeparator
             prefix="£"
             onValueChange={handleChange}
+            disabled={disabled}
         />
     );
 }

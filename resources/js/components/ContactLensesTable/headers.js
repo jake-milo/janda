@@ -1,7 +1,6 @@
 export const PATIENT = 'Patient';
 export const PRACTICE = 'Practice';
-export const BRAND = 'Brand';
-export const MODEL = 'Model';
+export const MAKE = 'Make';
 export const LENS = 'Lens';
 export const DURATION = 'Duration';
 export const QUANTITY = 'Quantity';
@@ -13,8 +12,7 @@ export const getHeaders = (remove) => {
     const headers = {
         [PATIENT]: 'normal',
         [PRACTICE]: 'normal',
-        [BRAND]: 'normal',
-        [MODEL]: 'normal',
+        [MAKE]: 'normal',
         [LENS]: 'wide',
         [DURATION]: 'thin',
         [QUANTITY]: 'normal',
@@ -28,7 +26,6 @@ export const getHeaders = (remove) => {
             delete headers[r];
         }
     });
-    
+
     return headers;
 };
-        

@@ -9,9 +9,11 @@ import { PracticePicker } from '../../components/PracticePicker';
 import { ContactLensesTable } from '../../components/ContactLensesTable';
 import { FloatingActionButton } from '../../components/FloatingActionButton';
 import { CreateContactLensModal } from './CreateContactLensModal';
+import { ContactLensBrandPicker } from '../../components/ContactLensBrandPicker';
 
 export const ContactLenses = () => {
     const [practice, setPractice] = useState('');
+    const [brand, setBrand] = useState('');
     const { contactLenses, loading, page, pageCount } = useContactLenses({ practice });
 
     const [showCreateModal, setShowCreateModal] = useState(false);
@@ -26,10 +28,18 @@ export const ContactLenses = () => {
 
             <Page>
                 <div className="filters">
-                    <div className="select-wrapper">
+                    <div className="select-wrapper --inline">
                         <PracticePicker
                             value={practice}
                             onChange={setPractice}
+                            emptyText="All"
+                        />
+                    </div>
+
+                    <div className="select-wrapper --inline">
+                        <ContactLensBrandPicker
+                            value={brand}
+                            onChange={setBrand}
                             emptyText="All"
                         />
                     </div>

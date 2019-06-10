@@ -22,8 +22,8 @@ export const ContactLensTypePicker = ({
     );
 
     const handleChange = (newVal) => {
-        if (formik && formik.setFieldvalue) {
-            formik.setFieldvalue(name, newVal);
+        if (formik && formik.setFieldValue) {
+            formik.setFieldValue(name, newVal);
         }
 
         if (onChange) {

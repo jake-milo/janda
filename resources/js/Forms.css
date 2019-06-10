@@ -13,6 +13,10 @@
     margin-right: .5rem;
 }
 
+.select-wrapper.--create, .input-wrapper.--create {
+    margin-right: 2rem;
+}
+
 .select-wrapper:after {
     content: '';
     width: 1rem;
@@ -37,6 +41,19 @@
     width: 6rem;
 }
 
+.select-wrapper.--create .create, .input-wrapper.--create .create {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    bottom: 0;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    color: var(--primary);
+}
+
 .input-wrapper input {
     display: block;
     flex: 2;
@@ -47,6 +64,11 @@
 
 .input-wrapper input:focus {
     outline: 0;
+}
+
+.input-wrapper input[disabled] {
+    background: var(--light-grey);
+    color: var(--dark-grey);
 }
 
 .select-wrapper select, .select-wrapper .select {
@@ -86,6 +108,8 @@
     border-radius: .125rem;
     z-index: 20;
     box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    text-align-last: left;
 }
 
 .select-wrapper .select .select-popup.--hidden {

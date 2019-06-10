@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import RoundAdd from 'react-md-icon/dist/RoundAdd';
+import RoundList from 'react-md-icon/dist/RoundList';
 import { Modal } from '../../../components/Modal';
 import { PageTitle } from '../../../components/PageTitle';
 import { PracticePicker } from '../../../components/PracticePicker';
@@ -10,29 +12,54 @@ import { FieldError } from '../../../components/FieldError';
 import { ContactLensBrandPicker } from '../../../components/ContactLensBrandPicker';
 import { ContactLensTypePicker } from '../../../components/ContactLensTypePicker';
 import { MoneyInput } from '../../../components/MoneyInput';
+import { PickOrNewPatient } from '../../../components/PatientPicker/PickOrNewPatient';
+import { Form } from '../../../components/Form';
+import { PickOrNewContactLensBrandType } from '../../../components/PickOrNewContactLensBrandType';
 
 const getInitialValues = () => ({
-    patient_id: '',
+    patient: '',
     practice_id: '',
-    brand_id: '',
-    type_id: '',
-    lens: '',
+    brand: '',
+    type: '',
+    duration: '',
     left: '',
     right: '',
     cost: '',
 });
 
 const schema = yup.object().shape({
-    patient_id: yup.number().integer().positive().required().label('Patient'),
+    patient: yup.mixed().when('$creatingPatient', {
+        is: true,
+        then: yup.string(),
+        otherwise: yup.number().integer().positive(),
+    }).required().label('Patient'),
     practice_id: yup.number().integer().positive().required().label('Practice'),
-    brand_id: yup.number().integer().positive().required().label('Brand'),
-    type_id: yup.number().integer().positive().required().label('Model'),
-    lens: yup.string().required().label('Lens'),
+    brand: yup.mixed().when('$creatingBrand', {
+        is: true,
+        then: yup.string(),
+        otherwise: yup.number().integer().positive(),
+    }).required().label('Brand'),
+    brand: yup.string().label('Brand'),
+    type: yup.mixed().when('$creatingType', {
+        is: true,
+        then: yup.string(),
+        otherwise: yup.number().integer().positive(),
+    }).required().label('Model'),
+    duration: yup.mixed().when('$creatingType', {
+        is: true,
+        then: yup.string().required(),
+        otherwise: yup.mixed().notRequired(),
+    }),
     left: yup.string().required().label('Left'),
     right: yup.string().required().label('Right'),
+    cost: yup.number().integer().positive().required().label('Cost'),
 });
 
 export const CreateContactLensModal = ({ show, hide, onSuccess }) => {
+    const [creatingPatient, setCreatingPatient] = useState(false);
+    const [creatingBrand, setCreatingBrand] = useState(false);
+    const [creatingType, setCreatingType] = useState(false);
+
     const handleSubmit = (values, { setSubmitting }) => {
         post('/api/contact-lenses', values)
             .then(() => {
@@ -50,37 +77,38 @@ export const CreateContactLensModal = ({ show, hide, onSuccess }) => {
         <Modal show={show} hide={hide}>
             <PageTitle>Create Contact Lens</PageTitle>
 
-            <Formik
+            <Form
                 validationSchema={schema}
+                getContext={() => ({ creatingPatient, creatingBrand, creatingType })}
                 initialValues={getInitialValues()}
                 onSubmit={handleSubmit}
-                render={({ handleSubmit: onSubmit, handleChange, values }) => (console.log(values),
+                render={({ handleSubmit: onSubmit, handleChange, values }) => (
                     <form onSubmit={onSubmit}>
-                        <div className="select-wrapper">
-                            <PatientPicker.Formik name="patient_id" value={values.patient_id} />
-                        </div>
-                        <FieldError name="patient_id" />
+                        <PickOrNewPatient.Formik
+                            name="patient"
+                            value={values.patient}
+                            creating={creatingPatient}
+                            setCreating={setCreatingPatient}
+                        />
+                        <FieldError name="patient" />
 
                         <div className="select-wrapper">
                             <PracticePicker.Formik name="practice_id" value={values.practice_id} />
                         </div>
                         <FieldError name="practice_id" />
 
-                        <div className="select-wrapper">
-                            <ContactLensBrandPicker.Formik name="brand_id" value={values.brand_id} />
-                        </div>
-                        <FieldError name="brand_id" />
-
-                        <div className="select-wrapper">
-                            <ContactLensTypePicker.Formik name="type_id" value={values.type_id} brandId={values.brand_id} />
-                        </div>
-                        <FieldError name="type_id" />
-
-                        <div className="input-wrapper">
-                            <label htmlFor="lens">Lens</label>
-                            <input type="text" id="lens" name="lens" onChange={handleChange} value={values.lens} />
-                        </div>
-                        <FieldError name="lens" />
+                        <PickOrNewContactLensBrandType.Formik
+                            brandName="brand"
+                            brand={values.brand}
+                            creatingBrand={creatingBrand}
+                            setCreatingBrand={setCreatingBrand}
+                            typeName="type"
+                            type={values.type}
+                            creatingType={creatingType}
+                            setCreatingType={setCreatingType}
+                            durationName="duration"
+                            duration={values.duration}
+                        />
 
                         <div className="input-wrapper">
                             <label htmlFor="lens">Left</label>
@@ -98,6 +126,7 @@ export const CreateContactLensModal = ({ show, hide, onSuccess }) => {
                             <label htmlFor="cost">Cost</label>
                             <MoneyInput.Formik value={values.cost} name="cost" />
                         </div>
+                        <FieldError name="cost" />
 
                         <input type="submit" value="Create" />
                     </form>

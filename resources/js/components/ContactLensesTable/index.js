@@ -24,18 +24,25 @@ export const ContactLensesTable = ({ contactLenses, remove = [] }) => {
                             {contactLens.practice.name}
                         </Link>
                     </Cell>
-                    <Cell when={hasHeader(h.BRAND)}>
+                    <Cell when={hasHeader(h.MAKE)}>
                         <Link to={`/contact-lens-brands/${contactLens.type.brand.id}`}>
                             {contactLens.type.brand.name}
                         </Link>
+                        <br />
+                        {contactLens.type.name}
                     </Cell>
-                    <Cell when={hasHeader(h.MODEL)}>{contactLens.type.name}</Cell>
-                    <Cell when={hasHeader(h.LENS)} size="wide">{contactLens.lens}</Cell>
-                    <Cell when={hasHeader(h.DURATION)} size="thin">{contactLens.duration}</Cell>
+                    <Cell when={hasHeader(h.LENS)} size="wide">
+                        {contactLens.lens}
+                        <br />
+                        <strong>Left:</strong> {contactLens.left}
+                        &nbsp;
+                        <strong>Right:</strong> {contactLens.right}
+                    </Cell>
+                    <Cell when={hasHeader(h.DURATION)} size="thin">{contactLens.type.duration}</Cell>
                     <Cell when={hasHeader(h.QUANTITY)}>{contactLens.quantity}</Cell>
                     <Cell when={hasHeader(h.PRICE)} size="thin">{contactLens.cost}</Cell>
                     <Cell when={hasHeader(h.PRICE_EXCL_POSTAGE)} size="thin">{contactLens.costExclPostage}</Cell>
-                    <Cell when={hasHeader(h.SOLUTIONS)}>{contactLens.solutions}</Cell>
+                    <Cell when={hasHeader(h.SOLUTIONS)}>{contactLens.solutions || '-'}</Cell>
                 </Row>
             ))}
         </Table>
