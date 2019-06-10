@@ -1,16 +1,10 @@
 import React, { useState } from 'react';
-import { Formik } from 'formik';
 import * as yup from 'yup';
-import RoundAdd from 'react-md-icon/dist/RoundAdd';
-import RoundList from 'react-md-icon/dist/RoundList';
 import { Modal } from '../../../components/Modal';
 import { PageTitle } from '../../../components/PageTitle';
 import { PracticePicker } from '../../../components/PracticePicker';
-import { PatientPicker } from '../../../components/PatientPicker';
 import { post } from '../../../helpers';
 import { FieldError } from '../../../components/FieldError';
-import { ContactLensBrandPicker } from '../../../components/ContactLensBrandPicker';
-import { ContactLensTypePicker } from '../../../components/ContactLensTypePicker';
 import { MoneyInput } from '../../../components/MoneyInput';
 import { PickOrNewPatient } from '../../../components/PatientPicker/PickOrNewPatient';
 import { Form } from '../../../components/Form';
@@ -24,7 +18,9 @@ const getInitialValues = () => ({
     duration: '',
     left: '',
     right: '',
+    quantity: '',
     cost: '',
+    solutions: '',
 });
 
 const schema = yup.object().shape({
@@ -52,7 +48,9 @@ const schema = yup.object().shape({
     }),
     left: yup.string().required().label('Left'),
     right: yup.string().required().label('Right'),
+    quantity: yup.string().required().label('Quantity'),
     cost: yup.number().integer().positive().required().label('Cost'),
+    solutions: yup.string().label('Solutions'),
 });
 
 export const CreateContactLensModal = ({ show, hide, onSuccess }) => {
@@ -61,7 +59,21 @@ export const CreateContactLensModal = ({ show, hide, onSuccess }) => {
     const [creatingType, setCreatingType] = useState(false);
 
     const handleSubmit = (values, { setSubmitting }) => {
-        post('/api/contact-lenses', values)
+        const { patient, brand, type, duration, ...contactLens } = values;
+
+        contactLens[creatingPatient ? 'patient' : 'patient_id'] = creatingPatient
+            ? { name: patient }
+            : patient;
+
+        contactLens[creatingBrand ? 'brand' : 'brand_id'] = creatingBrand
+            ? { name: brand }
+            : brand;
+
+        contactLens[creatingType ? 'type' : 'type_id'] = creatingType
+            ? { name: type }
+            : type;
+
+        post('/api/contact-lenses', contactLens)
             .then(() => {
                 hide();
                 onSuccess();
@@ -123,10 +135,22 @@ export const CreateContactLensModal = ({ show, hide, onSuccess }) => {
                         <FieldError name="right" />
 
                         <div className="input-wrapper">
+                            <label htmlFor="quantity">Quantity</label>
+                            <input type="text" id="quantity" name="quantity" onChange={handleChange} value={values.quantity} />
+                        </div>
+                        <FieldError name="quantity" />
+
+                        <div className="input-wrapper">
                             <label htmlFor="cost">Cost</label>
                             <MoneyInput.Formik value={values.cost} name="cost" />
                         </div>
                         <FieldError name="cost" />
+
+                        <div className="input-wrapper">
+                            <label htmlFor="solutions">Solutions</label>
+                            <input type="text" id="solutions" name="solutions" onChange={handleChange} value={values.solutions} />
+                        </div>
+                        <FieldError name="solutions" />
 
                         <input type="submit" value="Create" />
                     </form>
