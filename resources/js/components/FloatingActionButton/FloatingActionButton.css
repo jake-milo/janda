@@ -1,10 +1,24 @@
+.fab-container {
+    position: fixed;
+    bottom: var(--fab-offset);
+    right: var(--fab-offset);
+    width: var(--fab-size);
+    height: var(--fab-size);
+    border-radius: 50%;
+    cursor: pointer;
+
+    animation-name: appear;
+    animation-timing-function: cubic-bezier(.61,.16,.24,1.53);
+    animation-delay: .5s;
+    animation-duration: .2s;
+    animation-fill-mode: forwards;
+    transform: scale(0);
+}
+
 .fab {
     text-align: center;
     color: var(--white) !important;
     font-size: var(--fab-font-size);
-    position: fixed;
-    bottom: var(--fab-offset);
-    right: var(--fab-offset);
     width: var(--fab-size);
     height: var(--fab-size);
     background: var(--primary);
@@ -19,4 +33,14 @@
 .fab:hover {
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.25);
     transform: translateY(-.25rem);
+}
+
+@keyframes appear {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }

@@ -12,6 +12,9 @@ export const Stock = () => {
                 'Frames': () => (
                     <FrameStock />
                 ),
+                'Frame Manufacturers': () => (
+                    <p>test</p>
+                ),
                 'Contact Lenses': () => (
                     <p>even bigger stock</p>
                 ),

@@ -17,7 +17,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = Brand::paginate(30);
+        $brands = Brand::orderBy('name')->get();
 
         return BrandResource::collection($brands);
     }
