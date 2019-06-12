@@ -30,11 +30,12 @@ class BrandController extends Controller
      */
     public function store(CreateBrandRequest $request)
     {
+        $manufacturer = $request->getManufacturer();
         $brandData = $request->getBrandData();
 
-        $brand = Brand::create($brandData);
-
-        $brand->loadResourceRelations();
+        $brand = new Brand($brandData);
+        $brand->manufacturer()->associate($manufacturer);
+        $brand->save();
 
         return BrandResource::make($brand);
     }

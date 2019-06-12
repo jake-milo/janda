@@ -6,21 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Traits\HasResourceRelations;
 
-class Brand extends Model
+class Manufacturer extends Model
 {
     use SoftDeletes, HasResourceRelations;
 
-    protected $resourceRelations = ['types'];
+    protected $resourceRelations = ['brands'];
 
     protected $fillable = ['name'];
 
-    public function types()
+    public function brands()
     {
-        return $this->hasMany(Type::class);
-    }
-
-    public function manufacturer()
-    {
-        return $this->belongsTo(Manufacturer::class);
+        return $this->hasMany(Brand::class);
     }
 }

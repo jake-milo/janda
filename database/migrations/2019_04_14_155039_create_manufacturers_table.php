@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBrandsTable extends Migration
+class CreateManufacturersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateBrandsTable extends Migration
      */
     public function up()
     {
-        Schema::create('brands', function (Blueprint $table) {
+        Schema::create('manufacturers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
-            $table->bigInteger('manufacturer_id')->unsigned();
             $table->string('name');
+            $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('manufacturer_id')->references('id')->on('manufacturers');
         });
     }
 
@@ -31,6 +28,6 @@ class CreateBrandsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('brands');
+        Schema::dropIfExists('manufacturers');
     }
 }

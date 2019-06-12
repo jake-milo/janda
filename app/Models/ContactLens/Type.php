@@ -5,6 +5,7 @@ namespace App\Models\ContactLens;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Traits\HasResourceRelations;
+use App\Models\ContactLens;
 
 class Type extends Model
 {

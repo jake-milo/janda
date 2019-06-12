@@ -5,7 +5,7 @@ namespace App\Http\Resources\Stock;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Traits\HasTimestamps;
 
-class Brand extends JsonResource
+class Manufacturer extends JsonResource
 {
     use HasTimestamps;
     /**
@@ -16,16 +16,12 @@ class Brand extends JsonResource
      */
     public function toArray($request)
     {
-        return $this->withTimeStamps([
+        return $this->withTimestamps([
             'id' => $this->id,
             'name' => $this->name,
 
-            'manufacturer' => Manufacturer::make(
-                $this->whenLoaded('brand')
-            ),
-
-            'types' => Type::collection(
-                $this->whenLoaded('types')
+            'brands' => Brand::collection(
+                $this->whenLoaded('brands')
             ),
         ]);
     }

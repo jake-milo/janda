@@ -43,6 +43,8 @@ Route::apiResource('contact-lens-brands.types', 'ContactLens\TypeController', [
 ]);
 Route::post('/contact-lens-brands/{brand}/types/{type}/restore', 'ContactLens\TypeController@restore');
 
+Route::apiResource('manufacturers', 'Stock\ManufacturerController');
+Route::post('/manufacturers/{manufacturer}/restore', 'Stock\ManufacturerController@restore');
 
 Route::apiResource('brands', 'Stock\BrandController');
 Route::post('/brands/{brand}/restore', 'Stock\BrandController@restore');

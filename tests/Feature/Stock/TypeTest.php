@@ -9,20 +9,19 @@ use App\Models\Stock\Brand;
 use App\Models\User;
 use App\Models\Stock\Type;
 use App\Models\Stock\Variant;
+use App\Models\Stock\Manufacturer;
 
 class TypeTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, WithFaker;
 
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
+
     public function testUserCanCreateType()
     {
         $user = factory(User::class)->create();
         $this->actingAs($user);
+
+        factory(Manufacturer::class)->create();
 
         $brand = factory(Brand::class)->create();
 
@@ -56,6 +55,8 @@ class TypeTest extends TestCase
     {
         $user = factory(User::class)->create();
         $this->actingAs($user);
+
+        factory(Manufacturer::class)->create();
 
         factory(Brand::class)->create()
             ->types()
@@ -97,6 +98,7 @@ class TypeTest extends TestCase
         $user = factory(User::class)->create();
         $this->actingAs($user);
 
+        factory(Manufacturer::class)->create();
         $type = factory(Brand::class)->create()
              ->types()
              ->save(factory(Type::class)->make());
@@ -121,6 +123,7 @@ class TypeTest extends TestCase
         $user = factory(User::class)->create();
         $this->actingAs($user);
 
+        factory(Manufacturer::class)->create();
         $type = factory(Brand::class)->create()
              ->types()
              ->save(factory(Type::class)->make());

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\ContactLens;
+namespace App\Http\Requests\Stock;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateBrandRequest extends FormRequest
+class CreateManufacturerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,17 +28,11 @@ class CreateBrandRequest extends FormRequest
         ];
     }
 
-    public function getBrandData()
+    public function getManufacturerData()
     {
         return $this->only('name');
     }
 
-
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array
-     */
     public function messages()
     {
         return [
@@ -46,11 +40,7 @@ class CreateBrandRequest extends FormRequest
         ];
     }
 
-    /**
-     * Get custom attributes for validator errors.
-     *
-     * @return array
-     */
+
     public function attributes()
     {
         return [

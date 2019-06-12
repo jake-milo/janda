@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Stock;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Stock\Manufacturer;
 
 class CreateBrandRequest extends FormRequest
 {
@@ -24,13 +25,22 @@ class CreateBrandRequest extends FormRequest
     public function rules()
     {
         return [
+            'manufacturer_id' => 'integer|required|exists:manufacturers,id',
             'name' => 'string|required',
+
         ];
     }
 
     public function getBrandData()
     {
         return $this->only('name');
+    }
+
+    public function getManufacturer()
+    {
+        $manufacturerId = $this->input('manufacturer_id');
+
+        return Manufacturer::find($manufacturerId);
     }
 
     /**
