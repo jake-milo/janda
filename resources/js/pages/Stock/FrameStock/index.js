@@ -6,10 +6,15 @@ import { Spinner } from '../../../components/Spinner';
 import { FloatingActionButton } from '../../../components/FloatingActionButton';
 
 import './FrameStock.css';
+import { CreateBrandModal } from './CreateBrandModal';
 
 export const FrameStock = () => {
     const { groupedBrands } = useBrands();
     const [showCreateModal, setShowCreateModal] = useState(false);
+
+    const handleBrandCreated = () => {
+        //
+    }
 
     return (
         <>
@@ -33,6 +38,12 @@ export const FrameStock = () => {
             <FloatingActionButton onClick={() => setShowCreateModal(true)}>
                 <RoundAdd />
             </FloatingActionButton>
+
+            <CreateBrandModal
+                show={showCreateModal}
+                hide={() => setShowCreateModal(false)}
+                onSucces={handleBrandCreated}
+            />
         </>
     );
 };
