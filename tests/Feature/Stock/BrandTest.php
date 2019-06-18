@@ -18,7 +18,7 @@ class BrandTest extends TestCase
         $user = factory(User::class)->create();
         $this->actingAs($user);
 
-        $m = factory(Manufacturer::class)->create();
+        factory(Manufacturer::class)->create();
 
         $brand = factory(Brand::class)->make()->attributesToArray();
 
@@ -27,16 +27,36 @@ class BrandTest extends TestCase
         $this->assertDatabaseHas('brands', $brand);
         $response->assertStatus(201);
 
-        $response->assertJsonStructure([
-            'data' => [
-                'id',
-                'name',
-                'time' => [
-                    'created',
-                    'updated',
-                ],
-            ],
-        ]);
+        $this->assertCreateResponse($response);
+    }
+
+    public function testUserCanCreateBrandWithManufacturer()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        $brand = factory(Brand::class)->make()->attributesToArray();
+        $manufacturer = factory(Manufacturer::class)->make()->name;
+
+        $data = $brand;
+
+        $data['manufacturer'] = $manufacturer;
+
+        unset($data['manufacturer_id']);
+
+        $response = $this->post("/api/brands", $data);
+
+        $response->assertStatus(201);
+
+        $this->assertDatabaseHas('manufacturers', ['name' => $manufacturer]);
+
+        $createdManufacturer = Manufacturer::first();
+
+        $brand['manufacturer_id'] = $createdManufacturer->id;
+
+        $this->assertDatabaseHas('brands', $brand);
+
+        $this->assertCreateResponse($response);
     }
 
     public function testUserCanUpdateBrand()
@@ -83,5 +103,19 @@ class BrandTest extends TestCase
         $response->assertStatus(200);
 
         $this->assertFalse($brand->fresh()->trashed());
+    }
+
+    protected function assertCreateResponse($response)
+    {
+        $response->assertJsonStructure([
+            'data' => [
+                'id',
+                'name',
+                'time' => [
+                    'created',
+                    'updated',
+                ],
+            ],
+        ]);
     }
 }

@@ -25,7 +25,8 @@ class CreateBrandRequest extends FormRequest
     public function rules()
     {
         return [
-            'manufacturer_id' => 'integer|required|exists:manufacturers,id',
+            'manufacturer_id' => 'integer|required_without:manufacturer|exists:manufacturers,id',
+            'manufacturer' => 'string|required_without:manufacturer_id',
             'name' => 'string|required',
 
         ];
@@ -36,11 +37,15 @@ class CreateBrandRequest extends FormRequest
         return $this->only('name');
     }
 
-    public function getManufacturer()
+    public function getManufacturer(): Manufacturer
     {
-        $manufacturerId = $this->input('manufacturer_id');
+        if($id = $this->input('manufacturer_id')) {
+            return Manufacturer::find($id);
+        }
 
-        return Manufacturer::find($manufacturerId);
+        return Manufacturer::create([
+            'name' => $this->input('manufacturer'),
+        ]);
     }
 
     /**

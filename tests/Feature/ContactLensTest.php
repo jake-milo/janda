@@ -35,7 +35,7 @@ class ContactLensTest extends TestCase
         $this->assertCreateResponse($response);
     }
 
-    public function testUsercanCreateContactLensWithPatient()
+    public function testUserCanCreateContactLensWithPatient()
     {
         $user = factory(User::class)->create();
         $this->actingAs($user);

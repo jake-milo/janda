@@ -44,7 +44,7 @@ class CreateContactLensRequest extends FormRequest
         ];
     }
 
-    public function getPatient()
+    public function getPatient(): Patient
     {
         if ($id = $this->input('patient_id')) {
             return Patient::find($id);
@@ -88,7 +88,7 @@ class CreateContactLensRequest extends FormRequest
         return Brand::create(['name' => $brand]);
     }
 
-    public function getContactLensData()
+    public function getContactLensData(): array
     {
         return $this->only('lens','quantity', 'price','solutions', 'right', 'left');
     }
