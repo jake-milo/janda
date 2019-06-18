@@ -14,12 +14,12 @@ import { ContactLensBrandPicker } from '../../components/ContactLensBrandPicker'
 export const ContactLenses = () => {
     const [practice, setPractice] = useState('');
     const [brand, setBrand] = useState('');
-    const { contactLenses, loading, page, pageCount } = useContactLenses({ practice });
+    const { contactLenses, loading, page, pageCount, resetPage } = useContactLenses({ practice });
 
     const [showCreateModal, setShowCreateModal] = useState(false);
 
     const handleContactLensCreated = () => {
-        //
+        resetPage();
     };
 
     return (

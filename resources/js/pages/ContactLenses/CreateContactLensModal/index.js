@@ -19,7 +19,7 @@ const getInitialValues = () => ({
     left: '',
     right: '',
     quantity: '',
-    cost: '',
+    price: '',
     solutions: '',
 });
 
@@ -49,7 +49,7 @@ const schema = yup.object().shape({
     left: yup.string().required().label('Left'),
     right: yup.string().required().label('Right'),
     quantity: yup.string().required().label('Quantity'),
-    cost: yup.number().integer().positive().required().label('Cost'),
+    price: yup.number().integer().positive().required().label('Cost'),
     solutions: yup.string().label('Solutions'),
 });
 
@@ -61,20 +61,20 @@ export const CreateContactLensModal = ({ show, hide, onSuccess }) => {
     const handleSubmit = (values, { setSubmitting }) => {
         const { patient, brand, type, duration, ...contactLens } = values;
 
-        contactLens[creatingPatient ? 'patient' : 'patient_id'] = creatingPatient
-            ? { name: patient }
-            : patient;
+        contactLens[creatingPatient ? 'patient' : 'patient_id'] = patient;
 
         if (creatingBrand) {
-            contactLens.brand = { name: brand };
+            contactLens.brand = brand;
+        } else if (creatingType) {
+            contactLens.brand_id = brand;
         }
 
-        const typeVal = creatingType ? { name: type } : type;
-        if (!creatingBrand && creatingType) {
-            typeVal.brand_id = brand;
+        if (creatingType) {
+            contactLens.type = type;
+            contactLens.duration = duration;
+        } else {
+            contactLens.type_id = type;
         }
-
-        contactLens[creatingType ? 'type' : 'type_id'] = typeVal;
 
         post('/api/contact-lenses', contactLens)
             .then(() => {
@@ -144,10 +144,10 @@ export const CreateContactLensModal = ({ show, hide, onSuccess }) => {
                         <FieldError name="quantity" />
 
                         <div className="input-wrapper">
-                            <label htmlFor="cost">Cost</label>
-                            <MoneyInput.Formik value={values.cost} name="cost" />
+                            <label htmlFor="price">Cost</label>
+                            <MoneyInput.Formik value={values.price} name="price" />
                         </div>
-                        <FieldError name="cost" />
+                        <FieldError name="price" />
 
                         <div className="input-wrapper">
                             <label htmlFor="solutions">Solutions</label>

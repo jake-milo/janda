@@ -31,13 +31,12 @@ export const LabOrders = () => {
         });
     }, []);
 
-    const { labOrders, loading, page, pageCount, refresh } = useLabOrders({ practice, status, lab });
+    const { labOrders, loading, page, pageCount, resetPage } = useLabOrders({ practice, status, lab });
 
     const [showCreateModal, setShowCreateModal] = useState(false);
 
     const handleLabOrderCreated = () => {
-        console.log('refreshing');
-        refresh();
+        resetPage();
     };
 
     return (
