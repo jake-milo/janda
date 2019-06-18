@@ -10,6 +10,7 @@ import { Practice } from './pages/Practice';
 import { Labs } from './pages/Labs';
 import { LabOrders } from './pages/LabOrders';
 import { ContactLenses } from './pages/ContactLenses';
+import { Stock } from './pages/Stock';
 
 // Maybe switch to this at some point?
 // const Dashboard = lazy(() => import('./pages/Dashboard'));
@@ -35,6 +36,8 @@ export const App = () => {
                     <Route exact path="/lab-orders" component={LabOrders} />
 
                     <Route exact path="/contact-lenses" component={ContactLenses} />
+
+                    <Route exact path="/stock" component={Stock} />
                 </div>
             </div>
         </Router>

@@ -16,6 +16,8 @@ export const Menu = () => {
 
                     <Link to="/contact-lenses">Contact Lenses</Link>
 
+                    <Link to="/stock">Stock</Link>
+
                     <Link to="/patients">Patients</Link>
 
                     <Link to="/practices">Practices</Link>

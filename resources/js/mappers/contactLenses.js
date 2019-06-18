@@ -10,7 +10,7 @@ export const contactLensMapper = ({
     patient,
     brand,
     time,
-    price: priceRaw,
+    price,
     shipping_cost,
     ...rest,
 }) => {
@@ -18,10 +18,7 @@ export const contactLensMapper = ({
 
     contactLens.time = timeMapper(time);
 
-    const price = parseInt(priceRaw, 10);
-    const shippingCost = parseInt(shipping_cost, 10);
-    contactLens.cost = formatMoney(price + shippingCost);
-    contactLens.costExclPostage = formatMoney(price);
+    contactLens.price = formatMoney(parseInt(price, 10));
 
     if (practice) {
         contactLens.practice = practiceMapper(practice);

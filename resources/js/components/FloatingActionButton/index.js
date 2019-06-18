@@ -10,8 +10,10 @@ export const FloatingActionButton = ({ children, onClick }) => {
     };
 
     return (
-        <a href="#" onClick={handleClick} className="fab">
-            {children}
-        </a>
+        <div className="fab-container">
+            <a href="#" onClick={handleClick} className="fab">
+                {children}
+            </a>
+        </div>
     );
 };

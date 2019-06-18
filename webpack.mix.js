@@ -5,3 +5,9 @@ mix
     .copyDirectory('resources/img', 'public/img')
     .sass('resources/sass/login.scss', 'public/css/login.css')
     .sourceMaps()
+    .options({
+        hmrOptions: {
+            host: 'janda.test',
+            port: '8000',
+        },
+    })
