@@ -29,25 +29,7 @@ class LabOrderTest extends TestCase
         $response->assertStatus(201);
         $this->assertDatabaseHas('lab_orders', $labOrder->attributesToArray());
 
-        $response->assertJsonStructure([
-            'data' => [
-                'id',
-                'lens',
-                'reference',
-                'dates' => [
-                    'sent',
-                    'required',
-                    'received',
-                ],
-                'patient',
-                'practice',
-                'lab',
-                'time' => [
-                    'created',
-                    'updated',
-                ],
-            ],
-        ]);
+        $this->assertCreateResponse($response);
     }
 
     public function testUserCanUpdateLabOrder()
@@ -99,5 +81,83 @@ class LabOrderTest extends TestCase
 
         $response->assertStatus(200);
         $this->assertFalse($labOrder->fresh()->trashed());
+    }
+
+    public function testUserCanCreateLabOrderWithPatient()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        factory(Practice::class)->create();
+        factory(Lab::class)->create();
+
+        $labOrder = factory(LabOrder::class)->make()->attributesToArray();
+        $patient = factory(Patient::class)->make()->name;
+
+        $data = $labOrder;
+        $data['patient'] = $patient;
+        unset($data['patient_id']);
+
+        $response = $this->post("/api/lab-orders", $data);
+
+        $response->assertStatus(201);
+        $this->assertDatabaseHas('patients', ['name' => $patient]);
+
+        $createdPatient = Patient::first();
+        $labOrder['patient_id'] = $createdPatient->id;
+
+        $this->assertDatabaseHas('lab_orders', $labOrder);
+        $this->assertCreateResponse($response);
+    }
+
+    public function testUserCanCreateLabOrderWithLab()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        factory(Patient::class)->create();
+        factory(Practice::class)->create();
+
+        $labOrder = factory(LabOrder::class)->make()->attributesToArray();
+        $lab = factory(Lab::class)->make()->name;
+
+        $data = $labOrder;
+        $data['lab'] = $lab;
+        unset($data['lab_id']);
+
+        $response = $this->post("/api/lab-orders", $data);
+
+        $response->assertStatus(201);
+        $this->assertDatabaseHas('labs', ['name' => $lab]);
+
+        $createdLab = Lab::first();
+        $labOrder['lab_id'] = $createdLab->id;
+
+        $this->assertDatabaseHas('lab_orders', $labOrder);
+        $this->assertCreateResponse($response);
+    }
+
+
+    protected function assertCreateResponse($response)
+    {
+        $response->assertJsonStructure([
+            'data' => [
+                'id',
+                'lens',
+                'reference',
+                'dates' => [
+                    'sent',
+                    'required',
+                    'received',
+                ],
+                'patient',
+                'practice',
+                'lab',
+                'time' => [
+                    'created',
+                    'updated',
+                ],
+            ],
+        ]);
     }
 }

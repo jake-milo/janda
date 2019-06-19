@@ -27,9 +27,11 @@ class CreateLabOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'patient_id' => 'integer|required|exists:patients,id',
+            'patient_id' => 'integer|required_without:patient|exists:patients,id',
+            'patient' => 'string|required_without:patient_id',
             'practice_id' => 'integer|required|exists:practices,id',
-            'lab_id' => 'integer|required|exists:labs,id',
+            'lab_id' => 'integer|required_without:lab|exists:labs,id',
+            'lab' => 'string|required_without:lab_id',
             'lens' => 'string|required',
             'reference' => 'string|required',
             'date_sent' => 'date|required',
@@ -38,28 +40,36 @@ class CreateLabOrderRequest extends FormRequest
         ];
     }
 
-    public function getPatient()
+    public function getPatient(): Patient
     {
-        $patientId = $this->input('patient_id');
+        if ($id = $this->input('patient_id')) {
+            return Patient::find($id);
+        }
 
-        return Patient::find($patientId);
+        return Patient::create([
+            'name' => $this->input('patient'),
+        ]);
     }
 
-    public function getPractice()
+    public function getPractice(): Practice
     {
         $practiceId = $this->input('practice_id');
 
         return Practice::find($practiceId);
     }
 
-    public function getLab()
+    public function getLab(): Lab
     {
-        $labId = $this->input('lab_id');
+        if ($id = $this->input('lab_id')) {
+            return Lab::find($id);
+        }
 
-        return Lab::find($labId);
+        return Lab::create([
+            'name' => $this->input('lab'),
+        ]);
     }
 
-    public function getLabOrderData()
+    public function getLabOrderData(): array
     {
         return $this->only('lens', 'reference', 'date_sent', 'date_required', 'date_received');
     }

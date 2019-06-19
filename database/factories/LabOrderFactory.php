@@ -15,10 +15,13 @@ $factory->define(LabOrder::class, function (Faker $faker) {
     $dateRequired = $faker->randomElement([$dateRequired, Date::now()->addDays($faker->numberBetween(1,3))]);
     $dateReceived = $dateRequired->addDays($faker->numberBetween(-2, 2));
 
+    $patient = Patient::inRandomOrder()->first();
+    $lab = Lab::inRandomOrder()->first();
+
     return [
-        'patient_id' => Patient::inRandomOrder()->first()->id,
+        'patient_id' => optional($patient)->id,
         'practice_id' => Practice::inRandomOrder()->first()->id,
-        'lab_id' => Lab::inRandomOrder()->first()->id,
+        'lab_id' => optional($lab)->id,
         'lens' => $faker->colorName, //color name is similar to real data
         'reference' => $faker->swiftBicNumber, // sorta looks like reference num
         'date_sent' => $dateSent,
