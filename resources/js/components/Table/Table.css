@@ -47,6 +47,8 @@
 .table .row .cell.--normal { flex: 4; }
 .table .row .cell.--wide { flex: 8; }
 
+.table .row .cell.--centered { text-align: center; }
+
 .table .row .cell.--header {
     text-align: left;
     font-weight: bold;

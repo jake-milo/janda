@@ -44,9 +44,12 @@ export const FilterableSelect = ({
         onChange(id);
     };
 
-    const getLabel = () => value
-        ? options.find(op => op.value === value).label
-        : emptyText;
+    const getLabel = () => {
+        if (!value) return emptyText;
+
+        const selected = options.find(op => op.value === value);
+        return selected ? selected.label : '';
+    }
 
     return (
         <>

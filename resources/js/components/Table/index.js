@@ -40,8 +40,8 @@ export const Row = ({ children, header = false, classes = [], }) => (
     </div>
 );
 
-export const Cell = ({ children, size = 'normal', header = false, when = true }) => when ? (
-    <div className={`cell --${size} ${header ? '--header' : ''}`}>
+export const Cell = ({ children, size = 'normal', header = false, when = true, centered = false }) => when ? (
+    <div className={`cell --${size} ${header ? '--header' : ''} ${centered ? '--centered' : ''}`}>
         {children}
     </div>
 ) : null;

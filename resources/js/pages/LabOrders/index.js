@@ -21,6 +21,7 @@ export const LabOrders = () => {
     const [practice, setPractice] = useState('');
     const [status, setStatus] = useState(params.status || '');
     const [lab, setLab] = useState('');
+    const [editing, setEditing] = useState(null);
 
     const { pathname } = useLocation();
     const history = useHistory();
@@ -31,12 +32,17 @@ export const LabOrders = () => {
         });
     }, []);
 
-    const { labOrders, loading, page, pageCount, resetPage } = useLabOrders({ practice, status, lab });
+    const { labOrders, loading, page, pageCount, refresh } = useLabOrders({ practice, status, lab });
 
     const [showCreateModal, setShowCreateModal] = useState(false);
 
-    const handleLabOrderCreated = () => {
-        resetPage();
+    const handleLabOrderSaved = () => {
+        refresh();
+    };
+
+    const handleEdit = (id) => {
+        setEditing(id);
+        setShowCreateModal(true);
     };
 
     return (
@@ -71,7 +77,11 @@ export const LabOrders = () => {
 
                 {!loading ? (
                     <>
-                        <LabOrdersTable labOrders={labOrders} />
+                        <LabOrdersTable
+                            labOrders={labOrders}
+                            withActions
+                            onEdit={handleEdit}
+                        />
 
                         <Pagination
                             page={page}
@@ -90,7 +100,8 @@ export const LabOrders = () => {
                 <CreateLabOrderModal
                     show={showCreateModal}
                     hide={() => setShowCreateModal(false)}
-                    onSuccess={handleLabOrderCreated}
+                    onSuccess={handleLabOrderSaved}
+                    editing={editing}
                 />
             </Page>
         </>
