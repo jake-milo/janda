@@ -17,6 +17,7 @@ Route::post('/labs/{lab}/restore', 'LabController@restore');
 
 Route::apiResource('lab-orders', 'LabOrderController');
 Route::post('/lab-orders/{lab_order}/restore', 'LabOrderController@restore');
+Route::post('/lab-orders/{lab_order}/received', 'LabOrderController@markAsReceived');
 
 
 Route::apiResource('contact-lenses', 'ContactLensController', [

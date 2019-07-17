@@ -8,6 +8,7 @@ use App\Http\Resources\LabOrder as LabOrderResource;
 use App\Http\Requests\CreateLabOrderRequest;
 use App\Http\Requests\UpdateLabOrderRequest;
 use App\Http\Requests\GetLabOrdersRequest;
+use App\Http\Requests\MarkAsReceivedRequest;
 
 class LabOrderController extends Controller
 {
@@ -107,5 +108,14 @@ class LabOrderController extends Controller
         return response()->json([
             'Restored lab order'
         ]);
+    }
+
+
+    public function markAsReceived(LabOrder $labOrder, MarkAsReceivedRequest $request){
+        $date = $request->getDate();
+        $labOrder->date_received = $date;
+        $labOrder->save();
+
+        return LabOrderResource::make($labOrder);
     }
 }

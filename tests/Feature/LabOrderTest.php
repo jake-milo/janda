@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Faker\Generator as Faker;
 use App\Models\LabOrder;
 use App\Models\User;
 use App\Models\Patient;
@@ -135,6 +136,25 @@ class LabOrderTest extends TestCase
 
         $this->assertDatabaseHas('lab_orders', $labOrder);
         $this->assertCreateResponse($response);
+    }
+
+    public function testUserCanMarkDateReceived()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        factory(Patient::class)->create();
+        factory(Practice::class)->create();
+        factory(Lab::class)->create();
+        $labOrder = factory(LabOrder::class)->create();
+
+        $date = $this->faker->date();
+
+        $response = $this->post("/api/lab-orders/{$labOrder->id}/received", ['date_received' =>$date]);
+        $response->assertStatus(200);
+        $this->assertDatabaseHas('lab_orders', ['date_received' => "$date 00:00:00"]);
+
+
     }
 
 
