@@ -75,9 +75,11 @@ export const LabOrdersTable = ({
                                 <RoundEdit />
                             </a>
 
-                            <a href="#" onClick={handleReceivedClick(labOrder.id)} ref={r => receivedButtons[labOrder.id] = r}>
-                                <RoundDateRange />
-                            </a>
+                            {!labOrder.dates.received && (
+                                <a href="#" onClick={handleReceivedClick(labOrder.id)} ref={r => receivedButtons[labOrder.id] = r}>
+                                    <RoundDateRange />
+                                </a>
+                            )}
                         </Cell>
                     </Row>
                 ))}
