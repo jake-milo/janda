@@ -47,6 +47,9 @@ const useApiCore = (key, fetcher, transformer, dependencies, page = null, setPag
         loading,
         page,
         pageCount,
+        resetPage () {
+            setPage(1);
+        },
     };
 };
 

@@ -1,38 +1,29 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { usePaginatedApi } from '../../hooks/useApi';
 import { labOrdersMapper } from '../../mappers/labOrders';
-import { arraysEqual } from '../../helpers';
-import { usePrev } from '../../hooks/usePrev';
 
 export const useLabOrders = ({ practice, status, lab }) => {
-    const [reloadToggle, setReloadToggle] = useState(false);
-
-    const [filters, prevFilters] = usePrev(practice, status, lab);
-
-    const fetch = ({ get, page, toQueryString, resetPage }) => {
-        if (!arraysEqual(filters, prevFilters)) {
-            console.log('reset');
-            resetPage();
-        }
-
-        return get('/api/lab-orders' + toQueryString({
+    const fetch = ({ get, page, toQueryString }) => {
+        const url = `api/lab-orders` + toQueryString({
             page,
             practice,
             status,
             lab,
-        }));
-    }
+        });
 
-    return {
-        ...usePaginatedApi(
-            'labOrders',
-            fetch,
-            labOrdersMapper,
-            [practice, status, lab, reloadToggle],
-        ),
-
-        refresh () {
-            setReloadToggle(!reloadToggle);
-        },
+        return get(url);
     };
+
+    const api = usePaginatedApi(
+        'labOrders',
+        fetch,
+        labOrdersMapper,
+        [practice, status, lab],
+    );
+
+    useEffect(() => {
+        api.resetPage();
+    }, [practice, status, lab]);
+
+    return api;
 }
