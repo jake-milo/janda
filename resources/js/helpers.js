@@ -15,8 +15,10 @@ const getSendOptions = (data, method) => ({
 
 const handleSendResponse = res => res.json()
     .then((data) => {
-        if (has(data)('errors')) {
+        if (data.errors) {
             throw data.errors;
+        } else if (data.exception) {
+            throw data;
         } else {
             return data;
         }

@@ -81,6 +81,7 @@ export const LabOrders = () => {
                             labOrders={labOrders}
                             withActions
                             onEdit={handleEdit}
+                            onReceived={handleLabOrderSaved}
                         />
 
                         <Pagination

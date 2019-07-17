@@ -1,0 +1,46 @@
+.dialog {
+    --triangle-height: .6rem;
+    --triangle-width: .5rem;
+
+    position: absolute;
+    min-width: 16rem;
+    max-width: 40rem;
+    background: var(--white);
+    padding: .5rem;
+    border: 1px solid var(--light-grey);
+    border-radius: .5rem;
+    box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.2);
+}
+
+.dialog.--left {
+    transform: translateX(4rem);
+}
+.dialog.--left:after {
+    transform: translateX(-4rem);
+}
+
+.dialog.--right {
+    transform: translateX(-4rem);
+}
+.dialog.--right:after {
+    transform: translateX(4rem);
+}
+
+.dialog:after {
+    content: '';
+    position: absolute;
+    left: calc(50% - var(--triangle-width));
+    width: 0;
+    height: 0;
+    border: var(--triangle-width) solid transparent;
+}
+
+.dialog.--top:after {
+    bottom: 100%;
+    border-bottom: var(--triangle-height) solid var(--light-grey);
+}
+
+.dialog.--bottom:after {
+    top: 100%;
+    border-top: var(--triangle-height) solid var(--light-grey);
+}
