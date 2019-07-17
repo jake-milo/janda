@@ -22,7 +22,7 @@ const useApiCore = (key, fetcher, transformer, dependencies, page = null, setPag
         [response],
     );
 
-    useEffect(() => {
+    const performFetch = () => {
         setLoading(true);
 
         const args = { get, toQueryString };
@@ -40,7 +40,9 @@ const useApiCore = (key, fetcher, transformer, dependencies, page = null, setPag
                 setLoading(false);
             });
         }
-    }, [page, fetch, ...dependencies]); // eslint-disable-line react-hooks/exhaustive-deps
+    };
+
+    useEffect(performFetch, [page, fetch, ...dependencies]); // eslint-disable-line react-hooks/exhaustive-deps
 
     return {
         [key]: transformed,
@@ -48,7 +50,12 @@ const useApiCore = (key, fetcher, transformer, dependencies, page = null, setPag
         page,
         pageCount,
         resetPage () {
+            console.log('setting page');
             setPage(1);
+        },
+
+        refresh () {
+            performFetch();
         },
     };
 };
