@@ -6,6 +6,7 @@ export const PRACTICE = 'Practice';
 export const LENS = 'Lens';
 export const LAB = 'Lab';
 export const ORDER_NO = 'Order #';
+export const ACTIONS = '';
 
 export const getHeaders = (remove) => {
     const headers = {
@@ -13,10 +14,11 @@ export const getHeaders = (remove) => {
         [DATE_REQUIRED]: 'normal',
         [DATE_RECEIVED]: 'normal',
         [PATIENT]: 'normal',
-        [PRACTICE]: 'normal', 
+        [PRACTICE]: 'normal',
         [LENS]: 'normal',
         [LAB]: 'normal',
         [ORDER_NO]: 'normal',
+        [ACTIONS]: 'thin',
     };
 
     remove.forEach(r => {
