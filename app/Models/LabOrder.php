@@ -47,7 +47,8 @@ class LabOrder extends Model
         $today = Date::now();
         $twoDaysAhead = $today->addDays(2);
         return $query->whereDate('date_required', '>' , $today)
-                     ->whereDate('date_required', '<=', $twoDaysAhead);
+                     ->whereDate('date_required', '<=', $twoDaysAhead)
+                     ->whereNull('date_received');
     }
 
     public function scopeComplete($query)
@@ -74,7 +75,7 @@ class LabOrder extends Model
         $dateRequired = $this->date_required;
         $twoDaysAhead = $today->addDays(2);
 
-        return $dateRequired->gt($today) && $dateRequired->lte($twoDaysAhead);
+        return $dateRequired->gt($today) && $dateRequired->lte($twoDaysAhead) && !$this->date_received;
     }
 
 }

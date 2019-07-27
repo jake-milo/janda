@@ -95,9 +95,4 @@ class LabController extends Controller
             'Restored lab'
         ]);
     }
-
-
-    public function markAsReceived(Lab $lab){
-
-    }
 }
