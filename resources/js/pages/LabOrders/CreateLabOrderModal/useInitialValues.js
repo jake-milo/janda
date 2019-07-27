@@ -3,7 +3,7 @@ import moment from 'moment';
 import { fetchLabOrder } from '../../../utilities/fetchLabOrder';
 
 const getInitialValues = () => ({
-    patient_id: '',
+    patient: '',
     practice_id: '',
     lab_id: '',
     lens: '123',
