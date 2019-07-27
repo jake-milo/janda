@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import './Page.css';
 
@@ -8,7 +9,7 @@ export const Page = ({ children }) => (
     </div>
 );
 
-export const TabbedPage = ({ tabs, defaultTab }) => {
+export const TabbedPage = ({ tabs, links, defaultTab }) => {
     const keys = Object.keys(tabs);
     const [activeTab, setActiveTab] = useState(defaultTab || keys[0]);
 
@@ -21,7 +22,11 @@ export const TabbedPage = ({ tabs, defaultTab }) => {
     return (
         <>
             <div className="tabs">
-                {keys.map(key => (
+                {keys.map(key => links ? (
+                    <NavLink to={links[key]} activeClassName="--active" key={key}>
+                        {key}
+                    </NavLink>
+                ) : (
                     <a
                         key={key}
                         href={`#${key.toLowerCase()}`}
@@ -34,7 +39,17 @@ export const TabbedPage = ({ tabs, defaultTab }) => {
             </div>
 
             <Page>
-                {tabs[activeTab]()}
+                {links
+                    ? keys.map(key => {
+                        const path = links[key];
+
+                        return (
+                            <React.Fragment key={path}>
+                                {tabs[key](path)}
+                            </React.Fragment>
+                        );
+                    })
+                    : tabs[activeTab]()}
             </Page>
         </>
     );

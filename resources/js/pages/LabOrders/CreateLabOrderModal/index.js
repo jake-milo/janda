@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
-import { Formik } from 'formik';
 import * as yup from 'yup';
 import { Modal } from '../../../components/Modal';
 import { PageTitle } from '../../../components/PageTitle';
@@ -13,9 +12,15 @@ import { momentSchema, nullableMomentSchema } from '../../../utilities/momentSch
 import { FieldError } from '../../../components/FieldError';
 import { Spinner } from '../../../components/Spinner';
 import { useInitialValues } from './useInitialValues';
+import { Form } from '../../../components/Form';
+import { PickOrNewPatient } from '../../../components/PatientPicker/PickOrNewPatient';
 
 const schema = yup.object().shape({
-    patient_id: yup.number().integer().positive().required().label('Patient'),
+    patient: yup.mixed().when('$creatingPatient', {
+        is: true,
+        then: yup.string(),
+        otherwise: yup.number().integer().positive(),
+    }).required().label('Patient'),
     practice_id: yup.number().integer().positive().required().label('Practice'),
     lab_id: yup.number().integer().positive().required().label('Lab'),
     lens: yup.string().required().label('Lens'),
@@ -27,15 +32,18 @@ const schema = yup.object().shape({
 
 export const CreateLabOrderModal = ({ show, hide, onSuccess, editing }) => {
     const [initialValues, loading] = useInitialValues(editing);
+    const [creatingPatient, setCreatingPatient] = useState(false);
 
     const toStringOrNull = m => moment.isMoment(m) ? m.format('YYYY-MM-DD') : null;
 
     const handleSubmit = (values, { setSubmitting }) => {
-        const { date_sent, date_required, date_received, ...labOrder } = values;
+        const { patient, date_sent, date_required, date_received, ...labOrder } = values;
 
         labOrder.date_sent = toStringOrNull(date_sent);
         labOrder.date_required = toStringOrNull(date_required);
         labOrder.date_received = toStringOrNull(date_received);
+
+        labOrder[creatingPatient ? 'patient' : 'patient_id'] = patient;
 
         const request = () => editing
             ? patch(`/api/lab-orders/${editing}`, labOrder)
@@ -62,17 +70,24 @@ export const CreateLabOrderModal = ({ show, hide, onSuccess, editing }) => {
                 <Spinner />
             )}
 
-            <Formik
+            <Form
                 validationSchema={schema}
+                getContext={() => ({ creatingPatient })}
                 initialValues={initialValues}
                 enableReinitialize={!!editing}
                 onSubmit={handleSubmit}
                 render={({ handleSubmit: onSubmit, handleChange, values }) => (
                     <form onSubmit={onSubmit} style={{ display: loading ? 'none' : 'block' }}>
-                        <div className="select-wrapper">
+                        {/* <div className="select-wrapper">
                             <PatientPicker.Formik name="patient_id" value={values.patient_id} />
-                        </div>
-                        <FieldError name="patient_id" />
+                        </div> */}
+                        <PickOrNewPatient.Formik
+                            name="patient"
+                            value={values.patient}
+                            creating={creatingPatient}
+                            setCreating={setCreatingPatient}
+                        />
+                        <FieldError name="patient" />
 
                         <div className="select-wrapper">
                             <PracticePicker.Formik name="practice_id" value={values.practice_id} />

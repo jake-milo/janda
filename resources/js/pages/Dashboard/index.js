@@ -31,6 +31,12 @@ export const Dashboard = () => {
                     <h2>Urgent Lab Orders</h2>
 
                     <LabOrdersTable labOrders={urgentLabOrders || []} />
+
+                    <p className="--centered">
+                        Only showing the latest 10 results.
+                        {' '}
+                        <Link to="/lab-orders?status=urgent">See More</Link>
+                    </p>
                 </section>
             </Page>
         </>

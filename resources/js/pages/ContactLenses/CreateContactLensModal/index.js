@@ -62,18 +62,11 @@ export const CreateContactLensModal = ({ show, hide, onSuccess }) => {
         const { patient, brand, type, duration, ...contactLens } = values;
 
         contactLens[creatingPatient ? 'patient' : 'patient_id'] = patient;
-
-        if (creatingBrand) {
-            contactLens.brand = brand;
-        } else if (creatingType) {
-            contactLens.brand_id = brand;
-        }
+        contactLens[creatingBrand ? 'brand' : 'brand_id'] = brand;
+        contactLens[creatingType ? 'type' : 'type_id'] = type;
 
         if (creatingType) {
-            contactLens.type = type;
             contactLens.duration = duration;
-        } else {
-            contactLens.type_id = type;
         }
 
         post('/api/contact-lenses', contactLens)

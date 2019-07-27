@@ -50,7 +50,6 @@ const useApiCore = (key, fetcher, transformer, dependencies, page = null, setPag
         page,
         pageCount,
         resetPage () {
-            console.log('setting page');
             setPage(1);
         },
 
