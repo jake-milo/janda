@@ -17,7 +17,7 @@ class ManufacturerController extends Controller
      */
     public function index()
     {
-        $manufacturer = Manufacturer::paginate(30);
+        $manufacturer = Manufacturer::orderBy('name')->paginate(30);
 
         return ManufacturerResource::collection($manufacturer);
     }
