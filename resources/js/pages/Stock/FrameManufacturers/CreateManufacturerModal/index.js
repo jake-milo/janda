@@ -13,7 +13,7 @@ const schema = yup.object().shape({
 });
 
 export const CreateManufacturerModal = ({ show, hide, onSuccess, editing }) => {
-    const [initialValues, loading] = useInitialValues(editing);
+    const [initialValues, loading, resetInitialValues] = useInitialValues(editing);
 
     const handleSubmit = (manufacturer, { setSubmitting }) => {
         const request = () => editing
@@ -32,8 +32,13 @@ export const CreateManufacturerModal = ({ show, hide, onSuccess, editing }) => {
             });
     };
 
+    const onHide = () => {
+        hide();
+        resetInitialValues();
+    };
+
     return (
-        <Modal show={show} hide={hide}>
+        <Modal show={show} hide={onHide}>
             <PageTitle>Create Manufacturer</PageTitle>
 
             {loading && (

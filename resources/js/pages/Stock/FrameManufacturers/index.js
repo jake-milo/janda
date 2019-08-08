@@ -22,6 +22,8 @@ export const FrameManufacturers = () => {
 
     const handleManufacturerSaved = () => {
         refresh();
+
+        setEditing(null);
     };
 
     const handleEditClick = id => (e) => {
@@ -73,7 +75,10 @@ export const FrameManufacturers = () => {
 
                 <CreateManufacturerModal
                     show={showModal}
-                    hide={() => setShowModal(false)}
+                    hide={() => {
+                        setShowModal(false)
+                        setEditing(null);
+                    }}
                     editing={editing}
                     onSuccess={handleManufacturerSaved}
                 />

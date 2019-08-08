@@ -25,5 +25,9 @@ export const useInitialValues = (id) => {
             });
     }, [id]);
 
-    return [initialValues, loading];
+    const reset = () => {
+        setInitialValues(isEditing ? null : getInitialValues());
+    };
+
+    return [initialValues, loading, reset];
 }
