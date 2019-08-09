@@ -11,10 +11,18 @@ import { FloatingActionButton } from '../../components/FloatingActionButton';
 import { CreateContactLensModal } from './CreateContactLensModal';
 import { ContactLensBrandPicker } from '../../components/ContactLensBrandPicker';
 
+import { useSort } from '../../hooks/useSort';
+
 export const ContactLenses = () => {
     const [practice, setPractice] = useState('');
     const [brand, setBrand] = useState('');
-    const { contactLenses, loading, page, pageCount, resetPage } = useContactLenses({ practice });
+
+    const [sort, order, updateSorting] = useSort();
+    const { contactLenses, loading, page, pageCount, resetPage } = useContactLenses({
+        practice,
+        sort,
+        order,
+    });
 
     const [showCreateModal, setShowCreateModal] = useState(false);
 
@@ -47,7 +55,12 @@ export const ContactLenses = () => {
 
                 {!loading ? (
                     <>
-                        <ContactLensesTable contactLenses={contactLenses} />
+                        <ContactLensesTable
+                            contactLenses={contactLenses}
+                            sort={sort}
+                            order={order}
+                            updateSorting={updateSorting}
+                        />
 
                         <Pagination
                             page={page}

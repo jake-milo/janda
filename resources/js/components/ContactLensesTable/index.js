@@ -5,13 +5,21 @@ import * as h from './headers';
 
 export { h as headers };
 
-export const ContactLensesTable = ({ contactLenses, remove = [] }) => {
+export const ContactLensesTable = ({
+    contactLenses, // the contactLenses to render
+    sort, // column being sorted by
+    order, // order of the sorting
+    updateSorting, // used to update the sorting
+    remove = [] // columns to not render if desired
+}) => {
     const headers = useMemo(() => h.getHeaders(remove), [remove]);
+
+    const sortable = useMemo(() => h.getSortable(remove), [remove]);
 
     const hasHeader = header => !remove.includes(header);
 
     return (
-        <Table headers={headers}>
+        <Table headers={headers} sortable={sortable} sort={sort} order={order} updateSorting={updateSorting}>
             {contactLenses.map(contactLens => (
                 <Row key={contactLens.id}>
                     <Cell when={hasHeader(h.PATIENT)}>
