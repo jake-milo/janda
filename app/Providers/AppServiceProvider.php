@@ -16,6 +16,10 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         Date::use(CarbonImmutable::class);
+
+        Date::macro('toSqlDateString', function () {
+            return $this->format('Y-m-d');
+        });
     }
 
     /**
