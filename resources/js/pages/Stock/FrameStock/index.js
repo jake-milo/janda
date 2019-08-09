@@ -42,7 +42,7 @@ export const FrameStock = () => {
             <CreateBrandModal
                 show={showCreateModal}
                 hide={() => setShowCreateModal(false)}
-                onSucces={handleBrandCreated}
+                onSuccess={handleBrandCreated}
             />
         </>
     );

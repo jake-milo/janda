@@ -1,6 +1,10 @@
 import { timeMapper } from "./time";
 
-export const brandsMapper = (brands) => {
+export const brandsMapper = (brands, group = true) => {
+    if (!group) {
+        return brands.map(b => brandMapper(b));
+    }
+
     const grouped = {};
 
     const isLetter = char => /[a-z]/i.test(char);
