@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\LabOrder;
+use Illuminate\Support\Facades\Date;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class GetLabOrdersRequest extends FormRequest
 {
@@ -27,6 +29,8 @@ class GetLabOrdersRequest extends FormRequest
         return [
             'practice' => 'nullable|integer|exists:practices,id',
             'status' => 'nullable|string|in:overdue,urgent,complete,incomplete',
+            'sort_by' => 'nullable|string',
+            'order' => 'nullable|string|in:asc,dsc',
             'lab' => 'nullable|integer|exists:labs,id',
             'limit' => 'nullable|integer',
         ];
@@ -34,7 +38,11 @@ class GetLabOrdersRequest extends FormRequest
 
     public function getLabOrders()
     {
-        $query = (new LabOrder)->newQuery();
+        $sortBy = $this->input('sort_by', 'date_required');
+        $order = $this->input('order', 'desc');
+
+        $query = (new LabOrder)->newQuery()
+            ->orderBy($sortBy, $order);
 
         if ($practice = $this->input('practice')) {
             $query->where('practice_id', $practice);
@@ -48,10 +56,24 @@ class GetLabOrdersRequest extends FormRequest
             $query->where('lab_id', $lab);
         }
 
+
+
+
         $limit = $this->input('limit');
 
         return $limit
             ? $query->limit($limit)->get()
-            : $query->paginate(30);
+         //   : $query->paginate(30);
+            : $this->paginate($query, 30);
+    }
+
+
+    protected function paginate($query, $perPage): LengthAwarePaginator
+    {
+        $total = $query->getQuery()->cloneWithout(['havings'])->count();
+
+        $items = $query->simplePaginate($perPage)->items();
+
+        return new LengthAwarePaginator($items, $total, $perPage);
     }
 }

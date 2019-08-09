@@ -15,6 +15,7 @@ import { useHistory, useLocation } from '../../hooks/useRouter';
 import { LabOrdersTable } from '../../components/LabOrdersTable';
 
 import './LabOrders.css';
+import { useSort } from '../../hooks/useSort';
 
 export const LabOrders = () => {
     const params = useQueryParams();
@@ -32,7 +33,14 @@ export const LabOrders = () => {
         });
     }, []);
 
-    const { labOrders, loading, page, pageCount, refresh } = useLabOrders({ practice, status, lab });
+    const [sort, order, updateSorting] = useSort();
+    const { labOrders, loading, page, pageCount, refresh } = useLabOrders({
+        practice,
+        status,
+        lab,
+        sort,
+        order,
+    });
 
     const [showCreateModal, setShowCreateModal] = useState(false);
 
@@ -82,6 +90,9 @@ export const LabOrders = () => {
                             withActions
                             onEdit={handleEdit}
                             onReceived={handleLabOrderSaved}
+                            sort={sort}
+                            order={order}
+                            updateSorting={updateSorting}
                         />
 
                         <Pagination

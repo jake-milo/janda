@@ -7,7 +7,6 @@ use App\Models\Traits\HasResourceRelations;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
 class LabOrder extends Model
 {
     use SoftDeletes, HasResourceRelations;

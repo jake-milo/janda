@@ -23,7 +23,7 @@ export const Dashboard = () => {
 
                     {overdueLabOrders ? (overdueLabOrders.length > 0 ? (
                         <>
-                            <LabOrdersTable labOrders={overdueLabOrders} />
+                            <LabOrdersTable labOrders={overdueLabOrders} disableSorting />
 
                             {overdueLabOrders.length >= 10 ? (
                                 <p className="--centered">

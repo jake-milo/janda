@@ -61,6 +61,10 @@
     color: var(--dark-grey);
 }
 
+.table .row .cell.--clickable {
+    cursor: pointer;
+}
+
 .table .row .cell a {
     color: var(--primary);
     text-decoration: none;

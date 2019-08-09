@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import RoundUp from 'react-md-icon/dist/RoundKeyboardArrowUp';
+import RoundDown from 'react-md-icon/dist/RoundKeyboardArrowDown';
 
 import './Table.css';
 
-export const Table = ({ headers, children }) => {
+export const Table = ({ headers, children, sortable, sort, order, updateSorting }) => {
     const [names, setNames] = useState([]);
     const [sizes, setSizes] = useState([]);
 
@@ -19,11 +21,24 @@ export const Table = ({ headers, children }) => {
         setSizes(mapped[1]);
     }, [headers]);
 
+    const handleHeaderClick = (name) => () => {
+        updateSorting(name);
+    };
+
     return (
         <div className="table">
             <Row header>
                 {names.map((name, i) => (
-                    <Cell key={name} size={sizes[i]} header>
+                    <Cell
+                        key={name}
+                        size={sizes[i]}
+                        header
+                        onClick={sortable[name] ? handleHeaderClick(sortable[name]) : null}
+                    >
+                        {sortable[name] && sort === sortable[name] && (
+                            order === 'desc' ? <RoundDown /> : <RoundUp />
+                        )}
+
                         {name}
                     </Cell>
                 ))}
@@ -40,8 +55,32 @@ export const Row = ({ children, header = false, classes = [], }) => (
     </div>
 );
 
-export const Cell = ({ children, size = 'normal', header = false, when = true, centered = false }) => when ? (
-    <div className={`cell --${size} ${header ? '--header' : ''} ${centered ? '--centered' : ''}`}>
-        {children}
-    </div>
-) : null;
+export const Cell = ({
+    children,
+    size = 'normal',
+    header = false,
+    when = true,
+    centered = false,
+    onClick = null,
+}) => {
+    const handleClick = (e) => {
+        if (onClick) {
+            e.preventDefault();
+            onClick();
+        }
+    };
+
+    const classes = [
+        'cell',
+        `--${size}`,
+        header ? '--header' : '',
+        centered ? '--centered' : '',
+        onClick ? '--clickable' : '',
+    ].join(' ');
+
+    return when ? (
+        <div className={classes} onClick={handleClick}>
+            {children}
+        </div>
+    ) : null;
+}
