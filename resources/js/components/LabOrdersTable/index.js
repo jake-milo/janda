@@ -11,10 +11,14 @@ export { h as headers };
 
 export const LabOrdersTable = ({
     labOrders, // the lab orders to render
+    sort, // column being sorted by
+    order, // order of the sorting
+    updateSorting, // used to update the sorting
     onEdit, // method to call when edit button is clicked
     onReceived, // method to call when received form has been submitted
     remove = [], // columns to not render if desired
     withActions = false, // flag to toggle actions
+    disableSorting = false, // flag to disable sorting
 }) => {
     if (withActions && (!onReceived || !onEdit)) {
         throw new Error('LabOrdersTable: You haven\'t supplied an onReceived/onEdit handler to be called when the actions are used.');
@@ -23,6 +27,12 @@ export const LabOrdersTable = ({
     const headers = useMemo(() => {
         return h.getHeaders(withActions ? remove : [...remove, h.ACTIONS]);
     }, [remove, withActions]);
+
+    const sortable = useMemo(() => {
+        if (disableSorting) return [];
+
+        return h.getSortable(withActions ? remove : [...remove, h.ACTIONS]);
+    }, [remove, withActions, disableSorting]);
 
     const hasHeader = header => !remove.includes(header);
 
@@ -47,7 +57,7 @@ export const LabOrdersTable = ({
 
     return (
         <>
-            <Table headers={headers}>
+            <Table headers={headers} sortable={sortable} sort={sort} order={order} updateSorting={updateSorting}>
                 {labOrders.map(labOrder => (
                     <Row key={labOrder.id} classes={[labOrder.overdue ? '--overdue' : '', labOrder.urgent ? '--urgent' : '',]}>
                         <Cell when={hasHeader(h.DATE_SENT)}>{labOrder.dates.sent}</Cell>
