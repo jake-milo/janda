@@ -14,7 +14,8 @@ class GetContactLensRequest extends FormRequest
         'patient' => ['patients', 'patient_id', 'name'],
         'practice' => ['practices', 'practice_id', 'name'],
         'lab' => ['labs', 'lab_id', 'name'],
-        'type' => ['types','type_id', 'name'],
+        'type' => ['contact_lens_types','type_id', 'name'],
+        'duration' => ['contact_lens_types', 'type_id', 'duration'],
     ];
 
     /**
