@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import RoundAdd from 'react-md-icon/dist/RoundAdd';
+import RoundEdit from 'react-md-icon/dist/RoundEdit';
 import { Link } from 'react-router-dom';
 import { PageTitle } from '../../components/PageTitle';
 import { Page } from '../../components/Page';
@@ -6,9 +8,31 @@ import { usePatients } from './usePatients';
 import { Spinner } from '../../components/Spinner';
 import { Table, Row, Cell } from '../../components/Table';
 import { Pagination } from '../../components/Pagination';
+import { FloatingActionButton } from '../../components/FloatingActionButton';
+import { PatientModal } from './PatientModal';
 
 export const Patients = () => {
-    const { patients, loading, page, pageCount } = usePatients();
+    const { patients, loading, page, pageCount, refresh } = usePatients();
+    const [showModal, setShowModal] = useState(false);
+    const [editing, setEditing] = useState(null);
+
+    useEffect(() => {
+        if (editing) {
+            setShowModal(true);
+        }
+    }, [editing]);
+
+    const handlePatientSaved = () => {
+        refresh();
+
+        setEditing(null);
+    };
+
+    const handleEditClick = id => (e) => {
+        e.preventDefault();
+
+        setEditing(id);
+    };
 
     return (
         <>
@@ -20,6 +44,7 @@ export const Patients = () => {
                         'Name': 'normal',
                         'Created At': 'normal',
                         'Updated At': 'normal',
+                        '': 'normal',
                     }}>
                         {patients.map(patient => (
                             <Row key={patient.id}>
@@ -30,6 +55,11 @@ export const Patients = () => {
                                 </Cell>
                                 <Cell>{patient.time.created.format('Do MMMM YYYY @ HH:mm')}</Cell>
                                 <Cell>{patient.time.updated.format('Do MMMM YYYY @ HH:mm')}</Cell>
+                                <Cell>
+                                    <a href="#edit" onClick={handleEditClick(patient.id)}>
+                                        <RoundEdit />
+                                    </a>
+                                </Cell>
                             </Row>
                         ))}
                     </Table>
@@ -43,6 +73,20 @@ export const Patients = () => {
                     urlFormat="/patients?page=:page:"
                 />
             </Page>
+
+            <FloatingActionButton onClick={() => setShowModal(true)}>
+                <RoundAdd />
+            </FloatingActionButton>
+
+            <PatientModal
+                show={showModal}
+                hide={() => {
+                    setShowModal(false);
+                    setEditing(null);
+                }}
+                editing={editing}
+                onSuccess={handlePatientSaved}
+            />
         </>
     );
 }
