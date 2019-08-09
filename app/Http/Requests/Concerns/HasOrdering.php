@@ -6,7 +6,7 @@ use App\Exceptions\HasOrderingRequirementsMissingException as Exception;
 
 trait HasOrdering
 {
-    protected function applyOrdering($query, $defaultSort)
+    protected function applyOrdering($query, $defaultSort, $defaultOrder = 'desc')
     {
         throw_unless(
             property_exists($this, 'relationSorts'),
@@ -14,7 +14,7 @@ trait HasOrdering
         );
 
         $sort = $this->input('sort') ?? $defaultSort;
-        $order = $this->input('order') ?? 'desc';
+        $order = $this->input('order') ?? $defaultOrder;
 
         if (array_key_exists($sort, $this->relationSorts)) {
             $this->applyRelationalSort(

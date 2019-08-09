@@ -4,18 +4,13 @@ namespace App\Http\Requests;
 
 use App\Models\Patient;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Concerns\HasOrdering;
 
 class GetPatientsRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
+    use HasOrdering;
+
+    protected $relationSorts = [];
 
     /**
      * Get the validation rules that apply to the request.
@@ -26,29 +21,33 @@ class GetPatientsRequest extends FormRequest
     {
         return [
             'filter' => 'nullable|string',
+            'sort' => 'nullable|string|in:name',
+            'order' => 'nullable|string|in:asc,desc',
         ];
     }
 
     public function getPatients()
     {
-        if (!$this->has('filter')) {
-            return $this->getPaginatedPatients();
+        if ($this->has('filter')) {
+            return $this->filteredPatients();
         }
 
-        return $this->getFilteredPatients();
+        $query = (new Patient)->newQuery();
+        $this->applyOrdering($query, 'name', 'asc');
+
+        return $query->paginate(30);
     }
 
-    public function getPaginatedPatients()
+    public function filteredPatients()
     {
-        return Patient::orderBy('name', 'asc')->paginate(30);
-    }
+        $query = (new Patient)->newQuery();
 
-    public function getFilteredPatients()
-    {
         if ($filter = $this->input('filter')) {
-            return Patient::where('name', 'LIKE', "%$filter%")->get();
+            $query->where('name', 'LIKE', "%$filter%");
+        } else {
+            $query->limit(15)->orderBy('name', 'asc');
         }
 
-        return Patient::orderBy('name', 'asc')->limit(15)->get();
+        return $query->get();
     }
 }
