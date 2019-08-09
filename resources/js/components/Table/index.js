@@ -33,11 +33,11 @@ export const Table = ({ headers, children, sortable, sort, order, updateSorting 
                         key={name}
                         size={sizes[i]}
                         header
-                        onClick={sortable[name] ? handleHeaderClick(sortable[name]) : null}
+                        onClick={sortable && sortable[name] ? handleHeaderClick(sortable[name]) : null}
                     >
-                        {sortable[name] && sort === sortable[name] && (
+                        {sortable && sortable[name] && sort === sortable[name] ? (
                             order === 'desc' ? <RoundDown /> : <RoundUp />
-                        )}
+                        ) : null}
 
                         {name}
                     </Cell>
