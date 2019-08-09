@@ -4,20 +4,17 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\LabOrder;
-use Illuminate\Support\Facades\Date;
-use Illuminate\Pagination\LengthAwarePaginator;
+use App\Http\Requests\Concerns\HasOrdering;
 
 class GetLabOrdersRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
+    use HasOrdering;
+
+    protected $relationSorts = [
+        'patient' => ['patients', 'patient_id', 'name'],
+        'practice' => ['practices', 'practice_id', 'name'],
+        'lab' => ['labs', 'lab_id', 'name'],
+    ];
 
     /**
      * Get the validation rules that apply to the request.
@@ -29,8 +26,8 @@ class GetLabOrdersRequest extends FormRequest
         return [
             'practice' => 'nullable|integer|exists:practices,id',
             'status' => 'nullable|string|in:overdue,urgent,complete,incomplete',
-            'sort_by' => 'nullable|string',
-            'order' => 'nullable|string|in:asc,dsc',
+            'sort' => 'nullable|string|in:date_sent,date_received,date_required,lens,lab,practice,patient',
+            'order' => 'nullable|string|in:asc,desc',
             'lab' => 'nullable|integer|exists:labs,id',
             'limit' => 'nullable|integer',
         ];
@@ -38,11 +35,8 @@ class GetLabOrdersRequest extends FormRequest
 
     public function getLabOrders()
     {
-        $sortBy = $this->input('sort_by', 'date_required');
-        $order = $this->input('order', 'desc');
-
-        $query = (new LabOrder)->newQuery()
-            ->orderBy($sortBy, $order);
+        $query = (new LabOrder)->newQuery();
+        $this->applyOrdering($query, 'date_required');
 
         if ($practice = $this->input('practice')) {
             $query->where('practice_id', $practice);
@@ -56,24 +50,11 @@ class GetLabOrdersRequest extends FormRequest
             $query->where('lab_id', $lab);
         }
 
-
-
-
         $limit = $this->input('limit');
 
         return $limit
             ? $query->limit($limit)->get()
-         //   : $query->paginate(30);
-            : $this->paginate($query, 30);
+            : $query->paginate(30);
     }
 
-
-    protected function paginate($query, $perPage): LengthAwarePaginator
-    {
-        $total = $query->getQuery()->cloneWithout(['havings'])->count();
-
-        $items = $query->simplePaginate($perPage)->items();
-
-        return new LengthAwarePaginator($items, $total, $perPage);
-    }
 }
