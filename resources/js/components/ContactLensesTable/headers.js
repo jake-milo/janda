@@ -27,3 +27,23 @@ export const getHeaders = (remove) => {
 
     return headers;
 };
+
+export const getSortable = (remove) => {
+    const sortable = {
+        [PATIENT]: 'patient',
+        [PRACTICE]: 'practice',
+        [MAKE]: 'type',
+        [DURATION]: 'duration',
+        [QUANTITY]: 'quantity',
+        [PRICE]: 'price',
+        [SOLUTIONS]: 'solutions',
+    };
+
+    remove.forEach(r => {
+        if (sortable[r]) {
+            delete sortable[r];
+        }
+    });
+
+    return sortable;
+}
