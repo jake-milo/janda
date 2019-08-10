@@ -7,15 +7,16 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Practice as PracticeResource;
 use App\Http\Requests\CreatePracticeRequest;
 use App\Http\Requests\UpdatePracticeRequest;
+use App\Http\Requests\GetPracticeRequest;
 
 class PracticeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(GetPracticeRequest $request)
     {
-        $practices = Practice::orderBy('name','asc')->get();
+        $practices = $request->getPractices();
 
         return PracticeResource::collection($practices);
     }

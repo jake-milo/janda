@@ -4,19 +4,13 @@ namespace App\Http\Requests;
 
 use App\Models\Lab;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Concerns\HasOrdering;
 
 class GetLabsRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
+    use HasOrdering;
 
+    protected $relationSorts = [];
     /**
      * Get the validation rules that apply to the request.
      *
@@ -26,29 +20,34 @@ class GetLabsRequest extends FormRequest
     {
         return [
             'filter' => 'nullable|string',
+            'sort' => 'nullable|string|in:name,created_at,updated_at',
+            'order' => 'nullable|string|in:asc,desc',
         ];
     }
 
     public function getLabs()
     {
-        if (!$this->has('filter')) {
-            return $this->getPaginatedLabs();
+        if ($this->has('filter')) {
+            return $this->filteredLabs();
         }
 
-        return $this->getFilteredLabs();
+        $query = (new Lab)->newQuery();
+        $this->applyOrdering($query, 'name', 'asc');
+
+        return $query->paginate(30);
     }
 
-    public function getPaginatedLabs()
-    {
-        return Lab::orderBy('name', 'asc')->paginate(30);
-    }
 
-    public function getFilteredLabs()
+    public function filteredLabs()
     {
+        $query = (new Lab)->newQuery();
+
         if ($filter = $this->input('filter')) {
-            return Lab::where('name', 'LIKE', "%$filter%")->get();
+            $query->where('name', 'LIKE', "%$filter%");
+        } else {
+            $query->limit(15)->orderBy('name', 'asc');
         }
 
-        return Lab::orderBy('name', 'asc')->limit(15)->get();
+        return $query->get();
     }
 }

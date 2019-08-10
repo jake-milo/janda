@@ -6,9 +6,11 @@ import { Page } from '../../components/Page';
 import { Spinner } from '../../components/Spinner';
 import { Table, Row, Cell } from '../../components/Table';
 import { Pagination } from '../../components/Pagination';
+import { useSort } from '../../hooks/useSort';
 
 export const Labs = () => {
-    const { labs, loading, page, pageCount } = useLabs();
+    const [sort, order, updateSorting] = useSort();
+    const { labs, loading, page, pageCount } = useLabs({ sort, order });
 
     return (
         <>
@@ -16,11 +18,21 @@ export const Labs = () => {
 
             <Page>
                 {!loading ? (
-                    <Table headers={{
-                        'Name': 'normal',
-                        'Created At': 'normal',
-                        'Updated At': 'normal',
-                    }}>
+                    <Table
+                        headers={{
+                            'Name': 'normal',
+                            'Created At': 'normal',
+                            'Updated At': 'normal',
+                        }}
+                        sortable={{
+                            'Name': 'name',
+                            'Created At': 'created_at',
+                            'Updated At': 'updated_at',
+                        }}
+                        sort={sort}
+                        order={order}
+                        updateSorting={updateSorting}
+                    >
                         {labs.map(lab => (
                             <Row key={lab.id}>
                                 <Cell>

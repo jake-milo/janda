@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Stock\Manufacturer as ManufacturerResource;
 use App\Http\Requests\Stock\CreateManufacturerRequest;
 use App\Http\Requests\Stock\UpdateManufacturerRequest;
+use App\Http\Requests\Stock\GetManufacturerRequest;
 
 class ManufacturerController extends Controller
 {
@@ -15,9 +16,9 @@ class ManufacturerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(GetManufacturerRequest $request)
     {
-        $manufacturer = Manufacturer::orderBy('name')->paginate(30);
+        $manufacturer = $request->getManufacturers();
 
         return ManufacturerResource::collection($manufacturer);
     }
