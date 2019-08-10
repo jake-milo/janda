@@ -5,10 +5,11 @@ import './Modal.css';
 import { useOnClickOutside } from '../../hooks/useOnClickOutside';
 
 const modalRoot = document.getElementById('modal-root');
+const selectRoot = document.getElementById('select-root')
 
 export const Modal = ({ show, hide, children }) => {
     const ref = createRef();
-    useOnClickOutside(ref, () => hide());
+    useOnClickOutside([ref, selectRoot], () => hide(), true);
 
     useEffect(() => {
         document.body.style.overflow = show ? 'hidden' : 'auto';

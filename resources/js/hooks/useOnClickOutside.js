@@ -1,13 +1,28 @@
 import { useEffect } from 'react';
 
-export const useOnClickOutside = (ref, handler) => {
+// converts a single ref, element or array into
+// an array of corresponding elements
+const toEls = (refsOrRef) => {
+    const refs = Array.isArray(refsOrRef) ? refsOrRef : [refsOrRef];
+
+    const toEl = ref => ref instanceof HTMLElement || !ref
+        ? ref
+        : ref.current;
+
+    return refs.map(toEl);
+};
+
+// `ref` is either a single ref, element or an array of either
+export const useOnClickOutside = (ref, handler, debug = false) => {
     useEffect(() => {
-        const el = ref instanceof HTMLElement || !ref
-            ? ref
-            : ref.current;
+        const els = toEls(ref);
 
         const handleClick = (e) => {
-            if (el && !el.contains(e.target)) {
+            const contained = els.some(el => {
+                return el && el.contains(e.target);
+            });
+
+            if (!contained) {
                 handler(e);
             }
         };
@@ -15,5 +30,5 @@ export const useOnClickOutside = (ref, handler) => {
         document.addEventListener('mousedown', handleClick);
 
         return () => document.removeEventListener('mousedown', handleClick);
-    });
+    }, [ref]);
 };

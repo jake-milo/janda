@@ -10,7 +10,7 @@ class Brand extends Model
 {
     use SoftDeletes, HasResourceRelations;
 
-    protected $resourceRelations = ['types'];
+    protected $resourceRelations = ['types', 'manufacturer'];
 
     protected $fillable = ['name'];
 

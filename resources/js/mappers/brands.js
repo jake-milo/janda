@@ -1,4 +1,5 @@
 import { timeMapper } from "./time";
+import { manufacturerMapper } from "./manufacturers";
 
 export const brandsMapper = (brands, group = true) => {
     if (!group) {
@@ -28,13 +29,17 @@ export const brandsMapper = (brands, group = true) => {
         }));
 };
 
-export const brandMapper = ({ type, time, ...rest }) => {
+export const brandMapper = ({ type, time, manufacturer, ...rest }) => {
     const brand = { ...rest };
 
     brand.time = timeMapper(time);
 
     if (type) {
         brand.type = type;
+    }
+
+    if (manufacturer) {
+        brand.manufacturer = manufacturerMapper(manufacturer);
     }
 
     return brand;

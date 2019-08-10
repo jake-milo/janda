@@ -1,22 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
+import RoundEdit from 'react-md-icon/dist/RoundEdit';
+import { Link } from 'react-router-dom';
 import { useBrand } from './useBrand';
 import { PageTitle } from '../../components/PageTitle';
 import { Page } from '../../components/Page';
 import { Table, Row, Cell } from '../../components/Table';
 import { Spinner } from '../../components/Spinner';
+import { FloatingActionButton } from '../../components/FloatingActionButton';
+import { BrandModal } from '../../components/BrandModal';
 
 export const Brand = ({ match }) => {
-    const { brand } = useBrand(match.params.id);
+    const { brand, refresh } = useBrand(match.params.id);
+    const [showModal, setShowModal] = useState(false);
 
-    console.log(brand);
+    const handleBrandSaved = () => {
+        refresh();
+    };
 
     return (
         <>
             <PageTitle>{brand ? brand.name : 'Loading...'}</PageTitle>
 
             <Page>
-                <h2>Types</h2>
+                <h2>Manufacturer</h2>
+                {brand ? (
+                    <Link to={`/manufacturers/${brand.manufacturer.id}`}>
+                        {brand.manufacturer.name}
+                    </Link>
+                ) : (
+                    <p>Loading...</p>
+                )}
 
+                <h2>Types</h2>
                 {brand ? (
                     <Table headers={{
                         'Name': 'normal',
@@ -39,6 +54,19 @@ export const Brand = ({ match }) => {
                     <Spinner />
                 )}
             </Page>
+
+            <FloatingActionButton onClick={() => setShowModal(true)}>
+                <RoundEdit />
+            </FloatingActionButton>
+
+            {brand && (
+                <BrandModal
+                    show={showModal}
+                    hide={() => setShowModal(false)}
+                    onSuccess={handleBrandSaved}
+                    brand={brand}
+                />
+            )}
         </>
     );
 };

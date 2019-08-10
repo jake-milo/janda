@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom';
 import { useBrands } from './useBrands';
 import { Spinner } from '../../../components/Spinner';
 import { FloatingActionButton } from '../../../components/FloatingActionButton';
+import { BrandModal } from '../../../components/BrandModal';
 
 import './FrameStock.css';
-import { CreateBrandModal } from './CreateBrandModal';
 
 export const FrameStock = () => {
-    const { groupedBrands } = useBrands();
+    const { groupedBrands, refresh } = useBrands();
     const [showCreateModal, setShowCreateModal] = useState(false);
 
     const handleBrandCreated = () => {
-        //
-    }
+        refresh();
+    };
 
     return (
         <>
@@ -39,7 +39,7 @@ export const FrameStock = () => {
                 <RoundAdd />
             </FloatingActionButton>
 
-            <CreateBrandModal
+            <BrandModal
                 show={showCreateModal}
                 hide={() => setShowCreateModal(false)}
                 onSuccess={handleBrandCreated}
