@@ -10,9 +10,11 @@ import { Table, Row, Cell } from '../../components/Table';
 import { Pagination } from '../../components/Pagination';
 import { FloatingActionButton } from '../../components/FloatingActionButton';
 import { PatientModal } from './PatientModal';
+import { useSort } from '../../hooks/useSort';
 
 export const Patients = () => {
-    const { patients, loading, page, pageCount, refresh } = usePatients();
+    const [sort, order, updateSorting] = useSort();
+    const { patients, loading, page, pageCount, refresh } = usePatients({ sort, order });
     const [showModal, setShowModal] = useState(false);
     const [editing, setEditing] = useState(null);
 
@@ -21,6 +23,7 @@ export const Patients = () => {
             setShowModal(true);
         }
     }, [editing]);
+
 
     const handlePatientSaved = () => {
         refresh();
@@ -40,12 +43,22 @@ export const Patients = () => {
 
             <Page>
                 {!loading ? (
-                    <Table headers={{
-                        'Name': 'normal',
-                        'Created At': 'normal',
-                        'Updated At': 'normal',
-                        '': 'normal',
-                    }}>
+                    <Table
+                        headers={{
+                            'Name': 'normal',
+                            'Created At': 'normal',
+                            'Updated At': 'normal',
+                            '': 'normal',
+                        }}
+                        sortable={{
+                            'Name': 'name',
+                            'Created At': 'created_at',
+                            'Updated At': 'updated_at',
+                        }}
+                        sort={sort}
+                        order={order}
+                        updateSorting={updateSorting}
+                    >
                         {patients.map(patient => (
                             <Row key={patient.id}>
                                 <Cell>

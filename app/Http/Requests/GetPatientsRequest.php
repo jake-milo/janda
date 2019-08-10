@@ -21,7 +21,7 @@ class GetPatientsRequest extends FormRequest
     {
         return [
             'filter' => 'nullable|string',
-            'sort' => 'nullable|string|in:name',
+            'sort' => 'nullable|string|in:name,created_at,updated_at',
             'order' => 'nullable|string|in:asc,desc',
         ];
     }
