@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
+import RoundEdit from 'react-md-icon/dist/RoundEdit';
 import { Link } from 'react-router-dom';
 import { PageTitle } from '../../components/PageTitle';
 import { Page } from '../../components/Page';
 import { Spinner } from '../../components/Spinner';
 import { useManufacturer } from './useManufacturer';
 import { Table, Row, Cell } from '../../components/Table';
+import { FloatingActionButton } from '../../components/FloatingActionButton';
+import { ManufacturerModal } from '../../components/ManufacturerModal';
 
 export const Manufacturer = ({ match }) => {
-    const { manufacturer } = useManufacturer(match.params.id);
+    const { manufacturer, refresh } = useManufacturer(match.params.id);
+    const [showModal, setShowModal] = useState(false);
+
+    const handleManufacturerSaved = () => {
+        refresh();
+    };
 
     return (
         <>
@@ -43,6 +51,21 @@ export const Manufacturer = ({ match }) => {
                     <Spinner />
                 )}
             </Page>
+
+            <FloatingActionButton onClick={() => setShowModal(true)}>
+                <RoundEdit />
+            </FloatingActionButton>
+
+            {manufacturer && (
+                <ManufacturerModal
+                    show={showModal}
+                    hide={() => {
+                        setShowModal(false);
+                    }}
+                    editing={manufacturer}
+                    onSuccess={handleManufacturerSaved}
+                />
+            )}
         </>
     );
 }

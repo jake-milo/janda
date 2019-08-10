@@ -7,7 +7,7 @@ import { Table, Cell, Row } from '../../../components/Table';
 import { Spinner } from '../../../components/Spinner';
 import { Pagination } from '../../../components/Pagination';
 import { FloatingActionButton } from '../../../components/FloatingActionButton';
-import { CreateManufacturerModal } from './CreateManufacturerModal';
+import { ManufacturerModal } from '../../../components/ManufacturerModal';
 
 export const FrameManufacturers = () => {
     const { manufacturers, loading, page, pageCount, refresh } = useManufacturers();
@@ -73,7 +73,7 @@ export const FrameManufacturers = () => {
                     urlFormat="/stock/manufacturers?page=:page:"
                 />
 
-                <CreateManufacturerModal
+                <ManufacturerModal
                     show={showModal}
                     hide={() => {
                         setShowModal(false)

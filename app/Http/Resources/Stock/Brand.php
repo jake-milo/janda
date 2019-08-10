@@ -21,7 +21,7 @@ class Brand extends JsonResource
             'name' => $this->name,
 
             'manufacturer' => Manufacturer::make(
-                $this->whenLoaded('brand')
+                $this->whenLoaded('manufacturer')
             ),
 
             'types' => Type::collection(
