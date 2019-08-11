@@ -8,7 +8,7 @@ import { useContactLenses } from './useContactLenses';
 import { PracticePicker } from '../../components/PracticePicker';
 import { ContactLensesTable } from '../../components/ContactLensesTable';
 import { FloatingActionButton } from '../../components/FloatingActionButton';
-import { CreateContactLensModal } from './CreateContactLensModal';
+import { ContactLensModal } from './ContactLensModal';
 import { ContactLensBrandPicker } from '../../components/ContactLensBrandPicker';
 
 import { useSort } from '../../hooks/useSort';
@@ -16,18 +16,24 @@ import { useSort } from '../../hooks/useSort';
 export const ContactLenses = () => {
     const [practice, setPractice] = useState('');
     const [brand, setBrand] = useState('');
+    const [editing, setEditing] = useState(null);
 
     const [sort, order, updateSorting] = useSort();
-    const { contactLenses, loading, page, pageCount, resetPage } = useContactLenses({
+    const { contactLenses, loading, page, pageCount, refresh } = useContactLenses({
         practice,
         sort,
         order,
     });
 
-    const [showCreateModal, setShowCreateModal] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
-    const handleContactLensCreated = () => {
-        resetPage();
+    const handleContactLensSaved = () => {
+        refresh();
+    };
+
+    const handleEdit = (id) => {
+        setEditing(id);
+        setShowModal(true);
     };
 
     return (
@@ -60,6 +66,8 @@ export const ContactLenses = () => {
                             sort={sort}
                             order={order}
                             updateSorting={updateSorting}
+                            withActions
+                            onEdit={handleEdit}
                         />
 
                         <Pagination
@@ -72,14 +80,15 @@ export const ContactLenses = () => {
                     <Spinner />
                 )}
 
-                <FloatingActionButton onClick={() => setShowCreateModal(true)}>
+                <FloatingActionButton onClick={() => setShowModal(true)}>
                     <RoundAdd />
                 </FloatingActionButton>
 
-                <CreateContactLensModal
-                    show={showCreateModal}
-                    hide={() => setShowCreateModal(false)}
-                    onSuccess={handleContactLensCreated}
+                <ContactLensModal
+                    show={showModal}
+                    hide={() => setShowModal(false)}
+                    onSuccess={handleContactLensSaved}
+                    editing={editing}
                 />
             </Page>
         </>

@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import RoundEdit from 'react-md-icon/dist/RoundEdit';
 import { Link } from 'react-router-dom';
 import { Table, Row, Cell } from '../Table';
 import * as h from './headers';
@@ -10,13 +11,23 @@ export const ContactLensesTable = ({
     sort, // column being sorted by
     order, // order of the sorting
     updateSorting, // used to update the sorting
-    remove = [] // columns to not render if desired
+    onEdit, // method to call when edit button is clicked
+    remove = [], // columns to not render if desired
+    withActions = false, // flag to toggle actions
 }) => {
-    const headers = useMemo(() => h.getHeaders(remove), [remove]);
+    const headers = useMemo(() => {
+        return h.getHeaders(withActions ? remove : [...remove, h.ACTIONS]);
+    }, [remove, withActions]);
 
     const sortable = useMemo(() => h.getSortable(remove), [remove]);
 
     const hasHeader = header => !remove.includes(header);
+
+    const handleEditClick = id => (e) => {
+        e.preventDefault();
+
+        onEdit(id);
+    };
 
     return (
         <Table headers={headers} sortable={sortable} sort={sort} order={order} updateSorting={updateSorting}>
@@ -48,6 +59,11 @@ export const ContactLensesTable = ({
                     <Cell when={hasHeader(h.QUANTITY)}>{contactLens.quantity}</Cell>
                     <Cell when={hasHeader(h.PRICE)} size="thin">{contactLens.price}</Cell>
                     <Cell when={hasHeader(h.SOLUTIONS)}>{contactLens.solutions || '-'}</Cell>
+                    <Cell when={hasHeader(h.ACTIONS) && withActions} size="thin" centered>
+                        <a href="#" onClick={handleEditClick(contactLens.id)}>
+                            <RoundEdit />
+                        </a>
+                    </Cell>
                 </Row>
             ))}
         </Table>
