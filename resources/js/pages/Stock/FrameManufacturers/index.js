@@ -8,9 +8,11 @@ import { Spinner } from '../../../components/Spinner';
 import { Pagination } from '../../../components/Pagination';
 import { FloatingActionButton } from '../../../components/FloatingActionButton';
 import { ManufacturerModal } from '../../../components/ManufacturerModal';
+import { useSort } from '../../../hooks/useSort';
 
 export const FrameManufacturers = () => {
-    const { manufacturers, loading, page, pageCount, refresh } = useManufacturers();
+    const [sort, order, updateSorting] = useSort();
+    const { manufacturers, loading, page, pageCount, refresh } = useManufacturers({ sort, order });
     const [showModal, setShowModal] = useState(false);
     const [editing, setEditing] = useState(null);
 
@@ -36,12 +38,22 @@ export const FrameManufacturers = () => {
         <>
             <div className="manufacturers">
                 {!loading ? (
-                    <Table headers={{
+                    <Table
+                        headers={{
                         'Name': 'normal',
                         'Created At': 'normal',
                         'Updated At': 'normal',
                         '': 'normal',
-                    }}>
+                        }}
+                        sortable={{
+                            'Name': 'name',
+                            'Created At': 'created_at',
+                            'Updated At': 'updated_at',
+                        }}
+                        sort={sort}
+                        order={order}
+                        updateSorting={updateSorting}
+                    >
                         {manufacturers.map(manufacturer => (
                             <Row key={manufacturer.id}>
                                 <Cell>
