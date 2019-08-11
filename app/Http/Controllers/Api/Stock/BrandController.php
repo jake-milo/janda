@@ -63,8 +63,10 @@ class BrandController extends Controller
     public function update(UpdateBrandRequest $request, Brand $brand)
     {
         $updates = $request->getUpdates();
+        $manufacturer = $request->getManufacturer();
 
         $brand->fill($updates);
+        $brand->manufacturer()->associate($manufacturer);
         $brand->save();
 
         $brand->loadResourceRelations();

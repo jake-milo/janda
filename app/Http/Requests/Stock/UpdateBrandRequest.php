@@ -25,11 +25,24 @@ class UpdateBrandRequest extends FormRequest
     {
         return [
             'name' => 'string',
+            'manufacturer_id' => 'integer|required_without:manufacturer|exists:manufacturers,id',
+            'manufacturer' => 'string|required_without:manufacturer_id',
         ];
     }
 
     public function getUpdates()
     {
         return $this->only('name');
+    }
+
+    public function getManufacturer(): Manufacturer
+    {
+        if($id = $this->input('manufacturer_id')) {
+            return Manufacturer::find($id);
+        }
+
+        return Manufacturer::create([
+            'name' => $this->input('manufacturer'),
+        ]);
     }
 }
