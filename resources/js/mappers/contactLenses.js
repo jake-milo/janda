@@ -19,6 +19,7 @@ export const contactLensMapper = ({
     contactLens.time = timeMapper(time);
 
     contactLens.price = formatMoney(parseInt(price, 10));
+    contactLens.raw_price = price;
 
     if (practice) {
         contactLens.practice = practiceMapper(practice);

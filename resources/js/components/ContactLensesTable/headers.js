@@ -6,6 +6,7 @@ export const PRESCRIPTION = 'Prescription';
 export const QUANTITY = 'Quantity';
 export const PRICE = 'Price';
 export const SOLUTIONS = 'Solutions';
+export const ACTIONS = '';
 
 export const getHeaders = (remove) => {
     const headers = {
@@ -17,6 +18,7 @@ export const getHeaders = (remove) => {
         [QUANTITY]: 'normal',
         [PRICE]: 'thin',
         [SOLUTIONS]: 'normal',
+        [ACTIONS]: 'thin',
     };
 
     remove.forEach(r => {

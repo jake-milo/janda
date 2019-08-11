@@ -77,9 +77,6 @@ export const CreateLabOrderModal = ({ show, hide, onSuccess, editing }) => {
                 onSubmit={handleSubmit}
                 render={({ handleSubmit: onSubmit, handleChange, values }) => (
                     <form onSubmit={onSubmit} style={{ display: loading ? 'none' : 'block' }}>
-                        {/* <div className="select-wrapper">
-                            <PatientPicker.Formik name="patient_id" value={values.patient_id} />
-                        </div> */}
                         <PickOrNewPatient.Formik
                             name="patient"
                             value={values.patient}

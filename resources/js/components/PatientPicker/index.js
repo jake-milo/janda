@@ -13,7 +13,7 @@ export const PatientPicker = ({
 }) => {
     const [filter, setFilter] = useState('');
     const debouncedFilter = useDebounced(filter, 500);
-    const { patients, loading } = usePatients({ filter: debouncedFilter });
+    const { patients, loading } = usePatients({ filter: debouncedFilter, include: value ? value : null });
 
     const handleChange = (newVal) => {
         if (formik && formik.setFieldValue) {
