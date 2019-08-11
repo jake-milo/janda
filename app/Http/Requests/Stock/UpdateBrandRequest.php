@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Stock;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Stock\Manufacturer;
 
 class UpdateBrandRequest extends FormRequest
 {
