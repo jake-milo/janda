@@ -1,16 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import RoundEdit from 'react-md-icon/dist/RoundEdit';
+import RoundAdd from 'react-md-icon/dist/RoundAdd';
 import { Link } from 'react-router-dom';
-import { usePractice, useLabs } from './useLabs';
+import { useLabs } from './useLabs';
 import { PageTitle } from '../../components/PageTitle';
 import { Page } from '../../components/Page';
 import { Spinner } from '../../components/Spinner';
 import { Table, Row, Cell } from '../../components/Table';
 import { Pagination } from '../../components/Pagination';
 import { useSort } from '../../hooks/useSort';
+import { FloatingActionButton } from '../../components/FloatingActionButton';
+import { LabModal } from './LabModal';
 
 export const Labs = () => {
     const [sort, order, updateSorting] = useSort();
-    const { labs, loading, page, pageCount } = useLabs({ sort, order });
+    const { labs, loading, page, pageCount, refresh } = useLabs({ sort, order });
+    const [showModal, setShowModal] = useState(false);
+    const [editing, setEditing] = useState(null);
+
+    useEffect(() => {
+        if (editing) {
+            setShowModal(true);
+        }
+    }, [editing]);
+
+    const handleLabSaved = () => {
+        refresh();
+
+        setEditing(null);
+    };
+
+    const handleEditClick = id => (e) => {
+        e.preventDefault();
+
+        setEditing(id);
+    };
 
     return (
         <>
@@ -23,6 +47,7 @@ export const Labs = () => {
                             'Name': 'normal',
                             'Created At': 'normal',
                             'Updated At': 'normal',
+                            '': 'normal',
                         }}
                         sortable={{
                             'Name': 'name',
@@ -42,6 +67,11 @@ export const Labs = () => {
                                 </Cell>
                                 <Cell>{lab.time.created.format('Do MMMM YYYY @ HH:mm')}</Cell>
                                 <Cell>{lab.time.updated.format('Do MMMM YYYY @ HH:mm')}</Cell>
+                                <Cell>
+                                    <a href="#edit" onClick={handleEditClick(lab.id)}>
+                                        <RoundEdit />
+                                    </a>
+                                </Cell>
                             </Row>
                         ))}
                     </Table>
@@ -55,6 +85,20 @@ export const Labs = () => {
                     urlFormat="/labs?page=:page"
                 />
             </Page>
+
+            <FloatingActionButton onClick={() => setShowModal(true)}>
+                <RoundAdd />
+            </FloatingActionButton>
+
+            <LabModal
+                show={showModal}
+                hide={() => {
+                    setShowModal(false);
+                    setEditing(null);
+                }}
+                editing={editing}
+                onSuccess={handleLabSaved}
+            />
         </>
     );
 }
