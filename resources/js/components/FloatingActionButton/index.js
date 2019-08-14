@@ -1,4 +1,4 @@
-import React, { useState, useRef, createContext, useContext } from 'react';
+import React, { useState, useRef, createContext, useContext, Children, cloneElement } from 'react';
 import { useTransition, animated } from 'react-spring';
 import { useOnClickOutside } from '../../hooks/useOnClickOutside';
 
@@ -10,15 +10,7 @@ const config = {
     duration: 100,
 };
 
-const Button = ({ onClick, children }) => {
-    const { expanded, setExpanded } = useContext(FabContext);
-    const transitions = useTransition(expanded, null, {
-        from: { transform: 'scale(0)' },
-        enter: { transform: 'scale(1)' },
-        leave: { transform: 'scale(0)' },
-        config,
-    });
-
+const Button = ({ onClick, title, style, children }) => {
     const handleClick = (e) => {
         e.preventDefault();
         setExpanded(false);
@@ -26,11 +18,39 @@ const Button = ({ onClick, children }) => {
         onClick();
     };
 
-    return transitions.map(({ item, key, props }) => item ? (
-        <animated.button key={key} style={props} onClick={handleClick} className="fab --child">
-            {children}
-        </animated.button>
-    ) : null);
+    return (
+        <div className="button-container">
+            <animated.button style={style} onClick={handleClick} className="fab --child">
+                {children}
+            </animated.button>
+
+            {title ? (
+                <p>{title}</p>
+            ) : null}
+        </div>
+    );
+};
+
+const SubButtons = ({ buttons, ready }) => {
+    const transitions = useTransition(
+        ready ? buttons : [],
+        item => item.key,
+        {
+            trail: 400 / buttons.length,
+            from: { transform: 'scale(0)' },
+            enter: { transform: 'scale(1)' },
+            leave: { transform: 'scale(0)' },
+            config,
+        },
+    );
+
+    return transitions.map(({ item, props }, i) => {
+        if (!item) return;
+
+        const el = buttons[i];
+
+        return React.cloneElement(el, { style: props });
+    });
 };
 
 export const FloatingActionButton = ({ children, onClick, expander = false, icon = null }) => {
@@ -38,17 +58,31 @@ export const FloatingActionButton = ({ children, onClick, expander = false, icon
     const container = useRef();
 
     useOnClickOutside(container, () => {
+        console.log('clicked outside');
         setExpanded(false);
     });
 
     const handleClick = (e) => {
         e.preventDefault();
 
+        // console.log({ expander, expanded });
+
         if (expander) {
+            // console.log(expanded);
             setExpanded(!expanded);
         } else {
             onClick();
         }
+    };
+
+    // console.log('state: ', expanded);
+
+    const renderSubButtons = () => {
+        // console.log('rendering sub buttons');
+        return React.Children.map(children, (child, index) => {
+            // console.log(child, index);
+            return React.cloneElement(child, { index });
+        });
     };
 
     return (
@@ -56,12 +90,14 @@ export const FloatingActionButton = ({ children, onClick, expander = false, icon
             <div className="fab-container" ref={container}>
                 {expander ? (
                     <>
-                        <button onClick={handleClick} className="fab" id={expanded ? 'expanded' : ''}>
+                        <button onClick={handleClick} className="fab">
                             {icon()}
                         </button>
 
-                        {/* {expanded ? children({ Button }) : null} */}
-                        {children({ Button })}
+                        <SubButtons
+                            buttons={React.Children.toArray(children)}
+                            ready={expanded}
+                        />
                     </>
                 ) : (
                     <button onClick={handleClick} className="fab">
@@ -72,3 +108,5 @@ export const FloatingActionButton = ({ children, onClick, expander = false, icon
         </FabContext.Provider>
     );
 };
+
+FloatingActionButton.Button = Button;

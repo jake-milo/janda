@@ -8,7 +8,7 @@ import { PageTitle } from '../../components/PageTitle';
 import { Page } from '../../components/Page';
 import { Table, Row, Cell } from '../../components/Table';
 import { Spinner } from '../../components/Spinner';
-import { FloatingActionButton } from '../../components/FloatingActionButton';
+import { FloatingActionButton as FAB } from '../../components/FloatingActionButton';
 import { BrandModal } from '../../components/BrandModal';
 
 export const Brand = ({ match }) => {
@@ -57,21 +57,15 @@ export const Brand = ({ match }) => {
                 )}
             </Page>
 
-            <FloatingActionButton
-                expander
-                icon={() => (<RoundMoreVert />)}
-                children={({ Button }) => (
-                    <>
-                        <Button onClick={() => setShowModal(true)}>
-                            <RoundEdit />
-                        </Button>
+            <FAB expander icon={() => (<RoundMoreVert />)}>
+                <FAB.Button onClick={() => setShowModal(true)}>
+                    <RoundEdit />
+                </FAB.Button>
 
-                        <Button onClick={() => null}>
-                            <RoundAdd />
-                        </Button>
-                    </>
-                )}
-            />
+                <FAB.Button onClick={() => null}>
+                    <RoundAdd />
+                </FAB.Button>
+            </FAB>
 
             {brand && (
                 <BrandModal
