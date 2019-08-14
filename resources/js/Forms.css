@@ -42,7 +42,7 @@
 }
 
 .select-wrapper:not(.--inline) label, .input-wrapper:not(.--inline) label {
-    width: 6rem;
+    width: 6.5rem;
 }
 
 .select-wrapper.--create .create, .input-wrapper.--create .create {
