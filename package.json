@@ -34,6 +34,8 @@
         "vue": "^2.5.17"
     },
     "dependencies": {
+        "bezier-easing": "^2.1.0",
+        "d3-ease": "^1.0.5",
         "formik": "^1.5.4",
         "moment": "^2.24.0",
         "query-string": "^6.6.0",
@@ -43,6 +45,8 @@
         "react-md-icon": "^1.13.0",
         "react-number-format": "^4.0.8",
         "react-router-dom": "^5.0.0",
+        "react-spring": "^8.0.27",
+        "react-transition-group": "^4.2.2",
         "yup": "^0.27.0"
     }
 }

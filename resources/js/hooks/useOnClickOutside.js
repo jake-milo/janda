@@ -13,7 +13,7 @@ const toEls = (refsOrRef) => {
 };
 
 // `ref` is either a single ref, element or an array of either
-export const useOnClickOutside = (ref, handler, debug = false) => {
+export const useOnClickOutside = (ref, handler) => {
     useEffect(() => {
         const els = toEls(ref);
 

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import RoundEdit from 'react-md-icon/dist/RoundEdit';
+import RoundAdd from 'react-md-icon/dist/RoundAdd';
+import RoundMoreVert from 'react-md-icon/dist/RoundMoreVert';
 import { Link } from 'react-router-dom';
 import { useBrand } from './useBrand';
 import { PageTitle } from '../../components/PageTitle';
@@ -55,9 +57,21 @@ export const Brand = ({ match }) => {
                 )}
             </Page>
 
-            <FloatingActionButton onClick={() => setShowModal(true)}>
-                <RoundEdit />
-            </FloatingActionButton>
+            <FloatingActionButton
+                expander
+                icon={() => (<RoundMoreVert />)}
+                children={({ Button }) => (
+                    <>
+                        <Button onClick={() => setShowModal(true)}>
+                            <RoundEdit />
+                        </Button>
+
+                        <Button onClick={() => null}>
+                            <RoundAdd />
+                        </Button>
+                    </>
+                )}
+            />
 
             {brand && (
                 <BrandModal
