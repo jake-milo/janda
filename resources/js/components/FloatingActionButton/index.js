@@ -36,7 +36,7 @@ const SubButtons = ({ buttons, ready }) => {
         ready ? buttons : [],
         item => item.key,
         {
-            trail: 400 / buttons.length,
+            trail: 100,
             from: { transform: 'scale(0)' },
             enter: { transform: 'scale(1)' },
             leave: { transform: 'scale(0)' },
