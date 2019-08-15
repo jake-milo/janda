@@ -11,6 +11,8 @@ const config = {
 };
 
 const Button = ({ onClick, title, style, children }) => {
+    const { setExpanded } = useContext(FabContext);
+
     const handleClick = (e) => {
         e.preventDefault();
         setExpanded(false);
@@ -58,31 +60,17 @@ export const FloatingActionButton = ({ children, onClick, expander = false, icon
     const container = useRef();
 
     useOnClickOutside(container, () => {
-        console.log('clicked outside');
         setExpanded(false);
     });
 
     const handleClick = (e) => {
         e.preventDefault();
 
-        // console.log({ expander, expanded });
-
         if (expander) {
-            // console.log(expanded);
             setExpanded(!expanded);
         } else {
             onClick();
         }
-    };
-
-    // console.log('state: ', expanded);
-
-    const renderSubButtons = () => {
-        // console.log('rendering sub buttons');
-        return React.Children.map(children, (child, index) => {
-            // console.log(child, index);
-            return React.cloneElement(child, { index });
-        });
     };
 
     return (

@@ -10,13 +10,27 @@ import { Table, Row, Cell } from '../../components/Table';
 import { Spinner } from '../../components/Spinner';
 import { FloatingActionButton as FAB } from '../../components/FloatingActionButton';
 import { BrandModal } from '../../components/BrandModal';
+import { TypeModal } from './TypeModal';
 
 export const Brand = ({ match }) => {
     const { brand, refresh } = useBrand(match.params.id);
     const [showModal, setShowModal] = useState(false);
+    const [showTypeModal, setShowTypeModal] = useState(false);
+    const [editing, setEditing] = useState(null);
 
     const handleBrandSaved = () => {
         refresh();
+    };
+
+    const handleTypeSaved = () => {
+        refresh();
+    };
+
+    const handleEditClick = type => (e) => {
+        e.preventDefault();
+
+        setEditing(type);
+        setShowTypeModal(true);
     };
 
     return (
@@ -41,6 +55,7 @@ export const Brand = ({ match }) => {
                         'Eyesize': 'normal',
                         'DBL': 'normal',
                         'Color': 'normal',
+                        '': 'thin',
                     }}>
                         {brand.types.map(type => type.variants.map((variant, i) => (
                             <Row key={variant.id}>
@@ -49,6 +64,13 @@ export const Brand = ({ match }) => {
                                 <Cell>{variant.eyesize}</Cell>
                                 <Cell>{variant.dbl}</Cell>
                                 <Cell>{variant.color}</Cell>
+                                <Cell size="thin">
+                                    {i == 0 ? (
+                                        <a href="#edit" onClick={handleEditClick(type)}>
+                                            <RoundEdit />
+                                        </a>
+                                    ) : null}
+                                </Cell>
                             </Row>
                         )))}
                     </Table>
@@ -62,18 +84,28 @@ export const Brand = ({ match }) => {
                     <RoundEdit />
                 </FAB.Button>
 
-                <FAB.Button onClick={() => null}>
+                <FAB.Button onClick={() => setShowTypeModal(true)}>
                     <RoundAdd />
                 </FAB.Button>
             </FAB>
 
             {brand && (
-                <BrandModal
-                    show={showModal}
-                    hide={() => setShowModal(false)}
-                    onSuccess={handleBrandSaved}
-                    brand={brand}
-                />
+                <>
+                    <BrandModal
+                        show={showModal}
+                        hide={() => setShowModal(false)}
+                        onSuccess={handleBrandSaved}
+                        brand={brand}
+                    />
+
+                    <TypeModal
+                        show={showTypeModal}
+                        hide={() => setShowTypeModal(false)}
+                        onSuccess={handleTypeSaved}
+                        brand={brand}
+                        editing={editing}
+                    />
+                </>
             )}
         </>
     );
