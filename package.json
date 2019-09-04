@@ -15,7 +15,7 @@
         "babel-eslint": "9.x",
         "bootstrap": "^4.0.0",
         "browser-sync": "^2.26.7",
-        "browser-sync-webpack-plugin": "2.0.1",
+        "browser-sync-webpack-plugin": "2.2.2",
         "cross-env": "^5.2.0",
         "eslint": "5.x",
         "eslint-config-react-app": "^4.0.0",
