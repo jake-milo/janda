@@ -16,7 +16,7 @@
         "bootstrap": "^4.0.0",
         "browser-sync": "^2.26.7",
         "browser-sync-webpack-plugin": "2.0.1",
-        "cross-env": "^5.2.0",
+        "cross-env": "^5.2.1",
         "eslint": "5.x",
         "eslint-config-react-app": "^4.0.0",
         "eslint-plugin-flowtype": "2.x",
