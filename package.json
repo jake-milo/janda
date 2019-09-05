@@ -12,7 +12,7 @@
     "devDependencies": {
         "@babel/preset-react": "^7.0.0",
         "axios": "^0.19.0",
-        "babel-eslint": "9.x",
+        "babel-eslint": "10.x",
         "bootstrap": "^4.0.0",
         "browser-sync": "^2.26.7",
         "browser-sync-webpack-plugin": "2.0.1",
