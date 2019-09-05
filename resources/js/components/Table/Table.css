@@ -3,6 +3,10 @@
     margin-bottom: .75rem;
 }
 
+.table.--constrained {
+    margin: 0;
+}
+
 .table:first-child {
     margin-top: -1rem;
 }
@@ -26,6 +30,10 @@
      * elsewhere, see LabOrders.css
      */
     background-blend-mode: multiply;
+}
+
+.table.--constrained .row {
+    padding: 0;
 }
 
 .table .row.--header {

@@ -4,7 +4,7 @@ import RoundDown from 'react-md-icon/dist/RoundKeyboardArrowDown';
 
 import './Table.css';
 
-export const Table = ({ headers, children, sortable, sort, order, updateSorting }) => {
+export const Table = ({ headers, children, sortable, sort, order, updateSorting, constrained = false }) => {
     const [names, setNames] = useState([]);
     const [sizes, setSizes] = useState([]);
 
@@ -26,7 +26,7 @@ export const Table = ({ headers, children, sortable, sort, order, updateSorting 
     };
 
     return (
-        <div className="table">
+        <div className={`table ${constrained ? '--constrained' : ''}`}>
             <Row header>
                 {names.map((name, i) => (
                     <Cell
