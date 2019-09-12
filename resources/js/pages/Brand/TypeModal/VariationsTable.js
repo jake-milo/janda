@@ -7,6 +7,7 @@ const headers = {
     'Eyesize': 'normal',
     'DBL': 'normal',
     'Color': 'normal',
+    '': 'thin',
 };
 
 export const VariationsTable = ({ children }) => (
