@@ -24,7 +24,7 @@ const schema = yup.object().shape({
     practice_id: yup.number().integer().positive().required().label('Practice'),
     lab_id: yup.number().integer().positive().required().label('Lab'),
     lens: yup.string().required().label('Lens'),
-    reference: yup.string().required().label('Reference'),
+    reference: yup.string().required().label('Order #'),
     date_sent: momentSchema,
     date_required: momentSchema,
     date_received: nullableMomentSchema,
@@ -102,7 +102,7 @@ export const CreateLabOrderModal = ({ show, hide, onSuccess, editing }) => {
                         <FieldError name="lens" />
 
                         <div className="input-wrapper">
-                            <label htmlFor="reference">Reference</label>
+                            <label htmlFor="reference">Order #</label>
                             <input type="text" id="reference" name="reference" onChange={handleChange} value={values.reference} />
                         </div>
                         <FieldError name="reference" />
