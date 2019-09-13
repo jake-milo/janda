@@ -23,6 +23,8 @@ export const Menu = () => {
                     <Link to="/practices">Practices</Link>
 
                     <Link to="/labs">Labs</Link>
+
+                    <Link to="/users">Users</Link>
                 </nav>
             </div>
         </div>
