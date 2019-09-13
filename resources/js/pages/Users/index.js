@@ -37,18 +37,18 @@ export const Users = () => {
                 )) : (
                     <Spinner />
                 )}
-
-                <FloatingActionButton onClick={() => setShowModal(true)}>
-                    <RoundAdd />
-                </FloatingActionButton>
-
-                <UserModal
-                    show={showModal}
-                    hide={() => setShowModal(false)}
-                    onSuccess={handleUserSaved}
-                    editing={editing && users ? users.find(u => u.id === editing) : null}
-                />
             </Page>
+
+            <FloatingActionButton onClick={() => setShowModal(true)}>
+                <RoundAdd />
+            </FloatingActionButton>
+
+            <UserModal
+                show={showModal}
+                hide={() => setShowModal(false)}
+                onSuccess={handleUserSaved}
+                editing={editing && users ? users.find(u => u.id === editing) : null}
+            />
         </>
     );
 }

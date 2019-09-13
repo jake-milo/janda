@@ -43,7 +43,6 @@ export const UserModal = ({ show, hide, onSuccess, editing }) => {
                 onSubmit={handleSubmit}
                 render={({ handleSubmit: onSubmit, handleChange, values }) => (
                     <form onSubmit={onSubmit} autoComplete="off">
-
                         <div className="input-wrapper">
                             <label htmlFor="name">Name</label>
                             <input type="text" id="name" name="name" onChange={handleChange} value={values.name} />
