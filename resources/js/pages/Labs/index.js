@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLabs } from './useLabs';
 import { PageTitle } from '../../components/PageTitle';
@@ -15,17 +15,25 @@ import { LabModal } from './LabModal';
 export const Labs = () => {
     const [sort, order, updateSorting] = useSort();
     const { labs, loading, page, pageCount, refresh } = useLabs({ sort, order });
-    const [editing, setEditing] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const [editing, setEditing] = useState(null);
 
-    const handleEdit = lab => (e) => {
-        e.preventDefault();
-        setEditing(lab);
-        setShowModal(true);
-    };
+    useEffect(() => {
+        if (editing) {
+            setShowModal(true);
+        }
+    }, [editing]);
 
     const handleLabSaved = () => {
         refresh();
+
+        setEditing(null);
+    };
+
+    const handleEditClick = id => (e) => {
+        e.preventDefault();
+
+        setEditing(id);
     };
 
     return (
@@ -59,8 +67,8 @@ export const Labs = () => {
                                 </Cell>
                                 <Cell>{lab.time.created.format('Do MMMM YYYY @ HH:mm')}</Cell>
                                 <Cell>{lab.time.updated.format('Do MMMM YYYY @ HH:mm')}</Cell>
-                                <Cell size="thin" centered>
-                                    <a href="#edit" onClick={handleEdit(lab)}>
+                                <Cell>
+                                    <a href="#edit" onClick={handleEditClick(lab.id)}>
                                         <RoundEdit />
                                     </a>
                                 </Cell>
@@ -84,9 +92,12 @@ export const Labs = () => {
 
             <LabModal
                 show={showModal}
-                hide={() => setShowModal(false)}
-                onSuccess={handleLabSaved}
+                hide={() => {
+                    setShowModal(false);
+                    setEditing(null);
+                }}
                 editing={editing}
+                onSuccess={handleLabSaved}
             />
         </>
     );

@@ -3,6 +3,10 @@
     margin-bottom: .75rem;
 }
 
+.table.--constrained {
+    margin: 0;
+}
+
 .table:first-child {
     margin-top: -1rem;
 }
@@ -26,6 +30,10 @@
      * elsewhere, see LabOrders.css
      */
     background-blend-mode: multiply;
+}
+
+.table.--constrained .row {
+    padding: 0;
 }
 
 .table .row.--header {
@@ -68,6 +76,19 @@
 .table .row .cell a {
     color: var(--primary);
     text-decoration: none;
+}
+
+.table .row .cell input {
+    display: block;
+    width: 100%;
+    border: none;
+    margin: -.5rem -.125rem;
+    padding: .5rem .125rem;
+    font-size: .875rem;
+}
+
+.table .row .cell input:focus {
+    outline: 0;
 }
 
 .filters {

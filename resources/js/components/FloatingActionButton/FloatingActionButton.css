@@ -2,8 +2,6 @@
     position: fixed;
     bottom: var(--fab-offset);
     right: var(--fab-offset);
-    width: var(--fab-size);
-    height: var(--fab-size);
     border-radius: 50%;
     cursor: pointer;
 
@@ -13,6 +11,10 @@
     animation-duration: .2s;
     animation-fill-mode: forwards;
     transform: scale(0);
+
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
 }
 
 .fab {
@@ -28,11 +30,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    border: none;
 }
 
 .fab:hover {
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.25);
-    transform: translateY(-.25rem);
+}
+
+.fab:focus {
+    outline: 0;
+}
+
+.fab.--child {
+    background: var(--white);
+    color: var(--black) !important;
+    margin-bottom: var(--fab-child-offset);
+    font-size: var(--fab-child-font-size);
+    width: var(--fab-child-size);
+    height: var(--fab-child-size);
 }
 
 @keyframes appear {

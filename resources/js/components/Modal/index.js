@@ -12,7 +12,8 @@ export const Modal = ({ show, hide, children }) => {
     useOnClickOutside([ref, selectRoot], () => hide(), true);
 
     useEffect(() => {
-        document.body.style.overflow = show ? 'hidden' : 'auto';
+        // document.body.style.overflowY = show ? 'scroll' : 'auto';
+        document.body.style.position = show ? 'fixed' : 'static';
     }, [show]);
 
     return createPortal(show ? (

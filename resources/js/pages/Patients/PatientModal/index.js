@@ -23,7 +23,7 @@ export const PatientModal = ({ show, hide, onSuccess, editing }) => {
         request()
             .then(() => {
                 hide();
-                onSuccess(),
+                onSuccess();
                 setSubmitting(false);
             })
             .catch((err) => {
