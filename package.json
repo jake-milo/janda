@@ -39,7 +39,7 @@
         "formik": "^1.5.4",
         "moment": "^2.24.0",
         "query-string": "^6.6.0",
-        "react": "^16.8.3",
+        "react": "^16.10.2",
         "react-datepicker": "^2.5.0",
         "react-dom": "^16.8.3",
         "react-md-icon": "^1.13.0",
