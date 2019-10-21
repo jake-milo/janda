@@ -23,6 +23,7 @@ class GetPatientsRequest extends FormRequest
             'filter' => 'nullable|string',
             'sort' => 'nullable|string|in:name,created_at,updated_at',
             'order' => 'nullable|string|in:asc,desc',
+            'include' => 'nullable|string|exists:patients,id',
         ];
     }
 
@@ -46,6 +47,10 @@ class GetPatientsRequest extends FormRequest
             $query->where('name', 'LIKE', "%$filter%");
         } else {
             $query->limit(15)->orderBy('name', 'asc');
+        }
+
+        if($include = $this->input('include')){
+            $query->orWhere('id', $include);
         }
 
         return $query->get();
