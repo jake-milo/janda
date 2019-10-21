@@ -6642,10 +6642,10 @@ react-md-icon@^1.13.0:
   resolved "https://registry.yarnpkg.com/react-md-icon/-/react-md-icon-1.13.0.tgz#cfc1edcdd144c97e08cf0695fc4427f5d67d346e"
   integrity sha512-00ZvMqs9uA89FLPC7eLPf4Z8qWlSKdHaBnCj9nNiazTvkvQFjihNab9hDTjRmv5tOorCUEmuxYWIWsJvxJm2bw==
 
-react-number-format@^4.0.8:
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-4.0.8.tgz#f0a0dfbeded9a746f4d8b309926cf55d7effebb2"
-  integrity sha512-A7Gi4BSkdgnyY1DO98lwFvWujcyxZCOfNP6tkiOKkwMY6oFP+JTQhd/vQ9dXXs6TpyXfl1eBJdueokM7o98YTQ==
+react-number-format@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-4.3.0.tgz#3c6d7c77debad50a121da57a26abd937c9432da6"
+  integrity sha512-IAxm26MVyuiG+CCPlrz4KAOmxi/mVidK/3pIm2796qkfNtfF108QBBOBGLIFFRJQHwdDN/HI0beiAXK6mJM4Lw==
   dependencies:
     prop-types "^15.7.2"
 
