@@ -64,4 +64,4 @@ export const LabModal = ({ show, hide, onSuccess, editing }) => {
             />
         </Modal>
     );
-}
+};

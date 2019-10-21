@@ -53,3 +53,4 @@ Route::post('/brands/{brand}/restore', 'Stock\BrandController@restore');
 Route::apiResource('brands.types', 'Stock\TypeController');
 Route::post('/brands/{brand}/types/{type}/restore', 'Stock\TypeController@restore');
 
+Route::apiResource('users', 'UserController');

@@ -12,7 +12,7 @@ export const Pagination = ({ page, totalPages, urlFormat, separator = '⋯' }) =
         window.scrollTo(0, 0);
     };
 
-    return totalPages !== 1 ? (
+    return totalPages > 1 ? (
         <div className="pagination">
             <ul>
                 {items.map(({ item, key, link, isSeparator, isCurrent }) => (

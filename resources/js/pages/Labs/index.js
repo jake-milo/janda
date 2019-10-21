@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import RoundEdit from 'react-md-icon/dist/RoundEdit';
-import RoundAdd from 'react-md-icon/dist/RoundAdd';
 import { Link } from 'react-router-dom';
 import { useLabs } from './useLabs';
 import { PageTitle } from '../../components/PageTitle';
@@ -9,6 +7,8 @@ import { Spinner } from '../../components/Spinner';
 import { Table, Row, Cell } from '../../components/Table';
 import { Pagination } from '../../components/Pagination';
 import { useSort } from '../../hooks/useSort';
+import RoundAdd from 'react-md-icon/dist/RoundAdd';
+import RoundEdit from 'react-md-icon/dist/RoundEdit';
 import { FloatingActionButton } from '../../components/FloatingActionButton';
 import { LabModal } from './LabModal';
 
@@ -47,7 +47,7 @@ export const Labs = () => {
                             'Name': 'normal',
                             'Created At': 'normal',
                             'Updated At': 'normal',
-                            '': 'normal',
+                            '': 'thin',
                         }}
                         sortable={{
                             'Name': 'name',
@@ -61,7 +61,7 @@ export const Labs = () => {
                         {labs.map(lab => (
                             <Row key={lab.id}>
                                 <Cell>
-                                    <Link to={`/labs/${labs.id}`}>
+                                    <Link to={`/labs/${lab.id}`}>
                                         {lab.name}
                                     </Link>
                                 </Cell>
