@@ -29,3 +29,7 @@
     border: 1px solid var(--light-grey);
     box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.2);
 }
+
+.modal-container .modal .table {
+    margin-bottom: .5rem;
+}
