@@ -26,7 +26,7 @@ export const useInitialValues = (id) => {
         fetchLabOrder(id)
             .then((labOrder) => {
                 setInitialValues({
-                    patient_id: labOrder.patient.id,
+                    patient: labOrder.patient.id,
                     practice_id: labOrder.practice.id,
                     lab_id: labOrder.lab.id,
                     lens: labOrder.lens,
