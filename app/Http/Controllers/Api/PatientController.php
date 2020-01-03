@@ -31,7 +31,7 @@ class PatientController extends Controller
     {
         $patientData = $request->getPatientData();
 
-        $patient= Patient::create($patientData);
+        $patient = Patient::create($patientData);
 
         $patient->loadResourceRelations();
 
