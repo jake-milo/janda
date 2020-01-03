@@ -19,7 +19,7 @@ export const Manufacturer = ({ match }) => {
 
     return (
         <>
-            <PageTitle>{manufacturer ? manufacturer.name : 'Loading...'}</PageTitle>
+            <PageTitle label="Frame Manufacturer">{manufacturer ? manufacturer.name : 'Loading...'}</PageTitle>
 
             <Page>
                 {manufacturer ? (

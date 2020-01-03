@@ -35,7 +35,7 @@ export const Brand = ({ match }) => {
 
     return (
         <>
-            <PageTitle>{brand ? brand.name : 'Loading...'}</PageTitle>
+            <PageTitle label="Frame Brand">{brand ? brand.name : 'Loading...'}</PageTitle>
 
             <Page>
                 <h2>Manufacturer</h2>
