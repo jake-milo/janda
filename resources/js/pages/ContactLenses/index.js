@@ -12,7 +12,6 @@ import { ContactLensModal } from './ContactLensModal';
 import { ContactLensBrandPicker } from '../../components/ContactLensBrandPicker';
 
 import { useSort } from '../../hooks/useSort';
-import { toQueryString } from '../../helpers';
 
 export const ContactLenses = () => {
     const [practice, setPractice] = useState('');
@@ -22,7 +21,6 @@ export const ContactLenses = () => {
     const [sort, order, updateSorting] = useSort();
     const { contactLenses, loading, page, pageCount, refresh } = useContactLenses({
         practice,
-        brand,
         sort,
         order,
     });
@@ -75,11 +73,7 @@ export const ContactLenses = () => {
                         <Pagination
                             page={page}
                             totalPages={pageCount}
-                            urlFormat={p => `/contact-lenses${toQueryString({
-                                page: p,
-                                practice,
-                                brand,
-                            })}`}
+                            urlFormat="/contact-lenses?page=:page:"
                         />
                     </>
                 ) : (

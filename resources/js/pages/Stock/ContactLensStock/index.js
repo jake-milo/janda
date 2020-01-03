@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import { useContactLensBrands } from './useContactLensBrands';
 import { Spinner } from '../../../components/Spinner';
 import { FloatingActionButton } from '../../../components/FloatingActionButton';
-import { BrandModal } from '../../../components/BrandModal';
 
 import './ContactLensStock.css'
+import { ContactLensBrandModal } from '../../ContactLensBrand/ContactLensBrandModal';
 
 export const ContactLensStock = () => {
     const { groupedBrands, refresh } = useContactLensBrands();
@@ -38,7 +38,7 @@ export const ContactLensStock = () => {
                 <RoundAdd />
             </FloatingActionButton>
 
-            <BrandModal
+            <ContactLensBrandModal
                 show={showCreateModal}
                 hide={() => setShowCreateModal(false)}
                 onSuccess={handleBrandCreated}

@@ -16,13 +16,12 @@ import { LabOrdersTable } from '../../components/LabOrdersTable';
 
 import './LabOrders.css';
 import { useSort } from '../../hooks/useSort';
-import { toQueryString } from '../../helpers';
 
 export const LabOrders = () => {
     const params = useQueryParams();
-    const [practice, setPractice] = useState(params.practice ? parseInt(params.practice, 10) : '');
+    const [practice, setPractice] = useState('');
     const [status, setStatus] = useState(params.status || '');
-    const [lab, setLab] = useState(params.lab ? parseInt(params.lab, 10) : '');
+    const [lab, setLab] = useState('');
     const [editing, setEditing] = useState(null);
 
     const { pathname } = useLocation();
@@ -80,7 +79,6 @@ export const LabOrders = () => {
                             value={lab}
                             onChange={setLab}
                             emptyText="All"
-                            allowEmpty
                         />
                     </div>
                 </div>
@@ -100,12 +98,7 @@ export const LabOrders = () => {
                         <Pagination
                             page={page}
                             totalPages={pageCount}
-                            urlFormat={p => `/lab-orders${toQueryString({
-                                page: p,
-                                practice,
-                                status,
-                                lab,
-                            })}`}
+                            urlFormat="/lab-orders?page=:page:"
                         />
                     </>
                 ) : (
