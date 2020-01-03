@@ -49,12 +49,15 @@ export const FilterableSelect = ({
         onChange(id);
     };
 
-    const getLabel = () => {
+    const label = useMemo(() => {
         if (!value) return emptyText;
 
         const selected = options.find(op => op.value === value);
+
+        console.log({ selected, options, value })
+
         return selected ? selected.label : '';
-    }
+    }, [value, emptyText, options]);
 
     const [windowWidth, windowHeight] = useWindowSize();
     const position = useMemo(() => {
@@ -72,7 +75,7 @@ export const FilterableSelect = ({
     return (
         <>
             <div className={`select ${disabled ? '--disabled' : ''}`} onClick={handleSelectClick} ref={setHandle}>
-                {getLabel()}
+                {label}
 
                 {createPortal((
                     <div className={`select-popup ${popped ? '' : '--hidden'}`} style={position} ref={ref}>

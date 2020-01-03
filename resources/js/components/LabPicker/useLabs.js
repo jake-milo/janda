@@ -1,9 +1,9 @@
 import { labsMapper } from '../../mappers/labs';
 import {useApi} from '../../hooks/useApi';
 
-export const useLabs = ({ filter }) => useApi(
+export const useLabs = ({ filter, include }) => useApi(
     'labs',
-    ({ get, toQueryString }) => get('/api/labs' + toQueryString({ filter })),
+    ({ get, toQueryString }) => get('/api/labs' + toQueryString({ filter, include })),
     labsMapper,
-    [filter],
+    [filter, include],
 );
