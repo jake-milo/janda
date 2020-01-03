@@ -11,7 +11,7 @@ export const Patient = ({ match }) => {
 
     return (
         <>
-            <PageTitle>{patient ? patient.name : 'Loading...'}</PageTitle>
+            <PageTitle label="Patient">{patient ? patient.name : 'Loading...'}</PageTitle>
 
             <Page>
                 {patient ? (

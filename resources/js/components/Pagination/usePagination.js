@@ -29,7 +29,7 @@ export const usePagination = (page, totalPages, separator, urlFormat, delta = 1)
     return rangeWithSeparators.map((item, i) => ({
         item,
         key: item === separator ? `${separator}-${i}`: item,
-        link: urlFormat.replace(/:page:/, item),
+        link: typeof urlFormat === 'function' ? urlFormat(item) : urlFormat.replace(/:page:/, item),
         isSeparator: item === separator,
         isCurrent: item === page,
     }));

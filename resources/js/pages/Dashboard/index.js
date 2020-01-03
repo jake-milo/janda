@@ -11,8 +11,6 @@ export const Dashboard = () => {
     const { overdueLabOrders } = useOverdueLabOrders();
     const { urgentLabOrders } = useUrgentLabOrders();
 
-    console.log(overdueLabOrders);
-
     return (
         <>
             <PageTitle>Dashboard</PageTitle>

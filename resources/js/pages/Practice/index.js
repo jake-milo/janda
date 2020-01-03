@@ -12,7 +12,7 @@ export const Practice = ({ match }) => {
 
     return (
         <>
-            <PageTitle>{practice ? practice.name : 'Loading...'}</PageTitle>
+            <PageTitle label="Practice">{practice ? practice.name : 'Loading...'}</PageTitle>
 
             <Page>
                 {practice ? (
@@ -42,7 +42,7 @@ export const Practice = ({ match }) => {
                                 contactLenses={practice.contactLenses}
                                 remove={[clHeaders.PRACTICE]}
                             />
-                            
+
                             <p className="--centered">
                                 Only showing the latest 10 results.
                                 {' '}

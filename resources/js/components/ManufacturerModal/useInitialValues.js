@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { fetchManufacturer } from '../../utilities/fetchManufacturer';
 
-const getInitialValuesFromManufacturer = manufacturer => (console.log({manufacturer}), {
+const getInitialValuesFromManufacturer = manufacturer => ({
     name: manufacturer.name,
 });
 
