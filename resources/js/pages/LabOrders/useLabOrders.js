@@ -24,7 +24,6 @@ export const useLabOrders = ({ practice, status, lab, sort, order }) => {
     );
 
     useEffect(() => {
-        console.log('resetting pagE!');
         api.resetPage();
     }, [practice, status, lab, sort, order]);
 
