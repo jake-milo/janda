@@ -1,0 +1,33 @@
+.lens-stock {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    max-height: 80vh;
+}
+
+.lens-stock .group {
+    width: 25%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1.5rem;
+}
+
+.lens-stock .group .label {
+    display: block;
+    width: 10%;
+    text-transform: uppercase;
+    font-size: 2rem;
+    line-height: 1.4ex;
+    font-weight: bold;
+    color: var(--light-grey);
+    text-align: center;
+}
+
+.lens-stock .group .items {
+    padding-left: 1rem;
+}
+
+.lens-stock .group .items a {
+    display: block;
+    margin-bottom: .5rem;
+}

@@ -4,6 +4,7 @@ import { PageTitle } from '../../components/PageTitle';
 import { TabbedPage } from '../../components/Page';
 import { FrameStock } from './FrameStock';
 import { FrameManufacturers } from './FrameManufacturers';
+import { ContactLensStock } from './ContactLensStock';
 
 export const Stock = () => {
     return (
@@ -34,9 +35,10 @@ export const Stock = () => {
                         />
                     ),
                     'Contact Lenses': (path) => (
-                        <Route path={path} render={() => (
-                            <p>even bigger stock</p>
-                        )} />
+                        <Route
+                            path={path}
+                            component={ContactLensStock}
+                        />
                     ),
                 }}
             />
