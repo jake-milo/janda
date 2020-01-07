@@ -79,8 +79,10 @@ class TypeController extends Controller
             }
         });
 
-        return TypeResource::make($type);
+        // dd($request->getNewVariants()->toArray());
+        $type->variants()->createMany($request->getNewVariants()->toArray());
 
+        return TypeResource::make($type);
     }
 
     /**

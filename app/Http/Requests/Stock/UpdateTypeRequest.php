@@ -12,7 +12,7 @@ class UpdateTypeRequest extends FormRequest
      *
      * @var Collection
      */
-    protected $keyedVariants;
+    protected $keyedVariantUpdates;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -36,7 +36,7 @@ class UpdateTypeRequest extends FormRequest
             'buy' => 'integer',
             'sell' => 'integer',
             'variants' => 'array',
-            'variants.*.id' => 'exists:variants',
+            'variants.*.id' => 'nullable|exists:variants',
             'variants.*.color' => 'string',
             'variants.*.price' => 'integer',
             'variants.*.year' => 'string',
@@ -48,10 +48,17 @@ class UpdateTypeRequest extends FormRequest
         ];
     }
 
+    public function getNewVariants()
+    {
+        return collect($this->input('variants'))->filter(function ($variant) {
+            return $variant['id'] === null;
+        });
+    }
+
     public function getVariantUpdate($id)
     {
-        return $this->getKeyedVariants()
-                    ->get($id);
+        return $this->getVariantUpdates()
+            ->get($id);
     }
 
     public function getUpdates()
@@ -64,14 +71,14 @@ class UpdateTypeRequest extends FormRequest
      *
      * @return Collection
      */
-    protected function getKeyedVariants(): Collection
+    protected function getVariantUpdates(): Collection
     {
-        if (!$this->keyedVariants) {
+        if (!$this->keyedVariantUpdates) {
             $variants = $this->input('variants');
-            $this->keyedVariants = collect($variants)
+            $this->keyedVariantUpdates = collect($variants)
                 ->keyBy('id');
         }
 
-        return $this->keyedVariants;
+        return $this->keyedVariantUpdates;
     }
 }

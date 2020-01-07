@@ -33,6 +33,11 @@ export const Brand = ({ match }) => {
         setShowTypeModal(true);
     };
 
+    const handleTypeModalHide = () => {
+        setShowTypeModal(false)
+        setEditing(null);
+    }
+
     return (
         <>
             <PageTitle label="Frame Brand">{brand ? brand.name : 'Loading...'}</PageTitle>
@@ -100,7 +105,7 @@ export const Brand = ({ match }) => {
 
                     <TypeModal
                         show={showTypeModal}
-                        hide={() => setShowTypeModal(false)}
+                        hide={handleTypeModalHide}
                         onSuccess={handleTypeSaved}
                         brand={brand}
                         editing={editing}

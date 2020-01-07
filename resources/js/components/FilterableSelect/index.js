@@ -54,8 +54,6 @@ export const FilterableSelect = ({
 
         const selected = options.find(op => op.value === value);
 
-        console.log({ selected, options, value })
-
         return selected ? selected.label : '';
     }, [value, emptyText, options]);
 
