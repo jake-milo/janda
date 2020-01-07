@@ -44,12 +44,12 @@ export const Manufacturer = ({ match }) => {
                                 ))}
                             </Table>
                         ) : (
-                            <p>No frames found.</p>
-                        )}
+                                <p>No frames found.</p>
+                            )}
                     </>
                 ) : (
-                    <Spinner />
-                )}
+                        <Spinner />
+                    )}
             </Page>
 
             <FloatingActionButton onClick={() => setShowModal(true)}>

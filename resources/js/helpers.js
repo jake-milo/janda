@@ -30,6 +30,9 @@ export const post = (url, data) => fetch(url, getSendOptions(data, 'POST'))
 export const patch = (url, data) => fetch(url, getSendOptions(data, 'PATCH'))
     .then(handleSendResponse);
 
+export const remove = (url) => fetch(url, getSendOptions({}, 'DELETE'))
+    .then(handleSendResponse);
+
 export const arraysEqual = (a, b) => {
     if (a === b) return true;
     if (a === null || b === null) return false;

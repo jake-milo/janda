@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import RoundEdit from 'react-md-icon/dist/RoundEdit';
 import RoundAdd from 'react-md-icon/dist/RoundAdd';
 import RoundMoreVert from 'react-md-icon/dist/RoundMoreVert';
+import BaselineDelete from 'react-md-icon/dist/BaselineDelete';
 import { Link } from 'react-router-dom';
 import { useBrand } from './useBrand';
 import { PageTitle } from '../../components/PageTitle';
@@ -11,6 +12,7 @@ import { Spinner } from '../../components/Spinner';
 import { FloatingActionButton as FAB } from '../../components/FloatingActionButton';
 import { BrandModal } from '../../components/BrandModal';
 import { TypeModal } from './TypeModal';
+import { remove } from '../../helpers';
 
 export const Brand = ({ match }) => {
     const { brand, refresh } = useBrand(match.params.id);
@@ -33,6 +35,16 @@ export const Brand = ({ match }) => {
         setShowTypeModal(true);
     };
 
+    const handleRemove = type => (e) => {
+        remove(`/api/brands/${brand.id}/types/${type.id}`)
+            .then(() => {
+                refresh();
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
     return (
         <>
             <PageTitle label="Frame Brand">{brand ? brand.name : 'Loading...'}</PageTitle>
@@ -44,8 +56,8 @@ export const Brand = ({ match }) => {
                         {brand.manufacturer.name}
                     </Link>
                 ) : (
-                    <p>Loading...</p>
-                )}
+                        <p>Loading...</p>
+                    )}
 
                 <h2>Types</h2>
                 {brand ? (
@@ -69,14 +81,18 @@ export const Brand = ({ match }) => {
                                         <a href="#edit" onClick={handleEditClick(type)}>
                                             <RoundEdit />
                                         </a>
+
                                     ) : null}
+                                    <a href="#remove" onClick={handleRemove(type)}>
+                                        <BaselineDelete />
+                                    </a>
                                 </Cell>
                             </Row>
                         )))}
                     </Table>
                 ) : (
-                    <Spinner />
-                )}
+                        <Spinner />
+                    )}
             </Page>
 
             <FAB expander icon={() => (<RoundMoreVert />)}>

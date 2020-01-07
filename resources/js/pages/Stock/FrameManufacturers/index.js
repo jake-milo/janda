@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import RoundAdd from 'react-md-icon/dist/RoundAdd';
 import RoundEdit from 'react-md-icon/dist/RoundEdit';
+import BaselineDelete from 'react-md-icon/dist/BaselineDelete';
 import { Link } from 'react-router-dom';
 import { useManufacturers } from './useManufacturers';
 import { Table, Cell, Row } from '../../../components/Table';
@@ -9,6 +10,7 @@ import { Pagination } from '../../../components/Pagination';
 import { FloatingActionButton } from '../../../components/FloatingActionButton';
 import { ManufacturerModal } from '../../../components/ManufacturerModal';
 import { useSort } from '../../../hooks/useSort';
+import { remove } from '../../../helpers';
 
 export const FrameManufacturers = () => {
     const [sort, order, updateSorting] = useSort();
@@ -34,16 +36,26 @@ export const FrameManufacturers = () => {
         setEditing(id);
     };
 
+    const handleRemove = manufacturers => (e) => {
+        remove(`/api/manufacturers/${manufacturers.id}`)
+            .then(() => {
+                refresh();
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+
     return (
         <>
             <div className="manufacturers">
                 {!loading ? (
                     <Table
                         headers={{
-                        'Name': 'normal',
-                        'Created At': 'normal',
-                        'Updated At': 'normal',
-                        '': 'normal',
+                            'Name': 'normal',
+                            'Created At': 'normal',
+                            'Updated At': 'normal',
+                            '': 'normal',
                         }}
                         sortable={{
                             'Name': 'name',
@@ -64,16 +76,19 @@ export const FrameManufacturers = () => {
                                 <Cell>{manufacturer.time.created.format('Do MMMM YYYY @ HH:mm')}</Cell>
                                 <Cell>{manufacturer.time.updated.format('Do MMMM YYYY @ HH:mm')}</Cell>
                                 <Cell>
-                                    <a href="#" onClick={handleEditClick(manufacturer.id)}>
+                                    <a href="#edit" onClick={handleEditClick(manufacturer.id)}>
                                         <RoundEdit />
+                                    </a>
+                                    <a href="#remove" onClick={handleRemove(manufacturer)}>
+                                        <BaselineDelete />
                                     </a>
                                 </Cell>
                             </Row>
                         ))}
                     </Table>
                 ) : (
-                    <Spinner />
-                )}
+                        <Spinner />
+                    )}
 
                 <FloatingActionButton onClick={() => setShowModal(true)}>
                     <RoundAdd />
