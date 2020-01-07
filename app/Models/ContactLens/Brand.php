@@ -10,6 +10,8 @@ class Brand extends Model
 {
     use SoftDeletes, HasResourceRelations;
 
+    protected $resourceRelations = ['types'];
+
     protected $fillable = ['name'];
 
     protected $table = 'contact_lens_brands';

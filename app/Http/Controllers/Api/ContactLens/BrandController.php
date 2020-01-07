@@ -50,7 +50,7 @@ class BrandController extends Controller
     {
         $brand->loadResourceRelations();
 
-        return BrandResource::make();
+        return BrandResource::make($brand);
     }
 
     /**

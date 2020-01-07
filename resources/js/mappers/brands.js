@@ -29,13 +29,13 @@ export const brandsMapper = (brands, group = true) => {
         }));
 };
 
-export const brandMapper = ({ type, time, manufacturer, ...rest }) => {
+export const brandMapper = ({ types, time, manufacturer, ...rest }) => {
     const brand = { ...rest };
 
     brand.time = timeMapper(time);
 
-    if (type) {
-        brand.type = type;
+    if (types) {
+        brand.types = types;
     }
 
     if (manufacturer) {

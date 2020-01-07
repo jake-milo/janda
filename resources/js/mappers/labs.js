@@ -1,15 +1,9 @@
 import { timeMapper } from './time';
-import { labOrdersMapper } from './labOrders';
 
-export const labMapper = ({ time, lab_orders, ...rest }) => {
+export const labMapper = ({ time, ...rest }) => {
     const lab = { ...rest };
 
     lab.time = timeMapper(time);
-
-    if (lab_orders) {
-        lab.labOrders = labOrdersMapper(lab_orders.slice(0, 10));
-        lab.totalLabOrders = lab_orders.length;
-    }
 
     return lab;
 };

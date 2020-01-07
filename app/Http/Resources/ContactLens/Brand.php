@@ -5,6 +5,7 @@ namespace App\Http\Resources\ContactLens;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Traits\HasTimestamps;
 
+
 class Brand extends JsonResource
 {
     use HasTimestamps;
@@ -19,6 +20,9 @@ class Brand extends JsonResource
         return $this->withTimeStamps([
             'id' => $this->id,
             'name' => $this->name,
+            'types' =>  Type::collection(
+                $this->whenLoaded('types')
+            ),
         ]);
     }
 }

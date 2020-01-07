@@ -19,3 +19,4 @@ class Lab extends Model
         return $this->hasMany(LabOrder::class);
     }
 }
+
