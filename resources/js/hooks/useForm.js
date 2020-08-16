@@ -14,6 +14,8 @@ export const useForm = ({
     });
 
     useEffect(() => {
+        setLoading(true);
+
         getInitialValues(editing).then(vals => {
             setValues(vals);
             setLoading(false);

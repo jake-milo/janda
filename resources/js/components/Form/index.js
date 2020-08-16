@@ -1,5 +1,6 @@
 import React from 'react';
 import { Formik, yupToFormErrors, validateYupSchema } from 'formik';
+import { Spinner } from '../Spinner';
 
 export const Form = ({ validationSchema, ...props }) => (
     <Formik
@@ -25,4 +26,18 @@ export const Form = ({ validationSchema, ...props }) => (
                 })
         }}
     />
+);
+
+export const FormNew = ({ children, loading, values, onSubmit }) => (console.log({ loading, values }),
+    <>
+        {loading || !values ? (
+            <Spinner />
+        ) : null}
+
+        {values && (
+            <form onSubmit={onSubmit} style={{ display: loading ? 'none' : 'block' }}>
+                {children()}
+            </form>
+        )}
+    </>
 );

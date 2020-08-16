@@ -13,6 +13,7 @@ import { patch, post } from '../../../helpers';
 import moment from 'moment';
 import { fetchLabOrder } from '../../../utilities/fetchLabOrder';
 import { useForm } from '../../../hooks/useForm';
+import { FormNew } from '../../../components/Form';
 
 const schema = yup.object().shape({
     patient: yup.string().required().label('Patient'),
@@ -26,8 +27,8 @@ const schema = yup.object().shape({
 });
 
 export const LabOrderFormModal = ({ show, hide, onSuccess, editing }) => {
-    const getInitialValues = useCallback(async (editing) => {
-        if (!editing) return {
+    const getInitialValues = useCallback(async (id) => {
+        if (!id) return {
             patient: '',
             practice_id: '',
             lab_id: '',
@@ -38,7 +39,7 @@ export const LabOrderFormModal = ({ show, hide, onSuccess, editing }) => {
             date_received: '',
         };
 
-        const labOrder = await fetchLabOrder(editing);
+        const labOrder = await fetchLabOrder(id);
 
         return {
             patient: labOrder.patient.id,
@@ -99,98 +100,96 @@ export const LabOrderFormModal = ({ show, hide, onSuccess, editing }) => {
         <Modal show={show} hide={hide}>
             <PageTitle>{editing ? 'Update' : 'Create'} Lab Order</PageTitle>
 
-            {loading ? (
-                <Spinner />
-            ) : null}
-
-            {values && (
-                <form onSubmit={handleSubmit} style={{ display: loading ? 'none' : 'block' }}>
-                    <PickOrNewPatient
-                        name="patient"
-                        value={values.patient}
-                        creating={creatingPatient}
-                        setCreating={setCreatingPatient}
-                        onChange={createHandler('patient')}
-                    />
-                    <FieldErrorNew name="patient" errors={errors} />
-
-                    <div className="select-wrapper">
-                        <PracticePicker
-                            name="practice_id"
-                            value={values.practice_id}
-                            onChange={createHandler('practice_id')}
+            <FormNew values={values} loading={loading} onSubmit={handleSubmit}>
+                {() => (
+                    <>
+                        <PickOrNewPatient
+                            name="patient"
+                            value={values.patient}
+                            creating={creatingPatient}
+                            setCreating={setCreatingPatient}
+                            onChange={createHandler('patient')}
                         />
-                    </div>
-                    <FieldErrorNew name="practice_id" errors={errors} />
+                        <FieldErrorNew name="patient" errors={errors} />
 
-                    <div className="select-wrapper">
-                        <LabPicker
-                            name="lab_id"
-                            value={values.lab_id}
-                            onChange={createHandler('lab_id')}
-                        />
-                    </div>
-                    <FieldErrorNew name="lab_id" errors={errors} />
+                        <div className="select-wrapper">
+                            <PracticePicker
+                                name="practice_id"
+                                value={values.practice_id}
+                                onChange={createHandler('practice_id')}
+                            />
+                        </div>
+                        <FieldErrorNew name="practice_id" errors={errors} />
 
-                    <div className="input-wrapper">
-                        <label htmlFor="lens">Lens</label>
-                        <input
-                            type="text"
-                            id="lens"
-                            name="lens"
-                            onChange={createNativeHandler('lens')}
-                            value={values.lens}
-                        />
-                    </div>
-                    <FieldErrorNew name="lens" errors={errors} />
+                        <div className="select-wrapper">
+                            <LabPicker
+                                name="lab_id"
+                                value={values.lab_id}
+                                onChange={createHandler('lab_id')}
+                            />
+                        </div>
+                        <FieldErrorNew name="lab_id" errors={errors} />
 
-                    <div className="input-wrapper">
-                        <label htmlFor="reference">Order #</label>
-                        <input
-                            type="text"
-                            id="reference"
-                            name="reference"
-                            onChange={createNativeHandler('reference')}
-                            value={values.reference}
-                        />
-                    </div>
-                    <FieldErrorNew name="reference" errors={errors} />
+                        <div className="input-wrapper">
+                            <label htmlFor="lens">Lens</label>
+                            <input
+                                type="text"
+                                id="lens"
+                                name="lens"
+                                onChange={createNativeHandler('lens')}
+                                value={values.lens}
+                            />
+                        </div>
+                        <FieldErrorNew name="lens" errors={errors} />
 
-                    <div className="input-wrapper">
-                        <label htmlFor="date_sent">Date Sent</label>
-                        <DatePicker
-                            name="date_sent"
-                            value={values.date_sent}
-                            onChange={createHandler('date_sent')}
-                        />
-                    </div>
-                    <FieldErrorNew name="date_sent" errors={errors} />
+                        <div className="input-wrapper">
+                            <label htmlFor="reference">Order #</label>
+                            <input
+                                type="text"
+                                id="reference"
+                                name="reference"
+                                onChange={createNativeHandler('reference')}
+                                value={values.reference}
+                            />
+                        </div>
+                        <FieldErrorNew name="reference" errors={errors} />
 
-                    <div className="input-wrapper">
-                        <label htmlFor="date_required">Date Required</label>
-                        <DatePicker
-                            name="date_required"
-                            value={values.date_required}
-                            min={values.date_sent}
-                            onChange={createHandler('date_required')}
-                        />
-                    </div>
-                    <FieldErrorNew name="date_required" errors={errors} />
+                        <div className="input-wrapper">
+                            <label htmlFor="date_sent">Date Sent</label>
+                            <DatePicker
+                                name="date_sent"
+                                value={values.date_sent}
+                                onChange={createHandler('date_sent')}
+                            />
+                        </div>
+                        <FieldErrorNew name="date_sent" errors={errors} />
 
-                    <div className="input-wrapper">
-                        <label htmlFor="date_received">Date Received</label>
-                        <DatePicker
-                            name="date_received"
-                            value={values.date_received}
-                            min={values.date_sent}
-                            onChange={createHandler('date_received')}
-                        />
-                    </div>
-                    <FieldErrorNew name="date_received" errors={errors} />
+                        <div className="input-wrapper">
+                            <label htmlFor="date_required">Date Required</label>
+                            <DatePicker
+                                name="date_required"
+                                value={values.date_required}
+                                min={values.date_sent}
+                                onChange={createHandler('date_required')}
+                            />
+                        </div>
+                        <FieldErrorNew name="date_required" errors={errors} />
 
-                    <input type="submit" value={editing ? 'Save' : 'Create'} disabled={!isValid} />
-                </form>
-            )}
+                        <div className="input-wrapper">
+                            <label htmlFor="date_received">Date Received</label>
+                            <DatePicker
+                                name="date_received"
+                                value={values.date_received}
+                                min={values.date_sent}
+                                onChange={createHandler('date_received')}
+                            />
+                        </div>
+                        <FieldErrorNew name="date_received" errors={errors} />
+
+                        <input type="submit" value={editing ? 'Save' : 'Create'} disabled={!isValid} />
+                    </>
+                )}
+            </FormNew>
         </Modal>
     );
 };
