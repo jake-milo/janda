@@ -33,12 +33,12 @@ export const Lab = ({ match }) => {
                                 ) : null}
                             </>
                         ) : (
-                            <p>No lab orders found.</p>
-                        )}
+                                <p>No lab orders found.</p>
+                            )}
                     </>
                 ) : (
-                    <Spinner />
-                )}
+                        <Spinner />
+                    )}
             </Page>
         </>
     );
