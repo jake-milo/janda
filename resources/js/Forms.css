@@ -175,6 +175,11 @@ input[type="submit"] {
     transition: opacity .2s;
 }
 
+input[type="submit"][disabled], input[type="submit"][disabled]:hover {
+    cursor: auto;
+    opacity: 0.4;
+}
+
 input[type="submit"]:hover {
     opacity: 0.95;
 }

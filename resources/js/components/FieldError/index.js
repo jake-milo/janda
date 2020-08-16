@@ -13,3 +13,11 @@ export const FieldError = connect(({ formik, name }) => {
         <p className="field-error">{error}</p>
     ) : null;
 });
+
+export const FieldErrorNew = ({ errors, name }) => {
+    const error = errors[name];
+
+    return error && typeof error === 'string' ? (
+        <p className="field-error">{error}</p>
+    ) : null;
+};
