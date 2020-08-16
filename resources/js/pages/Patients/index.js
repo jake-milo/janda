@@ -11,10 +11,17 @@ import { Pagination } from '../../components/Pagination';
 import { FloatingActionButton } from '../../components/FloatingActionButton';
 import { PatientModal } from './PatientModal';
 import { useSort } from '../../hooks/useSort';
+import { useDebounced } from '../../hooks/useDebounced';
 
 export const Patients = () => {
     const [sort, order, updateSorting] = useSort();
-    const { patients, loading, page, pageCount, refresh } = usePatients({ sort, order });
+    const [filter, setFilter] = useState('');
+    const debouncedFilter = useDebounced(filter, 500);
+    const { patients, loading, page, pageCount, refresh } = usePatients({
+        sort,
+        order,
+        filter: debouncedFilter,
+    });
     const [showModal, setShowModal] = useState(false);
     const [editing, setEditing] = useState(null);
 
@@ -39,7 +46,14 @@ export const Patients = () => {
 
     return (
         <>
-            <PageTitle>Patients</PageTitle>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <PageTitle>Patients</PageTitle>
+
+                <div className="input-wrapper">
+                    <label htmlFor="search">Search</label>
+                    <input type="text" id="search" name="search" onChange={e => setFilter(e.target.value)} value={filter} />
+                </div>
+            </div>
 
             <Page>
                 {!loading ? (
