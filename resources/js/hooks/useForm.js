@@ -5,21 +5,26 @@ export const useForm = ({
     editing,
     schema,
     getInitialValues,
+    context,
 }) => {
     const [values, setValues] = useState(null);
     const [loading, setLoading] = useState(true);
 
     const { errors, submitHandler, isValid } = useYup(values, schema, {
+        context,
         validateOnChange: true,
     });
 
     useEffect(() => {
         setLoading(true);
 
-        getInitialValues(editing).then(vals => {
-            setValues(vals);
-            setLoading(false);
-        })
+        const asyncify = async (promise) => promise;
+
+        asyncify(getInitialValues(editing))
+            .then(vals => {
+                setValues(vals);
+                setLoading(false);
+            });
     }, [getInitialValues, editing]);
 
     const createHandler = (key, transform = v => v) => e => {

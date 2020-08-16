@@ -28,7 +28,7 @@ export const Form = ({ validationSchema, ...props }) => (
     />
 );
 
-export const FormNew = ({ children, loading, values, onSubmit }) => (console.log({ loading, values }),
+export const FormNew = ({ children, loading, values, onSubmit }) => (
     <>
         {loading || !values ? (
             <Spinner />

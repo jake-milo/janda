@@ -2,7 +2,6 @@ import React, { useState, useCallback } from 'react';
 import * as yup from 'yup';
 import { Modal } from "../../../components/Modal";
 import { PageTitle } from "../../../components/PageTitle";
-import { Spinner } from '../../../components/Spinner';
 import { PickOrNewPatient } from '../../../components/PatientPicker/PickOrNewPatient';
 import { FieldErrorNew } from '../../../components/FieldError';
 import { PracticePicker } from '../../../components/PracticePicker';
@@ -63,11 +62,7 @@ export const LabOrderFormModal = ({ show, hide, onSuccess, editing }) => {
         errors,
         submitHandler,
         isValid,
-    } = useForm({
-        editing,
-        getInitialValues,
-        schema,
-    });
+    } = useForm({ editing, getInitialValues, schema });
 
     const [creatingPatient, setCreatingPatient] = useState(false);
 

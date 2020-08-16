@@ -24,9 +24,9 @@ class UpdateUserRequest extends FormRequest
 
     public function getUpdates()
     {
-        $data = $this->only('name', 'email', 'password');
+        $data = $this->only('name', 'email');
 
-        if ($password = $data['password']) {
+        if ($password = $this->input('password')) {
             $data['password'] = bcrypt($password);
         }
 

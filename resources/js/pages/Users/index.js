@@ -45,7 +45,10 @@ export const Users = () => {
 
             <UserModal
                 show={showModal}
-                hide={() => setShowModal(false)}
+                hide={() => {
+                    setShowModal(false)
+                    setEditing(null);
+                }}
                 onSuccess={handleUserSaved}
                 editing={editing && users ? users.find(u => u.id === editing) : null}
             />
