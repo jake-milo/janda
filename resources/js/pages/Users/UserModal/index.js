@@ -15,7 +15,6 @@ const schema = yup.object().shape({
         then: yup.string().nullable(),
         otherwise: yup.string().required(),
     }).label('Password'),
-    // password: yup.string().required().label('Password'),
 });
 
 export const UserModal = ({ show, hide, onSuccess, editing }) => {
