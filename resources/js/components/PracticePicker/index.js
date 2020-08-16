@@ -12,8 +12,7 @@ export const PracticePicker = ({
     const { practices } = usePractices();
 
     const handleChange = (e) => {
-        const val = parseInt(e.target.value, 10);
-
+        const val = e.target.value && parseInt(e.target.value, 10);
         if (formik && formik.setFieldValue) {
             formik.setFieldValue(name, val);
         }
