@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, yupToFormErrors, validateYupSchema } from 'formik';
 
-export const Form = ({ validationSchema, ...props }) => (console.log(props),
+export const Form = ({ validationSchema, ...props }) => (
     <Formik
         {...props}
         validate={(vals, props) => {

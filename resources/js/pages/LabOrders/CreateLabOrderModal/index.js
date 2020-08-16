@@ -63,7 +63,7 @@ export const CreateLabOrderModal = ({ show, hide, onSuccess, editing }) => {
 
     return (
         <Modal show={show} hide={hide}>
-            <PageTitle>Create Lab Order</PageTitle>
+            <PageTitle>{editing ? 'Update' : 'Create'} Lab Order</PageTitle>
 
             {loading && (
                 <Spinner />
