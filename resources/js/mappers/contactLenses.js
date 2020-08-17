@@ -12,7 +12,7 @@ export const contactLensMapper = ({
     time,
     price,
     shipping_cost,
-    ...rest,
+    ...rest
 }) => {
     const contactLens = { ...rest };
 
