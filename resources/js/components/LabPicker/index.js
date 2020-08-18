@@ -10,6 +10,7 @@ export const LabPicker = ({
     onChange,
     formik,
     emptyText = 'Please Choose',
+    clearable,
 }) => {
     const [filter, setFilter] = useState('');
     const debouncedFilter = useDebounced(filter, 500);
@@ -39,6 +40,7 @@ export const LabPicker = ({
                     label: lab.name,
                 }))}
                 loading={loading}
+                clearable={clearable}
             />
         </>
     );

@@ -88,11 +88,13 @@
     padding-left: .5rem;
     cursor: default;
     color: var(--black);
+    position: relative;
 }
 
 .select-wrapper .select {
     padding: .5rem;
     padding-right: 1.5rem;
+    padding-left: 2rem;
     min-width: 14rem;
     user-select: none;
 }
@@ -112,6 +114,28 @@
 
 .select-wrapper.--inline select option {
     direction: rtl;
+}
+
+.select-wrapper .select .clear {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2rem;
+}
+
+.select-wrapper .select .clear button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 100%;
+    border: none;
+    background: var(--light-grey);
 }
 
 .select-popup {
@@ -149,16 +173,19 @@
     overflow-y: scroll;
 }
 
-.select-popup .options a {
+.select-popup .options button {
     display: block;
     padding: .25rem .5rem;
     color: var(--black);
     text-decoration: none;
     cursor: default;
     font-size: 0.875rem;
+    border: none;
+    background: none;
+    text-align: left;
 }
 
-.select-popup .options a:hover {
+.select-popup .options button:hover {
     background: rgba(0, 0, 0, 0.15);
 }
 
