@@ -55,6 +55,7 @@ export const ContactLenses = () => {
                             value={brand}
                             onChange={setBrand}
                             emptyText="All"
+                            clearable
                         />
                     </div>
                 </div>
