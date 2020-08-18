@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useContext, useMemo } from 'react';
 import { Formik, yupToFormErrors, validateYupSchema } from 'formik';
 import { Spinner } from '../Spinner';
 
@@ -28,16 +28,24 @@ export const Form = ({ validationSchema, ...props }) => (
     />
 );
 
-export const FormNew = ({ children, loading, values, onSubmit }) => (
-    <>
-        {loading || !values ? (
-            <Spinner />
-        ) : null}
+const FormContext = createContext();
 
-        {values && (
-            <form onSubmit={onSubmit} style={{ display: loading ? 'none' : 'block' }}>
-                {children()}
-            </form>
-        )}
-    </>
-);
+export const useFormContext = () => useContext(FormContext);
+
+export const FormNew = ({ children, loading, values, onSubmit, errors }) => {
+    const context = useMemo(() => ({ errors }), [errors]);
+    
+    return (
+        <FormContext.Provider value={context}>
+            {loading || !values ? (
+                <Spinner />
+            ) : null}
+
+            {values && (
+                <form onSubmit={onSubmit} style={{ display: loading ? 'none' : 'block' }}>
+                    {children()}
+                </form>
+            )}
+        </FormContext.Provider>
+    );
+};

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect, getIn } from 'formik';
+import { useFormContext } from '../Form';
 
 export const FieldError = connect(({ formik, name }) => {
     const error = getIn(formik.errors, name);
@@ -14,7 +15,8 @@ export const FieldError = connect(({ formik, name }) => {
     ) : null;
 });
 
-export const FieldErrorNew = ({ errors, name }) => {
+export const FieldErrorNew = ({ name }) => {
+    const { errors } = useFormContext();
     const error = errors[name];
 
     return error && typeof error === 'string' ? (

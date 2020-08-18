@@ -2,7 +2,7 @@ import React from 'react';
 import RoundAdd from 'react-md-icon/dist/RoundAdd';
 import RoundList from 'react-md-icon/dist/RoundList';
 import { ContactLensBrandPicker } from '../ContactLensBrandPicker';
-import { FieldError } from '../FieldError';
+import { FieldError, FieldErrorNew } from '../FieldError';
 
 export const PickOrNewBrand = ({ name, value, onChange, creating, onToggle }) => {
     const onToggleClick = (e) => {
@@ -40,7 +40,7 @@ export const PickOrNewBrand = ({ name, value, onChange, creating, onToggle }) =>
                     {creating ? <RoundList /> : <RoundAdd />}
                 </a>
             </div>
-            <FieldError name={name} />
+            <FieldErrorNew name={name} />
         </>
     );
 };

@@ -32,7 +32,7 @@ export const PatientModal = ({ show, hide, onSuccess, editing }) => {
         errors,
         submitHandler,
         isValid,
-    } = useForm({ editing, getInitialValues, schema });
+    } = useForm({ editing, getInitialValues, schema, showing: show });
 
     const handleSubmit = submitHandler(() => {
         const request = () => editing
@@ -53,7 +53,7 @@ export const PatientModal = ({ show, hide, onSuccess, editing }) => {
         <Modal show={show} hide={hide}>
             <PageTitle>{editing ? 'Update Patient' : 'Create Patient'}</PageTitle>
 
-            <FormNew values={values} loading={loading} onSubmit={handleSubmit}>
+            <FormNew values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
                 {() => (
                     <>
                         <div className="input-wrapper">
@@ -66,7 +66,7 @@ export const PatientModal = ({ show, hide, onSuccess, editing }) => {
                                 value={values.name}
                             />
                         </div>
-                        <FieldErrorNew name="name" errors={errors} />
+                        <FieldErrorNew name="name" />
 
                         <input type="submit" value={editing ? 'Save' : 'Create'} disabled={!isValid} />
                     </>

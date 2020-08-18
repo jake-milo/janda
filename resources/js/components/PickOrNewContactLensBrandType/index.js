@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
-import { connect } from 'formik';
+import React from 'react';
 import { PickOrNewBrand } from './PickOrNewBrand';
 import { PickOrNewType } from './PickOrNewType';
-import { FieldError } from '../FieldError';
+import { FieldError, FieldErrorNew } from '../FieldError';
 
 export const PickOrNewContactLensBrandType = ({
     brandName,
@@ -20,30 +19,18 @@ export const PickOrNewContactLensBrandType = ({
     creatingType,
     setCreatingType,
 }) => {
-    const handleChange = (name, cb) => (val) => {
-        if (formik && formik.setFieldValue) {
-            formik.setFieldValue(name, val);
-        }
-
-        if (cb) cb(val);
-    }
-
-    const handleBrandChange = handleChange(brandName, onBrandChange);
-    const handleTypeChange = handleChange(typeName, onTypeChange);
-    const handleDurationChange = handleChange(durationName, onDurationChange);
-
     const toggleBrandMode = () => {
-        handleBrandChange('');
+        onBrandChange('');
         if (!creatingType || creatingBrand) {
-            handleTypeChange('');
-            handleDurationChange('');
+            onTypeChange('');
+            onDurationChange('');
         }
         setCreatingBrand(!creatingBrand);
     };
 
     const toggleTypeMode = () => {
-        handleTypeChange('');
-        handleDurationChange('');
+        onTypeChange('');
+        onDurationChange('');
         setCreatingType(!creatingType);
     };
 
@@ -52,7 +39,7 @@ export const PickOrNewContactLensBrandType = ({
             <PickOrNewBrand
                 name={brandName}
                 value={brand}
-                onChange={handleBrandChange}
+                onChange={onBrandChange}
                 creating={creatingBrand}
                 onToggle={toggleBrandMode}
             />
@@ -63,7 +50,7 @@ export const PickOrNewContactLensBrandType = ({
                 brandId={brand}
                 name={typeName}
                 value={type}
-                onChange={handleTypeChange}
+                onChange={onTypeChange}
                 creating={creatingType || creatingBrand}
                 onToggle={toggleTypeMode}
                 allowToggle={!creatingBrand}
@@ -80,14 +67,12 @@ export const PickOrNewContactLensBrandType = ({
                             id={durationName}
                             name={durationName}
                             value={duration}
-                            onChange={e => handleDurationChange(e.target.value)}
+                            onChange={e => onDurationChange(e.target.value)}
                         />
                     </div>
-                    <FieldError name={durationName} />
+                    <FieldErrorNew name={durationName} />
                 </>
             ) : null}
         </>
     );
 };
-
-PickOrNewContactLensBrandType.Formik = connect(PickOrNewContactLensBrandType);

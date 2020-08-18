@@ -2,7 +2,7 @@ import React from 'react';
 import RoundAdd from 'react-md-icon/dist/RoundAdd';
 import RoundList from 'react-md-icon/dist/RoundList';
 import { ContactLensTypePicker } from '../ContactLensTypePicker';
-import { FieldError } from '../FieldError';
+import { FieldError, FieldErrorNew } from '../FieldError';
 
 export const PickOrNewType = ({
     name,
@@ -56,7 +56,7 @@ export const PickOrNewType = ({
                     </a>
                 )}
             </div>
-            <FieldError name={name} />
+            <FieldErrorNew name={name} />
         </>
     );
 };

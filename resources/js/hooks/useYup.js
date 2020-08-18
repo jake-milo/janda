@@ -65,11 +65,17 @@ export const useYup = (
           validate(values);
         }
     }, [values, validateOnChange, validate]);
-  
+
+    const reset = useCallback(() => {
+      hasValidated.current = false;
+      setErrors({});
+    }, []);
+
     return {
       validate,
       errors,
       isValid,
+      reset,
       submitHandler(cb) {
         return async (e) => {
           e.preventDefault();

@@ -6,16 +6,18 @@ export const useForm = ({
     schema,
     getInitialValues,
     context,
+    showing = false,
 }) => {
     const [values, setValues] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const { errors, submitHandler, isValid } = useYup(values, schema, {
+    const { errors, submitHandler, isValid, reset: resetYup } = useYup(values, schema, {
         context,
         validateOnChange: true,
     });
 
     useEffect(() => {
+        resetYup();
         setLoading(true);
 
         const asyncify = async (promise) => promise;
@@ -25,7 +27,7 @@ export const useForm = ({
                 setValues(vals);
                 setLoading(false);
             });
-    }, [getInitialValues, editing]);
+    }, [editing, getInitialValues, showing]);
 
     const createHandler = (key, transform = v => v) => e => {
         const val = transform(e);

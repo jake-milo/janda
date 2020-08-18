@@ -33,7 +33,7 @@ export const UserModal = ({ show, hide, onSuccess, editing }) => {
         errors,
         submitHandler,
         isValid,
-    } = useForm({ editing, getInitialValues, schema, context });
+    } = useForm({ editing, getInitialValues, schema, context, showing: show });
 
     const handleSubmit = submitHandler(() => {
         const { password, ...vals } = values;
@@ -60,7 +60,7 @@ export const UserModal = ({ show, hide, onSuccess, editing }) => {
         <Modal show={show} hide={hide}>
             <PageTitle>{editing ? 'Update User' : 'Create User'}</PageTitle>
 
-            <FormNew values={values} loading={loading} onSubmit={handleSubmit}>
+            <FormNew values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
                 {() => (
                     <>
                         <div className="input-wrapper">
@@ -73,7 +73,7 @@ export const UserModal = ({ show, hide, onSuccess, editing }) => {
                                 value={values.name}
                             />
                         </div>
-                        <FieldErrorNew name="name" errors={errors} />
+                        <FieldErrorNew name="name" />
 
                         <div className="input-wrapper">
                             <label htmlFor="email">Email</label>
@@ -86,7 +86,7 @@ export const UserModal = ({ show, hide, onSuccess, editing }) => {
                                 autoComplete="new-email"
                             />
                         </div>
-                        <FieldErrorNew name="email" errors={errors} />
+                        <FieldErrorNew name="email" />
 
                         <div className="input-wrapper">
                             <label htmlFor="password">Password</label>
@@ -99,7 +99,7 @@ export const UserModal = ({ show, hide, onSuccess, editing }) => {
                                 autoComplete="new-password"
                             />
                         </div>
-                        <FieldErrorNew name="password" errors={errors} />
+                        <FieldErrorNew name="password" />
 
                         {editing ? (
                             <p style={{ fontSize: '0.875rem', marginBottom: '.75rem' }}>

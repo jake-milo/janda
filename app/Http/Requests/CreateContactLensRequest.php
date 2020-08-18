@@ -30,7 +30,7 @@ class CreateContactLensRequest extends FormRequest
         return [
             'patient_id' => 'integer|required_without:patient|exists:patients,id',
             'patient' => 'string|required_without:patient_id',
-            'practice_id' =>'integer|required|exists:practices,id',
+            'practice_id' => 'integer|required|exists:practices,id',
             'type_id' => 'integer|required_without:type|exists:contact_lens_types,id',
             'type' => 'string|required_without:type_id',
             'duration' => 'string|required_without:type_id',
@@ -65,7 +65,7 @@ class CreateContactLensRequest extends FormRequest
 
     public function getType(): Type
     {
-        if ($id = $this->input('type_id')){
+        if ($id = $this->input('type_id')) {
             return Type::find($id);
         }
 
@@ -90,7 +90,7 @@ class CreateContactLensRequest extends FormRequest
 
     public function getContactLensData(): array
     {
-        return $this->only('lens','quantity', 'price','solutions', 'right', 'left');
+        return $this->only('lens', 'quantity', 'price', 'solutions', 'right', 'left');
     }
 
     public function messages()
