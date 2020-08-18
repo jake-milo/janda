@@ -45,6 +45,16 @@
     width: 6.5rem;
 }
 
+.input-chain {
+    height: .75rem;
+    width: .15rem;
+    margin-top: -.5rem;
+    margin-left: 1rem;
+    background: var(--light-grey);
+
+    box-shadow: .15rem 0 var(--dark-grey), .3rem 0 var(--light-grey);
+}
+
 .select-wrapper.--create .create, .input-wrapper.--create .create {
     position: absolute;
     right: 0;
