@@ -12,11 +12,10 @@ class Variant extends Model
 
     protected $resourceRelations = ['types'];
 
-    protected $fillable = ['color', 'price', 'year', 'quantity', 'dbl', 'eyesize', 'buy', 'sell'];
+    protected $fillable = ['color', 'year', 'quantity', 'dbl', 'eyesize', 'buy', 'sell'];
 
     public function types()
     {
         return $this->belongsTo(Type::class);
     }
-
 }

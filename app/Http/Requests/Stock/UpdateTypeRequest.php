@@ -38,7 +38,6 @@ class UpdateTypeRequest extends FormRequest
             'variants' => 'array',
             'variants.*.id' => 'nullable|exists:variants',
             'variants.*.color' => 'string',
-            'variants.*.price' => 'integer',
             'variants.*.year' => 'string',
             'variants.*.quantity' => 'integer',
             'variants.*.eyesize' => 'string',
