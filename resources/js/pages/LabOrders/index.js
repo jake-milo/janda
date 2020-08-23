@@ -79,6 +79,7 @@ export const LabOrders = () => {
                             value={lab}
                             onChange={setLab}
                             emptyText="All"
+                            clearable
                         />
                     </div>
                 </div>

@@ -10,6 +10,7 @@ export const ContactLensBrandPicker = ({
     formik,
     emptyText = 'Please Choose',
     onChange,
+    clearable,
 }) => {
     const [filter, setFilter] = useState('');
     const debouncedFilter = useDebounced(filter, 500);
@@ -39,6 +40,7 @@ export const ContactLensBrandPicker = ({
                     label: brand.name,
                 }))}
                 loading={loading}
+                clearable={clearable}
             />
         </>
     );
