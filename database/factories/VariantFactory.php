@@ -16,5 +16,6 @@ $factory->define(Variant::class, function (Faker $faker) {
         'dbl' => $faker->numberBetween(5, 50) . 'mm',
         'buy' => $faker->randomElement([$buy, null]),
         'sell' => $faker->randomElement([$sell, null]),
+        'year' => $faker->randomElement(([$faker->date(), null])),
     ];
 });

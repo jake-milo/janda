@@ -22,6 +22,8 @@ class Type extends JsonResource
             'buy' => $this->buy,
             'sell' => $this->sell,
 
+            'year' => $this->year,
+
             'brand' => Brand::make(
                 $this->whenLoaded('brand')
             ),

@@ -38,12 +38,12 @@ class UpdateTypeRequest extends FormRequest
             'variants' => 'array',
             'variants.*.id' => 'nullable|exists:variants',
             'variants.*.color' => 'string',
-            'variants.*.year' => 'string',
             'variants.*.quantity' => 'integer',
             'variants.*.eyesize' => 'string',
             'variants.*.dbl' => 'string',
             'variants.*.buy' => 'integer|nullable',
             'variants.*.sell' => 'integer|nullable',
+            'variants.*.year' => 'date|nullable',
         ];
     }
 
