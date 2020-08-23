@@ -4,10 +4,10 @@ import { Modal } from '../../../components/Modal';
 import { PageTitle } from '../../../components/PageTitle';
 import { PracticePicker } from '../../../components/PracticePicker';
 import { post, patch } from '../../../helpers';
-import { FieldErrorNew } from '../../../components/FieldError';
+import { FieldError } from '../../../components/FieldError';
 import { MoneyInput } from '../../../components/MoneyInput';
 import { PickOrNewPatient } from '../../../components/PatientPicker/PickOrNewPatient';
-import { FormNew } from '../../../components/Form';
+import { Form } from '../../../components/Form';
 import { PickOrNewContactLensBrandType } from '../../../components/PickOrNewContactLensBrandType';
 import { fetchContactLens } from '../../../utilities/fetchContactLens';
 import { useForm } from '../../../hooks/useForm';
@@ -106,7 +106,7 @@ export const ContactLensModal = ({ show, hide, onSuccess, editing }) => {
         <Modal show={show} hide={hide}>
             <PageTitle>{editing ? 'Update' : 'Create'} Contact Lens</PageTitle>
 
-            <FormNew values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
+            <Form values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
                 {() => (
                     <>
                         <PickOrNewPatient
@@ -116,12 +116,12 @@ export const ContactLensModal = ({ show, hide, onSuccess, editing }) => {
                             setCreating={setCreatingPatient}
                             onChange={createHandler('patient')}
                         />
-                        <FieldErrorNew name="patient" />
+                        <FieldError name="patient" />
 
                         <div className="select-wrapper">
                             <PracticePicker name="practice" value={values.practice} onChange={createHandler('practice')} />
                         </div>
-                        <FieldErrorNew name="practice" />
+                        <FieldError name="practice" />
 
                         <PickOrNewContactLensBrandType
                             brandName="brand"
@@ -143,36 +143,36 @@ export const ContactLensModal = ({ show, hide, onSuccess, editing }) => {
                             <label htmlFor="lens">Left</label>
                             <input type="text" id="left" name="left" onChange={createNativeHandler('left')} value={values.left} />
                         </div>
-                        <FieldErrorNew name="left" />
+                        <FieldError name="left" />
 
                         <div className="input-wrapper">
                             <label htmlFor="lens">Right</label>
                             <input type="text" id="right" name="right" onChange={createNativeHandler('right')} value={values.right} />
                         </div>
-                        <FieldErrorNew name="right" />
+                        <FieldError name="right" />
 
                         <div className="input-wrapper">
                             <label htmlFor="quantity">Quantity</label>
                             <input type="text" id="quantity" name="quantity" onChange={createNativeHandler('quantity')} value={values.quantity} />
                         </div>
-                        <FieldErrorNew name="quantity" />
+                        <FieldError name="quantity" />
 
                         <div className="input-wrapper">
                             <label htmlFor="price">Cost</label>
                             <MoneyInput value={values.price} name="price" onChange={createHandler('price')} />
                         </div>
-                        <FieldErrorNew name="price" />
+                        <FieldError name="price" />
 
                         <div className="input-wrapper">
                             <label htmlFor="solutions">Solutions</label>
                             <input type="text" id="solutions" name="solutions" onChange={createNativeHandler('solutions')} value={values.solutions} />
                         </div>
-                        <FieldErrorNew name="solutions" />
+                        <FieldError name="solutions" />
 
                         <input type="submit" value={editing ? 'Update' : 'Create'} errors={errors} disabled={!isValid} />
                     </>
                 )}
-            </FormNew>
+            </Form>
         </Modal>
     );
 };

@@ -3,8 +3,8 @@ import * as yup from 'yup';
 import { patch, post } from '../../../helpers';
 import { Modal } from '../../../components/Modal';
 import { PageTitle } from '../../../components/PageTitle';
-import { FormNew } from '../../../components/Form';
-import { FieldErrorNew } from '../../../components/FieldError';
+import { Form } from '../../../components/Form';
+import { FieldError } from '../../../components/FieldError';
 import { fetchLab } from '../../../utilities/fetchLab';
 import { useForm } from '../../../hooks/useForm';
 
@@ -53,7 +53,7 @@ export const LabModal = ({ show, hide, onSuccess, editing }) => {
         <Modal show={show} hide={hide}>
             <PageTitle>{editing ? 'Update Lab' : 'Create Lab'}</PageTitle>
 
-            <FormNew values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
+            <Form values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
                 {() => (
                     <>
                         <div className="input-wrapper">
@@ -66,12 +66,12 @@ export const LabModal = ({ show, hide, onSuccess, editing }) => {
                                 value={values.name}
                             />
                         </div>
-                        <FieldErrorNew name="name" />
+                        <FieldError name="name" />
 
                         <input type="submit" value={editing ? 'Save' : 'Create'} disabled={!isValid} />
                     </>
                 )}
-            </FormNew>
+            </Form>
         </Modal>
     );
 };

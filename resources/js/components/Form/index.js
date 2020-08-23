@@ -5,7 +5,7 @@ const FormContext = createContext();
 
 export const useFormContext = () => useContext(FormContext);
 
-export const FormNew = ({ children, loading, values, onSubmit, errors }) => {
+export const Form = ({ children, loading, values, onSubmit, errors }) => {
     const context = useMemo(() => ({ errors }), [errors]);
     
     return (

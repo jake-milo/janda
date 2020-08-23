@@ -1,7 +1,7 @@
 import React from 'react';
 import { PickOrNewBrand } from './PickOrNewBrand';
 import { PickOrNewType } from './PickOrNewType';
-import { FieldError, FieldErrorNew } from '../FieldError';
+import { FieldError } from '../FieldError';
 
 export const PickOrNewContactLensBrandType = ({
     brandName,
@@ -10,7 +10,6 @@ export const PickOrNewContactLensBrandType = ({
     brand,
     type,
     duration,
-    formik,
     onBrandChange,
     onTypeChange,
     onDurationChange,
@@ -70,7 +69,7 @@ export const PickOrNewContactLensBrandType = ({
                             onChange={e => onDurationChange(e.target.value)}
                         />
                     </div>
-                    <FieldErrorNew name={durationName} />
+                    <FieldError name={durationName} />
                 </>
             ) : null}
         </>

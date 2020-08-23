@@ -1,15 +1,10 @@
 import React from 'react';
 import { PatientPicker } from './index';
-import { connect } from 'formik';
 import RoundAdd from 'react-md-icon/dist/RoundAdd';
 import RoundList from 'react-md-icon/dist/RoundList';
 
-export const PickOrNewPatient = ({ name, value, formik, onChange, creating, setCreating }) => {
+export const PickOrNewPatient = ({ name, value, onChange, creating, setCreating }) => {
     const handleChange = (val) => {
-        if (formik && formik.setFieldValue) {
-            formik.setFieldValue(name, val);
-        }
-
         if (onChange) {
             onChange(val);
         }
@@ -41,7 +36,7 @@ export const PickOrNewPatient = ({ name, value, formik, onChange, creating, setC
                 />
             )}
             <a
-                href="#"
+                href="#toggle"
                 className="create"
                 title={creating ? 'Pick Existing Patient' : 'Create New Patient'}
                 onClick={toggleMode}
@@ -51,5 +46,3 @@ export const PickOrNewPatient = ({ name, value, formik, onChange, creating, setC
         </div>
     );
 }
-
-PickOrNewPatient.Formik = connect(PickOrNewPatient);

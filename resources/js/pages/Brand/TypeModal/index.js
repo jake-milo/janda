@@ -3,8 +3,8 @@ import * as yup from 'yup';
 import moment from 'moment';
 import { Modal } from "../../../components/Modal";
 import { PageTitle } from "../../../components/PageTitle";
-import { FormNew } from '../../../components/Form';
-import { FieldErrorNew } from '../../../components/FieldError';
+import { Form } from '../../../components/Form';
+import { FieldError } from '../../../components/FieldError';
 import { MoneyInput } from '../../../components/MoneyInput';
 import { VariationsTable } from './VariationsTable';
 import { Row, Cell } from '../../../components/Table';
@@ -116,7 +116,7 @@ export const TypeModal = ({ brand, show, hide, onSuccess, editing = null }) => {
         <Modal show={show} hide={hide}>
             <PageTitle>{editing ? 'Update Type' : 'Create Type'}</PageTitle>
 
-            <FormNew values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
+            <Form values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
                 {() => (
                     <>
                         <div className="input-wrapper">
@@ -129,7 +129,7 @@ export const TypeModal = ({ brand, show, hide, onSuccess, editing = null }) => {
                                 onChange={createNativeHandler('name')}
                             />
                         </div>
-                        <FieldErrorNew name="name" />
+                        <FieldError name="name" />
 
                         <div className="input-wrapper">
                             <label htmlFor="buy">Buy</label>
@@ -139,7 +139,7 @@ export const TypeModal = ({ brand, show, hide, onSuccess, editing = null }) => {
                                 onChange={createHandler('buy')}
                             />
                         </div>
-                        <FieldErrorNew name="buy" />
+                        <FieldError name="buy" />
 
                         <div className="input-wrapper">
                             <label htmlFor="sell">Sell</label>
@@ -149,7 +149,7 @@ export const TypeModal = ({ brand, show, hide, onSuccess, editing = null }) => {
                                 onChange={createHandler('sell')}
                             />
                         </div>
-                        <FieldErrorNew name="sell" />
+                        <FieldError name="sell" />
 
                         <div className="input-wrapper">
                             <label htmlFor="year">Month/Year</label>
@@ -160,7 +160,7 @@ export const TypeModal = ({ brand, show, hide, onSuccess, editing = null }) => {
                                 monthOnly
                             />
                         </div>
-                        <FieldErrorNew name="year" />
+                        <FieldError name="year" />
 
                         <PageTitle small>Variations</PageTitle>
                         <VariationsTable>
@@ -235,7 +235,7 @@ export const TypeModal = ({ brand, show, hide, onSuccess, editing = null }) => {
                                     {errors[`variants[${i}]`] ? (
                                         <Row>
                                             <Cell>
-                                                <FieldErrorNew name={`variants[${i}]`} />
+                                                <FieldError name={`variants[${i}]`} />
                                             </Cell>
                                         </Row>
                                     ) : null}
@@ -263,7 +263,7 @@ export const TypeModal = ({ brand, show, hide, onSuccess, editing = null }) => {
                         <input type="submit" value={editing ? `Update` : `Create`} disabled={!isValid} />
                     </>
                 )}
-            </FormNew>
+            </Form>
         </Modal>
     );
 };

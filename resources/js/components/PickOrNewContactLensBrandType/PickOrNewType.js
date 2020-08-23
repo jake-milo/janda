@@ -2,7 +2,7 @@ import React from 'react';
 import RoundAdd from 'react-md-icon/dist/RoundAdd';
 import RoundList from 'react-md-icon/dist/RoundList';
 import { ContactLensTypePicker } from '../ContactLensTypePicker';
-import { FieldError, FieldErrorNew } from '../FieldError';
+import { FieldError } from '../FieldError';
 
 export const PickOrNewType = ({
     name,
@@ -47,7 +47,7 @@ export const PickOrNewType = ({
 
                 {allowToggle && (
                     <a
-                        href="#"
+                        href="#create"
                         className="create"
                         title={creating ? 'Pick Existing Model' : 'Create New Model'}
                         onClick={onToggleClick}
@@ -56,7 +56,7 @@ export const PickOrNewType = ({
                     </a>
                 )}
             </div>
-            <FieldErrorNew name={name} />
+            <FieldError name={name} />
         </>
     );
 };

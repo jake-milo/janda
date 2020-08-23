@@ -2,8 +2,8 @@ import React, { useCallback, useMemo } from 'react';
 import * as yup from 'yup';
 import { Modal } from '../../../components/Modal';
 import { PageTitle } from '../../../components/PageTitle';
-import { FormNew } from '../../../components/Form';
-import { FieldErrorNew } from '../../../components/FieldError';
+import { Form } from '../../../components/Form';
+import { FieldError } from '../../../components/FieldError';
 import { patch, post } from '../../../helpers';
 import { useForm } from '../../../hooks/useForm';
 
@@ -60,7 +60,7 @@ export const UserModal = ({ show, hide, onSuccess, editing }) => {
         <Modal show={show} hide={hide}>
             <PageTitle>{editing ? 'Update User' : 'Create User'}</PageTitle>
 
-            <FormNew values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
+            <Form values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
                 {() => (
                     <>
                         <div className="input-wrapper">
@@ -73,7 +73,7 @@ export const UserModal = ({ show, hide, onSuccess, editing }) => {
                                 value={values.name}
                             />
                         </div>
-                        <FieldErrorNew name="name" />
+                        <FieldError name="name" />
 
                         <div className="input-wrapper">
                             <label htmlFor="email">Email</label>
@@ -86,7 +86,7 @@ export const UserModal = ({ show, hide, onSuccess, editing }) => {
                                 autoComplete="new-email"
                             />
                         </div>
-                        <FieldErrorNew name="email" />
+                        <FieldError name="email" />
 
                         <div className="input-wrapper">
                             <label htmlFor="password">Password</label>
@@ -99,7 +99,7 @@ export const UserModal = ({ show, hide, onSuccess, editing }) => {
                                 autoComplete="new-password"
                             />
                         </div>
-                        <FieldErrorNew name="password" />
+                        <FieldError name="password" />
 
                         {editing ? (
                             <p style={{ fontSize: '0.875rem', marginBottom: '.75rem' }}>
@@ -110,7 +110,7 @@ export const UserModal = ({ show, hide, onSuccess, editing }) => {
                         <input type="submit" value={editing ? 'Save' : 'Create'} disabled={!isValid} />
                     </>
                 )}
-            </FormNew>
+            </Form>
         </Modal>
     );
 };

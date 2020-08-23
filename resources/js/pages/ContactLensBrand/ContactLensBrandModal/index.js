@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
 import * as yup from 'yup';
 import { patch, post } from '../../../helpers';
-import { FieldErrorNew } from '../../../components/FieldError';
+import { FieldError } from '../../../components/FieldError';
 import { Modal } from '../../../components/Modal';
 import { PageTitle } from '../../../components/PageTitle';
-import { FormNew } from '../../../components/Form';
+import { Form } from '../../../components/Form';
 import { useForm } from '../../../hooks/useForm';
 
 const schema = yup.object().shape({
@@ -50,7 +50,7 @@ export const ContactLensBrandModal = ({ show, hide, onSuccess, brand: editing = 
         <Modal show={show} hide={hide}>
             <PageTitle>{editing ? 'Update Brand' : 'Create Brand'}</PageTitle>
 
-            <FormNew values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
+            <Form values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
                 {() => (
                     <>
                         <div className="input-wrapper">
@@ -63,12 +63,12 @@ export const ContactLensBrandModal = ({ show, hide, onSuccess, brand: editing = 
                                 value={values.name}
                             />
                         </div>
-                        <FieldErrorNew name="name" />
+                        <FieldError name="name" />
 
                         <input type="submit" value={editing ? `Update` : `Create`} disabled={!isValid} />
                     </>
                 )}
-            </FormNew>
+            </Form>
         </Modal>
     );
 };

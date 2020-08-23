@@ -1,9 +1,7 @@
 import React, { useCallback } from 'react';
 import * as yup from 'yup';
-import { useInitialValues } from './useInitialValues';
-import { Spinner } from '../Spinner';
-import { FormNew } from '../Form';
-import { FieldErrorNew } from '../FieldError';
+import { Form } from '../Form';
+import { FieldError } from '../FieldError';
 import { Modal } from '../Modal';
 import { PageTitle } from '../PageTitle';
 import { post, patch } from '../../helpers';
@@ -57,7 +55,7 @@ export const ManufacturerModal = ({ show, hide, onSuccess, editing }) => {
         <Modal show={show} hide={hide}>
             <PageTitle>{editing ? 'Update Manufacturer' : 'Create Manufacturer'}</PageTitle>
 
-            <FormNew values={values} loading={loading} onSubmit={handleSubmit}>
+            <Form values={values} loading={loading} onSubmit={handleSubmit}>
                 {() => (
                     <>
                         <div className="input-wrapper">
@@ -70,13 +68,13 @@ export const ManufacturerModal = ({ show, hide, onSuccess, editing }) => {
                                 value={values.name}
                             />
                         </div>
-                        <FieldErrorNew name="name" errors={errors} />
+                        <FieldError name="name" errors={errors} />
 
                         <input type="submit" value={editing ? 'Save' : 'Create'} disabled={!isValid} />
                     </>
                 )}
 
-            </FormNew>
+            </Form>
         </Modal>
     );
 };

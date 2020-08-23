@@ -2,8 +2,8 @@ import React, { useCallback } from 'react';
 import * as yup from 'yup';
 import { Modal } from '../../../components/Modal';
 import { PageTitle } from '../../../components/PageTitle';
-import { FormNew } from '../../../components/Form';
-import { FieldErrorNew } from '../../../components/FieldError';
+import { Form } from '../../../components/Form';
+import { FieldError } from '../../../components/FieldError';
 import { patch, post } from '../../../helpers';
 import { useForm } from '../../../hooks/useForm';
 
@@ -53,25 +53,25 @@ export const ContactLensTypeModal = ({ show, hide, onSuccess, editing = null, br
         <Modal show={show} hide={hide}>
             <PageTitle>{editing ? 'Update Type' : 'Create Type'}</PageTitle>
 
-            <FormNew values={values} errors={errors} loading={loading} onSubmit={handleSubmit}>
+            <Form values={values} errors={errors} loading={loading} onSubmit={handleSubmit}>
                 {() => (
                     <>
                         <div className="input-wrapper">
                             <label htmlFor="name">Name</label>
                             <input type="text" id="name" name="name" onChange={createNativeHandler('name')} value={values.name} />
                         </div>
-                        <FieldErrorNew name="name" />
+                        <FieldError name="name" />
 
                         <div className="input-wrapper">
                             <label htmlFor="duration">Duration</label>
                             <input type="text" id="duration" name="duration" onChange={createNativeHandler('duration')} value={values.duration} />
                         </div>
-                        <FieldErrorNew name="duration" />
+                        <FieldError name="duration" />
 
                         <input type="submit" value={editing ? `Update` : `Create`} disabled={!isValid} />
                     </>
                 )}
-            </FormNew>
+            </Form>
         </Modal>
     );
 };

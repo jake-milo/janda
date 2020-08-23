@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { Modal } from "../../../components/Modal";
 import { PageTitle } from "../../../components/PageTitle";
 import { PickOrNewPatient } from '../../../components/PatientPicker/PickOrNewPatient';
-import { FieldErrorNew } from '../../../components/FieldError';
+import { FieldError } from '../../../components/FieldError';
 import { PracticePicker } from '../../../components/PracticePicker';
 import { LabPicker } from '../../../components/LabPicker';
 import { DatePicker } from '../../../components/DatePicker';
@@ -12,7 +12,7 @@ import { patch, post } from '../../../helpers';
 import moment from 'moment';
 import { fetchLabOrder } from '../../../utilities/fetchLabOrder';
 import { useForm } from '../../../hooks/useForm';
-import { FormNew } from '../../../components/Form';
+import { Form } from '../../../components/Form';
 
 const schema = yup.object().shape({
     patient: yup.string().required().label('Patient'),
@@ -95,7 +95,7 @@ export const LabOrderFormModal = ({ show, hide, onSuccess, editing }) => {
         <Modal show={show} hide={hide}>
             <PageTitle>{editing ? 'Update' : 'Create'} Lab Order</PageTitle>
 
-            <FormNew values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
+            <Form values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
                 {() => (
                     <>
                         <PickOrNewPatient
@@ -105,7 +105,7 @@ export const LabOrderFormModal = ({ show, hide, onSuccess, editing }) => {
                             setCreating={setCreatingPatient}
                             onChange={createHandler('patient')}
                         />
-                        <FieldErrorNew name="patient" />
+                        <FieldError name="patient" />
 
                         <div className="select-wrapper">
                             <PracticePicker
@@ -114,7 +114,7 @@ export const LabOrderFormModal = ({ show, hide, onSuccess, editing }) => {
                                 onChange={createHandler('practice_id')}
                             />
                         </div>
-                        <FieldErrorNew name="practice_id" />
+                        <FieldError name="practice_id" />
 
                         <div className="select-wrapper">
                             <LabPicker
@@ -123,7 +123,7 @@ export const LabOrderFormModal = ({ show, hide, onSuccess, editing }) => {
                                 onChange={createHandler('lab_id')}
                             />
                         </div>
-                        <FieldErrorNew name="lab_id" />
+                        <FieldError name="lab_id" />
 
                         <div className="input-wrapper">
                             <label htmlFor="lens">Lens</label>
@@ -135,7 +135,7 @@ export const LabOrderFormModal = ({ show, hide, onSuccess, editing }) => {
                                 value={values.lens}
                             />
                         </div>
-                        <FieldErrorNew name="lens" />
+                        <FieldError name="lens" />
 
                         <div className="input-wrapper">
                             <label htmlFor="reference">Order #</label>
@@ -147,7 +147,7 @@ export const LabOrderFormModal = ({ show, hide, onSuccess, editing }) => {
                                 value={values.reference}
                             />
                         </div>
-                        <FieldErrorNew name="reference" />
+                        <FieldError name="reference" />
 
                         <div className="input-wrapper">
                             <label htmlFor="date_sent">Date Sent</label>
@@ -157,7 +157,7 @@ export const LabOrderFormModal = ({ show, hide, onSuccess, editing }) => {
                                 onChange={createHandler('date_sent')}
                             />
                         </div>
-                        <FieldErrorNew name="date_sent" />
+                        <FieldError name="date_sent" />
 
                         <div className="input-wrapper">
                             <label htmlFor="date_required">Date Required</label>
@@ -168,7 +168,7 @@ export const LabOrderFormModal = ({ show, hide, onSuccess, editing }) => {
                                 onChange={createHandler('date_required')}
                             />
                         </div>
-                        <FieldErrorNew name="date_required" />
+                        <FieldError name="date_required" />
 
                         <div className="input-wrapper">
                             <label htmlFor="date_received">Date Received</label>
@@ -179,12 +179,12 @@ export const LabOrderFormModal = ({ show, hide, onSuccess, editing }) => {
                                 onChange={createHandler('date_received')}
                             />
                         </div>
-                        <FieldErrorNew name="date_received" />
+                        <FieldError name="date_received" />
 
                         <input type="submit" value={editing ? 'Save' : 'Create'} disabled={!isValid} />
                     </>
                 )}
-            </FormNew>
+            </Form>
         </Modal>
     );
 };

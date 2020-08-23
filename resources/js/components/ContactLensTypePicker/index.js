@@ -1,5 +1,4 @@
-import React, { useState, useMemo } from 'react';
-import { connect } from 'formik';
+import React, { useState } from 'react';
 import { FilterableSelect } from '../FilterableSelect';
 import { useTypes } from './useTypes';
 import { useFiltered } from '../../hooks/useFiltered';
@@ -9,7 +8,6 @@ export const ContactLensTypePicker = ({
     name,
     value,
     onChange,
-    formik,
     emptyText = 'Please Choose',
 }) => {
     const [filter, setFilter] = useState('');
@@ -22,10 +20,6 @@ export const ContactLensTypePicker = ({
     );
 
     const handleChange = (newVal) => {
-        if (formik && formik.setFieldValue) {
-            formik.setFieldValue(name, newVal);
-        }
-
         if (onChange) {
             onChange(newVal);
         }
@@ -52,5 +46,3 @@ export const ContactLensTypePicker = ({
         </>
     );
 };
-
-ContactLensTypePicker.Formik = connect(ContactLensTypePicker);

@@ -2,10 +2,10 @@ import React, { useState, useCallback } from 'react';
 import * as yup from 'yup';
 import { Modal } from '../Modal';
 import { PageTitle } from '../PageTitle';
-import { FormNew } from '../Form';
+import { Form } from '../Form';
 import { PickOrNewManufacturer } from '../ManufacturerPicker/PickOrNewManufacturer';
 import { post, patch } from '../../helpers';
-import { FieldErrorNew } from '../FieldError';
+import { FieldError } from '../FieldError';
 import { useForm } from '../../hooks/useForm';
 
 const schema = yup.object().shape({
@@ -56,14 +56,14 @@ export const BrandModal = ({ show, hide, onSuccess, brand: editing = null }) => 
         <Modal show={show} hide={hide}>
             <PageTitle>{editing ? 'Update Brand' : 'Create Brand'}</PageTitle>
 
-            <FormNew values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
+            <Form values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
                 {() => (
                     <>
                         <div className="input-wrapper">
                             <label htmlFor="name">Name</label>
                             <input type="text" id="name" name="name" onChange={createNativeHandler('name')} value={values.name} />
                         </div>
-                        <FieldErrorNew name="name" />
+                        <FieldError name="name" />
 
                         <PickOrNewManufacturer
                             name="manufacturer"
@@ -72,12 +72,12 @@ export const BrandModal = ({ show, hide, onSuccess, brand: editing = null }) => 
                             setCreating={setCreatingManufacturer}
                             onChange={createHandler('manufacturer')}
                         />
-                        <FieldErrorNew name="manufacturer" />
+                        <FieldError name="manufacturer" />
 
                         <input type="submit" value={editing ? `Update` : `Create`} disabled={!isValid} />
                     </>
                 )}
-            </FormNew>
+            </Form>
         </Modal>
     );
 };

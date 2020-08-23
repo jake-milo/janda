@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useFormContext } from '../Form';
 
-export const FieldErrorNew = ({ name }) => {
+export const FieldError = ({ name }) => {
     const { errors } = useFormContext();
 
     const errorMessages = useMemo(() => {
