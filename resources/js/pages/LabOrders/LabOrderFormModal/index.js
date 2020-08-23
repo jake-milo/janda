@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import * as yup from 'yup';
 import { Modal } from "../../../components/Modal";
 import { PageTitle } from "../../../components/PageTitle";
