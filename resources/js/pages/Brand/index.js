@@ -13,7 +13,8 @@ import { Spinner } from '../../components/Spinner';
 import { FloatingActionButton as FAB } from '../../components/FloatingActionButton';
 import { BrandModal } from '../../components/BrandModal';
 import { TypeModal } from './TypeModal';
-import { remove } from '../../helpers';
+import { remove, post } from '../../helpers';
+import { Stepper } from '../../components/Stepper';
 
 export const Brand = ({ match }) => {
     const { brand, refresh } = useBrand(match.params.id);
@@ -51,6 +52,21 @@ export const Brand = ({ match }) => {
             });
     };
 
+    const [updatingQuantity, setUpdatingQuantity] = useState(false);
+    const handleQuantityChange = (variant) => (quantity) => {
+        console.log(variant, quantity);
+        setUpdatingQuantity(true);
+
+        post(`/api/variants/${variant.id}/update-quantity`, { quantity })
+            .then(() => refresh())
+            .catch(err => {
+                console.log(err);
+            })
+            .finally(() => {
+                setUpdatingQuantity(false);
+            });
+    };
+
     return (
         <>
             <PageTitle label="Brand">{brand ? brand.name : 'Loading...'}</PageTitle>
@@ -75,6 +91,7 @@ export const Brand = ({ match }) => {
                         'DBL': 'normal',
                         'Color': 'normal',
                         'Year': 'normal',
+                        'Quantity': ['normal', true],
                         '': 'thin',
                     }}>
                         {brand.types.map(type => type.variants.map((variant, i) => (
@@ -86,15 +103,24 @@ export const Brand = ({ match }) => {
                                 <Cell>{variant.dbl}</Cell>
                                 <Cell>{variant.color}</Cell>
                                 <Cell>{moment(variant.year || type.year).format('MMMM yyyy')}</Cell>
+                                <Cell centered>
+                                    <Stepper
+                                        value={variant.quantity}
+                                        onChange={handleQuantityChange(variant)}
+                                        disabled={updatingQuantity}
+                                    />
+                                </Cell>
                                 <Cell size="thin" centered>
                                     {i === 0 ? (
-                                        <a href="#edit" onClick={handleEditClick(type)}>
-                                            <RoundEdit />
-                                        </a>
+                                        <>
+                                            <a href="#edit" onClick={handleEditClick(type)}>
+                                                <RoundEdit />
+                                            </a>
+                                            <a href="#remove" onClick={handleRemove(type)}>
+                                                <BaselineDelete />
+                                            </a>
+                                        </>
                                     ) : null}
-                                    <a href="#remove" onClick={handleRemove(type)}>
-                                        <BaselineDelete />
-                                    </a>
                                 </Cell>
                             </Row>
                         )))}

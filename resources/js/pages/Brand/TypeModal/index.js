@@ -15,6 +15,7 @@ import { patch, post } from '../../../helpers';
 import { useForm } from '../../../hooks/useForm';
 import { DatePicker } from '../../../components/DatePicker';
 import { nullableMomentSchema, momentSchema } from '../../../utilities/momentSchema';
+import { Stepper } from '../../../components/Stepper';
 
 const schema = yup.object().shape({
     name: yup.string().required().label('Name'),
@@ -28,6 +29,7 @@ const schema = yup.object().shape({
         eyesize: yup.string().required().label('Eyesize'),
         dbl: yup.string().required().label('DBL'),
         color: yup.string().required().label('Color'),
+        quantity: yup.number().required().label('Quantity'),
     })).min(1).required().label('Variation'),
 });
 
@@ -215,6 +217,12 @@ export const TypeModal = ({ brand, show, hide, onSuccess, editing = null }) => {
                                                 value={variant.year ? moment(variant.year) : ''}
                                                 onChange={createArrHandler('variants', i, 'year')}
                                                 monthOnly
+                                            />
+                                        </Cell>
+                                        <Cell>
+                                            <Stepper
+                                                value={variant.quantity}
+                                                onChange={createArrHandler('variants', i, 'quantity')}
                                             />
                                         </Cell>
                                         <Cell size="thin" centered>

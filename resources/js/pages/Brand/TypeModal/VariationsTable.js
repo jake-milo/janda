@@ -8,6 +8,7 @@ const headers = {
     'DBL': 'normal',
     'Color': 'normal',
     'Year': 'normal',
+    'Quantity': ['normal', true],
     '': 'thin',
 };
 
