@@ -104,9 +104,12 @@
 .select-wrapper .select {
     padding: .5rem;
     padding-right: 1.5rem;
-    padding-left: 2rem;
     min-width: 14rem;
     user-select: none;
+}
+
+.select-wrapper .select.--clearable {
+    padding-left: 2rem;
 }
 
 .select-wrapper .select.--disabled {

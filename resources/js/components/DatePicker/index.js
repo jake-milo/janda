@@ -13,6 +13,8 @@ const BaseDatePicker = ({
     formik,
     name,
     min,
+    monthOnly = false,
+    placeholder,
 }) => {
     useMomentValidator(value);
     useMomentValidator(min || '');
@@ -36,12 +38,17 @@ const BaseDatePicker = ({
         }
     };
 
+    const format = monthOnly ? 'MMMM yyyy' : 'dd/MM/yyyy';
+
     return (
         <Picker
+            placeholderText={moment.isMoment(placeholder) ? placeholder.format(format) : placeholder}
             selected={date}
             onChange={val => handleChange(val ? moment(val) : '')}
-            dateFormat="dd/MM/yyyy"
+            dateFormat={format}
             minDate={minDate}
+            showMonthYearPicker={monthOnly}
+            showFullMonthYearPicker={monthOnly}
         />
     );
 };

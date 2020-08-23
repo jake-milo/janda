@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import moment from 'moment';
 import RoundEdit from 'react-md-icon/dist/RoundEdit';
 import RoundAdd from 'react-md-icon/dist/RoundAdd';
 import RoundMoreVert from 'react-md-icon/dist/RoundMoreVert';
@@ -52,7 +53,7 @@ export const Brand = ({ match }) => {
 
     return (
         <>
-            <PageTitle label="Frame Brand">{brand ? brand.name : 'Loading...'}</PageTitle>
+            <PageTitle label="Brand">{brand ? brand.name : 'Loading...'}</PageTitle>
 
             <Page>
                 <h2>Manufacturer</h2>
@@ -64,25 +65,29 @@ export const Brand = ({ match }) => {
                     <p>Loading...</p>
                 )}
 
-                <h2>Types</h2>
+                <h2>Frames</h2>
                 {brand ? (
                     <Table headers={{
                         'Name': 'normal',
                         'Price': 'normal',
+                        'Code': 'normal',
                         'Eyesize': 'normal',
                         'DBL': 'normal',
                         'Color': 'normal',
+                        'Year': 'normal',
                         '': 'thin',
                     }}>
                         {brand.types.map(type => type.variants.map((variant, i) => (
                             <Row key={variant.id}>
                                 <Cell>{i === 0 ? type.name : ''}</Cell>
                                 <Cell>£{((variant.sell || type.sell) / 100).toFixed(2)}</Cell>
+                                <Cell>{((variant.buy || type.buy) / 100).toFixed(2)}</Cell>
                                 <Cell>{variant.eyesize}</Cell>
                                 <Cell>{variant.dbl}</Cell>
                                 <Cell>{variant.color}</Cell>
-                                <Cell size="thin">
-                                    {i == 0 ? (
+                                <Cell>{moment(variant.year || type.year).format('MMMM yyyy')}</Cell>
+                                <Cell size="thin" centered>
+                                    {i === 0 ? (
                                         <a href="#edit" onClick={handleEditClick(type)}>
                                             <RoundEdit />
                                         </a>
