@@ -19,7 +19,7 @@ import './LabOrders.css';
 
 export const LabOrders = () => {
     const params = useQueryParams();
-    const [practice, setPractice] = useState('');
+    const [practice, setPractice] = useState(params.practice || '');
     const [status, setStatus] = useState(params.status || '');
     const [lab, setLab] = useState('');
     const [editing, setEditing] = useState(null);
