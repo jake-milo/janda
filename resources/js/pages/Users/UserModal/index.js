@@ -36,6 +36,8 @@ export const UserModal = ({ show, hide, onSuccess, editing }) => {
     } = useForm({ editing, getInitialValues, schema, context, showing: show });
 
     const handleSubmit = submitHandler(() => {
+        // destructure so that password only
+        // exists when it has a value
         const { password, ...vals } = values;
 
         if (password) {

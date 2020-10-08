@@ -13,7 +13,6 @@ const schema = yup.object().shape({
 });
 
 export const ManufacturerModal = ({ show, hide, onSuccess, editing }) => {
-    console.log(editing);
     const getInitialValues = useCallback(async (id) => {
         if (!id) return {
             name: '',
@@ -33,7 +32,7 @@ export const ManufacturerModal = ({ show, hide, onSuccess, editing }) => {
         errors,
         submitHandler,
         isValid,
-    } = useForm({ editing, getInitialValues, schema });
+    } = useForm({ editing, getInitialValues, schema, showing: show });
 
 
     const handleSubmit = submitHandler(() => {
@@ -55,7 +54,7 @@ export const ManufacturerModal = ({ show, hide, onSuccess, editing }) => {
         <Modal show={show} hide={hide}>
             <PageTitle>{editing ? 'Update Manufacturer' : 'Create Manufacturer'}</PageTitle>
 
-            <Form values={values} loading={loading} onSubmit={handleSubmit}>
+            <Form values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
                 {() => (
                     <>
                         <div className="input-wrapper">
@@ -68,7 +67,7 @@ export const ManufacturerModal = ({ show, hide, onSuccess, editing }) => {
                                 value={values.name}
                             />
                         </div>
-                        <FieldError name="name" errors={errors} />
+                        <FieldError name="name" />
 
                         <input type="submit" value={editing ? 'Save' : 'Create'} disabled={!isValid} />
                     </>

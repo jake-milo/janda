@@ -4,6 +4,10 @@ import { useFormContext } from '../Form';
 export const FieldError = ({ name }) => {
     const { errors } = useFormContext();
 
+    if (!errors) {
+        throw new Error('No error object was found in context!');
+    }
+
     const errorMessages = useMemo(() => {
         const err = errors[name];
 
