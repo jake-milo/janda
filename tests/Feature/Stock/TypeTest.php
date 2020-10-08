@@ -72,7 +72,6 @@ class TypeTest extends TestCase
                 [
                     'id' => 1,
                     'color' => 'colorupdate',
-                    'price' => 9000,
                     'year' => '3035',
                     'quantity' => 34,
                     'eyesize' => '20mm',
@@ -100,11 +99,11 @@ class TypeTest extends TestCase
 
         factory(Manufacturer::class)->create();
         $type = factory(Brand::class)->create()
-             ->types()
-             ->save(factory(Type::class)->make());
+            ->types()
+            ->save(factory(Type::class)->make());
 
         $variants = $type->variants()
-             ->saveMany(factory(Variant::class, 2)->make());
+            ->saveMany(factory(Variant::class, 2)->make());
 
         $response = $this->delete('/api/brands/1/types/1');
 
@@ -115,7 +114,6 @@ class TypeTest extends TestCase
         $variants->each(function ($variant) {
             $this->assertSoftDeleted($variant);
         });
-
     }
 
     public function testUserCanRestoreType()
@@ -125,11 +123,11 @@ class TypeTest extends TestCase
 
         factory(Manufacturer::class)->create();
         $type = factory(Brand::class)->create()
-             ->types()
-             ->save(factory(Type::class)->make());
+            ->types()
+            ->save(factory(Type::class)->make());
 
         $variants = $type->variants()
-             ->saveMany(factory(Variant::class, 2)->make());
+            ->saveMany(factory(Variant::class, 2)->make());
 
         $type->delete();
 

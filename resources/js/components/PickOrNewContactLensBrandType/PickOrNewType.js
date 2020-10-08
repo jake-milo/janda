@@ -47,7 +47,7 @@ export const PickOrNewType = ({
 
                 {allowToggle && (
                     <a
-                        href="#"
+                        href="#create"
                         className="create"
                         title={creating ? 'Pick Existing Model' : 'Create New Model'}
                         onClick={onToggleClick}

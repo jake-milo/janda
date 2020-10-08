@@ -6,16 +6,16 @@ import { Spinner } from '../../components/Spinner';
 import { Pagination } from '../../components/Pagination';
 import { FloatingActionButton } from '../../components/FloatingActionButton';
 import { useLabOrders } from './useLabOrders';
-import { CreateLabOrderModal } from './CreateLabOrderModal';
 import { PracticePicker } from '../../components/PracticePicker';
 import { LabPicker } from '../../components/LabPicker';
 import { StatusPicker } from './StatusPicker';
 import { useQueryParams } from '../../hooks/useQueryParams';
 import { useHistory, useLocation } from '../../hooks/useRouter';
 import { LabOrdersTable } from '../../components/LabOrdersTable';
+import { useSort } from '../../hooks/useSort';
+import { LabOrderFormModal } from './LabOrderFormModal';
 
 import './LabOrders.css';
-import { useSort } from '../../hooks/useSort';
 
 export const LabOrders = () => {
     const params = useQueryParams();
@@ -110,9 +110,12 @@ export const LabOrders = () => {
                     <RoundAdd />
                 </FloatingActionButton>
 
-                <CreateLabOrderModal
+                <LabOrderFormModal
                     show={showCreateModal}
-                    hide={() => setShowCreateModal(false)}
+                    hide={(() => {
+                        setShowCreateModal(false)
+                        setEditing(null);
+                    })}
                     onSuccess={handleLabOrderSaved}
                     editing={editing}
                 />

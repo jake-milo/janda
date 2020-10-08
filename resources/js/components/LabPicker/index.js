@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { connect } from 'formik';
 import { useLabs } from './useLabs';
 import { FilterableSelect } from '../FilterableSelect';
 import { useDebounced } from '../../hooks/useDebounced';
@@ -8,7 +7,6 @@ export const LabPicker = ({
     name,
     value,
     onChange,
-    formik,
     emptyText = 'Please Choose',
     clearable,
 }) => {
@@ -17,10 +15,6 @@ export const LabPicker = ({
     const { labs, loading } = useLabs({ filter: debouncedFilter });
 
     const handleChange = (newVal) => {
-        if (formik && formik.setFieldValue) {
-            formik.setFieldValue(name, newVal);
-        }
-
         if (onChange) {
             onChange(newVal);
         }
@@ -45,5 +39,3 @@ export const LabPicker = ({
         </>
     );
 };
-
-LabPicker.Formik = connect(LabPicker);

@@ -18,7 +18,7 @@
 }
 
 .modal-container .modal {
-    width: var(--modal-width);
+    min-width: var(--modal-width);
     max-width: 95%;
     min-height: 2rem;
     max-height: 95%;

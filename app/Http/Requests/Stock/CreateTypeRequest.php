@@ -30,7 +30,6 @@ class CreateTypeRequest extends FormRequest
             'sell' => 'integer|required',
             'variants' => 'array|required',
             'variants.*.color' => 'string|required',
-            'variants.*.price' => 'integer|required',
             'variants.*.year' => 'string|required',
             'variants.*.quantity' => 'integer|required',
             'variants.*.eyesize' => 'string|required',
@@ -50,7 +49,7 @@ class CreateTypeRequest extends FormRequest
         return $this->only('name', 'buy', 'sell');
     }
 
-            /**
+    /**
      * Get the error messages for the defined validation rules.
      *
      * @return array
@@ -62,7 +61,7 @@ class CreateTypeRequest extends FormRequest
         ];
     }
 
-        /**
+    /**
      * Get custom attributes for validator errors.
      *
      * @return array
@@ -75,7 +74,6 @@ class CreateTypeRequest extends FormRequest
             'sell' => 'Sell',
             'variants' => 'Variants',
             'variants.*.color' => 'Variant color',
-            'variants.*.price' => 'Variant price',
             'variants.*.year' => 'Variant year',
             'variants.*.quantity' => 'Variant quantity',
             'variants.*.eyesize' => 'Variant eyesize',

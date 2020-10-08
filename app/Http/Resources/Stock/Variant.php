@@ -19,7 +19,6 @@ class Variant extends JsonResource
         return $this->withTimeStamps([
             'id' => $this->id,
             'color' => $this->color,
-            'price' => $this->price,
             'year' => $this->year,
             'quantity' => $this->quantity,
             'eyesize' => $this->eyesize,

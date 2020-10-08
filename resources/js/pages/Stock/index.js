@@ -17,12 +17,12 @@ export const Stock = () => {
 
             <TabbedPage
                 links={{
-                    'Frames': '/stock/frames',
+                    'Brands': '/stock/frames',
                     'Frame Manufacturers': '/stock/manufacturers',
                     'Contact Lenses': '/stock/lenses',
                 }}
                 tabs={{
-                    'Frames': (path) => (
+                    'Brands': (path) => (
                         <Route
                             path={path}
                             component={FrameStock}

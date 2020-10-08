@@ -1,18 +1,18 @@
 import React, { useMemo, useEffect } from 'react';
 import moment from 'moment';
-import { connect } from 'formik';
 import Picker from 'react-datepicker';
 import { useMomentValidator } from './useMomentValidator';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import './DatePicker.css';
 
-const BaseDatePicker = ({
+export const DatePicker = ({
     value,
     onChange,
-    formik,
     name,
     min,
+    monthOnly = false,
+    placeholder,
 }) => {
     useMomentValidator(value);
     useMomentValidator(min || '');
@@ -27,23 +27,22 @@ const BaseDatePicker = ({
     const minDate = useMemo(() => min ? min.toDate() : null, [min]);
 
     const handleChange = (val) => {
-        if (formik && formik.setFieldValue) {
-            formik.setFieldValue(name, val);
-        }
-
         if (onChange) {
             onChange(val);
         }
     };
 
+    const format = monthOnly ? 'MMMM yyyy' : 'dd/MM/yyyy';
+
     return (
         <Picker
+            placeholderText={moment.isMoment(placeholder) ? placeholder.format(format) : placeholder}
             selected={date}
             onChange={val => handleChange(val ? moment(val) : '')}
-            dateFormat="dd/MM/yyyy"
+            dateFormat={format}
             minDate={minDate}
+            showMonthYearPicker={monthOnly}
+            showFullMonthYearPicker={monthOnly}
         />
     );
 };
-
-export const DatePicker = connect(BaseDatePicker);

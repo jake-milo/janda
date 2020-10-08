@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { connect } from 'formik';
 import { FilterableSelect } from '../FilterableSelect';
 import { useBrands } from './useBrands';
 import { useDebounced } from '../../hooks/useDebounced';
@@ -7,7 +6,6 @@ import { useDebounced } from '../../hooks/useDebounced';
 export const ContactLensBrandPicker = ({
     name,
     value,
-    formik,
     emptyText = 'Please Choose',
     onChange,
     clearable,
@@ -17,10 +15,6 @@ export const ContactLensBrandPicker = ({
     const { brands, loading } = useBrands({ filter: debouncedFilter });
 
     const handleChange = (newVal) => {
-        if (formik && formik.setFieldValue) {
-            formik.setFieldValue(name, newVal);
-        }
-
         if (onChange) {
             onChange(newVal);
         }
@@ -45,5 +39,3 @@ export const ContactLensBrandPicker = ({
         </>
     );
 };
-
-ContactLensBrandPicker.Formik = connect(ContactLensBrandPicker);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\ContactLens\Brand;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Patient;
 use App\Models\Practice;
@@ -28,8 +29,8 @@ class UpdateContactLensRequest extends FormRequest
     {
         return [
             'patient_id' => 'integer|exists:patients,id',
-            'practice_id' =>'integer|exists:practices,id',
-            'type_id' =>'integer|exists:contact_lens_types,id',
+            'practice_id' => 'integer|exists:practices,id',
+            'type_id' => 'integer|exists:contact_lens_types,id',
             'duration' => 'string',
             'quantity' => 'string',
             'price' =>  'integer',
@@ -55,9 +56,27 @@ class UpdateContactLensRequest extends FormRequest
 
     public function getType()
     {
-        $typeId = $this->input('type_id');
+        if ($id = $this->input('type_id')) {
+            return Type::find($id);
+        }
 
-        return Type::find($typeId);
+        $brand = $this->getBrand();
+
+        return $brand->types()->create([
+            'name' => $this->input('type'),
+            'duration' => $this->input('duration'),
+        ]);
+    }
+
+    public function getBrand(): Brand
+    {
+        if ($id = $this->input('brand_id')) {
+            return Brand::find($id);
+        }
+
+        return Brand::create([
+            'name' => $this->input('brand'),
+        ]);
     }
 
     public function getUpdates()
@@ -65,7 +84,7 @@ class UpdateContactLensRequest extends FormRequest
         return $this->only('quantity', 'price', 'solutions', 'right', 'left');
     }
 
-            /**
+    /**
      * Get the error messages for the defined validation rules.
      *
      * @return array
@@ -77,7 +96,7 @@ class UpdateContactLensRequest extends FormRequest
         ];
     }
 
-        /**
+    /**
      * Get custom attributes for validator errors.
      *
      * @return array
@@ -90,7 +109,4 @@ class UpdateContactLensRequest extends FormRequest
             'type_id' => 'Type',
         ];
     }
-
-
-
 }

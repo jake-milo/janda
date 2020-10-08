@@ -32,7 +32,7 @@ export const PickOrNewBrand = ({ name, value, onChange, creating, onToggle }) =>
                     />
                 )}
                 <a
-                    href="#"
+                    href="#create"
                     className="create"
                     title={creating ? 'Pick Existing Brand' : 'Create New Brand'}
                     onClick={onToggleClick}

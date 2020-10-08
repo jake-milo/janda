@@ -7,18 +7,27 @@ import './Table.css';
 export const Table = ({ headers, children, sortable, sort, order, updateSorting, constrained = false }) => {
     const [names, setNames] = useState([]);
     const [sizes, setSizes] = useState([]);
+    const [centered, setCentered] = useState([]);
 
     useEffect(() => {
         const mapped = Object.entries(headers)
             .reduce((acc, [name, size]) => {
+                let centered = false;
+
+                if (Array.isArray(size)) {
+                    [size, centered] = size;
+                }
+
                 acc[0].push(name);
                 acc[1].push(size);
+                acc[2].push(centered);
 
                 return acc;
-            }, [[], []]);
+            }, [[], [], []]);
 
         setNames(mapped[0]);
         setSizes(mapped[1]);
+        setCentered(mapped[2]);
     }, [headers]);
 
     const handleHeaderClick = (name) => () => {
@@ -34,6 +43,7 @@ export const Table = ({ headers, children, sortable, sort, order, updateSorting,
                         size={sizes[i]}
                         header
                         onClick={sortable && sortable[name] ? handleHeaderClick(sortable[name]) : null}
+                        centered={centered[i]}
                     >
                         {sortable && sortable[name] && sort === sortable[name] ? (
                             order === 'desc' ? <RoundDown /> : <RoundUp />

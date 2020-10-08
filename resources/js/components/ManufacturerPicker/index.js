@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { useDebounced } from '../../hooks/useDebounced';
 import { useManufacturers } from './useManufacturers';
 import { FilterableSelect } from '../FilterableSelect';
-import { connect } from 'formik';
 
 export const ManufacturerPicker = ({
     name,
     value,
-    formik,
     onChange,
     emptyText = 'Please Choose',
 }) => {
@@ -16,10 +14,6 @@ export const ManufacturerPicker = ({
     const { manufacturers, loading } = useManufacturers({ filter: debouncedFilter });
 
     const handleChange = (newVal) => {
-        if (formik && formik.setFieldValue) {
-            formik.setFieldValue(name, newVal);
-        }
-
         if (onChange) {
             onChange(newVal);
         }
@@ -44,5 +38,3 @@ export const ManufacturerPicker = ({
         </>
     );
 }
-
-ManufacturerPicker.Formik = connect(ManufacturerPicker);

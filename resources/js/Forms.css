@@ -45,6 +45,16 @@
     width: 6.5rem;
 }
 
+.input-chain {
+    height: .75rem;
+    width: .15rem;
+    margin-top: -.5rem;
+    margin-left: 1rem;
+    background: var(--light-grey);
+
+    box-shadow: .15rem 0 var(--dark-grey), .3rem 0 var(--light-grey);
+}
+
 .select-wrapper.--create .create, .input-wrapper.--create .create {
     position: absolute;
     right: 0;
@@ -94,9 +104,12 @@
 .select-wrapper .select {
     padding: .5rem;
     padding-right: 1.5rem;
-    padding-left: 2rem;
     min-width: 14rem;
     user-select: none;
+}
+
+.select-wrapper .select.--clearable {
+    padding-left: 2rem;
 }
 
 .select-wrapper .select.--disabled {
@@ -200,6 +213,11 @@ input[type="submit"] {
     color: var(--white);
     font-weight: bold;
     transition: opacity .2s;
+}
+
+input[type="submit"][disabled], input[type="submit"][disabled]:hover {
+    cursor: auto;
+    opacity: 0.4;
 }
 
 input[type="submit"]:hover {

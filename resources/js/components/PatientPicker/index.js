@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { connect } from 'formik';
 import { FilterableSelect } from '../FilterableSelect';
 import { usePatients } from './usePatients';
 import { useDebounced } from '../../hooks/useDebounced';
@@ -7,7 +6,6 @@ import { useDebounced } from '../../hooks/useDebounced';
 export const PatientPicker = ({
     name,
     value,
-    formik,
     onChange,
     emptyText = 'Please Choose',
 }) => {
@@ -16,10 +14,6 @@ export const PatientPicker = ({
     const { patients, loading } = usePatients({ filter: debouncedFilter, include: value ? value : null });
 
     const handleChange = (newVal) => {
-        if (formik && formik.setFieldValue) {
-            formik.setFieldValue(name, newVal);
-        }
-
         if (onChange) {
             onChange(newVal);
         }
@@ -43,5 +37,3 @@ export const PatientPicker = ({
         </>
     );
 };
-
-PatientPicker.Formik = connect(PatientPicker);

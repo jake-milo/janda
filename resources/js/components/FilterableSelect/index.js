@@ -84,7 +84,7 @@ export const FilterableSelect = ({
 
     return (
         <>
-            <div className={`select ${disabled ? '--disabled' : ''}`} onClick={handleSelectClick} ref={setHandle}>
+            <div className={`select ${disabled ? '--disabled' : ''} ${clearable ? '--clearable' : ''}`} onClick={handleSelectClick} ref={setHandle}>
                 {clearable && value ? (
                     <div className="clear">
                         <button onClick={handleClear} ref={clearButtonRef} title="Clear">

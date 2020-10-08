@@ -1,11 +1,9 @@
 import React from 'react';
-import { connect } from 'formik';
 import { usePractices } from './usePractices';
 
 export const PracticePicker = ({
     value,
     onChange,
-    formik,
     name = 'practice_id',
     emptyText = 'Please Choose',
 }) => {
@@ -13,9 +11,6 @@ export const PracticePicker = ({
 
     const handleChange = (e) => {
         const val = e.target.value && parseInt(e.target.value, 10);
-        if (formik && formik.setFieldValue) {
-            formik.setFieldValue(name, val);
-        }
 
         if (onChange) {
             onChange(val);
@@ -36,5 +31,3 @@ export const PracticePicker = ({
         </>
     );
 }
-
-PracticePicker.Formik = connect(PracticePicker);

@@ -62,7 +62,6 @@
 .table .row .cell.--centered { text-align: center; }
 
 .table .row .cell.--header {
-    text-align: left;
     font-weight: bold;
     text-transform: uppercase;
     font-size: .75rem;
@@ -85,6 +84,7 @@
     margin: -.5rem -.125rem;
     padding: .5rem .125rem;
     font-size: .875rem;
+    background: none;
 }
 
 .table .row .cell input:focus {
