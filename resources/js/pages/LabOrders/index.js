@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Route, useRouteMatch } from 'react-router-dom';
 import RoundAdd from 'react-md-icon/dist/RoundAdd';
 import { PageTitle } from '../../components/PageTitle';
 import { Page } from '../../components/Page';
@@ -22,7 +23,7 @@ export const LabOrders = () => {
     const [practice, setPractice] = useState(params.practice || '');
     const [status, setStatus] = useState(params.status || '');
     const [lab, setLab] = useState('');
-    const [editing, setEditing] = useState(null);
+    const match = useRouteMatch();
 
     const { pathname } = useLocation();
     const history = useHistory();
@@ -42,15 +43,8 @@ export const LabOrders = () => {
         order,
     });
 
-    const [showCreateModal, setShowCreateModal] = useState(false);
-
     const handleLabOrderSaved = () => {
         refresh();
-    };
-
-    const handleEdit = (id) => {
-        setEditing(id);
-        setShowCreateModal(true);
     };
 
     return (
@@ -89,7 +83,6 @@ export const LabOrders = () => {
                         <LabOrdersTable
                             labOrders={labOrders}
                             withActions
-                            onEdit={handleEdit}
                             onReceived={handleLabOrderSaved}
                             sort={sort}
                             order={order}
@@ -106,19 +99,22 @@ export const LabOrders = () => {
                     <Spinner />
                 )}
 
-                <FloatingActionButton onClick={() => setShowCreateModal(true)}>
+                <FloatingActionButton to={`${match.path}/create`}>
                     <RoundAdd />
                 </FloatingActionButton>
 
-                <LabOrderFormModal
-                    show={showCreateModal}
-                    hide={(() => {
-                        setShowCreateModal(false)
-                        setEditing(null);
-                    })}
-                    onSuccess={handleLabOrderSaved}
-                    editing={editing}
-                />
+                <Route path={`${match.path}/create`} render={() => (
+                    <LabOrderFormModal
+                        onSuccess={handleLabOrderSaved}
+                    />
+                )} />
+
+                <Route path={`${match.path}/edit/:id`} render={({ match }) => (
+                    <LabOrderFormModal
+                        onSuccess={handleLabOrderSaved}
+                        editing={match.params.id}
+                    />
+                )} />
             </Page>
         </>
     );

@@ -1,18 +1,22 @@
 import React, { createRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { useOnClickOutside } from '../../hooks/useOnClickOutside';
+import { useHistory } from '../../hooks/useRouter';
 
 import './Modal.css';
-import { useOnClickOutside } from '../../hooks/useOnClickOutside';
 
 const modalRoot = document.getElementById('modal-root');
 const selectRoot = document.getElementById('select-root')
 
 export const Modal = ({ show, hide, children }) => {
     const ref = createRef();
-    useOnClickOutside([ref, selectRoot], () => hide(), true);
+
+    useOnClickOutside(
+        [ref, selectRoot],
+        () => hide ? hide() : null,
+    );
 
     useEffect(() => {
-        // document.body.style.overflowY = show ? 'scroll' : 'auto';
         document.body.style.position = show ? 'fixed' : 'static';
     }, [show]);
 
@@ -23,4 +27,9 @@ export const Modal = ({ show, hide, children }) => {
             </div>
         </div>
     ) : null, modalRoot);
+};
+
+export const RouterModal = (props) => {
+    const history = useHistory();
+    return <Modal {...props} show hide={() => history.goBack()} />
 };

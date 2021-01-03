@@ -39,7 +39,7 @@ export const App = () => {
                     <Route exact path="/labs" component={Labs} />
                     <Route exact path="/labs/:id" component={Lab} />
 
-                    <Route exact path="/lab-orders" component={LabOrders} />
+                    <Route path="/lab-orders" component={LabOrders} />
 
                     <Route exact path="/contact-lenses" component={ContactLenses} />
 

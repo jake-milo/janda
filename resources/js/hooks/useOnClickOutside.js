@@ -1,13 +1,11 @@
 import { useEffect } from 'react';
 
+export const toEl = (ref) => ref instanceof HTMLElement || !ref ? ref : ref.current;
+
 // converts a single ref, element or array into
 // an array of corresponding elements
-const toEls = (refsOrRef) => {
+export const toEls = (refsOrRef) => {
     const refs = Array.isArray(refsOrRef) ? refsOrRef : [refsOrRef];
-
-    const toEl = ref => ref instanceof HTMLElement || !ref
-        ? ref
-        : ref.current;
 
     return refs.map(toEl);
 };

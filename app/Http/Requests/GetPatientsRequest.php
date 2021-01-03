@@ -49,10 +49,16 @@ class GetPatientsRequest extends FormRequest
             $query->limit(15)->orderBy('name', 'asc');
         }
 
-        if($include = $this->input('include')){
-            $query->orWhere('id', $include);
+        $results = $query->get();
+
+        if ($include = $this->input('include')) {
+            if (!$results->contains('id', $include)) {
+                $includedPatient = Patient::find($include);
+
+                $results->prepend($includedPatient);
+            }
         }
 
-        return $query->get();
+        return $results;
     }
 }

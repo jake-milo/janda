@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useRef } from 'react';
 import RoundEdit from 'react-md-icon/dist/RoundEdit';
 import RoundDateRange from 'react-md-icon/dist/RoundDateRange';
-import { Link } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { Table, Row, Cell } from '../Table';
 import * as h from './headers';
 import { Dialog } from '../Dialog';
@@ -14,15 +14,16 @@ export const LabOrdersTable = ({
     sort, // column being sorted by
     order, // order of the sorting
     updateSorting, // used to update the sorting
-    onEdit, // method to call when edit button is clicked
     onReceived, // method to call when received form has been submitted
     remove = [], // columns to not render if desired
     withActions = false, // flag to toggle actions
     disableSorting = false, // flag to disable sorting
 }) => {
-    if (withActions && (!onReceived || !onEdit)) {
+    if (withActions && (!onReceived)) {
         throw new Error('LabOrdersTable: You haven\'t supplied an onReceived/onEdit handler to be called when the actions are used.');
     }
+    
+    const match = useRouteMatch();
 
     const headers = useMemo(() => {
         return h.getHeaders(withActions ? remove : [...remove, h.ACTIONS]);
@@ -35,12 +36,6 @@ export const LabOrdersTable = ({
     }, [remove, withActions, disableSorting]);
 
     const hasHeader = header => !remove.includes(header);
-
-    const handleEditClick = id => (e) => {
-        e.preventDefault();
-
-        onEdit(id);
-    };
 
     const [itemReceived, setItemReceived] = useState(null);
     const receivedButtons = useRef({}).current;
@@ -81,12 +76,12 @@ export const LabOrdersTable = ({
                         </Cell>
                         <Cell when={hasHeader(h.ORDER_NO)}>{labOrder.reference}</Cell>
                         <Cell when={hasHeader(h.ACTIONS) && withActions} size="thin" centered>
-                            <a href="#" onClick={handleEditClick(labOrder.id)}>
+                            <Link to={`${match.path}/edit/${labOrder.id}`}>
                                 <RoundEdit />
-                            </a>
+                            </Link>
 
                             {!labOrder.dates.received && (
-                                <a href="#" onClick={handleReceivedClick(labOrder.id)} ref={r => receivedButtons[labOrder.id] = r}>
+                                <a href="#mark-received" onClick={handleReceivedClick(labOrder.id)} ref={r => receivedButtons[labOrder.id] = r}>
                                     <RoundDateRange />
                                 </a>
                             )}
