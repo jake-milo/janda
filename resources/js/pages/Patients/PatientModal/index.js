@@ -1,18 +1,19 @@
 import React, { useCallback } from 'react';
 import * as yup from 'yup';
 import { patch, post } from '../../../helpers';
-import { Modal } from '../../../components/Modal';
+import { Modal, RouterModal } from '../../../components/Modal';
 import { Form } from '../../../components/Form';
 import { FieldError } from '../../../components/FieldError';
 import { PageTitle } from '../../../components/PageTitle';
 import { fetchPatient } from '../../../utilities/fetchPatient';
 import { useForm } from '../../../hooks/useForm';
+import { useHistory } from '../../../hooks/useRouter';
 
 const schema = yup.object().shape({
     name: yup.string().required().label('Name'),
 });
 
-export const PatientModal = ({ show, hide, onSuccess, editing }) => {
+export const PatientModal = ({ onSuccess, editing }) => {
     const getInitialValues = useCallback(async (id) => {
         if (!id) return {
             name: '',
@@ -32,7 +33,10 @@ export const PatientModal = ({ show, hide, onSuccess, editing }) => {
         errors,
         submitHandler,
         isValid,
-    } = useForm({ editing, getInitialValues, schema, showing: show });
+    } = useForm({ editing, getInitialValues, schema });
+
+    const history = useHistory();
+
 
     const handleSubmit = submitHandler(() => {
         const request = () => editing
@@ -41,8 +45,8 @@ export const PatientModal = ({ show, hide, onSuccess, editing }) => {
 
         request()
             .then(() => {
-                hide();
                 onSuccess();
+                history.goBack();
             })
             .catch((err) => {
                 console.log(err);
@@ -50,7 +54,7 @@ export const PatientModal = ({ show, hide, onSuccess, editing }) => {
     });
 
     return (
-        <Modal show={show} hide={hide}>
+        <RouterModal>
             <PageTitle>{editing ? 'Update Patient' : 'Create Patient'}</PageTitle>
 
             <Form values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
@@ -72,6 +76,6 @@ export const PatientModal = ({ show, hide, onSuccess, editing }) => {
                     </>
                 )}
             </Form>
-        </Modal>
+        </RouterModal>
     );
 };
