@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Router } from './components/Router';
 import { Menu } from './components/Menu';
 import { Dashboard } from './pages/Dashboard';
@@ -29,9 +29,11 @@ export const App = () => {
             <div className="container">
                 <div className="inner-container">
                     <Route exact path="/" component={Dashboard} />
-
-                    <Route exact path="/patients" component={Patients} />
-                    <Route exact path="/patients/:id" component={Patient} />
+                    {/*
+                    <Switch> */}
+                    <Route exact path="/patients/:id(\d+)" component={Patient} />
+                    <Route path="/patients" component={Patients} />
+                    {/* </Switch> */}
 
                     <Route exact path="/practices" component={Practices} />
                     <Route exact path="/practices/:id" component={Practice} />
