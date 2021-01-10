@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import * as yup from 'yup';
 import moment from 'moment';
-import { Modal } from "../../../components/Modal";
+import { RouterModal } from "../../../components/Modal";
 import { PageTitle } from "../../../components/PageTitle";
 import { Form } from '../../../components/Form';
 import { FieldError } from '../../../components/FieldError';
@@ -16,6 +16,8 @@ import { useForm } from '../../../hooks/useForm';
 import { DatePicker } from '../../../components/DatePicker';
 import { nullableMomentSchema, momentSchema } from '../../../utilities/momentSchema';
 import { Stepper } from '../../../components/Stepper';
+import { useHistory } from '../../../hooks/useRouter';
+import { fetchBrandType } from '../../../utilities/fetchBrandType';
 
 const schema = yup.object().shape({
     name: yup.string().required().label('Name'),
@@ -33,15 +35,17 @@ const schema = yup.object().shape({
     })).min(1).required().label('Variation'),
 });
 
-export const TypeModal = ({ brand, show, hide, onSuccess, editing = null }) => {
-    const getInitialValues = useCallback(async (type) => {
-        if (!type) return {
+export const TypeModal = ({ brand, onSuccess, editing = null }) => {
+    const getInitialValues = useCallback(async (id) => {
+        if (!id) return {
             name: '',
             buy: '',
             sell: '',
             year: '',
             variants: [],
         }
+
+        const type = await fetchBrandType(brand.id, id);
 
         return {
             name: type.name,
@@ -53,7 +57,7 @@ export const TypeModal = ({ brand, show, hide, onSuccess, editing = null }) => {
                 year: v.year ? moment(v.year) : '',
             })),
         };
-    }, []);
+    }, [brand.id]);
 
     const {
         values,
@@ -67,7 +71,9 @@ export const TypeModal = ({ brand, show, hide, onSuccess, editing = null }) => {
         isValid,
         newArrayItem,
         removeArrayItem,
-    } = useForm({ getInitialValues, schema, editing, showing: show });
+    } = useForm({ getInitialValues, schema, editing });
+
+    const history = useHistory();
 
     const handleSubmit = submitHandler(() => {
         const { variants, ...type } = values;
@@ -80,13 +86,13 @@ export const TypeModal = ({ brand, show, hide, onSuccess, editing = null }) => {
         }));
 
         const request = () => editing
-            ? patch(`/api/brands/${brand.id}/types/${editing.id}`, type)
+            ? patch(`/api/brands/${brand.id}/types/${editing}`, type)
             : post(`/api/brands/${brand.id}/types`, type);
 
         request()
             .then(() => {
-                hide();
                 onSuccess();
+                history.goBack();
             })
             .catch((err) => {
                 console.log(err);
@@ -109,11 +115,12 @@ export const TypeModal = ({ brand, show, hide, onSuccess, editing = null }) => {
             eyesize: '',
             dbl: '',
             color: '',
+            quantity: 0,
         });
     }
 
     return (
-        <Modal show={show} hide={hide}>
+        <RouterModal>
             <PageTitle>{editing ? 'Update Type' : 'Create Type'}</PageTitle>
 
             <Form values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
@@ -248,7 +255,8 @@ export const TypeModal = ({ brand, show, hide, onSuccess, editing = null }) => {
                                         href="#add"
                                         onClick={handleAdd}
                                         style={{
-                                            display: 'flex',
+                                            float: 'right',
+                                            display: 'inline-flex',
                                             justifyContent: 'flex-start',
                                             alignItems: 'center',
                                         }}
@@ -264,6 +272,6 @@ export const TypeModal = ({ brand, show, hide, onSuccess, editing = null }) => {
                     </>
                 )}
             </Form>
-        </Modal>
+        </RouterModal>
     );
 };

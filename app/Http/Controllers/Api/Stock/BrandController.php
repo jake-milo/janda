@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Stock\Brand as BrandResource;
 use App\Http\Requests\Stock\CreateBrandRequest;
 use App\Http\Requests\Stock\UpdateBrandRequest;
+use App\Http\Resources\Stock\Variant as VariantResource;
 use App\Models\Stock\Variant;
 use Illuminate\Http\Request;
 
@@ -99,6 +100,13 @@ class BrandController extends Controller
         return response()->json([
             'Restored brand',
         ]);
+    }
+
+    public function showVariant(Variant $variant)
+    {
+        $variant->loadResourceRelations();
+
+        return VariantResource::make($variant);
     }
 
     public function updateVariantQuantity(Request $request, Variant $variant)

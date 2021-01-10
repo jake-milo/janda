@@ -4,7 +4,7 @@ import RoundEdit from 'react-md-icon/dist/RoundEdit';
 import RoundAdd from 'react-md-icon/dist/RoundAdd';
 import RoundMoreVert from 'react-md-icon/dist/RoundMoreVert';
 import BaselineDelete from 'react-md-icon/dist/BaselineDelete';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import { useBrand } from './useBrand';
 import { PageTitle } from '../../components/PageTitle';
 import { Page } from '../../components/Page';
@@ -18,9 +18,6 @@ import { Stepper } from '../../components/Stepper';
 
 export const Brand = ({ match }) => {
     const { brand, refresh } = useBrand(match.params.id);
-    const [showModal, setShowModal] = useState(false);
-    const [showTypeModal, setShowTypeModal] = useState(false);
-    const [editing, setEditing] = useState(null);
 
     const handleBrandSaved = () => {
         refresh();
@@ -29,18 +26,6 @@ export const Brand = ({ match }) => {
     const handleTypeSaved = () => {
         refresh();
     };
-
-    const handleEditClick = type => (e) => {
-        e.preventDefault();
-
-        setEditing(type);
-        setShowTypeModal(true);
-    };
-
-    const handleTypeModalHide = () => {
-        setShowTypeModal(false)
-        setEditing(null);
-    }
 
     const handleRemove = type => (e) => {
         remove(`/api/brands/${brand.id}/types/${type.id}`)
@@ -54,7 +39,6 @@ export const Brand = ({ match }) => {
 
     const [updatingQuantity, setUpdatingQuantity] = useState(false);
     const handleQuantityChange = (variant) => (quantity) => {
-        console.log(variant, quantity);
         setUpdatingQuantity(true);
 
         post(`/api/variants/${variant.id}/update-quantity`, { quantity })
@@ -108,14 +92,15 @@ export const Brand = ({ match }) => {
                                         value={variant.quantity}
                                         onChange={handleQuantityChange(variant)}
                                         disabled={updatingQuantity}
+                                        buttonsOnly
                                     />
                                 </Cell>
                                 <Cell size="thin" centered>
                                     {i === 0 ? (
                                         <>
-                                            <a href="#edit" onClick={handleEditClick(type)}>
+                                            <Link to={`${match.url}/edit-type/${type.id}`} href="#edit">
                                                 <RoundEdit />
-                                            </a>
+                                            </Link>
                                             <a href="#remove" onClick={handleRemove(type)}>
                                                 <BaselineDelete />
                                             </a>
@@ -131,31 +116,38 @@ export const Brand = ({ match }) => {
             </Page>
 
             <FAB expander icon={() => (<RoundMoreVert />)}>
-                <FAB.Button onClick={() => setShowModal(true)}>
+                <FAB.Button to={`${match.url}/edit`}>
                     <RoundEdit />
                 </FAB.Button>
 
-                <FAB.Button onClick={() => setShowTypeModal(true)}>
+                <FAB.Button to={`${match.url}/create-type`}>
                     <RoundAdd />
                 </FAB.Button>
             </FAB>
 
             {brand && (
                 <>
-                    <BrandModal
-                        show={showModal}
-                        hide={() => setShowModal(false)}
-                        onSuccess={handleBrandSaved}
-                        brand={brand}
-                    />
+                    <Route path={`${match.path}/edit`} render={() => (
+                        <BrandModal
+                            onSuccess={handleBrandSaved}
+                            brand={brand}
+                        />
+                    )} />
 
-                    <TypeModal
-                        show={showTypeModal}
-                        hide={handleTypeModalHide}
-                        onSuccess={handleTypeSaved}
-                        brand={brand}
-                        editing={editing}
-                    />
+                    <Route path={`${match.path}/create-type`} render={() => (
+                        <TypeModal
+                            onSuccess={handleTypeSaved}
+                            brand={brand}
+                        />
+                    )} />
+
+                    <Route path={`${match.path}/edit-type/:typeId`} render={({ match }) => (
+                        <TypeModal
+                            onSuccess={handleTypeSaved}
+                            brand={brand}
+                            editing={match.params.typeId}
+                        />
+                    )} />
                 </>
             )}
         </>

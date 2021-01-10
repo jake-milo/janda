@@ -47,7 +47,7 @@ export const App = () => {
 
                     <Route path="/stock" component={Stock} />
 
-                    <Route exact path="/brands/:id" component={Brand} />
+                    <Route path="/brands/:id" component={Brand} />
 
                     <Route exact path="/manufacturers/:id" component={Manufacturer} />
 

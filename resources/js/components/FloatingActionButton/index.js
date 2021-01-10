@@ -11,14 +11,21 @@ const config = {
     duration: 100,
 };
 
-const Button = ({ onClick, title, style, children }) => {
+const Button = ({ onClick, to, title, style, children }) => {
     const { setExpanded } = useContext(FabContext);
+    const history = useHistory();
 
     const handleClick = (e) => {
         e.preventDefault();
         setExpanded(false);
 
-        onClick();
+        console.log({ onClick });
+
+        if (onClick) {
+            onClick();
+        } else if (to) {
+            history.push(to);
+        }
     };
 
     return (
