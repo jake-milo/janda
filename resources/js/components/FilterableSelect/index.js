@@ -30,22 +30,6 @@ export const FilterableSelect = ({
         }
     }, [disabled]);
 
-    const handleSelectClick = (e) => {
-        e.preventDefault();
-
-        // cancel if disabled
-        if (disabled) return;
-
-        // or we clicked an item in the list
-        if (ref.current.contains(e.target)) return;
-
-        // or we clicked the clear button
-        if (clearButtonRef.current && clearButtonRef.current.contains(e.target)) return;
-
-        // otherwise we're good to open
-        setOpen(true);
-    };
-
     useOnClickOutside([handle, ref], () => {
         setOpen(false);
     });
@@ -77,7 +61,7 @@ export const FilterableSelect = ({
 
     const [windowWidth, windowHeight] = useWindowSize();
 
-    const boundingBox = useBoundingBox(handle);
+    const [boundingBox, reloadBoundingBox] = useBoundingBox(handle);
 
     const position = useMemo(() => {
         if (!boundingBox) return { top: 0, left: 0 };
@@ -93,6 +77,25 @@ export const FilterableSelect = ({
     // but should trigger a reevaluation.
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [boundingBox, windowWidth, windowHeight]);
+
+    const handleSelectClick = (e) => {
+        e.preventDefault();
+
+        // cancel if disabled
+        if (disabled) return;
+
+        // or we clicked an item in the list
+        if (ref.current.contains(e.target)) return;
+
+        // or we clicked the clear button
+        if (clearButtonRef.current && clearButtonRef.current.contains(e.target)) return;
+
+        // ensure the bounding box is up to date
+        reloadBoundingBox();
+
+        // otherwise we're good to open
+        setOpen(true);
+    };
 
     return (
         <>

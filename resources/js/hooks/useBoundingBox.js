@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { toEl } from "./useOnClickOutside";
 
 export const useBoundingBox = (ref) => {
@@ -19,7 +19,13 @@ export const useBoundingBox = (ref) => {
 
         return () => el && observer.unobserve(el)
     }, [ref]);
+
+    const recalculate = useCallback(() => {
+        const el = toEl(ref);
+
+        setBoundingBox(el.getBoundingClientRect());
+    }, [ref]);
   
-    return boundingBox;
+    return [boundingBox, recalculate];
   };
   
