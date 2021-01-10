@@ -33,10 +33,17 @@ export const FilterableSelect = ({
     const handleSelectClick = (e) => {
         e.preventDefault();
 
-        // don't set open when clicking an item in the list
-        if (!ref.current.contains(e.target)) {
-            setOpen(true);
-        }
+        // cancel if disabled
+        if (disabled) return;
+
+        // or we clicked an item in the list
+        if (ref.current.contains(e.target)) return;
+
+        // or we clicked the clear button
+        if (clearButtonRef.current && clearButtonRef.current.contains(e.target)) return;
+
+        // otherwise we're good to open
+        setOpen(true);
     };
 
     useOnClickOutside([handle, ref], () => {

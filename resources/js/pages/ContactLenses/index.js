@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import RoundAdd from 'react-md-icon/dist/RoundAdd';
+import { Route, useRouteMatch } from 'react-router-dom';
 import { PageTitle } from '../../components/PageTitle';
 import { Page } from '../../components/Page';
 import { Spinner } from '../../components/Spinner';
@@ -10,13 +11,12 @@ import { ContactLensesTable } from '../../components/ContactLensesTable';
 import { FloatingActionButton } from '../../components/FloatingActionButton';
 import { ContactLensModal } from './ContactLensModal';
 import { ContactLensBrandPicker } from '../../components/ContactLensBrandPicker';
-
 import { useSort } from '../../hooks/useSort';
 
 export const ContactLenses = () => {
     const [practice, setPractice] = useState('');
     const [brand, setBrand] = useState('');
-    const [editing, setEditing] = useState(null);
+    const match = useRouteMatch();
 
     const [sort, order, updateSorting] = useSort();
     const { contactLenses, loading, page, pageCount, refresh } = useContactLenses({
@@ -25,15 +25,8 @@ export const ContactLenses = () => {
         order,
     });
 
-    const [showModal, setShowModal] = useState(false);
-
     const handleContactLensSaved = () => {
         refresh();
-    };
-
-    const handleEdit = (id) => {
-        setEditing(id);
-        setShowModal(true);
     };
 
     return (
@@ -68,7 +61,6 @@ export const ContactLenses = () => {
                             order={order}
                             updateSorting={updateSorting}
                             withActions
-                            onEdit={handleEdit}
                         />
 
                         <Pagination
@@ -81,16 +73,22 @@ export const ContactLenses = () => {
                     <Spinner />
                 )}
 
-                <FloatingActionButton onClick={() => setShowModal(true)}>
+                <FloatingActionButton to={`${match.path}/create`}>
                     <RoundAdd />
                 </FloatingActionButton>
 
-                <ContactLensModal
-                    show={showModal}
-                    hide={() => setShowModal(false)}
-                    onSuccess={handleContactLensSaved}
-                    editing={editing}
-                />
+                <Route path={`${match.path}/create`} render={() => (
+                    <ContactLensModal
+                        onSuccess={handleContactLensSaved}
+                    />
+                )} />
+
+                <Route path={`${match.path}/edit/:id`} render={({ match }) => (
+                    <ContactLensModal
+                        onSuccess={handleContactLensSaved}
+                        editing={match.params.id}
+                    />
+                )} />
             </Page>
         </>
     );

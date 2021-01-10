@@ -26,12 +26,13 @@ class GetBrandRequest extends FormRequest
     {
         return [
             'filter' => 'nullable|string',
+            'include' => 'nullable|string|exists:contact_lens_brands,id',
         ];
     }
 
     public function getBrands()
     {
-        if (!$this->has('filter')){
+        if (!$this->has('filter')) {
             return $this->getPaginatedBrands();
         }
 
@@ -45,10 +46,24 @@ class GetBrandRequest extends FormRequest
 
     public function getFilteredBrands()
     {
-        if($filter = $this->input('filter')) {
-            return Brand::where('name', 'LIKE', "%$filter%")->get();
+        $query = (new Brand)->newQuery();
+
+        if ($filter = $this->input('filter')) {
+            $query->where('name', 'LIKE', "%$filter%");
+        } else {
+            $query->limit(15)->orderBy('name', 'asc');
         }
 
-        return Brand::orderBy('name', 'asc')->limit(15)->get();
+        $results = $query->get();
+
+        if ($include = $this->input('include')) {
+            if (!$results->contains('id', $include)) {
+                $includedBrand = Brand::find($include);
+
+                $results->prepend($includedBrand);
+            }
+        }
+
+        return $results;
     }
 }

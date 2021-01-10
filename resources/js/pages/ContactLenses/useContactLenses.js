@@ -3,7 +3,7 @@ import { contactLensesMapper } from '../../mappers/contactLenses';
 
 export const useContactLenses = ({ practice, sort, order }) => {
     const fetch = ({get, page, toQueryString }) => {
-        const url = `api/contact-lenses` + toQueryString({
+        const url = `/api/contact-lenses` + toQueryString({
             page,
             practice,
             sort,

@@ -26,7 +26,7 @@ const schema = yup.object().shape({
     date_received: nullableMomentSchema,
 });
 
-export const LabOrderFormModal = ({ show, onSuccess, editing }) => {
+export const LabOrderFormModal = ({ onSuccess, editing }) => {
     const getInitialValues = useCallback(async (id) => {
         if (!id) return {
             patient: '',
@@ -63,7 +63,7 @@ export const LabOrderFormModal = ({ show, onSuccess, editing }) => {
         errors,
         submitHandler,
         isValid,
-    } = useForm({ editing, getInitialValues, schema, showing: show });
+    } = useForm({ editing, getInitialValues, schema });
 
     const [creatingPatient, setCreatingPatient] = useState(false);
 
