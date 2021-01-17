@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\UserCreated;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -23,4 +24,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token', 'activation_token',
     ];
+
+    protected $dispatchesEvents = [
+        'created' => UserCreated::class,
+    ];
+
+    public function getIsSetupAttribute()
+    {
+        return $this->password && !$this->activation_token;
+    }
 }

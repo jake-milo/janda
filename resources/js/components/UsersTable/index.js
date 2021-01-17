@@ -22,6 +22,7 @@ export const UsersTable = ({ users, onEdit }) => {
                         <Cell>{user.name}</Cell>
                         <Cell>{user.email}</Cell>
                         <Cell>{user.time.created.format('Do MMMM YYYY @ HH:mm')}</Cell>
+                        <Cell centered size="thin">{user.is_setup ? 'Yes' : 'No'}</Cell>
                         <Cell centered size="thin">
                             <a href="#edit" onClick={handleEditClick(user.id)}>
                                 <RoundEdit />
