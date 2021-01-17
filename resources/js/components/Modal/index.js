@@ -31,5 +31,14 @@ export const Modal = ({ show, hide, children }) => {
 
 export const RouterModal = (props) => {
     const history = useHistory();
+
+    useEffect(() => {
+        document.body.style.position = 'fixed';
+
+        return () => {
+            document.body.style.position = 'static';
+        }
+    }, []);
+
     return <Modal {...props} show hide={() => history.goBack()} />
 };
