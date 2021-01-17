@@ -34,9 +34,10 @@ export const App = () => {
                     <Route exact path="/practices" component={Practices} />
                     <Route exact path="/practices/:id" component={Practice} />
 
-                    <Route exact path="/labs" component={Labs} />
-                    <Route exact path="/labs/:id" component={Lab} />
-
+                    <Switch>
+                        <Route path="/labs/:id" component={Lab} />
+                        <Route path="/labs" component={Labs} />
+                    </Switch>
                     <Route path="/lab-orders" component={LabOrders} />
 
                     <Route path="/contact-lenses" component={ContactLenses} />

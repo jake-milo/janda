@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route, useRouteMatch } from 'react-router-dom';
 import { useLabs } from './useLabs';
 import { PageTitle } from '../../components/PageTitle';
 import { Page } from '../../components/Page';
@@ -17,6 +17,7 @@ export const Labs = () => {
     const { labs, loading, page, pageCount, refresh } = useLabs({ sort, order });
     const [showModal, setShowModal] = useState(false);
     const [editing, setEditing] = useState(null);
+    const match = useRouteMatch();
 
     useEffect(() => {
         if (editing) {
@@ -68,16 +69,16 @@ export const Labs = () => {
                                 <Cell>{lab.time.created.format('Do MMMM YYYY @ HH:mm')}</Cell>
                                 <Cell>{lab.time.updated.format('Do MMMM YYYY @ HH:mm')}</Cell>
                                 <Cell>
-                                    <a href="#edit" onClick={handleEditClick(lab.id)}>
+                                    <Link to={`${match.path}/edit/${lab.id}`}>
                                         <RoundEdit />
-                                    </a>
+                                    </Link>
                                 </Cell>
                             </Row>
                         ))}
                     </Table>
                 ) : (
-                    <Spinner />
-                )}
+                        <Spinner />
+                    )}
 
                 <Pagination
                     page={page}
@@ -86,19 +87,22 @@ export const Labs = () => {
                 />
             </Page>
 
-            <FloatingActionButton onClick={() => setShowModal(true)}>
+            <FloatingActionButton to={`${match.path}/create`}>
                 <RoundAdd />
             </FloatingActionButton>
 
-            <LabModal
-                show={showModal}
-                hide={() => {
-                    setShowModal(false);
-                    setEditing(null);
-                }}
-                editing={editing}
-                onSuccess={handleLabSaved}
-            />
+            <Route path={`${match.path}/create`} render={() => (
+                <LabModal
+                    onSuccess={handleLabSaved}
+                />
+            )} />
+
+            <Route path={`${match.path}/edit/:id`} render={({ match }) => (
+                <LabModal
+                    onSuccess={handleLabSaved}
+                    editing={match.params.id}
+                />
+            )} />
         </>
     );
 }
