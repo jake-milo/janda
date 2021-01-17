@@ -2,7 +2,9 @@
     --white: #ffffff;
     --off-white: #f1f5f8;
     --light-grey: #dae1e7;
+    --dark-grey: #2c2c2c;
     --primary: #2779bd;
+    --green: #059669;
 }
 
 *, *:before, *:after {
@@ -32,11 +34,30 @@ body {
     margin-bottom: 2rem;
 }
 
+.alert {
+    padding: .5rem;
+    border-radius: .25rem;
+    background: var(--green);
+    margin-bottom: 2rem;
+
+    p {
+        color: var(--white);
+        opacity: 0.9;
+        margin: 0;
+    }
+}
+
 form {
     background: var(--white);
     padding: .5rem;
     border-radius: .25rem;
     border: 1px solid var(--light-grey);
+}
+
+p {
+    font-size: 1rem;
+    margin-bottom: .5rem;
+    color: var(--dark-grey);
 }
 
 .input-wrapper {

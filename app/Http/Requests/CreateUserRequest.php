@@ -16,15 +16,20 @@ class CreateUserRequest extends FormRequest
         return [
             'name' => 'string|required',
             'email' => 'email|required|unique:users,email',
-            'password' => 'string|required',
         ];
     }
 
     public function getUserData(): array
     {
-        $data = $this->only('name', 'email', 'password');
-        $data['password'] = bcrypt($data['password']);
+        $data = $this->only('name', 'email');
+
+        $data['activation_token'] = $this->generateToken();
 
         return $data;
+    }
+
+    protected function generateToken(): string
+    {
+        return md5(rand(1, 10) . microtime());
     }
 }
