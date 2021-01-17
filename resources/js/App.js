@@ -41,7 +41,7 @@ export const App = () => {
 
                     <Route path="/contact-lenses" component={ContactLenses} />
 
-                    <Route exact path="/contact-lens-brands/:id" component={ContactLensBrand} />
+                    <Route path="/contact-lens-brands/:id" component={ContactLensBrand} />
 
                     <Route path="/stock" component={Stock} />
 
