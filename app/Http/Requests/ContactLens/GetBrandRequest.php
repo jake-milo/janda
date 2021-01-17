@@ -32,11 +32,20 @@ class GetBrandRequest extends FormRequest
 
     public function getBrands()
     {
-        if (!$this->has('filter')) {
+        if ($this->has('filter')) {
+            return $this->getFilteredBrands();
+        }
+
+        if ($this->has('page')) {
             return $this->getPaginatedBrands();
         }
 
-        return $this->getFilteredBrands();
+        return $this->getAllBrands();
+    }
+
+    public function getAllBrands()
+    {
+        return Brand::orderBy('name', 'asc')->get();
     }
 
     public function getPaginatedBrands()

@@ -14,6 +14,7 @@ import { BrandModal } from '../../components/BrandModal';
 import { ContactLensTypeModal } from './ContactLensTypeModal';
 import { ContactLensBrandModal } from './ContactLensBrandModal';
 import { remove } from '../../helpers';
+import { Route } from 'react-router-dom';
 
 
 
@@ -81,7 +82,7 @@ export const ContactLensBrand = ({ match }) => {
             </Page>
 
             <FAB expander icon={() => (<RoundMoreVert />)}>
-                <FAB.Button onClick={() => setShowModal(true)}>
+                <FAB.Button to={`${match.url}/edit`}>
                     <RoundEdit />
                 </FAB.Button>
 
@@ -90,14 +91,15 @@ export const ContactLensBrand = ({ match }) => {
                 </FAB.Button>
             </FAB>
 
+            <Route path={`${match.path}/edit`} render={() => (
+                <ContactLensBrandModal
+                    onSuccess={handleBrandSaved}
+                    brand={brand}
+                />
+            )} />
+
             {brand && (
                 <>
-                    <ContactLensBrandModal
-                        show={showModal}
-                        hide={() => setShowModal(false)}
-                        onSuccess={handleBrandSaved}
-                        brand={brand}
-                    />
 
                     <ContactLensTypeModal
                         show={showTypeModal}
