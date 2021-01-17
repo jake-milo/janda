@@ -2,17 +2,14 @@ import React, { useMemo } from 'react';
 import * as h from './headers';
 import { Table, Row, Cell } from '../Table';
 import RoundEdit from 'react-md-icon/dist/RoundEdit';
+import { Link, useRouteMatch } from 'react-router-dom';
 
-export const UsersTable = ({ users, onEdit }) => {
+export const UsersTable = ({ users }) => {
+    const match = useRouteMatch();
+
     const headers = useMemo(() => {
         return h.getHeaders();
     }, []);
-
-    const handleEditClick = id => (e) => {
-        e.preventDefault();
-
-        onEdit(id);
-    };
 
     return (
         <>
@@ -23,9 +20,9 @@ export const UsersTable = ({ users, onEdit }) => {
                         <Cell>{user.email}</Cell>
                         <Cell>{user.time.created.format('Do MMMM YYYY @ HH:mm')}</Cell>
                         <Cell centered size="thin">
-                            <a href="#edit" onClick={handleEditClick(user.id)}>
+                            <Link to={`${match.url}/edit/${user.id}`}>
                                 <RoundEdit />
-                            </a>
+                            </Link>
                         </Cell>
                     </Row>
                 ))}

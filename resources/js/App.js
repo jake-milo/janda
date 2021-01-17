@@ -49,7 +49,7 @@ export const App = () => {
 
                     <Route path="/manufacturers/:id" component={Manufacturer} />
 
-                    <Route exact path="/users" component={Users} />
+                    <Route path="/users" component={Users} />
                 </div>
             </div>
         </Router>
