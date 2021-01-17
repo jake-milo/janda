@@ -27,7 +27,7 @@ export const App = () => {
                     <Route exact path="/" component={Dashboard} />
 
                     <Switch>
-                        <Route exact path="/patients/:id(\d+)" component={Patient} />
+                        <Route path="/patients/:id(\d+)" component={Patient} />
                         <Route path="/patients" component={Patients} />
                     </Switch>
 

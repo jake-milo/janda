@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import * as yup from 'yup';
 import { patch, post } from '../../../helpers';
-import { Modal, RouterModal } from '../../../components/Modal';
+import { RouterModal } from '../../../components/Modal';
 import { Form } from '../../../components/Form';
 import { FieldError } from '../../../components/FieldError';
 import { PageTitle } from '../../../components/PageTitle';

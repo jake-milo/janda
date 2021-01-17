@@ -5,9 +5,17 @@ import { Spinner } from '../../components/Spinner';
 import { usePatient } from './usePatient';
 import { LabOrdersTable, headers as loHeaders } from '../../components/LabOrdersTable';
 import { ContactLensesTable, headers as clHeaders } from '../../components/ContactLensesTable';
+import { FloatingActionButton } from '../../components/FloatingActionButton';
+import RoundEdit from 'react-md-icon/dist/RoundEdit';
+import { Route } from 'react-router-dom';
+import { PatientModal } from '../Patients/PatientModal';
 
 export const Patient = ({ match }) => {
-    const { patient } = usePatient(match.params.id);
+    const { patient, refresh } = usePatient(match.params.id);
+
+    const handlePatientSaved = () => {
+        refresh();
+    };
 
     return (
         <>
@@ -40,6 +48,17 @@ export const Patient = ({ match }) => {
                     <Spinner />
                 )}
             </Page>
+
+            <FloatingActionButton to={`${match.url}/edit`}>
+                <RoundEdit />
+            </FloatingActionButton>
+
+            <Route path={`${match.path}/edit`} render={({ match }) => (
+                <PatientModal
+                    editing={match.params.id}
+                    onSuccess={handlePatientSaved}
+                />
+            )} />
         </>
     );
 };
