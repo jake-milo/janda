@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import RoundAdd from 'react-md-icon/dist/RoundAdd';
 import RoundEdit from 'react-md-icon/dist/RoundEdit';
+import { Route, useRouteMatch } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { PageTitle } from '../../components/PageTitle';
 import { Page } from '../../components/Page';
@@ -24,6 +25,7 @@ export const Patients = () => {
     });
     const [showModal, setShowModal] = useState(false);
     const [editing, setEditing] = useState(null);
+    const match = useRouteMatch();
 
     useEffect(() => {
         if (editing) {
@@ -83,16 +85,16 @@ export const Patients = () => {
                                 <Cell>{patient.time.created.format('Do MMMM YYYY @ HH:mm')}</Cell>
                                 <Cell>{patient.time.updated.format('Do MMMM YYYY @ HH:mm')}</Cell>
                                 <Cell>
-                                    <a href="#edit" onClick={handleEditClick(patient.id)}>
+                                    <Link to={`${match.path}/edit/${patient.id}`}>
                                         <RoundEdit />
-                                    </a>
+                                    </Link>
                                 </Cell>
                             </Row>
                         ))}
                     </Table>
                 ) : (
-                    <Spinner />
-                )}
+                        <Spinner />
+                    )}
 
                 <Pagination
                     page={page}
@@ -101,19 +103,22 @@ export const Patients = () => {
                 />
             </Page>
 
-            <FloatingActionButton onClick={() => setShowModal(true)}>
+            <FloatingActionButton to={`${match.path}/create`}>
                 <RoundAdd />
             </FloatingActionButton>
 
-            <PatientModal
-                show={showModal}
-                hide={() => {
-                    setShowModal(false);
-                    setEditing(null);
-                }}
-                editing={editing}
-                onSuccess={handlePatientSaved}
-            />
+            <Route path={`${match.path}/create`} render={() => (
+                <PatientModal
+                    onSuccess={handlePatientSaved}
+                />
+            )} />
+
+            <Route path={`${match.path}/edit/:id`} render={({ match }) => (
+                <PatientModal
+                    onSuccess={handlePatientSaved}
+                    editing={match.params.id}
+                />
+            )} />
         </>
     );
 }

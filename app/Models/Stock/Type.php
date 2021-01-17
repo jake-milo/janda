@@ -12,7 +12,7 @@ class Type extends Model
 
     protected $resourceRelations = ['brand', 'variants'];
 
-    protected $fillable = ['name', 'buy', 'sell'];
+    protected $fillable = ['name', 'buy', 'sell', 'year'];
 
     protected $with = ['variants'];
 
@@ -20,13 +20,13 @@ class Type extends Model
     {
         parent::boot();
 
-        static::deleting(function($type) {
+        static::deleting(function ($type) {
             $type->variants->each(function ($variant) {
                 $variant->delete();
             });
         });
 
-        static::restoring(function($type) {
+        static::restoring(function ($type) {
             $type->variants()->withTrashed()->get()->each(function ($variant) {
                 $variant->restore();
             });
@@ -42,5 +42,4 @@ class Type extends Model
     {
         return $this->hasMany(Variant::class);
     }
-
 }

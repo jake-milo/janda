@@ -1,22 +1,37 @@
 import React, { useCallback } from 'react';
 import * as yup from 'yup';
-import { Modal } from '../../../components/Modal';
+import { RouterModal } from '../../../components/Modal';
 import { PageTitle } from '../../../components/PageTitle';
 import { Form } from '../../../components/Form';
 import { FieldError } from '../../../components/FieldError';
 import { patch, post } from '../../../helpers';
 import { useForm } from '../../../hooks/useForm';
+import { useHistory } from '../../../hooks/useRouter';
+import { fetchUser } from '../../../utilities/fetchUser';
 
 const schema = yup.object().shape({
     name: yup.string().required().label('Name'),
     email: yup.string().email().required().label('Email'),
 });
 
-export const UserModal = ({ show, hide, onSuccess, editing }) => {
-    const getInitialValues = useCallback((user) => ({
-        name: user ? user.name: '',
-        email: user ? user.email : '',
-    }), []);
+export const UserModal = ({ onSuccess, editing }) => {
+    const history = useHistory();
+
+    const getInitialValues = useCallback(async (id) => {
+        if (!id) {
+            return {
+                name: '',
+                email: '',
+            };
+        }
+
+        const user = await fetchUser(id);
+
+        return {
+            name: user.name,
+            email: user.email,
+        };
+    }, []);
 
     const {
         values,
@@ -34,8 +49,8 @@ export const UserModal = ({ show, hide, onSuccess, editing }) => {
 
         request()
             .then(() => {
-                hide();
                 onSuccess();
+                history.goBack();
             })
             .catch((err) => {
                 console.log(err);
@@ -43,7 +58,7 @@ export const UserModal = ({ show, hide, onSuccess, editing }) => {
     });
 
     return (
-        <Modal show={show} hide={hide}>
+        <RouterModal>
             <PageTitle>{editing ? 'Update User' : 'Create User'}</PageTitle>
 
             <Form values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
@@ -78,6 +93,6 @@ export const UserModal = ({ show, hide, onSuccess, editing }) => {
                     </>
                 )}
             </Form>
-        </Modal>
+        </RouterModal>
     );
 };

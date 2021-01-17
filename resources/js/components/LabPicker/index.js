@@ -24,6 +24,7 @@ export const LabPicker = ({
         <>
             <label htmlFor={name}>Lab</label>
             <FilterableSelect
+            // debug
                 emptyText={emptyText}
                 onChange={handleChange}
                 value={value}

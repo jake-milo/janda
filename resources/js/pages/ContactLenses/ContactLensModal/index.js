@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import * as yup from 'yup';
-import { Modal } from '../../../components/Modal';
+import { Modal, RouterModal } from '../../../components/Modal';
 import { PageTitle } from '../../../components/PageTitle';
 import { PracticePicker } from '../../../components/PracticePicker';
 import { post, patch } from '../../../helpers';
@@ -11,6 +11,7 @@ import { Form } from '../../../components/Form';
 import { PickOrNewContactLensBrandType } from '../../../components/PickOrNewContactLensBrandType';
 import { fetchContactLens } from '../../../utilities/fetchContactLens';
 import { useForm } from '../../../hooks/useForm';
+import { useHistory } from '../../../hooks/useRouter';
 
 const schema = yup.object().shape({
     patient: yup.string().required().label('Patient'),
@@ -29,7 +30,7 @@ const schema = yup.object().shape({
     solutions: yup.string().required().label('Solutions'),
 });
 
-export const ContactLensModal = ({ show, hide, onSuccess, editing }) => {
+export const ContactLensModal = ({ show, onSuccess, editing }) => {
     const [creatingPatient, setCreatingPatient] = useState(false);
     const [creatingBrand, setCreatingBrand] = useState(false);
     const [creatingType, setCreatingType] = useState(false);
@@ -76,6 +77,8 @@ export const ContactLensModal = ({ show, hide, onSuccess, editing }) => {
         isValid,
     } = useForm({ editing, getInitialValues, schema, context, showing: show });
 
+    const history = useHistory();
+
     const handleSubmit = submitHandler(() => {
         const { patient, brand, type, duration, practice, ...contactLens } = values;
 
@@ -94,8 +97,8 @@ export const ContactLensModal = ({ show, hide, onSuccess, editing }) => {
 
         request()
             .then(() => {
-                hide();
                 onSuccess();
+                history.goBack();
             })
             .catch((err) => {
                 console.log(err);
@@ -103,7 +106,7 @@ export const ContactLensModal = ({ show, hide, onSuccess, editing }) => {
     });
 
     return (
-        <Modal show={show} hide={hide}>
+        <RouterModal>
             <PageTitle>{editing ? 'Update' : 'Create'} Contact Lens</PageTitle>
 
             <Form values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
@@ -173,6 +176,6 @@ export const ContactLensModal = ({ show, hide, onSuccess, editing }) => {
                     </>
                 )}
             </Form>
-        </Modal>
+        </RouterModal>
     );
 };

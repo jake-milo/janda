@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import RoundAdd from 'react-md-icon/dist/RoundAdd';
-import { Link } from 'react-router-dom';
+import { Link, Route, useRouteMatch } from 'react-router-dom';
 import { useContactLensBrands } from './useContactLensBrands';
 import { Spinner } from '../../../components/Spinner';
 import { FloatingActionButton } from '../../../components/FloatingActionButton';
@@ -10,7 +10,8 @@ import { ContactLensBrandModal } from '../../ContactLensBrand/ContactLensBrandMo
 
 export const ContactLensStock = () => {
     const { groupedBrands, refresh } = useContactLensBrands();
-    const [showCreateModal, setShowCreateModal] = useState(false);
+
+    const match = useRouteMatch();
 
     const handleBrandCreated = () => {
         refresh();
@@ -34,15 +35,16 @@ export const ContactLensStock = () => {
                         <Spinner />
                     )}
             </div>
-            <FloatingActionButton onClick={() => setShowCreateModal(true)}>
+
+            <FloatingActionButton to={`${match.url}/create`}>
                 <RoundAdd />
             </FloatingActionButton>
 
-            <ContactLensBrandModal
-                show={showCreateModal}
-                hide={() => setShowCreateModal(false)}
-                onSuccess={handleBrandCreated}
-            />
+            <Route path={`${match.path}/create`} render={() => (
+                <ContactLensBrandModal
+                    onSuccess={handleBrandCreated}
+                />
+            )} />
         </>
     );
 };

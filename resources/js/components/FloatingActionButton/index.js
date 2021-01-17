@@ -1,6 +1,7 @@
-import React, { useState, useRef, createContext, useContext, Children, cloneElement } from 'react';
+import React, { useState, useRef, createContext, useContext } from 'react';
 import { useTransition, animated } from 'react-spring';
 import { useOnClickOutside } from '../../hooks/useOnClickOutside';
+import { useHistory } from '../../hooks/useRouter';
 
 import './FloatingActionButton.css';
 
@@ -10,14 +11,19 @@ const config = {
     duration: 100,
 };
 
-const Button = ({ onClick, title, style, children }) => {
+const Button = ({ onClick, to, title, style, children }) => {
     const { setExpanded } = useContext(FabContext);
+    const history = useHistory();
 
     const handleClick = (e) => {
         e.preventDefault();
         setExpanded(false);
 
-        onClick();
+        if (onClick) {
+            onClick();
+        } else if (to) {
+            history.push(to);
+        }
     };
 
     return (
@@ -55,9 +61,10 @@ const SubButtons = ({ buttons, ready }) => {
     });
 };
 
-export const FloatingActionButton = ({ children, onClick, expander = false, icon = null }) => {
+export const FloatingActionButton = ({ children, onClick, to, expander = false, icon = null }) => {
     const [expanded, setExpanded] = useState(false);
     const container = useRef();
+    const history = useHistory();
 
     useOnClickOutside(container, () => {
         setExpanded(false);
@@ -68,8 +75,10 @@ export const FloatingActionButton = ({ children, onClick, expander = false, icon
 
         if (expander) {
             setExpanded(!expanded);
-        } else {
+        } else if (onClick) {
             onClick();
+        } else if (to) {
+            history.push(to);
         }
     };
 

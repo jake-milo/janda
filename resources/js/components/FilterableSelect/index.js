@@ -4,6 +4,7 @@ import RoundClear from 'react-md-icon/dist/RoundClear';
 import { Spinner } from '../Spinner';
 import { useOnClickOutside } from '../../hooks/useOnClickOutside';
 import { useWindowSize } from '../../hooks/useWindowSize';
+import { useBoundingBox } from '../../hooks/useBoundingBox';
 
 const selectRoot = document.getElementById('select-root');
 
@@ -29,15 +30,7 @@ export const FilterableSelect = ({
         }
     }, [disabled]);
 
-    const handleSelectClick = (e) => {
-        e.preventDefault();
-
-        if (!ref.current.contains(e.target) && e.target !== clearButtonRef.current && !disabled) {
-            setOpen(true);
-        }
-    };
-
-    useOnClickOutside(ref, () => {
+    useOnClickOutside([handle, ref], () => {
         setOpen(false);
     });
 
@@ -48,8 +41,8 @@ export const FilterableSelect = ({
     const handleOptionClick = id => (e) => {
         e.preventDefault();
 
-        setOpen(false);
         onChange(id);
+        setOpen(false);
     };
 
     const handleClear = (e) => {
@@ -67,20 +60,42 @@ export const FilterableSelect = ({
     }, [options, value, emptyText]);
 
     const [windowWidth, windowHeight] = useWindowSize();
-    const position = useMemo(() => {
-        if (!handle) return { top: 0, left: 0 };
 
-        const box = handle.getBoundingClientRect();
+    const [boundingBox, reloadBoundingBox] = useBoundingBox(handle);
+
+    const position = useMemo(() => {
+        if (!boundingBox) return { top: 0, left: 0 };
+
+        const { y, height, x, width } = boundingBox;
 
         return {
-            top: box.y + box.height,
-            left: box.x,
-            width: box.width,
+            top: y + height,
+            left: x,
+            width,
         };
     // windowWidth & windowHeight aren't used in the dep,
     // but should trigger a reevaluation.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [handle, windowWidth, windowHeight]);
+    }, [boundingBox, windowWidth, windowHeight]);
+
+    const handleSelectClick = (e) => {
+        e.preventDefault();
+
+        // cancel if disabled
+        if (disabled) return;
+
+        // or we clicked an item in the list
+        if (ref.current.contains(e.target)) return;
+
+        // or we clicked the clear button
+        if (clearButtonRef.current && clearButtonRef.current.contains(e.target)) return;
+
+        // ensure the bounding box is up to date
+        reloadBoundingBox();
+
+        // otherwise we're good to open
+        setOpen(true);
+    };
 
     return (
         <>
@@ -92,6 +107,7 @@ export const FilterableSelect = ({
                         </button>
                     </div>
                 ) : null}
+
                 {label}
 
                 {createPortal((

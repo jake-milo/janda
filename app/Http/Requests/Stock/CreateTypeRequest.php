@@ -4,6 +4,7 @@ namespace App\Http\Requests\Stock;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Stock\Variant;
+use Carbon\Carbon;
 
 class CreateTypeRequest extends FormRequest
 {
@@ -28,9 +29,10 @@ class CreateTypeRequest extends FormRequest
             'name' => 'string|required',
             'buy' => 'integer|required',
             'sell' => 'integer|required',
+            'year' => 'string|required',
             'variants' => 'array|required',
             'variants.*.color' => 'string|required',
-            'variants.*.year' => 'string|required',
+            'variants.*.year' => 'string|nullable',
             'variants.*.quantity' => 'integer|required',
             'variants.*.eyesize' => 'string|required',
             'variants.*.dbl' => 'string|required',
@@ -46,7 +48,11 @@ class CreateTypeRequest extends FormRequest
 
     public function getTypeData()
     {
-        return $this->only('name', 'buy', 'sell');
+        $data = $this->only('name', 'buy', 'sell', 'year');
+
+        $data['year'] = new Carbon($data['year']);
+
+        return $data;
     }
 
     /**
@@ -72,6 +78,7 @@ class CreateTypeRequest extends FormRequest
             'name' => 'Name',
             'buy' => 'Buy',
             'sell' => 'Sell',
+            'year' => 'Year',
             'variants' => 'Variants',
             'variants.*.color' => 'Variant color',
             'variants.*.year' => 'Variant year',

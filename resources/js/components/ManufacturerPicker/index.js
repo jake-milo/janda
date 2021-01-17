@@ -33,7 +33,7 @@ export const ManufacturerPicker = ({
                     label: manufacturer.name,
                 }))}
                 loading={loading}
-                debug
+                // debug
             />
         </>
     );

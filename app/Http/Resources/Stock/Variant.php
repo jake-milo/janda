@@ -29,7 +29,6 @@ class Variant extends JsonResource
             'type' => Type::make(
                 $this->whenLoaded('type')
             ),
-
         ]);
     }
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import RoundAdd from 'react-md-icon/dist/RoundAdd';
 import RoundEdit from 'react-md-icon/dist/RoundEdit';
 import BaselineDelete from 'react-md-icon/dist/BaselineDelete';
-import { Link } from 'react-router-dom';
+import { Link, Route, useRouteMatch } from 'react-router-dom';
 import { useManufacturers } from './useManufacturers';
 import { Table, Cell, Row } from '../../../components/Table';
 import { Spinner } from '../../../components/Spinner';
@@ -13,30 +13,17 @@ import { useSort } from '../../../hooks/useSort';
 import { remove } from '../../../helpers';
 
 export const FrameManufacturers = () => {
+    const match = useRouteMatch();
     const [sort, order, updateSorting] = useSort();
     const { manufacturers, loading, page, pageCount, refresh } = useManufacturers({ sort, order });
-    const [showModal, setShowModal] = useState(false);
-    const [editing, setEditing] = useState(null);
-
-    useEffect(() => {
-        if (editing) {
-            setShowModal(true);
-        }
-    }, [editing]);
 
     const handleManufacturerSaved = () => {
         refresh();
-
-        setEditing(null);
-    };
-
-    const handleEditClick = id => (e) => {
-        e.preventDefault();
-
-        setEditing(id);
     };
 
     const handleRemove = manufacturers => (e) => {
+        e.preventDefault();
+
         remove(`/api/manufacturers/${manufacturers.id}`)
             .then(() => {
                 refresh();
@@ -76,9 +63,9 @@ export const FrameManufacturers = () => {
                                 <Cell>{manufacturer.time.created.format('Do MMMM YYYY @ HH:mm')}</Cell>
                                 <Cell>{manufacturer.time.updated.format('Do MMMM YYYY @ HH:mm')}</Cell>
                                 <Cell>
-                                    <a href="#edit" onClick={handleEditClick(manufacturer.id)}>
+                                    <Link to={`${match.url}/${manufacturer.id}/edit`}>
                                         <RoundEdit />
-                                    </a>
+                                    </Link>
                                     <a href="#remove" onClick={handleRemove(manufacturer)}>
                                         <BaselineDelete />
                                     </a>
@@ -90,7 +77,7 @@ export const FrameManufacturers = () => {
                         <Spinner />
                     )}
 
-                <FloatingActionButton onClick={() => setShowModal(true)}>
+                <FloatingActionButton to={`${match.path}/create`}>
                     <RoundAdd />
                 </FloatingActionButton>
 
@@ -100,15 +87,18 @@ export const FrameManufacturers = () => {
                     urlFormat="/stock/manufacturers?page=:page:"
                 />
 
-                <ManufacturerModal
-                    show={showModal}
-                    hide={() => {
-                        setShowModal(false)
-                        setEditing(null);
-                    }}
-                    editing={editing}
-                    onSuccess={handleManufacturerSaved}
-                />
+                <Route path={`${match.path}/create`} render={() => (
+                    <ManufacturerModal
+                        onSuccess={handleManufacturerSaved}
+                    />
+                )} />
+
+                <Route path={`${match.path}/:id/edit`} render={({ match }) => (
+                    <ManufacturerModal
+                        editing={match.params.id}
+                        onSuccess={handleManufacturerSaved}
+                    />
+                )} />
             </div>
         </>
     );

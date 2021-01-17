@@ -1,19 +1,20 @@
 import React, { useState, useCallback } from 'react';
 import * as yup from 'yup';
-import { Modal } from '../Modal';
+import { Modal, RouterModal } from '../Modal';
 import { PageTitle } from '../PageTitle';
 import { Form } from '../Form';
 import { PickOrNewManufacturer } from '../ManufacturerPicker/PickOrNewManufacturer';
 import { post, patch } from '../../helpers';
 import { FieldError } from '../FieldError';
 import { useForm } from '../../hooks/useForm';
+import { useHistory } from '../../hooks/useRouter';
 
 const schema = yup.object().shape({
     name: yup.string().required().label('Name'),
     manufacturer: yup.string().required().label('Manufacturer'),
 });
 
-export const BrandModal = ({ show, hide, onSuccess, brand: editing = null }) => {
+export const BrandModal = ({ onSuccess, brand: editing = null }) => {
     const getInitialValues = useCallback(async (brand) => {
         return {
             name: brand ? brand.name : '',
@@ -29,9 +30,10 @@ export const BrandModal = ({ show, hide, onSuccess, brand: editing = null }) => 
         errors,
         submitHandler,
         isValid,
-    } = useForm({ editing, getInitialValues, schema, showing: show });
+    } = useForm({ editing, getInitialValues, schema });
 
     const [creatingManufacturer, setCreatingManufacturer] = useState(false);
+    const history = useHistory();
 
     const handleSubmit = submitHandler(() => {
         const { manufacturer, ...brand } = values;
@@ -44,8 +46,8 @@ export const BrandModal = ({ show, hide, onSuccess, brand: editing = null }) => 
 
         request()
             .then(() => {
-                hide();
                 onSuccess();
+                history.goBack();
             })
             .catch((err) => {
                 console.log(err);
@@ -53,7 +55,7 @@ export const BrandModal = ({ show, hide, onSuccess, brand: editing = null }) => 
     });
 
     return (
-        <Modal show={show} hide={hide}>
+        <RouterModal>
             <PageTitle>{editing ? 'Update Brand' : 'Create Brand'}</PageTitle>
 
             <Form values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
@@ -78,6 +80,6 @@ export const BrandModal = ({ show, hide, onSuccess, brand: editing = null }) => 
                     </>
                 )}
             </Form>
-        </Modal>
+        </RouterModal>
     );
 };

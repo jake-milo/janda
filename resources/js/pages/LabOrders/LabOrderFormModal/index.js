@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import * as yup from 'yup';
-import { Modal } from "../../../components/Modal";
+import { RouterModal } from "../../../components/Modal";
 import { PageTitle } from "../../../components/PageTitle";
 import { PickOrNewPatient } from '../../../components/PatientPicker/PickOrNewPatient';
 import { FieldError } from '../../../components/FieldError';
@@ -13,6 +13,7 @@ import moment from 'moment';
 import { fetchLabOrder } from '../../../utilities/fetchLabOrder';
 import { useForm } from '../../../hooks/useForm';
 import { Form } from '../../../components/Form';
+import { useHistory } from '../../../hooks/useRouter';
 
 const schema = yup.object().shape({
     patient: yup.string().required().label('Patient'),
@@ -25,7 +26,7 @@ const schema = yup.object().shape({
     date_received: nullableMomentSchema,
 });
 
-export const LabOrderFormModal = ({ show, hide, onSuccess, editing }) => {
+export const LabOrderFormModal = ({ onSuccess, editing }) => {
     const getInitialValues = useCallback(async (id) => {
         if (!id) return {
             patient: '',
@@ -62,11 +63,13 @@ export const LabOrderFormModal = ({ show, hide, onSuccess, editing }) => {
         errors,
         submitHandler,
         isValid,
-    } = useForm({ editing, getInitialValues, schema, showing: show });
+    } = useForm({ editing, getInitialValues, schema });
 
     const [creatingPatient, setCreatingPatient] = useState(false);
 
     const toStringOrNull = m => moment.isMoment(m) ? m.format('YYYY-MM-DD') : null;
+
+    const history = useHistory();
 
     const handleSubmit = submitHandler(() => {
         const { patient, date_sent, date_required, date_received, ...labOrder } = values;
@@ -83,8 +86,8 @@ export const LabOrderFormModal = ({ show, hide, onSuccess, editing }) => {
 
         request()
             .then(() => {
-                hide();
                 onSuccess();
+                history.goBack();
             })
             .catch((err) => {
                 console.log(err);
@@ -92,7 +95,7 @@ export const LabOrderFormModal = ({ show, hide, onSuccess, editing }) => {
     });
 
     return (
-        <Modal show={show} hide={hide}>
+        <RouterModal>
             <PageTitle>{editing ? 'Update' : 'Create'} Lab Order</PageTitle>
 
             <Form values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
@@ -185,6 +188,6 @@ export const LabOrderFormModal = ({ show, hide, onSuccess, editing }) => {
                     </>
                 )}
             </Form>
-        </Modal>
+        </RouterModal>
     );
 };

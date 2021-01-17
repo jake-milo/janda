@@ -8,7 +8,8 @@ export const Stepper = ({
     value,
     onChange,
     disabled,
-    min = 0
+    min = 0,
+    buttonsOnly = false,
 }) => {
     const handleChange = (e) => {
         const val = e.target.value;
@@ -35,14 +36,18 @@ export const Stepper = ({
                 <BaselineRemoveCircle />
             </button>
 
-            <input
-                type="number"
-                step={1}
-                min={min}
-                value={value}
-                onChange={handleChange}
-                disabled={disabled}
-            />
+            {buttonsOnly ? (
+                <p style={{ margin: '0 .5rem' }}>{value}</p>
+            ) : (
+                <input
+                    type="number"
+                    step={1}
+                    min={min}
+                    value={value}
+                    onChange={handleChange}
+                    disabled={disabled}
+                />
+            )}
 
             <button onClick={handleInc} disabled={disabled}>
                 <BaselineAddCircle />

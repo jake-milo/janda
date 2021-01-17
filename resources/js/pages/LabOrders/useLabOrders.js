@@ -4,7 +4,7 @@ import { labOrdersMapper } from '../../mappers/labOrders';
 
 export const useLabOrders = ({ practice, status, lab, sort, order }) => {
     const fetch = ({ get, page, toQueryString }) => {
-        const url = `api/lab-orders` + toQueryString({
+        const url = `/api/lab-orders` + toQueryString({
             page,
             practice,
             status,

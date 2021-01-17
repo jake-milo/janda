@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Router } from './components/Router';
 import { Menu } from './components/Menu';
 import { Dashboard } from './pages/Dashboard';
@@ -17,10 +17,6 @@ import { Brand } from './pages/Brand';
 import { Users } from './pages/Users';
 import { Lab } from './pages/Lab';
 
-// Maybe switch to this at some point?
-// const Dashboard = lazy(() => import('./pages/Dashboard'));
-// const Patients = lazy(() => import('./pages/Patients'));
-
 export const App = () => {
     return (
         <Router>
@@ -30,28 +26,31 @@ export const App = () => {
                 <div className="inner-container">
                     <Route exact path="/" component={Dashboard} />
 
-                    <Route exact path="/patients" component={Patients} />
-                    <Route exact path="/patients/:id" component={Patient} />
+                    <Switch>
+                        <Route path="/patients/:id(\d+)" component={Patient} />
+                        <Route path="/patients" component={Patients} />
+                    </Switch>
 
                     <Route exact path="/practices" component={Practices} />
                     <Route exact path="/practices/:id" component={Practice} />
 
-                    <Route exact path="/labs" component={Labs} />
-                    <Route exact path="/labs/:id" component={Lab} />
+                    <Switch>
+                        <Route path="/labs/:id(\d+)" component={Lab} />
+                        <Route path="/labs" component={Labs} />
+                    </Switch>
+                    <Route path="/lab-orders" component={LabOrders} />
 
-                    <Route exact path="/lab-orders" component={LabOrders} />
+                    <Route path="/contact-lenses" component={ContactLenses} />
 
-                    <Route exact path="/contact-lenses" component={ContactLenses} />
-
-                    <Route exact path="/contact-lens-brands/:id" component={ContactLensBrand} />
+                    <Route path="/contact-lens-brands/:id" component={ContactLensBrand} />
 
                     <Route path="/stock" component={Stock} />
 
-                    <Route exact path="/brands/:id" component={Brand} />
+                    <Route path="/brands/:id" component={Brand} />
 
-                    <Route exact path="/manufacturers/:id" component={Manufacturer} />
+                    <Route path="/manufacturers/:id" component={Manufacturer} />
 
-                    <Route exact path="/users" component={Users} />
+                    <Route path="/users" component={Users} />
                 </div>
             </div>
         </Router>

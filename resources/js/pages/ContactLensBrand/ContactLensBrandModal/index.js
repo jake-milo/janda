@@ -2,16 +2,19 @@ import React, { useCallback } from 'react';
 import * as yup from 'yup';
 import { patch, post } from '../../../helpers';
 import { FieldError } from '../../../components/FieldError';
-import { Modal } from '../../../components/Modal';
+import { RouterModal } from '../../../components/Modal';
 import { PageTitle } from '../../../components/PageTitle';
 import { Form } from '../../../components/Form';
 import { useForm } from '../../../hooks/useForm';
+import { useHistory } from '../../../hooks/useRouter';
 
 const schema = yup.object().shape({
     name: yup.string().required().label('Name'),
 });
 
-export const ContactLensBrandModal = ({ show, hide, onSuccess, brand: editing = null }) => {
+export const ContactLensBrandModal = ({ onSuccess, brand: editing = null }) => {
+    const history = useHistory();
+    
     const getInitialValues = useCallback(async (editing) => {
         if (!editing) return {
             name: '',
@@ -29,7 +32,7 @@ export const ContactLensBrandModal = ({ show, hide, onSuccess, brand: editing = 
         errors,
         submitHandler,
         isValid,
-    } = useForm({ editing, getInitialValues, schema, showing: show });
+    } = useForm({ editing, getInitialValues, schema });
 
     const handleSubmit = submitHandler(() => {
         const request = () => editing
@@ -38,8 +41,8 @@ export const ContactLensBrandModal = ({ show, hide, onSuccess, brand: editing = 
 
         request()
             .then(() => {
-                hide();
                 onSuccess();
+                history.goBack();
             })
             .catch((err) => {
                 console.log(err);
@@ -47,7 +50,7 @@ export const ContactLensBrandModal = ({ show, hide, onSuccess, brand: editing = 
     });
 
     return (
-        <Modal show={show} hide={hide}>
+        <RouterModal>
             <PageTitle>{editing ? 'Update Brand' : 'Create Brand'}</PageTitle>
 
             <Form values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
@@ -69,6 +72,6 @@ export const ContactLensBrandModal = ({ show, hide, onSuccess, brand: editing = 
                     </>
                 )}
             </Form>
-        </Modal>
+        </RouterModal>
     );
 };

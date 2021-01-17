@@ -12,7 +12,7 @@ export const ContactLensBrandPicker = ({
 }) => {
     const [filter, setFilter] = useState('');
     const debouncedFilter = useDebounced(filter, 500);
-    const { brands, loading } = useBrands({ filter: debouncedFilter });
+    const { brands, loading } = useBrands({ filter: debouncedFilter, include: value });
 
     const handleChange = (newVal) => {
         if (onChange) {
