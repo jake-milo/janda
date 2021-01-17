@@ -35,7 +35,7 @@ export const App = () => {
                     <Route exact path="/practices/:id" component={Practice} />
 
                     <Switch>
-                        <Route path="/labs/:id" component={Lab} />
+                        <Route path="/labs/:id(\d+)" component={Lab} />
                         <Route path="/labs" component={Labs} />
                     </Switch>
                     <Route path="/lab-orders" component={LabOrders} />
