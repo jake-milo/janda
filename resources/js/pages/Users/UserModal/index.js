@@ -1,12 +1,13 @@
 import React, { useCallback, useMemo } from 'react';
 import * as yup from 'yup';
-import { Modal, RouterModal } from '../../../components/Modal';
+import { RouterModal } from '../../../components/Modal';
 import { PageTitle } from '../../../components/PageTitle';
 import { Form } from '../../../components/Form';
 import { FieldError } from '../../../components/FieldError';
 import { patch, post } from '../../../helpers';
 import { useForm } from '../../../hooks/useForm';
 import { useHistory } from '../../../hooks/useRouter';
+import { fetchUser } from '../../../utilities/fetchUser';
 
 const schema = yup.object().shape({
     name: yup.string().required().label('Name'),
@@ -19,11 +20,23 @@ const schema = yup.object().shape({
 });
 
 export const UserModal = ({ onSuccess, editing }) => {
-    const getInitialValues = useCallback((user) => ({
-        name: user ? user.name : '',
-        email: user ? user.email : '',
-        password: '',
-    }), []);
+    const getInitialValues = useCallback(async (id) => {
+        if (!id) {
+            return {
+                name: '',
+                email: '',
+                password: '',
+            };
+        }
+
+        const user = await fetchUser(id);
+
+        return {
+            name: user.name,
+            email: user.email,
+            password: '',
+        };
+    }, []);
 
     const context = useMemo(() => ({ editing: !!editing }), [editing]);
 
@@ -48,7 +61,7 @@ export const UserModal = ({ onSuccess, editing }) => {
         }
 
         const request = () => editing
-            ? patch(`/api/users/${editing.id}`, vals)
+            ? patch(`/api/users/${editing}`, vals)
             : post('/api/users', vals);
 
         request()

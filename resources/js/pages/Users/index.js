@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Route, useRouteMatch } from 'react-router-dom';
 import { PageTitle } from '../../components/PageTitle';
 import { Page } from '../../components/Page';
 import { useUsers } from './useUsers';
@@ -10,14 +11,7 @@ import { UserModal } from './UserModal';
 
 export const Users = () => {
     const { users, refresh } = useUsers();
-    const [editing, setEditing] = useState(null);
-    const [showModal, setShowModal] = useState(false);
     const match = useRouteMatch();
-
-    const handleEdit = (id) => {
-        setEditing(id);
-        setShowModal(true);
-    };
 
     const handleUserSaved = () => {
         refresh();
@@ -31,7 +25,6 @@ export const Users = () => {
                 {users ? (users.length > 0 ? (
                     <UsersTable
                         users={users}
-                        onEdit={handleEdit}
                     />
                 ) : (
                         <p className="--centered">No users found.</p>
@@ -50,7 +43,7 @@ export const Users = () => {
                 />
             )} />
 
-            <Route path={`${match.path}/edit/:id`} render={({ match }) => (
+            <Route path={`${match.path}/edit/:id`} render={({ match }) => (console.log(match),
                 <UserModal
                     onSuccess={handleUserSaved}
                     editing={match.params.id}
