@@ -1,11 +1,12 @@
 import React, { useCallback, useMemo } from 'react';
 import * as yup from 'yup';
-import { Modal } from '../../../components/Modal';
+import { Modal, RouterModal } from '../../../components/Modal';
 import { PageTitle } from '../../../components/PageTitle';
 import { Form } from '../../../components/Form';
 import { FieldError } from '../../../components/FieldError';
 import { patch, post } from '../../../helpers';
 import { useForm } from '../../../hooks/useForm';
+import { useHistory } from '../../../hooks/useRouter';
 
 const schema = yup.object().shape({
     name: yup.string().required().label('Name'),
@@ -17,9 +18,9 @@ const schema = yup.object().shape({
     }).label('Password'),
 });
 
-export const UserModal = ({ show, hide, onSuccess, editing }) => {
+export const UserModal = ({ onSuccess, editing }) => {
     const getInitialValues = useCallback((user) => ({
-        name: user ? user.name: '',
+        name: user ? user.name : '',
         email: user ? user.email : '',
         password: '',
     }), []);
@@ -33,7 +34,9 @@ export const UserModal = ({ show, hide, onSuccess, editing }) => {
         errors,
         submitHandler,
         isValid,
-    } = useForm({ editing, getInitialValues, schema, context, showing: show });
+    } = useForm({ editing, getInitialValues, schema, context });
+
+    const history = useHistory();
 
     const handleSubmit = submitHandler(() => {
         // destructure so that password only
@@ -43,15 +46,15 @@ export const UserModal = ({ show, hide, onSuccess, editing }) => {
         if (password) {
             vals.password = password;
         }
-        
+
         const request = () => editing
             ? patch(`/api/users/${editing.id}`, vals)
             : post('/api/users', vals);
 
         request()
             .then(() => {
-                hide();
                 onSuccess();
+                history.goBack();
             })
             .catch((err) => {
                 console.log(err);
@@ -59,7 +62,7 @@ export const UserModal = ({ show, hide, onSuccess, editing }) => {
     });
 
     return (
-        <Modal show={show} hide={hide}>
+        <RouterModal>
             <PageTitle>{editing ? 'Update User' : 'Create User'}</PageTitle>
 
             <Form values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
@@ -113,6 +116,6 @@ export const UserModal = ({ show, hide, onSuccess, editing }) => {
                     </>
                 )}
             </Form>
-        </Modal>
+        </RouterModal>
     );
 };

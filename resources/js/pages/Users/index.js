@@ -12,6 +12,7 @@ export const Users = () => {
     const { users, refresh } = useUsers();
     const [editing, setEditing] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const match = useRouteMatch();
 
     const handleEdit = (id) => {
         setEditing(id);
@@ -33,25 +34,28 @@ export const Users = () => {
                         onEdit={handleEdit}
                     />
                 ) : (
-                    <p className="--centered">No users found.</p>
-                )) : (
-                    <Spinner />
-                )}
+                        <p className="--centered">No users found.</p>
+                    )) : (
+                        <Spinner />
+                    )}
             </Page>
 
-            <FloatingActionButton onClick={() => setShowModal(true)}>
+            <FloatingActionButton to={`${match.path}/create`}>
                 <RoundAdd />
             </FloatingActionButton>
 
-            <UserModal
-                show={showModal}
-                hide={() => {
-                    setShowModal(false)
-                    setEditing(null);
-                }}
-                onSuccess={handleUserSaved}
-                editing={editing && users ? users.find(u => u.id === editing) : null}
-            />
+            <Route path={`${match.path}/create`} render={() => (
+                <UserModal
+                    onSuccess={handleUserSaved}
+                />
+            )} />
+
+            <Route path={`${match.path}/edit/:id`} render={({ match }) => (
+                <UserModal
+                    onSuccess={handleUserSaved}
+                    editing={match.params.id}
+                />
+            )} />
         </>
     );
 }
