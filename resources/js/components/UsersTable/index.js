@@ -19,6 +19,7 @@ export const UsersTable = ({ users }) => {
                         <Cell>{user.name}</Cell>
                         <Cell>{user.email}</Cell>
                         <Cell>{user.time.created.format('Do MMMM YYYY @ HH:mm')}</Cell>
+                        <Cell centered size="thin">{user.is_setup ? 'Yes' : 'No'}</Cell>
                         <Cell centered size="thin">
                             <Link to={`${match.url}/edit/${user.id}`}>
                                 <RoundEdit />
