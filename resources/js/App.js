@@ -17,10 +17,6 @@ import { Brand } from './pages/Brand';
 import { Users } from './pages/Users';
 import { Lab } from './pages/Lab';
 
-// Maybe switch to this at some point?
-// const Dashboard = lazy(() => import('./pages/Dashboard'));
-// const Patients = lazy(() => import('./pages/Patients'));
-
 export const App = () => {
     return (
         <Router>
@@ -29,11 +25,11 @@ export const App = () => {
             <div className="container">
                 <div className="inner-container">
                     <Route exact path="/" component={Dashboard} />
-                    {/*
-                    <Switch> */}
-                    <Route exact path="/patients/:id(\d+)" component={Patient} />
-                    <Route path="/patients" component={Patients} />
-                    {/* </Switch> */}
+
+                    <Switch>
+                        <Route exact path="/patients/:id(\d+)" component={Patient} />
+                        <Route path="/patients" component={Patients} />
+                    </Switch>
 
                     <Route exact path="/practices" component={Practices} />
                     <Route exact path="/practices/:id" component={Practice} />
