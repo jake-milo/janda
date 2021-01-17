@@ -2,17 +2,20 @@ import React, { useCallback } from 'react';
 import * as yup from 'yup';
 import { Form } from '../Form';
 import { FieldError } from '../FieldError';
-import { Modal } from '../Modal';
+import { RouterModal } from '../Modal';
 import { PageTitle } from '../PageTitle';
 import { post, patch } from '../../helpers';
 import { fetchManufacturer } from '../../utilities/fetchManufacturer';
 import { useForm } from '../../hooks/useForm';
+import { useHistory } from '../../hooks/useRouter';
 
 const schema = yup.object().shape({
     name: yup.string().required().label('Name'),
 });
 
-export const ManufacturerModal = ({ show, hide, onSuccess, editing }) => {
+export const ManufacturerModal = ({ onSuccess, editing }) => {
+    const history = useHistory();
+    
     const getInitialValues = useCallback(async (id) => {
         if (!id) return {
             name: '',
@@ -32,7 +35,7 @@ export const ManufacturerModal = ({ show, hide, onSuccess, editing }) => {
         errors,
         submitHandler,
         isValid,
-    } = useForm({ editing, getInitialValues, schema, showing: show });
+    } = useForm({ editing, getInitialValues, schema });
 
 
     const handleSubmit = submitHandler(() => {
@@ -42,8 +45,8 @@ export const ManufacturerModal = ({ show, hide, onSuccess, editing }) => {
 
         request()
             .then(() => {
-                hide();
                 onSuccess();
+                history.goBack();
             })
             .catch((err) => {
                 console.log(err);
@@ -51,7 +54,7 @@ export const ManufacturerModal = ({ show, hide, onSuccess, editing }) => {
     });
 
     return (
-        <Modal show={show} hide={hide}>
+        <RouterModal>
             <PageTitle>{editing ? 'Update Manufacturer' : 'Create Manufacturer'}</PageTitle>
 
             <Form values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
@@ -74,6 +77,6 @@ export const ManufacturerModal = ({ show, hide, onSuccess, editing }) => {
                 )}
 
             </Form>
-        </Modal>
+        </RouterModal>
     );
 };

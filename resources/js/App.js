@@ -51,7 +51,7 @@ export const App = () => {
 
                     <Route path="/brands/:id" component={Brand} />
 
-                    <Route exact path="/manufacturers/:id" component={Manufacturer} />
+                    <Route path="/manufacturers/:id" component={Manufacturer} />
 
                     <Route exact path="/users" component={Users} />
                 </div>

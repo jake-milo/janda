@@ -19,8 +19,6 @@ const Button = ({ onClick, to, title, style, children }) => {
         e.preventDefault();
         setExpanded(false);
 
-        console.log({ onClick });
-
         if (onClick) {
             onClick();
         } else if (to) {
