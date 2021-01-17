@@ -52,7 +52,7 @@ class TypeController extends Controller
     {
         $type->loadResourceRelations();
 
-        return TypeResource::make();
+        return TypeResource::make($type);
     }
 
     /**
@@ -64,7 +64,7 @@ class TypeController extends Controller
      */
     public function update(UpdateTypeRequest $request, Brand $brand, Type $type)
     {
-        $updates = $request ->getUpdates();
+        $updates = $request->getUpdates();
 
         $type->fill($updates);
         $type->save();

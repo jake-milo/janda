@@ -1,29 +1,37 @@
 import React, { useCallback } from 'react';
 import * as yup from 'yup';
-import { Modal } from '../../../components/Modal';
+import { RouterModal } from '../../../components/Modal';
 import { PageTitle } from '../../../components/PageTitle';
 import { Form } from '../../../components/Form';
 import { FieldError } from '../../../components/FieldError';
 import { patch, post } from '../../../helpers';
 import { useForm } from '../../../hooks/useForm';
+import { useHistory } from '../../../hooks/useRouter';
+import { fetchContactLensBrandType } from '../../../utilities/fetchContactLensBrandType';
 
 const schema = yup.object().shape({
     name: yup.string().required().label('Name'),
     duration: yup.string().required().label('Duration')
 });
 
-export const ContactLensTypeModal = ({ show, hide, onSuccess, editing = null, brand }) => {
-    const getInitialValues = useCallback((editing) => {
+export const ContactLensTypeModal = ({ onSuccess, editing = null, brand }) => {
+    const history = useHistory();
+
+    console.log({brand});
+
+    const getInitialValues = useCallback(async (editing) => {
         if (!editing) return {
             name: '',
             duration: '',
         };
 
+        const type = await fetchContactLensBrandType(brand.id, editing);
+
         return {
-            name: editing.name,
-            duration: editing.duration,
+            name: type.name,
+            duration: type.duration,
         }
-    }, []);
+    }, [brand.id]);
 
     const {
         values,
@@ -32,17 +40,17 @@ export const ContactLensTypeModal = ({ show, hide, onSuccess, editing = null, br
         isValid,
         loading,
         createNativeHandler,
-    } = useForm({ schema, editing, showing: show, getInitialValues });
+    } = useForm({ schema, editing, getInitialValues });
 
     const handleSubmit = submitHandler(() => {
         const request = () => editing
-            ? patch(`/api/contact-lens-brands/${brand.id}/types/${editing.id}`, values)
+            ? patch(`/api/contact-lens-brands/${brand.id}/types/${editing}`, values)
             : post(`/api/contact-lens-brands/${brand.id}/types`, values);
 
         request()
             .then(() => {
-                hide();
                 onSuccess();
+                history.goBack();
             })
             .catch((err) => {
                 console.log(err);
@@ -50,7 +58,7 @@ export const ContactLensTypeModal = ({ show, hide, onSuccess, editing = null, br
     });
 
     return (
-        <Modal show={show} hide={hide}>
+        <RouterModal>
             <PageTitle>{editing ? 'Update Type' : 'Create Type'}</PageTitle>
 
             <Form values={values} errors={errors} loading={loading} onSubmit={handleSubmit}>
@@ -72,6 +80,6 @@ export const ContactLensTypeModal = ({ show, hide, onSuccess, editing = null, br
                     </>
                 )}
             </Form>
-        </Modal>
+        </RouterModal>
     );
 };

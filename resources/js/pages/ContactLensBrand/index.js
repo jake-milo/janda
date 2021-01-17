@@ -14,15 +14,12 @@ import { BrandModal } from '../../components/BrandModal';
 import { ContactLensTypeModal } from './ContactLensTypeModal';
 import { ContactLensBrandModal } from './ContactLensBrandModal';
 import { remove } from '../../helpers';
-import { Route } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 
 
 
 export const ContactLensBrand = ({ match }) => {
     const { brand, refresh } = useContactLensBrand(match.params.id);
-    const [showModal, setShowModal] = useState(false);
-    const [showTypeModal, setShowTypeModal] = useState(false);
-    const [editing, setEditing] = useState(null);
 
     const handleBrandSaved = () => {
         refresh();
@@ -32,14 +29,9 @@ export const ContactLensBrand = ({ match }) => {
         refresh();
     };
 
-    const handleEditClick = type => (e) => {
+    const handleRemove = type => (e) => {
         e.preventDefault();
 
-        setEditing(type);
-        setShowTypeModal(true);
-    };
-
-    const handleRemove = type => (e) => {
         remove(`/api/contact-lens-brands/${brand.id}/types/${type.id}`)
             .then(() => {
                 refresh();
@@ -66,9 +58,9 @@ export const ContactLensBrand = ({ match }) => {
                                 <Cell>{type.name}</Cell>
                                 <Cell>{type.duration}</Cell>
                                 <Cell size="thin">
-                                    <a href="#edit" onClick={handleEditClick(type)}>
+                                    <Link to={`${match.url}/edit-type/${type.id}`}>
                                         <RoundEdit />
-                                    </a>
+                                    </Link>
                                     <a href="#remove" onClick={handleRemove(type)}>
                                         <BaselineDelete />
                                     </a>
@@ -86,7 +78,7 @@ export const ContactLensBrand = ({ match }) => {
                     <RoundEdit />
                 </FAB.Button>
 
-                <FAB.Button onClick={() => setShowTypeModal(true)}>
+                <FAB.Button to={`${match.url}/create-type`}>
                     <RoundAdd />
                 </FAB.Button>
             </FAB>
@@ -98,18 +90,24 @@ export const ContactLensBrand = ({ match }) => {
                 />
             )} />
 
-            {brand && (
+            {brand ? (
                 <>
+                    <Route path={`${match.path}/create-type`} render={() => (
+                        <ContactLensTypeModal
+                            onSuccess={handleTypeSaved}
+                            brand={brand}
+                        />
+                    )} />
 
-                    <ContactLensTypeModal
-                        show={showTypeModal}
-                        hide={() => setShowTypeModal(false)}
-                        onSuccess={handleTypeSaved}
-                        brand={brand}
-                        editing={editing}
-                    />
+                    <Route path={`${match.path}/edit-type/:typeId`} render={({ match }) => (
+                        <ContactLensTypeModal
+                            onSuccess={handleTypeSaved}
+                            brand={brand}
+                            editing={match.params.typeId}
+                        />
+                    )} />
                 </>
-            )}
+            ) : null}
         </>
     );
 }
