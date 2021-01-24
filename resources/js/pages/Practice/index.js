@@ -6,9 +6,15 @@ import { Page } from '../../components/Page';
 import { Spinner } from '../../components/Spinner';
 import { LabOrdersTable, headers as loHeaders } from '../../components/LabOrdersTable';
 import { ContactLensesTable, headers as clHeaders } from '../../components/ContactLensesTable';
+import { useSort } from '../../hooks/useSort';
 
 export const Practice = ({ match }) => {
-    const { practice } = usePractice(match.params.id);
+    const [sortLabOrders, orderLabOrders, updateLabOrderOrdering] = useSort();
+    const [sortContactLenses, orderContactLenses, updateContactLensOrdering] = useSort();
+    const { practice } = usePractice(match.params.id, {
+        sortLabOrders, orderLabOrders,
+        sortContactLenses, orderContactLenses,
+    });
 
     return (
         <>
@@ -22,11 +28,15 @@ export const Practice = ({ match }) => {
                         <>
                             <LabOrdersTable
                                 labOrders={practice.labOrders}
+                                sort={sortLabOrders}
+                                order={orderLabOrders}
+                                updateSorting={updateLabOrderOrdering}
+                                noSortingOn={['Patient', 'Lab']}
                                 remove={[loHeaders.PRACTICE]}
                             />
 
                             <p className="--centered">
-                                Only showing the latest 10 results.
+                                Only showing the first 10 results.
                                 {' '}
                                 <Link to={`/lab-orders?practice=${practice.id}`}>See More</Link>
                             </p>
@@ -40,11 +50,15 @@ export const Practice = ({ match }) => {
                         <>
                             <ContactLensesTable
                                 contactLenses={practice.contactLenses}
+                                sort={sortContactLenses}
+                                order={orderContactLenses}
+                                noSortingOn={['Patient', 'Make', 'Duration']}
+                                updateSorting={updateContactLensOrdering}
                                 remove={[clHeaders.PRACTICE]}
                             />
 
                             <p className="--centered">
-                                Only showing the latest 10 results.
+                                Only showing the first 10 results.
                                 {' '}
                                 <Link to={`/contact-lenses?practice=${practice.id}`}>See More</Link>
                             </p>
