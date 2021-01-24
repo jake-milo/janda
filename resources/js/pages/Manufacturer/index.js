@@ -12,9 +12,11 @@ import { useManufacturer } from './useManufacturer';
 import { Table, Row, Cell } from '../../components/Table';
 import { ManufacturerModal } from '../../components/ManufacturerModal';
 import { remove } from '../../helpers';
+import { useSort } from '../../hooks/useSort';
 
 export const Manufacturer = ({ match }) => {
-    const { manufacturer, refresh } = useManufacturer(match.params.id);
+    const [sortBrands, orderBrands, updateBrandOrdering] = useSort();
+    const { manufacturer, refresh } = useManufacturer(match.params.id, { sortBrands, orderBrands });
 
     const handleManufacturerSaved = () => {
         refresh();
@@ -45,7 +47,11 @@ export const Manufacturer = ({ match }) => {
                                 'Name': 'normal',
                                 'Created At': 'normal',
                                 'Updated At': 'normal',
-                            }}>
+                            }} sortable={{
+                                'Name': 'name',
+                                'Created At': 'created_at',
+                                'Updated At': 'updated_at',
+                            }} sort={sortBrands} order={orderBrands} updateSorting={updateBrandOrdering}>
                                 {manufacturer.brands.map((brand, i) => (
                                     <Row key={brand.id}>
                                         <Cell>
