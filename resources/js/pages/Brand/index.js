@@ -15,9 +15,12 @@ import { BrandModal } from '../../components/BrandModal';
 import { TypeModal } from './TypeModal';
 import { remove, post } from '../../helpers';
 import { Stepper } from '../../components/Stepper';
+import * as h from './headers';
+import { useSort } from '../../hooks/useSort';
 
 export const Brand = ({ match }) => {
-    const { brand, refresh } = useBrand(match.params.id);
+    const [sortTypes, orderTypes, updateTypeSorting] = useSort();
+    const { brand, refresh } = useBrand(match.params.id, { sortTypes, orderTypes });
 
     const handleBrandSaved = () => {
         refresh();
@@ -67,17 +70,7 @@ export const Brand = ({ match }) => {
 
                 <h2>Frames</h2>
                 {brand ? (
-                    <Table headers={{
-                        'Name': 'normal',
-                        'Price': 'normal',
-                        'Code': 'normal',
-                        'Eyesize': 'normal',
-                        'DBL': 'normal',
-                        'Color': 'normal',
-                        'Year': 'normal',
-                        'Quantity': ['normal', true],
-                        '': 'thin',
-                    }}>
+                    <Table headers={h.headers} sortable={h.sortable} sort={sortTypes} order={orderTypes} updateSorting={updateTypeSorting}>
                         {brand.types.map(type => type.variants.map((variant, i) => (
                             <Row key={variant.id}>
                                 <Cell>{i === 0 ? type.name : ''}</Cell>

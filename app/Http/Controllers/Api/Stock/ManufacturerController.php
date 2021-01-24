@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Stock;
 
 use App\Models\Stock\Manufacturer;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ShowManufacturerRequest;
 use App\Http\Resources\Stock\Manufacturer as ManufacturerResource;
 use App\Http\Requests\Stock\CreateManufacturerRequest;
 use App\Http\Requests\Stock\UpdateManufacturerRequest;
@@ -46,8 +47,9 @@ class ManufacturerController extends Controller
      * @param  \App\Models\Manufacturer  $manufacturer
      * @return \Illuminate\Http\Response
      */
-    public function show(Manufacturer $manufacturer)
+    public function show(ShowManufacturerRequest $request, $id)
     {
+        $manufacturer = $request->getManufacturer($id);
         $manufacturer->loadResourceRelations();
 
         return ManufacturerResource::make($manufacturer);

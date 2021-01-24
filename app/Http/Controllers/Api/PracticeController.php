@@ -8,6 +8,7 @@ use App\Http\Resources\Practice as PracticeResource;
 use App\Http\Requests\CreatePracticeRequest;
 use App\Http\Requests\UpdatePracticeRequest;
 use App\Http\Requests\GetPracticeRequest;
+use App\Http\Requests\ShowPracticeRequest;
 
 class PracticeController extends Controller
 {
@@ -44,8 +45,9 @@ class PracticeController extends Controller
      * @param  \App\Models\Practice  $practice
      * @return \Illuminate\Http\Response
      */
-    public function show(Practice $practice)
+    public function show(ShowPracticeRequest $request, $id)
     {
+        $practice = $request->getPractice($id);
         $practice->loadResourceRelations();
 
         return PracticeResource::make($practice);

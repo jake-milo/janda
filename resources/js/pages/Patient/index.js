@@ -9,9 +9,15 @@ import { FloatingActionButton } from '../../components/FloatingActionButton';
 import RoundEdit from 'react-md-icon/dist/RoundEdit';
 import { Route } from 'react-router-dom';
 import { PatientModal } from '../Patients/PatientModal';
+import { useSort } from '../../hooks/useSort';
 
 export const Patient = ({ match }) => {
-    const { patient, refresh } = usePatient(match.params.id);
+    const [sortLabOrders, orderLabOrders, updateLabOrderOrdering] = useSort();
+    const [sortContactLenses, orderContactLenses, updateContactLensOrdering] = useSort();
+    const { patient, refresh } = usePatient(match.params.id, {
+        sortLabOrders, orderLabOrders,
+        sortContactLenses, orderContactLenses,
+    });
 
     const handlePatientSaved = () => {
         refresh();
@@ -28,6 +34,10 @@ export const Patient = ({ match }) => {
                         {patient.labOrders.length > 0 ? (
                             <LabOrdersTable
                                 labOrders={patient.labOrders}
+                                sort={sortLabOrders}
+                                order={orderLabOrders}
+                                noSortingOn={['Practice', 'Lab']}
+                                updateSorting={updateLabOrderOrdering}
                                 remove={[loHeaders.PATIENT]}
                             />
                         ) : (
@@ -38,6 +48,10 @@ export const Patient = ({ match }) => {
                         {patient.contactLenses.length > 0 ? (
                             <ContactLensesTable
                                 contactLenses={patient.contactLenses}
+                                sort={sortContactLenses}
+                                order={orderContactLenses}
+                                noSortingOn={['Practice', 'Make', 'Duration']}
+                                updateSorting={updateContactLensOrdering}
                                 remove={[clHeaders.PATIENT]}
                             />
                         ) : (

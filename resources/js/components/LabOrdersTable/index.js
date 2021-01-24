@@ -16,6 +16,7 @@ export const LabOrdersTable = ({
     updateSorting, // used to update the sorting
     onReceived, // method to call when received form has been submitted
     remove = [], // columns to not render if desired
+    noSortingOn = [],
     withActions = false, // flag to toggle actions
     disableSorting = false, // flag to disable sorting
 }) => {
@@ -32,8 +33,10 @@ export const LabOrdersTable = ({
     const sortable = useMemo(() => {
         if (disableSorting) return [];
 
-        return h.getSortable(withActions ? remove : [...remove, h.ACTIONS]);
-    }, [remove, withActions, disableSorting]);
+        const toRemove = [...remove, ...noSortingOn];
+
+        return h.getSortable(withActions ? toRemove : [...toRemove, h.ACTIONS]);
+    }, [remove, withActions, disableSorting, noSortingOn]);
 
     const hasHeader = header => !remove.includes(header);
 

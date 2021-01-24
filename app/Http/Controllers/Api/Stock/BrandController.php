@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Stock;
 
 use App\Models\Stock\Brand;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ShowBrandRequest;
 use App\Http\Resources\Stock\Brand as BrandResource;
 use App\Http\Requests\Stock\CreateBrandRequest;
 use App\Http\Requests\Stock\UpdateBrandRequest;
@@ -49,9 +50,12 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function show(Brand $brand)
+    public function show(ShowBrandRequest $request, $id)
     {
+        $brand = $request->getBrand($id);
         $brand->loadResourceRelations();
+
+        // dd($brand);
 
         return BrandResource::make($brand);
     }

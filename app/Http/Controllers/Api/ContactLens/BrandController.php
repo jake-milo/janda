@@ -8,6 +8,7 @@ use App\Http\Resources\ContactLens\Brand as BrandResource;
 use App\Http\Requests\ContactLens\CreateBrandRequest;
 use App\Http\Requests\ContactLens\UpdateBrandRequest;
 use App\Http\Requests\ContactLens\GetBrandRequest;
+use App\Http\Requests\ShowContactLensBrandRequest;
 
 class BrandController extends Controller
 {
@@ -46,8 +47,9 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function show(Brand $brand)
+    public function show(ShowContactLensBrandRequest $request, $id)
     {
+        $brand = $request->getBrand($id);
         $brand->loadResourceRelations();
 
         return BrandResource::make($brand);
