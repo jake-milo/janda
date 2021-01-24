@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import RoundEdit from 'react-md-icon/dist/RoundEdit';
 import RoundAdd from 'react-md-icon/dist/RoundAdd';
 import RoundMoreVert from 'react-md-icon/dist/RoundMoreVert';
@@ -9,17 +9,17 @@ import { Page } from '../../components/Page';
 import { Spinner } from '../../components/Spinner';
 import { Cell, Row, Table } from '../../components/Table';
 import { FloatingActionButton as FAB } from '../../components/FloatingActionButton';
-import { TypeModal } from '../Brand/TypeModal';
-import { BrandModal } from '../../components/BrandModal';
 import { ContactLensTypeModal } from './ContactLensTypeModal';
 import { ContactLensBrandModal } from './ContactLensBrandModal';
 import { remove } from '../../helpers';
 import { Link, Route } from 'react-router-dom';
+import { useSort } from '../../hooks/useSort';
 
 
 
 export const ContactLensBrand = ({ match }) => {
-    const { brand, refresh } = useContactLensBrand(match.params.id);
+    const [sortTypes, orderTypes, updateTypeOrdering] = useSort();
+    const { brand, refresh } = useContactLensBrand(match.params.id, { sortTypes, orderTypes });
 
     const handleBrandSaved = () => {
         refresh();
@@ -52,7 +52,10 @@ export const ContactLensBrand = ({ match }) => {
                         'Name': 'normal',
                         'Duration': 'normal',
                         '': 'thin',
-                    }}>
+                    }} sortable={{
+                        'Name': 'name',
+                        'Duration': 'duration'
+                    }} sort={sortTypes} order={orderTypes} updateSorting={updateTypeOrdering}>
                         {brand.types.map(type => (
                             <Row key={type.id}>
                                 <Cell>{type.name}</Cell>
