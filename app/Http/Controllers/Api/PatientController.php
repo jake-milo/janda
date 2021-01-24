@@ -8,6 +8,7 @@ use App\Http\Resources\Patient as PatientResource;
 use App\Http\Requests\CreatePatientRequest;
 use App\Http\Requests\UpdatePatientRequest;
 use App\Http\Requests\GetPatientsRequest;
+use App\Http\Requests\ShowPatientRequest;
 
 class PatientController extends Controller
 {
@@ -31,7 +32,7 @@ class PatientController extends Controller
     {
         $patientData = $request->getPatientData();
 
-        $patient= Patient::create($patientData);
+        $patient = Patient::create($patientData);
 
         $patient->loadResourceRelations();
 
@@ -44,8 +45,9 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function show(Patient $patient)
+    public function show(ShowPatientRequest $request, $id)
     {
+        $patient = $request->getPatient($id);
         $patient->loadResourceRelations();
 
         return PatientResource::make($patient);

@@ -12,6 +12,7 @@ export const ContactLensesTable = ({
     order, // order of the sorting
     updateSorting, // used to update the sorting
     remove = [], // columns to not render if desired
+    noSortingOn = [],
     withActions = false, // flag to toggle actions
 }) => {
     const match = useRouteMatch();
@@ -20,7 +21,9 @@ export const ContactLensesTable = ({
         return h.getHeaders(withActions ? remove : [...remove, h.ACTIONS]);
     }, [remove, withActions]);
 
-    const sortable = useMemo(() => h.getSortable(remove), [remove]);
+    const sortable = useMemo(() => {
+        return h.getSortable([...remove, ...noSortingOn])
+    }, [remove, noSortingOn]);
 
     const hasHeader = header => !remove.includes(header);
 
