@@ -21,7 +21,7 @@ class UserPasswordSetup extends Mailable
      *
      * @return void
      */
-    public function __construct(User $user, User $initiatedBy)
+    public function __construct(User $user, $initiatedBy)
     {
         $this->user = $user;
         $this->initiatedBy = $initiatedBy;
