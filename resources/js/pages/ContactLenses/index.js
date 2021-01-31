@@ -23,6 +23,7 @@ export const ContactLenses = () => {
         practice,
         sort,
         order,
+        brand,
     });
 
     const handleContactLensSaved = () => {
