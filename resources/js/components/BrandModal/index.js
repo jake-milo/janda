@@ -14,15 +14,15 @@ const schema = yup.object().shape({
     manufacturer: yup.string().required().label('Manufacturer'),
 });
 
-export const BrandModal = ({ onSuccess, brand: editing = null }) => {
+export const BrandModal = ({ onSuccess, brand: editing = null, manufacturer = null }) => {
     const getInitialValues = useCallback(async (brand) => {
         return {
             name: brand ? brand.name : '',
-            manufacturer: brand ? brand.manufacturer.id : '',
+            manufacturer: manufacturer || (brand ? brand.manufacturer.id : ''),
         };
-    }, []);
+    }, [manufacturer]);
 
-    const { 
+    const {
         values,
         loading,
         createHandler,
@@ -67,14 +67,19 @@ export const BrandModal = ({ onSuccess, brand: editing = null }) => {
                         </div>
                         <FieldError name="name" />
 
-                        <PickOrNewManufacturer
-                            name="manufacturer"
-                            value={values.manufacturer}
-                            creating={creatingManufacturer}
-                            setCreating={setCreatingManufacturer}
-                            onChange={createHandler('manufacturer')}
-                        />
-                        <FieldError name="manufacturer" />
+                        {manufacturer ? null : (
+                            <>
+
+                                <PickOrNewManufacturer
+                                    name="manufacturer"
+                                    value={values.manufacturer}
+                                    creating={creatingManufacturer}
+                                    setCreating={setCreatingManufacturer}
+                                    onChange={createHandler('manufacturer')}
+                                />
+                                <FieldError name="manufacturer" />
+                            </>
+                        )}
 
                         <input type="submit" value={editing ? `Update` : `Create`} disabled={!isValid} />
                     </>
