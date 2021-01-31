@@ -13,6 +13,7 @@ import { Table, Row, Cell } from '../../components/Table';
 import { ManufacturerModal } from '../../components/ManufacturerModal';
 import { remove } from '../../helpers';
 import { useSort } from '../../hooks/useSort';
+import { BrandModal } from '../../components/BrandModal';
 
 export const Manufacturer = ({ match }) => {
     const [sortBrands, orderBrands, updateBrandOrdering] = useSort();
@@ -21,11 +22,20 @@ export const Manufacturer = ({ match }) => {
     const handleManufacturerSaved = () => {
         refresh();
     };
+    const handleBrandSaved = () => {
+        refresh();
+    };
+
+    const getBrandById = (id) => {
+        if (!manufacturer) return null;
+
+        return manufacturer.brands.find(brand => brand.id == id);
+    }
 
     const handleRemove = brand => (e) => {
         e.preventDefault();
 
-        remove(`/api/manufacturers/${manufacturer.id}/brands/${brand.id}`)
+        remove(`/api/brands/${brand.id}`)
             .then(() => {
                 refresh();
             })
@@ -41,7 +51,7 @@ export const Manufacturer = ({ match }) => {
             <Page>
                 {manufacturer ? (
                     <>
-                        <h2>Frames</h2>
+                        <h2>Brands</h2>
                         {manufacturer.brands.length > 0 ? (
                             <Table headers={{
                                 'Name': 'normal',
@@ -62,9 +72,9 @@ export const Manufacturer = ({ match }) => {
                                         <Cell>{brand.time.created.format('DD MMMM YYYY @ HH:mm')}</Cell>
                                         <Cell>{brand.time.updated.format('DD MMMM YYYY @ HH:mm')}</Cell>
                                         <Cell size="thin">
-                                            <a href="#edit">
+                                            <Link to={`${match.url}/edit-brand/${brand.id}`}>
                                                 <RoundEdit />
-                                            </a>
+                                            </Link>
 
                                             <a href="#remove" onClick={handleRemove(brand)}>
                                                 <BaselineDelete />
@@ -87,7 +97,7 @@ export const Manufacturer = ({ match }) => {
                     <RoundEdit />
                 </FAB.Button>
 
-                <FAB.Button>
+                <FAB.Button to={`${match.url}/create-brand`}>
                     <RoundAdd />
                 </FAB.Button>
             </FAB>
@@ -96,6 +106,20 @@ export const Manufacturer = ({ match }) => {
                 <ManufacturerModal
                     editing={match.params.id}
                     onSuccess={handleManufacturerSaved}
+                />
+            )} />
+
+            <Route path={`${match.path}/create-brand`} render={({ match }) => (
+                <BrandModal
+                    manufacturer={match.params.id}
+                    onSuccess={handleBrandSaved}
+                />
+            )} />
+            <Route path={`${match.path}/edit-brand/:brandId`} render={({ match }) => (
+                <BrandModal
+                    brand={getBrandById(match.params.brandId)}
+                    manufacturer={match.params.id}
+                    onSuccess={handleBrandSaved}
                 />
             )} />
         </>
