@@ -3,15 +3,10 @@
 use App\Mail\UserPasswordSetup;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('mail', function () {
-     $user = App\Models\User::find(2);
-
-     return new UserPasswordSetup($user, Auth::user());
-});
-
 /*
  * Routes that are accessible when not logged in.
  */
+
 Route::group(['middleware' => 'guest'], function () {
      // Login routes
      Route::get('/login', 'LoginController@showLoginForm')->name('login');
