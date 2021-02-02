@@ -13,7 +13,11 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         foreach ($this->getUsers() as $user) {
-            User::create($user);
+            User::withoutEvents(function () use ($user) {
+                $u = new User($user);
+
+                $u->save();
+            });
         }
     }
 
