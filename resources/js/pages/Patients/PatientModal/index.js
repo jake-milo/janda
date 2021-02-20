@@ -10,7 +10,7 @@ import { useForm } from '../../../hooks/useForm';
 import { useHistory } from '../../../hooks/useRouter';
 
 const schema = yup.object().shape({
-    title: yup.string().optional().label('Title'),
+    title: yup.string().optional().nullable().label('Title'),
     name: yup.string().required().label('First Name'),
     last_name: yup.string().required().label('Last Name'),
 });
