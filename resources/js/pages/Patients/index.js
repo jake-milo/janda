@@ -64,7 +64,7 @@ export const Patients = () => {
                             '': 'normal',
                         }}
                         sortable={{
-                            'Name': 'name',
+                            'Name': 'last_name',
                             'Created At': 'created_at',
                             'Updated At': 'updated_at',
                         }}
