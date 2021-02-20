@@ -27,8 +27,10 @@ class CreateLabOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'patient_id' => 'integer|required_without:patient|exists:patients,id',
-            'patient' => 'string|required_without:patient_id',
+            'patient_id' => 'integer|required_without:patient_name|exists:patients,id',
+            'patient_title' => 'string|nullable',
+            'patient_name' => 'string|required_without:patient_id',
+            'patient_last_name' => 'string|required_without:patient_id',
             'practice_id' => 'integer|required|exists:practices,id',
             'lab_id' => 'integer|required_without:lab|exists:labs,id',
             'lab' => 'string|required_without:lab_id',
@@ -47,7 +49,9 @@ class CreateLabOrderRequest extends FormRequest
         }
 
         return Patient::create([
-            'name' => $this->input('patient'),
+            'title' => $this->input('patient_title'),
+            'name' => $this->input('patient_name'),
+            'last_name' => $this->input('patient_last_name'),
         ]);
     }
 
