@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import * as yup from 'yup';
-import { Modal, RouterModal } from '../../../components/Modal';
+import { RouterModal } from '../../../components/Modal';
 import { PageTitle } from '../../../components/PageTitle';
 import { PracticePicker } from '../../../components/PracticePicker';
 import { post, patch } from '../../../helpers';
@@ -14,7 +14,17 @@ import { useForm } from '../../../hooks/useForm';
 import { useHistory } from '../../../hooks/useRouter';
 
 const schema = yup.object().shape({
-    patient: yup.string().required().label('Patient'),
+    patient: yup.lazy(value => {
+        if (typeof value === 'object') {
+            return yup.object().shape({
+                title: yup.string(),
+                name: yup.string().required().label('First Name'),
+                last_name: yup.string().required().label('Last Name'),
+            });
+        }
+
+        return yup.string().required().label('Patient');
+    }),
     practice: yup.string().required().label('Practice'),
     brand: yup.string().required().label('Brand'),
     type: yup.string().required().label('Model'),
@@ -83,9 +93,16 @@ export const ContactLensModal = ({ show, onSuccess, editing }) => {
         const { patient, brand, type, duration, practice, ...contactLens } = values;
 
         contactLens.practice_id = practice;
-        contactLens[creatingPatient ? 'patient' : 'patient_id'] = patient;
         contactLens[creatingBrand ? 'brand' : 'brand_id'] = brand;
         contactLens[creatingType || creatingBrand ? 'type' : 'type_id'] = type;
+
+        if (creatingPatient) {
+            contactLens.patient_title = patient.title;
+            contactLens.patient_name = patient.name;
+            contactLens.patient_last_name = patient.last_name;
+        } else {
+            contactLens.patient_id = patient;
+        }
 
         if (creatingType || creatingBrand) {
             contactLens.duration = duration;

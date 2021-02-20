@@ -16,7 +16,17 @@ import { Form } from '../../../components/Form';
 import { useHistory } from '../../../hooks/useRouter';
 
 const schema = yup.object().shape({
-    patient: yup.string().required().label('Patient'),
+    patient: yup.lazy(value => {
+        if (typeof value === 'object') {
+            return yup.object().shape({
+                title: yup.string(),
+                name: yup.string().required().label('First Name'),
+                last_name: yup.string().required().label('Last Name'),
+            });
+        }
+
+        return yup.string().required().label('Patient');
+    }),
     practice_id: yup.string().required().label('Practice'),
     lab_id: yup.string().required().label('Lab'),
     lens: yup.string().required().label('Lens'),
@@ -78,7 +88,13 @@ export const LabOrderFormModal = ({ onSuccess, editing }) => {
         labOrder.date_required = toStringOrNull(date_required);
         labOrder.date_received = toStringOrNull(date_received);
 
-        labOrder[creatingPatient ? 'patient' : 'patient_id'] = patient;
+        if (creatingPatient) {
+            labOrder.patient_title = patient.title;
+            labOrder.patient_name = patient.name;
+            labOrder.patient_last_name = patient.last_name;
+        } else {
+            labOrder.patient_id = patient;
+        }
 
         const request = () => editing
             ? patch(`/api/lab-orders/${editing}`, labOrder)
@@ -99,7 +115,7 @@ export const LabOrderFormModal = ({ onSuccess, editing }) => {
             <PageTitle>{editing ? 'Update' : 'Create'} Lab Order</PageTitle>
 
             <Form values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
-                {() => (
+                {() => (console.log(values.patient),
                     <>
                         <PickOrNewPatient
                             name="patient"
