@@ -15,6 +15,17 @@ class Patient extends Model
 
     protected $fillable = ['name'];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleted(function ($patient) {
+            $patient->labOrders()->delete();
+            $patient->contactLenses()->delete();
+        });
+    }
+
+
     public function labOrders()
     {
         return $this->hasMany(LabOrder::class);

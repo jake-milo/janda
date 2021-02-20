@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import RoundAdd from 'react-md-icon/dist/RoundAdd';
 import RoundEdit from 'react-md-icon/dist/RoundEdit';
+import RoundDelete from 'react-md-icon/dist/RoundDelete';
 import { Route, useRouteMatch } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { PageTitle } from '../../components/PageTitle';
@@ -13,6 +14,7 @@ import { FloatingActionButton } from '../../components/FloatingActionButton';
 import { PatientModal } from './PatientModal';
 import { useSort } from '../../hooks/useSort';
 import { useDebounced } from '../../hooks/useDebounced';
+import { remove } from '../../helpers';
 
 export const Patients = () => {
     const [sort, order, updateSorting] = useSort();
@@ -23,27 +25,22 @@ export const Patients = () => {
         order,
         filter: debouncedFilter,
     });
-    const [showModal, setShowModal] = useState(false);
-    const [editing, setEditing] = useState(null);
     const match = useRouteMatch();
-
-    useEffect(() => {
-        if (editing) {
-            setShowModal(true);
-        }
-    }, [editing]);
 
 
     const handlePatientSaved = () => {
         refresh();
-
-        setEditing(null);
     };
 
-    const handleEditClick = id => (e) => {
+    const handleDelete = (id) => (e) => {
         e.preventDefault();
 
-        setEditing(id);
+        // eslint-disable-next-line
+        if (confirm('Are you sure you want to delete this patient?')) {
+            remove(`/api/patients/${id}`).then(() => {
+                refresh();
+            });
+        }
     };
 
     return (
@@ -88,6 +85,10 @@ export const Patients = () => {
                                     <Link to={`${match.path}/edit/${patient.id}`}>
                                         <RoundEdit />
                                     </Link>
+
+                                    <a href="#delete" onClick={handleDelete(patient.id)}>
+                                        <RoundDelete />
+                                    </a>
                                 </Cell>
                             </Row>
                         ))}
