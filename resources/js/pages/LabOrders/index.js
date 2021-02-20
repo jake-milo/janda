@@ -17,12 +17,17 @@ import { useSort } from '../../hooks/useSort';
 import { LabOrderFormModal } from './LabOrderFormModal';
 
 import './LabOrders.css';
+import { useDebounced } from '../../hooks/useDebounced';
+import { PatientPicker } from '../../components/PatientPicker';
 
 export const LabOrders = () => {
     const params = useQueryParams();
     const [practice, setPractice] = useState(params.practice || '');
     const [status, setStatus] = useState(params.status || '');
     const [lab, setLab] = useState('');
+    const [patient, setPatient] = useState(params.patient || '');
+    const [filter, setFilter] = useState('');
+    const debouncedFilter = useDebounced(filter, 500);
     const match = useRouteMatch();
 
     const { pathname } = useLocation();
@@ -41,6 +46,8 @@ export const LabOrders = () => {
         lab,
         sort,
         order,
+        filter: debouncedFilter,
+        patient,
     });
 
     const handleLabOrderSaved = () => {
@@ -73,6 +80,22 @@ export const LabOrders = () => {
                             value={lab}
                             onChange={setLab}
                             emptyText="All"
+                            clearable
+                        />
+                    </div>
+                </div>
+
+                <div className="filters">
+                    <div className="input-wrapper --inline">
+                        <label htmlFor="search">Search</label>
+                        <input type="text" id="search" name="search" onChange={e => setFilter(e.target.value)} value={filter} />
+                    </div>
+
+                    <div className="select-wrapper --inline">
+                        <PatientPicker
+                            value={patient}
+                            onChange={setPatient}
+                            emptyText="Any"
                             clearable
                         />
                     </div>

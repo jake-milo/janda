@@ -29,6 +29,8 @@ class GetLabOrdersRequest extends FormRequest
             'sort' => 'nullable|string|in:date_sent,date_received,date_required,lens,lab,practice,patient',
             'order' => 'nullable|string|in:asc,desc',
             'lab' => 'nullable|integer|exists:labs,id',
+            'patient' => 'nullable|integer|exists:patients,id',
+            'filter' => 'nullable|string',
             'limit' => 'nullable|integer',
         ];
     }
@@ -50,11 +52,18 @@ class GetLabOrdersRequest extends FormRequest
             $query->where('lab_id', $lab);
         }
 
+        if ($patient = $this->input('patient')) {
+            $query->where('patient_id', $patient);
+        }
+
+        if ($filter = $this->input('filter')) {
+            $query->where('reference', 'LIKE', "%$filter%");
+        }
+
         $limit = $this->input('limit');
 
         return $limit
             ? $query->limit($limit)->get()
             : $query->paginate(30);
     }
-
 }

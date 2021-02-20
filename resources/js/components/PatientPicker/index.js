@@ -8,6 +8,7 @@ export const PatientPicker = ({
     value,
     onChange,
     emptyText = 'Please Choose',
+    clearable,
 }) => {
     const [filter, setFilter] = useState('');
     const debouncedFilter = useDebounced(filter, 500);
@@ -33,6 +34,7 @@ export const PatientPicker = ({
                     label: patient.name,
                 }))}
                 loading={loading}
+                clearable={clearable}
             />
         </>
     );
