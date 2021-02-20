@@ -24,12 +24,14 @@ class UpdatePatientRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'string',
+            'title' => 'string|nullable',
+            'name' => 'string|required',
+            'last_name' => 'string|required',
         ];
     }
 
     public function getUpdates()
     {
-        return $this->only('name');
+        return $this->only('name', 'title', 'last_name');
     }
 }

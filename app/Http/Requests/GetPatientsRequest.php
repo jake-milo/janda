@@ -21,7 +21,7 @@ class GetPatientsRequest extends FormRequest
     {
         return [
             'filter' => 'nullable|string',
-            'sort' => 'nullable|string|in:name,created_at,updated_at',
+            'sort' => 'nullable|string|in:last_name,created_at,updated_at',
             'order' => 'nullable|string|in:asc,desc',
             'include' => 'nullable|string|exists:patients,id',
         ];
@@ -34,7 +34,8 @@ class GetPatientsRequest extends FormRequest
         }
 
         $query = (new Patient)->newQuery();
-        $this->applyOrdering($query, 'name', 'asc');
+        $this->applyOrdering($query, 'last_name', 'asc');
+        $query->orderBy('name', $this->input('order') ?? 'asc');
 
         return $query->paginate(30);
     }
@@ -44,9 +45,10 @@ class GetPatientsRequest extends FormRequest
         $query = (new Patient)->newQuery();
 
         if ($filter = $this->input('filter')) {
-            $query->where('name', 'LIKE', "%$filter%");
+            $query->search($filter);
+            // $query->whereRaw("CONCAT(title, ' ', name, ' ', last_name) LIKE '%$filter%'");
         } else {
-            $query->limit(15)->orderBy('name', 'asc');
+            $query->limit(15)->orderBy('last_name', 'asc')->orderBy('name', 'asc');
         }
 
         $results = $query->get();

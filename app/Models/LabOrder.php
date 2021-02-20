@@ -38,16 +38,16 @@ class LabOrder extends Model
     {
         $today = Date::now();
         return $query->whereDate('date_required', '<=', $today)
-                     ->incomplete();
+            ->incomplete();
     }
 
     public function scopeUrgent($query)
     {
         $today = Date::now();
         $twoDaysAhead = $today->addDays(2);
-        return $query->whereDate('date_required', '>' , $today)
-                     ->whereDate('date_required', '<=', $twoDaysAhead)
-                     ->whereNull('date_received');
+        return $query->whereDate('date_required', '>', $today)
+            ->whereDate('date_required', '<=', $twoDaysAhead)
+            ->whereNull('date_received');
     }
 
     public function scopeComplete($query)
@@ -76,5 +76,4 @@ class LabOrder extends Model
 
         return $dateRequired->gt($today) && $dateRequired->lte($twoDaysAhead) && !$this->date_received;
     }
-
 }

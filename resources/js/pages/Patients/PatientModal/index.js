@@ -10,19 +10,25 @@ import { useForm } from '../../../hooks/useForm';
 import { useHistory } from '../../../hooks/useRouter';
 
 const schema = yup.object().shape({
-    name: yup.string().required().label('Name'),
+    title: yup.string().optional().nullable().label('Title'),
+    name: yup.string().required().label('First Name'),
+    last_name: yup.string().required().label('Last Name'),
 });
 
 export const PatientModal = ({ onSuccess, editing }) => {
     const getInitialValues = useCallback(async (id) => {
         if (!id) return {
+            title: '',
             name: '',
+            last_name: '',
         };
 
         const patient = await fetchPatient(id);
 
         return {
-            name: patient.name,
+            title: patient.title,
+            name: patient.first_name,
+            last_name: patient.last_name,
         };
     }, []);
 
@@ -61,7 +67,19 @@ export const PatientModal = ({ onSuccess, editing }) => {
                 {() => (
                     <>
                         <div className="input-wrapper">
-                            <label htmlFor="name">Name</label>
+                            <label htmlFor="title">Title (optional)</label>
+                            <input
+                                type="text"
+                                id="title"
+                                name="title"
+                                onChange={createNativeHandler('title')}
+                                value={values.title}
+                            />
+                        </div>
+                        <FieldError name="title" />
+
+                        <div className="input-wrapper">
+                            <label htmlFor="name">First Name</label>
                             <input
                                 type="text"
                                 id="name"
@@ -71,6 +89,18 @@ export const PatientModal = ({ onSuccess, editing }) => {
                             />
                         </div>
                         <FieldError name="name" />
+
+                        <div className="input-wrapper">
+                            <label htmlFor="last_name">Last Name</label>
+                            <input
+                                type="text"
+                                id="last_name"
+                                name="last_name"
+                                onChange={createNativeHandler('last_name')}
+                                value={values.last_name}
+                            />
+                        </div>
+                        <FieldError name="last_name" />
 
                         <input type="submit" value={editing ? 'Save' : 'Create'} disabled={!isValid} />
                     </>

@@ -13,7 +13,27 @@ class Patient extends Model
 
     protected $resourceRelations = ['labOrders', 'contactLenses'];
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'title', 'last_name'];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleted(function ($patient) {
+            $patient->labOrders()->delete();
+            $patient->contactLenses()->delete();
+        });
+    }
+
+    public function scopeSearch($query, $search)
+    {
+        $terms = explode(' ', $search);
+
+        foreach ($terms as $term) {
+            $query->orWhere('name', 'LIKE', "%$term%")
+                ->orWhere('last_name', 'LIKE', "%$term%");
+        }
+    }
 
     public function labOrders()
     {
@@ -23,5 +43,20 @@ class Patient extends Model
     public function contactLenses()
     {
         return $this->hasMany(ContactLens::class);
+    }
+
+    public function getFormattedNameAttribute()
+    {
+        $name = $this->name;
+
+        if ($title = $this->title) {
+            $name = "$title $name";
+        }
+
+        if ($lastName = $this->last_name) {
+            $name = "$lastName, $name";
+        }
+
+        return $name;
     }
 }

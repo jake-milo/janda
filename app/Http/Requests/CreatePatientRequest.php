@@ -24,13 +24,15 @@ class CreatePatientRequest extends FormRequest
     public function rules()
     {
         return [
+            'title' => 'string|nullable',
             'name' => 'string|required',
+            'last_name' => 'string|required',
         ];
     }
 
     public function getPatientData()
     {
-        return $this->only('name');
+        return $this->only('name', 'title', 'last_name');
     }
 
     /**
@@ -45,7 +47,7 @@ class CreatePatientRequest extends FormRequest
         ];
     }
 
-        /**
+    /**
      * Get custom attributes for validator errors.
      *
      * @return array
@@ -54,8 +56,7 @@ class CreatePatientRequest extends FormRequest
     {
         return [
             'name' => 'Name',
+            'last_name' => 'Last Name',
         ];
     }
-
-
 }

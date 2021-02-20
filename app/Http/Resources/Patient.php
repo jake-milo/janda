@@ -19,7 +19,10 @@ class Patient extends JsonResource
     {
         return $this->withTimestamps([
             'id' => $this->id,
-            'name' => $this->name,
+            'name' => $this->formatted_name,
+            'title' => $this->title,
+            'first_name' => $this->name,
+            'last_name' => $this->last_name,
             'lab_orders' => LabOrder::collection(
                 $this->whenLoaded('labOrders')
             ),
