@@ -30,39 +30,71 @@ export const ContactLensesTable = ({
     return (
         <Table headers={headers} sortable={sortable} sort={sort} order={order} updateSorting={updateSorting}>
             {contactLenses.map(contactLens => (
-                <Row key={contactLens.id}>
-                    <Cell when={hasHeader(h.PATIENT)}>
-                        <Link to={`/patients/${contactLens.patient.id}`}>
-                            {contactLens.patient.name}
-                        </Link>
-                    </Cell>
-                    <Cell when={hasHeader(h.PRACTICE)}>
-                        <Link to={`/practices/${contactLens.practice.id}`}>
-                            {contactLens.practice.name}
-                        </Link>
-                    </Cell>
-                    <Cell when={hasHeader(h.MAKE)}>
-                        <Link to={`/contact-lens-brands/${contactLens.type.brand.id}`}>
-                            {contactLens.type.brand.name}
-                        </Link>
-                        <br />
-                        {contactLens.type.name}
-                    </Cell>
-                    <Cell when={hasHeader(h.DURATION)} size="thin">{contactLens.type.duration}</Cell>
-                    <Cell when={hasHeader(h.PRESCRIPTION)} size="wide">
-                        <strong>Left:</strong> {contactLens.left}
-                        &nbsp;
-                        <strong>Right:</strong> {contactLens.right}
-                    </Cell>
-                    <Cell when={hasHeader(h.QUANTITY)}>{contactLens.quantity}</Cell>
-                    <Cell when={hasHeader(h.PRICE)} size="thin">{contactLens.price}</Cell>
-                    <Cell when={hasHeader(h.SOLUTIONS)}>{contactLens.solutions || '-'}</Cell>
-                    <Cell when={hasHeader(h.ACTIONS) && withActions} size="thin" centered>
-                        <Link to={`${match.path}/edit/${contactLens.id}`}>
-                            <RoundEdit />
-                        </Link>
-                    </Cell>
-                </Row>
+                <React.Fragment key={contactLens.id}>
+                    {['left', 'right'].map(side => (
+                        <Row key={`${contactLens.id}-${side}`}>
+                            <Cell when={hasHeader(h.PATIENT)}>
+                                {side === 'left' ? (
+                                    <Link to={`/patients/${contactLens.patient.id}`}>
+                                        {contactLens.patient.name}
+                                    </Link>
+                                ) : null}
+                            </Cell>
+
+                            <Cell when={hasHeader(h.PRACTICE)}>
+                                {side === 'left' ? (
+                                    <Link to={`/practices/${contactLens.practice.id}`}>
+                                        {contactLens.practice.name}
+                                    </Link>
+                                ) : null}
+                            </Cell>
+
+                            <Cell size="thin">
+                                <strong>{side === 'left' ? 'Left' : 'Right'}:</strong>
+                            </Cell>
+
+                            <Cell when={hasHeader(h.MAKE)}>
+                                {contactLens[side].type ? (
+                                    <>
+                                        <Link to={`/contact-lens-brands/${contactLens[side].type.brand.id}`}>
+                                            {contactLens[side].type.brand.name}
+                                        </Link>
+                                        <br />
+                                        {contactLens[side].type.name}
+                                    </>
+                                ) : '-'}
+                            </Cell>
+
+                            <Cell when={hasHeader(h.DURATION)} size="thin">
+                                {contactLens[side].type ? contactLens[side].type.duration : '-'}
+                            </Cell>
+
+                            <Cell when={hasHeader(h.PRESCRIPTION)} size="wide">
+                                {contactLens[side].prescription || '-'}
+                            </Cell>
+
+                            <Cell when={hasHeader(h.QUANTITY)}>
+                                {contactLens[side].quantity || '-'}
+                            </Cell>
+
+                            <Cell when={hasHeader(h.PRICE)} size="thin">
+                                {contactLens[side].price || '-'}
+                            </Cell>
+
+                            <Cell when={hasHeader(h.SOLUTIONS)}>
+                                {side === 'left' ? contactLens.solutions || '-' : null}
+                            </Cell>
+
+                            <Cell when={hasHeader(h.ACTIONS) && withActions} size="thin" centered>
+                                {side === 'left' ? (
+                                    <Link to={`${match.path}/edit/${contactLens.id}`}>
+                                        <RoundEdit />
+                                    </Link>
+                                ) : null}
+                            </Cell>
+                        </Row>
+                    ))}
+                </React.Fragment>
             ))}
         </Table>
     );

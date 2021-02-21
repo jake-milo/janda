@@ -1,25 +1,31 @@
 import { timeMapper } from './time';
 import { practiceMapper } from './practices';
 import { patientMapper } from './patients';
-import { contactLensBrandMapper } from './contactLensBrands';
 
 const formatMoney = value => `£${(value / 100).toFixed(2)}`;
+
+export const contactLensLeftRightMapper = ({ price, ...rest }) => {
+    const side = { ...rest };
+
+    side.raw_price = price;
+    if (price) {
+        side.price = formatMoney(parseInt(price, 10));
+    }
+
+    return side;
+};
 
 export const contactLensMapper = ({
     practice,
     patient,
-    brand,
+    left,
+    right,
     time,
-    price,
-    shipping_cost,
     ...rest
 }) => {
     const contactLens = { ...rest };
 
     contactLens.time = timeMapper(time);
-
-    contactLens.price = formatMoney(parseInt(price, 10));
-    contactLens.raw_price = price;
 
     if (practice) {
         contactLens.practice = practiceMapper(practice);
@@ -29,8 +35,12 @@ export const contactLensMapper = ({
         contactLens.patient = patientMapper(patient);
     }
 
-    if (brand) {
-        contactLens.brand = contactLensBrandMapper(brand);
+    if (left) {
+        contactLens.left = contactLensLeftRightMapper(left);
+    }
+
+    if (right) {
+        contactLens.right = contactLensLeftRightMapper(right);
     }
 
     return contactLens;

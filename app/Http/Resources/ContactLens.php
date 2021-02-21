@@ -19,11 +19,21 @@ class ContactLens extends JsonResource
     {
         return $this->withTimestamps([
             'id' => $this->id,
-            'quantity' => $this->quantity,
-            'price' => $this->price,
             'solutions' => $this->solutions,
-            'right' => $this->right,
-            'left' => $this->left,
+
+            'left' => [
+                'type' => Type::make($this->whenLoaded('leftType')),
+                'prescription' => $this->left_prescription,
+                'quantity' => $this->left_quantity,
+                'price' => $this->left_price,
+            ],
+
+            'right' => [
+                'type' => Type::make($this->whenLoaded('rightType')),
+                'prescription' => $this->right_prescription,
+                'quantity' => $this->right_quantity,
+                'price' => $this->right_price,
+            ],
 
             'patient' => Patient::make(
                 $this->whenLoaded('patient')
@@ -31,10 +41,6 @@ class ContactLens extends JsonResource
 
             'practice' => Practice::make(
                 $this->whenLoaded('practice')
-            ),
-
-            'type' => Type::make(
-                $this->whenLoaded('type')
             ),
         ]);
     }

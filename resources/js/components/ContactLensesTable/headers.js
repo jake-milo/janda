@@ -1,5 +1,6 @@
 export const PATIENT = 'Patient';
 export const PRACTICE = 'Practice';
+export const SIDE = 'Side';
 export const MAKE = 'Make';
 export const DURATION = 'Duration';
 export const PRESCRIPTION = 'Prescription';
@@ -12,6 +13,7 @@ export const getHeaders = (remove) => {
     const headers = {
         [PATIENT]: 'normal',
         [PRACTICE]: 'normal',
+        [SIDE]: 'thin',
         [MAKE]: 'normal',
         [DURATION]: 'thin',
         [PRESCRIPTION]: 'wide',

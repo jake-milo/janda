@@ -13,11 +13,11 @@ class ContactLens extends Model
 
     protected $table = 'contact_lenses';
 
-    protected $resourceRelations = ['patient', 'practice', 'type'];
+    protected $resourceRelations = ['patient', 'practice', 'leftType', 'rightType'];
 
     protected $guarded = ['id', 'patient_id', 'practice_id'];
 
-    protected $with = ['practice', 'patient', 'type'];
+    protected $with = ['practice', 'patient', 'leftType', 'rightType'];
 
     public function patient()
     {
@@ -29,8 +29,13 @@ class ContactLens extends Model
         return $this->belongsTo(Practice::class);
     }
 
-    public function type()
+    public function leftType()
     {
-        return $this->belongsTo(Type::class);
+        return $this->belongsTo(Type::class, 'left_type_id');
+    }
+
+    public function rightType()
+    {
+        return $this->belongsTo(Type::class, 'right_type_id');
     }
 }
