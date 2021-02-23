@@ -57,7 +57,7 @@ class GetLabOrdersRequest extends FormRequest
         }
 
         if ($filter = $this->input('filter')) {
-            $query->where('reference', 'LIKE', "%$filter%");
+            $query->where('reference', 'LIKE', "%$filter%")->orWhere('lens', 'LIKE', "%$filter%");
         }
 
         $limit = $this->input('limit');
