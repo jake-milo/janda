@@ -55,4 +55,6 @@ Route::post('/variants/{variant}/update-quantity', 'Stock\BrandController@update
 Route::apiResource('brands.types', 'Stock\TypeController');
 Route::post('/brands/{brand}/types/{type}/restore', 'Stock\TypeController@restore');
 
+Route::get('/stock/search', 'Stock\SearchController');
+
 Route::apiResource('users', 'UserController');

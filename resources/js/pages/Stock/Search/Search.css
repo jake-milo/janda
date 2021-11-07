@@ -1,0 +1,26 @@
+.search {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.search .column {
+    width: 25%;
+}
+
+.search .brand-group a {
+    margin-bottom: 0;
+}
+
+.search .brand-group:not(:first-of-type) {
+    margin-top: 0.5rem;
+}
+
+.search .brand-group-types {
+    padding-left: 0.5rem;
+}
+
+.search a {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}

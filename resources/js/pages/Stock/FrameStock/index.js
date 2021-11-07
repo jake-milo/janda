@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
-import RoundAdd from 'react-md-icon/dist/RoundAdd';
-import { Link, Route, useRouteMatch } from 'react-router-dom';
-import { useBrands } from './useBrands';
-import { Spinner } from '../../../components/Spinner';
-import { FloatingActionButton } from '../../../components/FloatingActionButton';
-import { BrandModal } from '../../../components/BrandModal';
+import React from "react";
+import RoundAdd from "react-md-icon/dist/RoundAdd";
+import { Link, Route, useRouteMatch } from "react-router-dom";
+import { useBrands } from "./useBrands";
+import { Spinner } from "../../../components/Spinner";
+import { FloatingActionButton } from "../../../components/FloatingActionButton";
+import { BrandModal } from "../../../components/BrandModal";
 
-import './FrameStock.css';
+import "./FrameStock.css";
 
 export const FrameStock = () => {
     const { groupedBrands, refresh } = useBrands();
-    const [showCreateModal, setShowCreateModal] = useState(false);
 
     const match = useRouteMatch();
 
@@ -21,18 +20,23 @@ export const FrameStock = () => {
     return (
         <>
             <div className="frame-stock">
-                {groupedBrands ? groupedBrands.map(group => (
-                    <div key={group.label} className="group">
-                        <p className="label">{group.label}</p>
-                        <div className="items">
-                            {group.brands.map(brand => (
-                                <Link to={`/brands/${brand.id}`} key={brand.id}>
-                                    {brand.name}
-                                </Link>
-                            ))}
+                {groupedBrands ? (
+                    groupedBrands.map(group => (
+                        <div key={group.label} className="group">
+                            <p className="label">{group.label}</p>
+                            <div className="items">
+                                {group.brands.map(brand => (
+                                    <Link
+                                        to={`/brands/${brand.id}`}
+                                        key={brand.id}
+                                    >
+                                        {brand.name}
+                                    </Link>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                )) : (
+                    ))
+                ) : (
                     <Spinner />
                 )}
             </div>
@@ -41,11 +45,10 @@ export const FrameStock = () => {
                 <RoundAdd />
             </FloatingActionButton>
 
-            <Route path={`${match.path}/create`} render={() => (
-                <BrandModal
-                    onSuccess={handleBrandCreated}
-                />
-            )} />
+            <Route
+                path={`${match.path}/create`}
+                render={() => <BrandModal onSuccess={handleBrandCreated} />}
+            />
         </>
     );
 };
