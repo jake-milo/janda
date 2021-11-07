@@ -14,6 +14,8 @@ export const PatientPicker = ({
     const debouncedFilter = useDebounced(filter, 500);
     const { patients, loading } = usePatients({ filter: debouncedFilter, include: value ? value : null });
 
+    console.log(patients);
+
     const handleChange = (newVal) => {
         if (onChange) {
             onChange(newVal);

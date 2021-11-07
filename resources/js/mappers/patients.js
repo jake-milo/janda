@@ -1,8 +1,15 @@
-import { timeMapper } from './time';
-import { labOrdersMapper } from './labOrders';
-import { contactLensesMapper } from './contactLenses';
+import { timeMapper } from "./time";
+import { labOrdersMapper } from "./labOrders";
+import { contactLensesMapper } from "./contactLenses";
+import { practiceMapper } from "./practices";
 
-export const patientMapper = ({ time, lab_orders, contact_lenses, ...rest }) => {
+export const patientMapper = ({
+    time,
+    lab_orders,
+    contact_lenses,
+    practice,
+    ...rest
+}) => {
     const patient = { ...rest };
 
     patient.time = timeMapper(time);
@@ -13,6 +20,10 @@ export const patientMapper = ({ time, lab_orders, contact_lenses, ...rest }) => 
 
     if (contact_lenses) {
         patient.contactLenses = contactLensesMapper(contact_lenses);
+    }
+
+    if (practice) {
+        patient.practice = practiceMapper(practice);
     }
 
     return patient;

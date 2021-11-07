@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Practice;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreatePatientRequest extends FormRequest
@@ -27,12 +28,20 @@ class CreatePatientRequest extends FormRequest
             'title' => 'string|nullable',
             'name' => 'string|required',
             'last_name' => 'string|required',
+            'practice_id' => 'integer|nullable|exists:practices,id',
         ];
     }
 
     public function getPatientData()
     {
         return $this->only('name', 'title', 'last_name');
+    }
+
+    public function getPractice(): ?Practice
+    {
+        $practiceId = $this->input('practice_id');
+
+        return $practiceId ? Practice::find($practiceId) : null;
     }
 
     /**
@@ -57,6 +66,7 @@ class CreatePatientRequest extends FormRequest
         return [
             'name' => 'Name',
             'last_name' => 'Last Name',
+            'practice_id' => 'Practice',
         ];
     }
 }

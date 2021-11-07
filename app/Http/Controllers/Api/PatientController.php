@@ -34,6 +34,11 @@ class PatientController extends Controller
 
         $patient = Patient::create($patientData);
 
+        if ($practice = $request->getPractice()) {
+            $patient->practice()->associate($practice);
+            $patient->save();
+        }
+
         $patient->loadResourceRelations();
 
         return PatientResource::make($patient);
@@ -65,6 +70,11 @@ class PatientController extends Controller
         $patientData = $request->getUpdates();
 
         $patient->fill($patientData);
+
+        if ($practice = $request->getPractice()) {
+            $patient->practice()->associate($practice);
+        }
+
         $patient->save();
 
         $patient->loadResourceRelations();

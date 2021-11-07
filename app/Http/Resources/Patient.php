@@ -29,6 +29,7 @@ class Patient extends JsonResource
             'contact_lenses' => ContactLens::collection(
                 $this->whenLoaded('contactLenses')
             ),
+            'practice' => Practice::make($this->whenLoaded('practice')),
         ]);
     }
 }

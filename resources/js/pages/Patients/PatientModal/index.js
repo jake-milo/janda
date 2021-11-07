@@ -1,27 +1,45 @@
-import React, { useCallback } from 'react';
-import * as yup from 'yup';
-import { patch, post } from '../../../helpers';
-import { RouterModal } from '../../../components/Modal';
-import { Form } from '../../../components/Form';
-import { FieldError } from '../../../components/FieldError';
-import { PageTitle } from '../../../components/PageTitle';
-import { fetchPatient } from '../../../utilities/fetchPatient';
-import { useForm } from '../../../hooks/useForm';
-import { useHistory } from '../../../hooks/useRouter';
+import React, { useCallback } from "react";
+import * as yup from "yup";
+import { patch, post } from "../../../helpers";
+import { RouterModal } from "../../../components/Modal";
+import { Form } from "../../../components/Form";
+import { FieldError } from "../../../components/FieldError";
+import { PageTitle } from "../../../components/PageTitle";
+import { fetchPatient } from "../../../utilities/fetchPatient";
+import { useForm } from "../../../hooks/useForm";
+import { useHistory } from "../../../hooks/useRouter";
+import { PracticePicker } from "../../../components/PracticePicker";
 
 const schema = yup.object().shape({
-    title: yup.string().optional().nullable().label('Title'),
-    name: yup.string().required().label('First Name'),
-    last_name: yup.string().required().label('Last Name'),
+    title: yup
+        .string()
+        .optional()
+        .nullable()
+        .label("Title"),
+    name: yup
+        .string()
+        .required()
+        .label("First Name"),
+    last_name: yup
+        .string()
+        .required()
+        .label("Last Name"),
+    practice_id: yup
+        .number()
+        .optional()
+        .nullable()
+        .label("Practice")
 });
 
 export const PatientModal = ({ onSuccess, editing }) => {
-    const getInitialValues = useCallback(async (id) => {
-        if (!id) return {
-            title: '',
-            name: '',
-            last_name: '',
-        };
+    const getInitialValues = useCallback(async id => {
+        if (!id)
+            return {
+                title: "",
+                name: "",
+                last_name: "",
+                practice_id: ""
+            };
 
         const patient = await fetchPatient(id);
 
@@ -29,6 +47,7 @@ export const PatientModal = ({ onSuccess, editing }) => {
             title: patient.title,
             name: patient.first_name,
             last_name: patient.last_name,
+            practice_id: patient.practice ? patient.practice.id : ""
         };
     }, []);
 
@@ -36,34 +55,42 @@ export const PatientModal = ({ onSuccess, editing }) => {
         values,
         loading,
         createNativeHandler,
+        createHandler,
         errors,
         submitHandler,
-        isValid,
+        isValid
     } = useForm({ editing, getInitialValues, schema });
 
     const history = useHistory();
 
-
     const handleSubmit = submitHandler(() => {
-        const request = () => editing
-            ? patch(`/api/patients/${editing}`, values)
-            : post('/api/patients', values);
+        const request = () =>
+            editing
+                ? patch(`/api/patients/${editing}`, values)
+                : post("/api/patients", values);
 
         request()
             .then(() => {
                 onSuccess();
                 history.goBack();
             })
-            .catch((err) => {
+            .catch(err => {
                 console.log(err);
             });
     });
 
     return (
         <RouterModal>
-            <PageTitle>{editing ? 'Update Patient' : 'Create Patient'}</PageTitle>
+            <PageTitle>
+                {editing ? "Update Patient" : "Create Patient"}
+            </PageTitle>
 
-            <Form values={values} loading={loading} onSubmit={handleSubmit} errors={errors}>
+            <Form
+                values={values}
+                loading={loading}
+                onSubmit={handleSubmit}
+                errors={errors}
+            >
                 {() => (
                     <>
                         <div className="input-wrapper">
@@ -72,7 +99,7 @@ export const PatientModal = ({ onSuccess, editing }) => {
                                 type="text"
                                 id="title"
                                 name="title"
-                                onChange={createNativeHandler('title')}
+                                onChange={createNativeHandler("title")}
                                 value={values.title}
                             />
                         </div>
@@ -84,7 +111,7 @@ export const PatientModal = ({ onSuccess, editing }) => {
                                 type="text"
                                 id="name"
                                 name="name"
-                                onChange={createNativeHandler('name')}
+                                onChange={createNativeHandler("name")}
                                 value={values.name}
                             />
                         </div>
@@ -96,13 +123,26 @@ export const PatientModal = ({ onSuccess, editing }) => {
                                 type="text"
                                 id="last_name"
                                 name="last_name"
-                                onChange={createNativeHandler('last_name')}
+                                onChange={createNativeHandler("last_name")}
                                 value={values.last_name}
                             />
                         </div>
                         <FieldError name="last_name" />
 
-                        <input type="submit" value={editing ? 'Save' : 'Create'} disabled={!isValid} />
+                        <div className="select-wrapper">
+                            <PracticePicker
+                                value={values.practice}
+                                onChange={createHandler("practice_id")}
+                                emptyText="None"
+                            />
+                        </div>
+                        <FieldError name="practice_id" />
+
+                        <input
+                            type="submit"
+                            value={editing ? "Save" : "Create"}
+                            disabled={!isValid}
+                        />
                     </>
                 )}
             </Form>

@@ -1,22 +1,34 @@
-import React from 'react';
-import { PageTitle } from '../../components/PageTitle';
-import { Page } from '../../components/Page';
-import { Spinner } from '../../components/Spinner';
-import { usePatient } from './usePatient';
-import { LabOrdersTable, headers as loHeaders } from '../../components/LabOrdersTable';
-import { ContactLensesTable, headers as clHeaders } from '../../components/ContactLensesTable';
-import { FloatingActionButton } from '../../components/FloatingActionButton';
-import RoundEdit from 'react-md-icon/dist/RoundEdit';
-import { Route } from 'react-router-dom';
-import { PatientModal } from '../Patients/PatientModal';
-import { useSort } from '../../hooks/useSort';
+import React from "react";
+import { PageTitle } from "../../components/PageTitle";
+import { Page } from "../../components/Page";
+import { Spinner } from "../../components/Spinner";
+import { usePatient } from "./usePatient";
+import {
+    LabOrdersTable,
+    headers as loHeaders
+} from "../../components/LabOrdersTable";
+import {
+    ContactLensesTable,
+    headers as clHeaders
+} from "../../components/ContactLensesTable";
+import { FloatingActionButton } from "../../components/FloatingActionButton";
+import RoundEdit from "react-md-icon/dist/RoundEdit";
+import { Link, Route } from "react-router-dom";
+import { PatientModal } from "../Patients/PatientModal";
+import { useSort } from "../../hooks/useSort";
 
 export const Patient = ({ match }) => {
     const [sortLabOrders, orderLabOrders, updateLabOrderOrdering] = useSort();
-    const [sortContactLenses, orderContactLenses, updateContactLensOrdering] = useSort();
+    const [
+        sortContactLenses,
+        orderContactLenses,
+        updateContactLensOrdering
+    ] = useSort();
     const { patient, refresh } = usePatient(match.params.id, {
-        sortLabOrders, orderLabOrders,
-        sortContactLenses, orderContactLenses,
+        sortLabOrders,
+        orderLabOrders,
+        sortContactLenses,
+        orderContactLenses
     });
 
     const handlePatientSaved = () => {
@@ -25,18 +37,31 @@ export const Patient = ({ match }) => {
 
     return (
         <>
-            <PageTitle label="Patient">{patient ? patient.name : 'Loading...'}</PageTitle>
+            <PageTitle label="Patient">
+                {patient ? patient.name : "Loading..."}
+            </PageTitle>
 
             <Page>
                 {patient ? (
                     <>
+                        <h2>Practice</h2>
+                        <p>
+                            {patient.practice ? (
+                                <Link to={`/practices/${patient.practice.id}`}>
+                                    {patient.practice.name}
+                                </Link>
+                            ) : (
+                                "-"
+                            )}
+                        </p>
+
                         <h2>Lab Orders</h2>
                         {patient.labOrders.length > 0 ? (
                             <LabOrdersTable
                                 labOrders={patient.labOrders}
                                 sort={sortLabOrders}
                                 order={orderLabOrders}
-                                noSortingOn={['Practice', 'Lab']}
+                                noSortingOn={["Practice", "Lab"]}
                                 updateSorting={updateLabOrderOrdering}
                                 remove={[loHeaders.PATIENT]}
                             />
@@ -50,7 +75,7 @@ export const Patient = ({ match }) => {
                                 contactLenses={patient.contactLenses}
                                 sort={sortContactLenses}
                                 order={orderContactLenses}
-                                noSortingOn={['Practice', 'Make', 'Duration']}
+                                noSortingOn={["Practice", "Make", "Duration"]}
                                 updateSorting={updateContactLensOrdering}
                                 remove={[clHeaders.PATIENT]}
                             />
@@ -67,12 +92,15 @@ export const Patient = ({ match }) => {
                 <RoundEdit />
             </FloatingActionButton>
 
-            <Route path={`${match.path}/edit`} render={({ match }) => (
-                <PatientModal
-                    editing={match.params.id}
-                    onSuccess={handlePatientSaved}
-                />
-            )} />
+            <Route
+                path={`${match.path}/edit`}
+                render={({ match }) => (
+                    <PatientModal
+                        editing={match.params.id}
+                        onSuccess={handlePatientSaved}
+                    />
+                )}
+            />
         </>
     );
 };

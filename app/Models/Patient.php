@@ -15,6 +15,8 @@ class Patient extends Model
 
     protected $fillable = ['name', 'title', 'last_name'];
 
+    protected $with = ['practice'];
+
     protected static function boot()
     {
         parent::boot();
@@ -33,6 +35,11 @@ class Patient extends Model
             $query->orWhere('name', 'LIKE', "%$term%")
                 ->orWhere('last_name', 'LIKE', "%$term%");
         }
+    }
+
+    public function practice()
+    {
+        return $this->belongsTo(Practice::class);
     }
 
     public function labOrders()
