@@ -6,6 +6,7 @@ import { FrameStock } from "./FrameStock";
 import { FrameManufacturers } from "./FrameManufacturers";
 import { ContactLensStock } from "./ContactLensStock";
 import { Search } from "./Search";
+import { Export } from "./Export";
 
 export const Stock = () => {
     return (
@@ -23,7 +24,8 @@ export const Stock = () => {
                     Brands: "/stock/frames",
                     "Frame Manufacturers": "/stock/manufacturers",
                     "Contact Lenses": "/stock/lenses",
-                    Search: "/stock/search"
+                    Search: "/stock/search",
+                    Export: "/stock/export"
                 }}
                 tabs={{
                     Brands: path => (
@@ -35,7 +37,8 @@ export const Stock = () => {
                     "Contact Lenses": path => (
                         <Route path={path} component={ContactLensStock} />
                     ),
-                    Search: path => <Route path={path} component={Search} />
+                    Search: path => <Route path={path} component={Search} />,
+                    Export: path => <Route path={path} component={Export} />
                 }}
             />
         </>
