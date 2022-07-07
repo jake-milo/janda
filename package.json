@@ -36,7 +36,7 @@
     "dependencies": {
         "bezier-easing": "^2.1.0",
         "d3-ease": "^1.0.5",
-        "moment": "^2.24.0",
+        "moment": "^2.29.4",
         "query-string": "^6.6.0",
         "react": "^16.8.3",
         "react-datepicker": "^2.5.0",
