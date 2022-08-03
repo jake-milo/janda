@@ -45,7 +45,7 @@ class GetPatientsRequest extends FormRequest
         $query = (new Patient)->newQuery();
 
         if ($filter = $this->input('filter')) {
-            $query->search($filter);
+            $query->search($filter)->orderBy('last_name', 'asc')->orderBy('name', 'asc');
             // $query->whereRaw("CONCAT(title, ' ', name, ' ', last_name) LIKE '%$filter%'");
         } else {
             $query->limit(15)->orderBy('last_name', 'asc')->orderBy('name', 'asc');
