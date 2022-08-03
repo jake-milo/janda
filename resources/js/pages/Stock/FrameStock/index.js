@@ -19,9 +19,9 @@ export const FrameStock = () => {
 
     return (
         <>
-            <div className="frame-stock">
-                {groupedBrands ? (
-                    groupedBrands.map(group => (
+            {groupedBrands ? (
+                <div className="frame-stock">
+                    {groupedBrands.map(group => (
                         <div key={group.label} className="group">
                             <p className="label">{group.label}</p>
                             <div className="items">
@@ -35,11 +35,11 @@ export const FrameStock = () => {
                                 ))}
                             </div>
                         </div>
-                    ))
-                ) : (
-                    <Spinner />
-                )}
-            </div>
+                    ))}
+                </div>
+            ) : (
+                <Spinner />
+            )}
 
             <FloatingActionButton to={`${match.path}/create`}>
                 <RoundAdd />

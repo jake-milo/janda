@@ -16,21 +16,21 @@ class StockSeeder extends Seeder
     public function run()
     {
         factory(Manufacturer::class, 20)
-        ->create()
-        ->each(function ($manufacturer) {
-            $manufacturer->brands()
-                ->saveMany(factory(Brand::class, 3)->make())
-                ->each(function ($brand) {
-                    $brand->types()
-                        ->saveMany(factory(Type::class, 10)->make())
-                        ->each(function ($type) {
-                            $type->variants()
-                                ->saveMany(
-                                    factory(Variant::class, rand(1,4))
-                                        ->make()
-                                );
-                        });
-                });
-        });
+            ->create()
+            ->each(function ($manufacturer) {
+                $manufacturer->brands()
+                    ->saveMany(factory(Brand::class, 3)->make())
+                    ->each(function ($brand) {
+                        $brand->types()
+                            ->saveMany(factory(Type::class, 10)->make())
+                            ->each(function ($type) {
+                                $type->variants()
+                                    ->saveMany(
+                                        factory(Variant::class, rand(1, 4))
+                                            ->make()
+                                    );
+                            });
+                    });
+            });
     }
 }

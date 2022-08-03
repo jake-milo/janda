@@ -1,15 +1,13 @@
 .frame-stock {
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: space-between;
-    max-height: 80vh;
+    column-count: 4;
 }
 
 .frame-stock .group {
-    width: 25%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     margin-bottom: 1.5rem;
+    break-inside: avoid;
 }
 
 .frame-stock .group .label {
@@ -29,5 +27,5 @@
 
 .frame-stock .group .items a {
     display: block;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
 }
