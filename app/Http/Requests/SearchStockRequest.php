@@ -6,6 +6,8 @@ use App\Models\Stock\Brand;
 use App\Models\Stock\Manufacturer;
 use App\Models\ContactLens\Brand as ContactLensBrand;
 use App\Models\ContactLens\Type as ContactLensType;
+use App\Models\Stock\Type;
+use App\Models\Stock\Variant;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Collection;
 
@@ -30,6 +32,20 @@ class SearchStockRequest extends FormRequest
         if (!$q) return null;
 
         return Brand::where('name', 'LIKE', "%$q%")->orderBy('name', 'asc')->get();
+    }
+
+    public function getTypes(): ?Collection
+    {
+        $q = $this->input('q');
+
+        if (!$q) return null;
+
+        return Type::with('brand')
+            ->where('name', 'LIKE', "%$q%")
+            ->orWhereHas('variants', function ($query) use ($q) {
+                $query->where('color', 'LIKE', "%$q%");
+            })
+            ->get();
     }
 
     public function getManufacturers(): ?Collection

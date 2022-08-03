@@ -20,7 +20,12 @@
     padding-left: 0.5rem;
 }
 
-.search a {
+.search .column a {
     display: inline-block;
     margin-bottom: 0.5rem;
+}
+
+.search .frame-results {
+    margin-top: 1rem;
+    width: 100%;
 }

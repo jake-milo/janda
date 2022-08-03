@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useQueryParams } from "../../../hooks/useQueryParams";
-import { useStockSearch } from "./useStockSearch";
+import { useSearch } from "./useStockSearch";
 import { useHistory, useLocation } from "../../../hooks/useRouter";
 
 import "./Search.css";
 import { Spinner } from "../../../components/Spinner";
+import { FramesTable } from "../../../components/FramesTable";
 
 export const Search = () => {
     const params = useQueryParams();
@@ -23,7 +24,7 @@ export const Search = () => {
         });
     }, [query, pathname, history]);
 
-    const [search, loading] = useStockSearch(query);
+    const { search, loading, refresh } = useSearch(query);
 
     return (
         <>
@@ -45,87 +46,111 @@ export const Search = () => {
             ) : !search || !query ? (
                 <p>Type to start searching...</p>
             ) : search ? (
-                <div className="search">
-                    <div className="column">
-                        <h2>Brands</h2>
+                <>
+                    <div className="search">
+                        <div className="column">
+                            <h2>Brands</h2>
 
-                        {search.brands && search.brands.length ? (
-                            search.brands.map(brand => (
-                                <p key={brand.id}>
-                                    <Link to={`/brands/${brand.id}`}>
-                                        {brand.name}
-                                    </Link>
-                                </p>
-                            ))
-                        ) : (
-                            <p>-</p>
-                        )}
-                    </div>
+                            {search.brands && search.brands.length ? (
+                                search.brands.map(brand => (
+                                    <p key={brand.id}>
+                                        <Link to={`/brands/${brand.id}`}>
+                                            {brand.name}
+                                        </Link>
+                                    </p>
+                                ))
+                            ) : (
+                                <p>-</p>
+                            )}
+                        </div>
 
-                    <div className="column">
-                        <h2>Manufacturers</h2>
+                        <div className="column">
+                            <h2>Manufacturers</h2>
 
-                        {search.manufacturers && search.manufacturers.length ? (
-                            search.manufacturers.map(manufacturer => (
-                                <p key={manufacturer.id}>
-                                    <Link
-                                        to={`/manufacturers/${manufacturer.id}`}
-                                    >
-                                        {manufacturer.name}
-                                    </Link>
-                                </p>
-                            ))
-                        ) : (
-                            <p>-</p>
-                        )}
-                    </div>
+                            {search.manufacturers &&
+                            search.manufacturers.length ? (
+                                search.manufacturers.map(manufacturer => (
+                                    <p key={manufacturer.id}>
+                                        <Link
+                                            to={`/manufacturers/${manufacturer.id}`}
+                                        >
+                                            {manufacturer.name}
+                                        </Link>
+                                    </p>
+                                ))
+                            ) : (
+                                <p>-</p>
+                            )}
+                        </div>
 
-                    <div className="column">
-                        <h2>Contact Lens Brands</h2>
+                        <div className="column">
+                            <h2>Contact Lens Brands</h2>
 
-                        {search.contact_lens_brands &&
-                        search.contact_lens_brands.length ? (
-                            search.contact_lens_brands.map(brand => (
-                                <p key={brand.id}>
-                                    <Link
-                                        to={`/contact-lens-brands/${brand.id}`}
-                                    >
-                                        {brand.name}
-                                    </Link>
-                                </p>
-                            ))
-                        ) : (
-                            <p>-</p>
-                        )}
-                    </div>
-
-                    <div className="column">
-                        <h2>Contact Lens Types</h2>
-
-                        {search.groupedLensTypes &&
-                        search.groupedLensTypes.length ? (
-                            search.groupedLensTypes.map(({ brand, types }) => (
-                                <React.Fragment key={brand.id}>
-                                    <p key={brand.id} className="brand-group">
+                            {search.contact_lens_brands &&
+                            search.contact_lens_brands.length ? (
+                                search.contact_lens_brands.map(brand => (
+                                    <p key={brand.id}>
                                         <Link
                                             to={`/contact-lens-brands/${brand.id}`}
                                         >
                                             {brand.name}
                                         </Link>
                                     </p>
+                                ))
+                            ) : (
+                                <p>-</p>
+                            )}
+                        </div>
 
-                                    <div className="brand-group-types">
-                                        {types.map(type => (
-                                            <p key={type.id}>{type.name}</p>
-                                        ))}
-                                    </div>
-                                </React.Fragment>
-                            ))
-                        ) : (
-                            <p>-</p>
-                        )}
+                        <div className="column">
+                            <h2>Contact Lens Types</h2>
+
+                            {search.groupedLensTypes &&
+                            search.groupedLensTypes.length ? (
+                                search.groupedLensTypes.map(
+                                    ({ brand, types }) => (
+                                        <React.Fragment key={brand.id}>
+                                            <p
+                                                key={brand.id}
+                                                className="brand-group"
+                                            >
+                                                <Link
+                                                    to={`/contact-lens-brands/${brand.id}`}
+                                                >
+                                                    {brand.name}
+                                                </Link>
+                                            </p>
+
+                                            <div className="brand-group-types">
+                                                {types.map(type => (
+                                                    <p key={type.id}>
+                                                        {type.name}
+                                                    </p>
+                                                ))}
+                                            </div>
+                                        </React.Fragment>
+                                    )
+                                )
+                            ) : (
+                                <p>-</p>
+                            )}
+                        </div>
+
+                        <div className="frame-results">
+                            <h2>Frames</h2>
+                            {search.types && search.types.length > 0 ? (
+                                <FramesTable
+                                    frames={search.types}
+                                    onQuantityChange={refresh}
+                                    onRemove={refresh}
+                                    showBrand
+                                />
+                            ) : (
+                                <p>-</p>
+                            )}
+                        </div>
                     </div>
-                </div>
+                </>
             ) : null}
         </>
     );

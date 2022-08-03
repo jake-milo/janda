@@ -1,7 +1,7 @@
 export const searchStock = query =>
     fetch(`/api/stock/search?q=${query}`)
         .then(res => res.json())
-        .then(({ contact_lens_types, ...rest }) => {
+        .then(({ data: { contact_lens_types, ...rest } }) => {
             const groupedLensTypes = {};
 
             contact_lens_types.forEach(type => {
@@ -16,7 +16,9 @@ export const searchStock = query =>
             });
 
             return {
-                ...rest,
-                groupedLensTypes: Object.values(groupedLensTypes)
+                data: {
+                    ...rest,
+                    groupedLensTypes: Object.values(groupedLensTypes)
+                }
             };
         });

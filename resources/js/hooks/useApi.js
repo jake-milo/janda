@@ -1,8 +1,15 @@
-import { useCallback, useState, useMemo, useEffect } from 'react';
-import { get, toQueryString } from '../helpers';
-import { usePageNumber } from '../hooks/usePageNumber';
+import { useCallback, useState, useMemo, useEffect } from "react";
+import { get, toQueryString } from "../helpers";
+import { usePageNumber } from "../hooks/usePageNumber";
 
-const useApiCore = (key, fetcher, transformer, dependencies, page = null, setPage = null) => {
+const useApiCore = (
+    key,
+    fetcher,
+    transformer,
+    dependencies,
+    page = null,
+    setPage = null
+) => {
     // Memo the fetcher as a callback
     const fetch = useCallback(fetcher, dependencies);
 
@@ -12,14 +19,14 @@ const useApiCore = (key, fetcher, transformer, dependencies, page = null, setPag
 
     // Memoize the transformed data
     const transformed = useMemo(
-        () => response ? transformer(response.data) : null,
-        [response, transformer],
+        () => (response ? transformer(response.data) : null),
+        [response, transformer]
     );
 
     // Memoize the page count
     const pageCount = useMemo(
-        () => response && response.meta ? response.meta.last_page : null,
-        [response],
+        () => (response && response.meta ? response.meta.last_page : null),
+        [response]
     );
 
     const performFetch = () => {
@@ -36,6 +43,7 @@ const useApiCore = (key, fetcher, transformer, dependencies, page = null, setPag
 
         if (promise) {
             promise.then(data => {
+                console.log("fetched", data);
                 setResponse(data);
                 setLoading(false);
             });
@@ -49,29 +57,27 @@ const useApiCore = (key, fetcher, transformer, dependencies, page = null, setPag
         loading,
         page,
         pageCount,
-        resetPage () {
+        resetPage() {
             setPage(1);
         },
 
-        refresh () {
+        refresh() {
             performFetch();
-        },
+        }
     };
 };
 
 export const useApi = (key, fetcher, transformer, dependencies = []) => {
     return useApiCore(key, fetcher, transformer, dependencies);
-}
+};
 
-export const usePaginatedApi = (key, fetcher, transformer, dependencies = []) => {
+export const usePaginatedApi = (
+    key,
+    fetcher,
+    transformer,
+    dependencies = []
+) => {
     const { page, setPage } = usePageNumber();
 
-    return useApiCore(
-        key,
-        fetcher,
-        transformer,
-        dependencies,
-        page,
-        setPage,
-    );
+    return useApiCore(key, fetcher, transformer, dependencies, page, setPage);
 };

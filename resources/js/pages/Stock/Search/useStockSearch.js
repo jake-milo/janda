@@ -1,22 +1,14 @@
-import { useEffect, useState } from "react";
+import { useApi } from "../../../hooks/useApi";
 import { useDebounced } from "../../../hooks/useDebounced";
 import { searchStock } from "../../../utilities/searchStock";
 
-export const useStockSearch = query => {
-    const [result, setResult] = useState(null);
-    const debouncedSearch = useDebounced(query);
-    const [fetching, setFetching] = useState(false);
+export const useSearch = query => {
+    const debouncedQuery = useDebounced(query, 500);
 
-    useEffect(() => {
-        if (debouncedSearch) {
-            setFetching(true);
-
-            searchStock(debouncedSearch).then(data => {
-                setResult(data);
-                setFetching(false);
-            });
-        }
-    }, [debouncedSearch]);
-
-    return [result, fetching];
+    return useApi(
+        "search",
+        async () => (debouncedQuery ? searchStock(debouncedQuery) : null),
+        data => data,
+        [debouncedQuery]
+    );
 };
