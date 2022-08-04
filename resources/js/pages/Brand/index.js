@@ -12,6 +12,7 @@ import { BrandModal } from "../../components/BrandModal";
 import { TypeModal } from "./TypeModal";
 import { useSort } from "../../hooks/useSort";
 import { FramesTable } from "../../components/FramesTable";
+import { DeleteTypeModal } from "./DeleteTypeModal";
 
 export const Brand = ({ match }) => {
     const typeSortControls = useSort();
@@ -26,6 +27,10 @@ export const Brand = ({ match }) => {
     };
 
     const handleTypeSaved = () => {
+        refresh();
+    };
+
+    const handleTypeDeleted = () => {
         refresh();
     };
 
@@ -98,6 +103,19 @@ export const Brand = ({ match }) => {
                                 onSuccess={handleTypeSaved}
                                 brand={brand}
                                 editing={match.params.typeId}
+                            />
+                        )}
+                    />
+
+                    <Route
+                        path={`${match.path}/delete-type/:typeId`}
+                        render={({ match }) => (
+                            <DeleteTypeModal
+                                brandId={brand.id}
+                                onSuccess={handleTypeDeleted}
+                                frame={brand.types.find(
+                                    type => `${type.id}` === match.params.typeId
+                                )}
                             />
                         )}
                     />

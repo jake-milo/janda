@@ -7,7 +7,7 @@ import { post, remove } from "../../helpers";
 import { Link } from "react-router-dom";
 import RoundEdit from "react-md-icon/dist/RoundEdit";
 import BaselineDelete from "react-md-icon/dist/BaselineDelete";
-import { useMatch } from "../../hooks/useRouter";
+import { useLocation } from "../../hooks/useRouter";
 
 export const FramesTable = ({
     frames,
@@ -15,9 +15,10 @@ export const FramesTable = ({
     onRemove,
     showBrand = false,
     knownBrandId = null,
-    sortControls = null
+    sortControls = null,
+    noActions = false
 }) => {
-    const match = useMatch();
+    const location = useLocation();
     const [sort, order, updateSort] = sortControls || [];
 
     const [updatingQuantity, setUpdatingQuantity] = useState(false);
@@ -34,20 +35,12 @@ export const FramesTable = ({
             });
     };
 
-    const handleRemove = type => e => {
-        const brandId = knownBrandId || type.brand.id;
-        remove(`/api/brands/${brandId}/types/${type.id}`)
-            .then(() => {
-                onRemove();
-            })
-            .catch(err => {
-                console.log(err);
-            });
-    };
-
     return (
         <Table
-            headers={showBrand ? h.headersWithBrand : h.headers}
+            headers={h.removeActions(
+                showBrand ? h.headersWithBrand : h.headers,
+                noActions
+            )}
             sortable={sortControls ? h.sortable : undefined}
             sort={sort}
             order={order}
@@ -81,31 +74,36 @@ export const FramesTable = ({
                             )}
                         </Cell>
                         <Cell centered>
-                            <Stepper
-                                value={variant.quantity}
-                                onChange={handleQuantityChange(variant)}
-                                disabled={updatingQuantity}
-                                buttonsOnly
-                            />
+                            {noActions ? (
+                                variant.quantity
+                            ) : (
+                                <Stepper
+                                    value={variant.quantity}
+                                    onChange={handleQuantityChange(variant)}
+                                    disabled={updatingQuantity}
+                                    buttonsOnly
+                                />
+                            )}
                         </Cell>
-                        <Cell size="thin" centered>
-                            {i === 0 ? (
-                                <>
-                                    <Link
-                                        to={`${match.url}/edit-type/${type.id}`}
-                                        href="#edit"
-                                    >
-                                        <RoundEdit />
-                                    </Link>
-                                    <a
-                                        href="#remove"
-                                        onClick={handleRemove(type)}
-                                    >
-                                        <BaselineDelete />
-                                    </a>
-                                </>
-                            ) : null}
-                        </Cell>
+                        {noActions ? null : (
+                            <Cell size="thin" centered>
+                                {i === 0 ? (
+                                    <>
+                                        <Link
+                                            to={`${location.pathname}/edit-type/${type.id}`}
+                                            href="#edit"
+                                        >
+                                            <RoundEdit />
+                                        </Link>
+                                        <Link
+                                            to={`${location.pathname}/delete-type/${type.id}`}
+                                        >
+                                            <BaselineDelete />
+                                        </Link>
+                                    </>
+                                ) : null}
+                            </Cell>
+                        )}
                     </Row>
                 ))
             )}

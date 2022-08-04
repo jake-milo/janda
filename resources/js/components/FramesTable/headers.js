@@ -26,6 +26,16 @@ export const headersWithBrand = {
     ...headers
 };
 
+export const removeActions = (headers, shouldRemoveActions) => {
+    if (shouldRemoveActions) {
+        const { [ACTIONS]: actionHeader, ...rest } = headers;
+
+        return rest;
+    }
+
+    return headers;
+};
+
 export const sortable = {
     [NAME]: "name",
     [PRICE]: "sell",

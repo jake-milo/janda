@@ -43,7 +43,6 @@ const useApiCore = (
 
         if (promise) {
             promise.then(data => {
-                console.log("fetched", data);
                 setResponse(data);
                 setLoading(false);
             });
