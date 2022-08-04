@@ -30,7 +30,8 @@ class GetManufacturerRequest extends FormRequest
         $query = (new Manufacturer)->newQuery();
         $this->applyOrdering($query, 'name', 'asc');
 
-        return $query->paginate(30);
+        return $this->has('page')
+            ? $query->paginate(30)
+            : $query->get();
     }
 }
-

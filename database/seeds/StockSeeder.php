@@ -15,7 +15,7 @@ class StockSeeder extends Seeder
      */
     public function run()
     {
-        factory(Manufacturer::class, 20)
+        factory(Manufacturer::class, 35)
             ->create()
             ->each(function ($manufacturer) {
                 $manufacturer->brands()

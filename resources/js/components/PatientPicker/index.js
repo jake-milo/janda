@@ -17,8 +17,6 @@ export const PatientPicker = ({
         include: value ? value : null
     });
 
-    console.log(patients);
-
     const handleChange = newVal => {
         if (onChange) {
             onChange(newVal);
